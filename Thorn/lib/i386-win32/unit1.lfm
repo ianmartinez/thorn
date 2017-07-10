@@ -1,0 +1,43 @@
+object Form1: TForm1
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  Caption = 'Form1'
+  ClientHeight = 240
+  ClientWidth = 320
+  Menu = MainMenu
+  LCLVersion = '1.6.4.0'
+  Visible = False
+  object MainMenu: TMainMenu
+    left = 8
+    top = 176
+    object FileMenu: TMenuItem
+      Caption = 'File'
+      object NewMenuItem: TMenuItem
+        Caption = 'New...'
+      end
+      object FileSep1: TMenuItem
+        Caption = '-'
+      end
+      object OpenMenuItem: TMenuItem
+        Caption = 'Open...'
+      end
+      object FileSep2: TMenuItem
+        Caption = '-'
+      end
+      object SaveMenuItem: TMenuItem
+        Caption = 'Save'
+      end
+      object SaveAsMenuItem: TMenuItem
+        Caption = 'Save As...'
+      end
+      object FileSep3: TMenuItem
+        Caption = '-'
+      end
+      object ExitMenuItem: TMenuItem
+        Caption = 'Exit'
+      end
+    end
+  end
+end
