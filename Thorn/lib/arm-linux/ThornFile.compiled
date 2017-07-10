@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1413850856"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi -Fu/usr/lib/lazarus/1.2.4/packager/units/arm-linux -Fu/home/pi/thorn/Thorn/ -FU/home/pi/thorn/Thorn/lib/arm-linux/ -l thornfile.pas"/>
-</CONFIG>

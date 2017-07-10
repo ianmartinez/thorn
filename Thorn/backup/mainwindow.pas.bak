@@ -5,16 +5,19 @@ unit MainWindow;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
+  ExtCtrls, ComCtrls, ThornFile, RichMemo;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    FatCowIcons32: TImageList;
     MainMenu: TMainMenu;
     FileMenu: TMenuItem;
     FileSep2: TMenuItem;
+    MainRTF: TRichMemo;
     SaveMenuItem: TMenuItem;
     SaveAsMenuItem: TMenuItem;
     NewMenuItem: TMenuItem;
@@ -22,6 +25,9 @@ type
     FileSep3: TMenuItem;
     ExitMenuItem: TMenuItem;
     OpenMenuItem: TMenuItem;
+    MainToolbar: TToolBar;
+    NewToolbarButton: TToolButton;
+    procedure FormActivate(Sender: TObject);
   private
     { private declarations }
   public
@@ -36,5 +42,9 @@ implementation
 {$R *.lfm}
 
 { TMainForm }
-end.
 
+procedure TMainForm.FormActivate(Sender: TObject);
+begin
+     MainRTF.Rtf:='';
+end;
+end.
