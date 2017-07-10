@@ -1,0 +1,40 @@
+object MainForm: TMainForm
+  Left = 268
+  Height = 240
+  Top = 557
+  Width = 320
+  Caption = 'Thorn'
+  Menu = MainMenu
+  LCLVersion = '1.2.4.0'
+  object MainMenu: TMainMenu
+    left = 8
+    top = 176
+    object FileMenu: TMenuItem
+      Caption = 'File'
+      object NewMenuItem: TMenuItem
+        Caption = 'New...'
+      end
+      object FileSep1: TMenuItem
+        Caption = '-'
+      end
+      object OpenMenuItem: TMenuItem
+        Caption = 'Open...'
+      end
+      object FileSep2: TMenuItem
+        Caption = '-'
+      end
+      object SaveMenuItem: TMenuItem
+        Caption = 'Save'
+      end
+      object SaveAsMenuItem: TMenuItem
+        Caption = 'Save As...'
+      end
+      object FileSep3: TMenuItem
+        Caption = '-'
+      end
+      object ExitMenuItem: TMenuItem
+        Caption = 'Exit'
+      end
+    end
+  end
+end
