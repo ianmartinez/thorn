@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1413850856"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi -Fi/home/pi/thorn/Thorn/lib/arm-linux -Fl/opt/gnome/lib -Fu/home/pi/Downloads/richmemo/lib/arm-linux -Fu/usr/lib/lazarus/1.2.4/components/ideintf/units/arm-linux/gtk2 -Fu/usr/lib/lazarus/1.2.4/components/lazcontrols/lib/arm-linux/gtk2 -Fu/usr/lib/lazarus/1.2.4/lcl/units/arm-linux/gtk2 -Fu/usr/lib/lazarus/1.2.4/lcl/units/arm-linux -Fu/home/pi/thorn/Thorn/lib/arm-linux -Fu/usr/lib/lazarus/1.2.4/components/lazutils/lib/arm-linux -Fu/usr/lib/lazarus/1.2.4/packager/units/arm-linux -Fu/home/pi/thorn/Thorn/ -FU/home/pi/thorn/Thorn/lib/arm-linux/ -l -dLCL -dLCLgtk2 thorn.lpr"/>
-</CONFIG>

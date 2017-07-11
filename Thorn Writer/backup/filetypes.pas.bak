@@ -1,0 +1,18 @@
+unit FileTypes;
+
+{$mode objfpc}{$H+}
+
+interface
+  type ThornWriterFile = record
+     Title: string;
+     Author: string;
+     Website: string;
+     Description: string;
+     CustomSymbols: array of string;
+     RtfData: string;
+  end;
+
+implementation
+
+end.
+

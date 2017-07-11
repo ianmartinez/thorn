@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="D:\apps\lazarus\fpc\3.0.2\bin\i386-win32\fpc.exe" Date="1247517510"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq -FiD:\Thorn\lib\i386-win32 -FuD:\apps\lazarus\lcl\units\i386-win32\win32 -FuD:\apps\lazarus\lcl\units\i386-win32 -FuD:\apps\lazarus\components\lazutils\lib\i386-win32 -FuD:\apps\lazarus\packager\units\i386-win32 -FuD:\Thorn\ -FUD:\Thorn\lib\i386-win32\ -dLCL -dLCLwin32 thorn.lpr"/>
-</CONFIG>
