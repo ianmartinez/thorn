@@ -16,8 +16,30 @@ type
     Button2: TButton;
     Button3: TButton;
     CharacterPreviewButton: TButton;
+    ColorButton2: TColorButton;
+    ColorDialog1: TColorDialog;
     DescriptionMemo: TMemo;
     CharacterGalleryTabs: TPageControl;
+    EditMenu: TMenuItem;
+    EditSep1: TMenuItem;
+    CopyMenuItem: TMenuItem;
+    CutMenuItem: TMenuItem;
+    EditSep2: TMenuItem;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    SelectAllMenuItem: TMenuItem;
+    ClearMenuItem: TMenuItem;
+    PasteMenuItem: TMenuItem;
+    PasteTextMenuItem: TMenuItem;
+    RedoMenuItem: TMenuItem;
+    RedoToolbarButton: TToolButton;
+    ToolButton2: TToolButton;
+    CopyToolbarButton: TToolButton;
+    CutToolbarButton: TToolButton;
+    PasteToolbarButton: TToolButton;
+    PasteTextToolbarButton: TToolButton;
+    UndoToolbarButton: TToolButton;
+    UndoMenuItem: TMenuItem;
     PreviewEdit: TEdit;
     PageControl2: TPageControl;
     AccentsGroup: TRadioGroup;
@@ -74,7 +96,6 @@ type
     NewToolbarButton: TToolButton;
     OpenToolbarButton: TToolButton;
     SaveToolbarButton: TToolButton;
-    SaveAsToolbarButton: TToolButton;
     FileSheet: TTabSheet;
     CharacterSheet: TTabSheet;
     AuthorLabel: TLabel;
@@ -82,11 +103,14 @@ type
     DescriptionLabel: TLabel;
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure MainRTFChange(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
     procedure PageControl2Change(Sender: TObject);
+    procedure PasteTextMenuItemClick(Sender: TObject);
     procedure SaveAsMenuItemClick(Sender: TObject);
     procedure SaveMenuItemClick(Sender: TObject);
+    procedure UndoMenuItemClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -104,7 +128,12 @@ implementation
 
 procedure TMainForm.FormActivate(Sender: TObject);
 begin
-     MainRTF.Rtf:='';
+
+end;
+
+procedure TMainForm.MainRTFChange(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
@@ -127,12 +156,22 @@ begin
 
 end;
 
+procedure TMainForm.PasteTextMenuItemClick(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.SaveAsMenuItemClick(Sender: TObject);
 begin
 
 end;
 
 procedure TMainForm.SaveMenuItemClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.UndoMenuItemClick(Sender: TObject);
 begin
 
 end;
