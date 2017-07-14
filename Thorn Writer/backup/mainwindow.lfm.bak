@@ -1,14 +1,14 @@
 object MainForm: TMainForm
-  Left = 369
+  Left = 403
   Height = 598
-  Top = 249
+  Top = 216
   Width = 711
   Caption = 'Thorn Writer'
-  ClientHeight = 573
+  ClientHeight = 575
   ClientWidth = 711
   Menu = MainMenu
   OnActivate = FormActivate
-  LCLVersion = '1.2.4.0'
+  LCLVersion = '1.6.4.0'
   object MainRTF: TRichMemo
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = MainToolbar
@@ -17,7 +17,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 545
+    Height = 547
     Top = 28
     Width = 484
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -43,7 +43,7 @@ object MainForm: TMainForm
     ButtonWidth = 24
     Caption = 'MainToolbar'
     Constraints.MinHeight = 24
-    Color = clBackground
+    Color = clMenuBar
     EdgeBorders = [ebBottom]
     Images = IconPack
     ParentColor = False
@@ -71,6 +71,7 @@ object MainForm: TMainForm
     end
     object ToolButton1: TToolButton
       Left = 73
+      Height = 24
       Top = 0
       Width = 5
       Caption = 'ToolButton1'
@@ -92,6 +93,7 @@ object MainForm: TMainForm
     end
     object ToolButton2: TToolButton
       Left = 126
+      Height = 24
       Top = 0
       Width = 5
       Caption = 'ToolButton2'
@@ -135,65 +137,65 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 484
-    Height = 545
+    Height = 547
     Top = 28
     Width = 227
-    ActivePage = FormattingSheet
+    ActivePage = CharacterSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 516
-      ClientWidth = 223
+      ClientHeight = 512
+      ClientWidth = 221
       object TitleLabel: TLabel
         Left = 8
-        Height = 15
+        Height = 17
         Top = 6
-        Width = 33
+        Width = 27
         Caption = 'Title:'
         ParentColor = False
       end
       object AuthorEdit: TEdit
         Left = 8
-        Height = 23
+        Height = 29
         Top = 72
         Width = 207
         TabOrder = 1
       end
       object TitleEdit: TEdit
         Left = 8
-        Height = 23
+        Height = 29
         Top = 24
         Width = 207
         TabOrder = 0
       end
       object AuthorLabel: TLabel
         Left = 8
-        Height = 15
+        Height = 17
         Top = 56
-        Width = 47
+        Width = 41
         Caption = 'Author:'
         ParentColor = False
       end
       object WebsiteLabel: TLabel
         Left = 8
-        Height = 15
+        Height = 17
         Top = 104
-        Width = 56
+        Width = 48
         Caption = 'Website:'
         ParentColor = False
       end
       object WebsiteEdit: TEdit
         Left = 8
-        Height = 23
+        Height = 29
         Top = 120
         Width = 182
         TabOrder = 2
       end
       object WebsiteGoButton: TButton
         Left = 193
-        Height = 23
+        Height = 29
         Top = 120
         Width = 22
         Caption = '...'
@@ -201,9 +203,9 @@ object MainForm: TMainForm
       end
       object DescriptionLabel: TLabel
         Left = 8
-        Height = 15
+        Height = 17
         Top = 152
-        Width = 78
+        Width = 67
         Caption = 'Description:'
         ParentColor = False
       end
@@ -215,7 +217,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 340
         Top = 168
-        Width = 207
+        Width = 201
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
@@ -224,8 +226,8 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 516
-      ClientWidth = 223
+      ClientHeight = 512
+      ClientWidth = 221
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
         AnchorSideTop.Control = AccentsGroup
@@ -235,9 +237,9 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 196
+        Height = 192
         Top = 312
-        Width = 207
+        Width = 205
         ActivePage = TabSheet2
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
@@ -257,8 +259,8 @@ object MainForm: TMainForm
         end
         object TabSheet4: TTabSheet
           Caption = 'IPA'
-          ClientHeight = 167
-          ClientWidth = 203
+          ClientHeight = 157
+          ClientWidth = 199
           object PageControl2: TPageControl
             AnchorSideLeft.Control = TabSheet4
             AnchorSideTop.Control = TabSheet4
@@ -299,7 +301,7 @@ object MainForm: TMainForm
         Top = 5
         Width = 74
         Caption = 'A'
-        Font.Height = -21
+        Font.Height = -24
         Font.Name = 'Sans'
         Font.Style = [fsBold]
         ParentFont = False
@@ -307,7 +309,7 @@ object MainForm: TMainForm
       end
       object PreviewEdit: TEdit
         Left = 8
-        Height = 23
+        Height = 29
         Top = 120
         Width = 209
         TabOrder = 2
@@ -346,73 +348,76 @@ object MainForm: TMainForm
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 6
-        ClientHeight = 135
-        ClientWidth = 205
+        ClientHeight = 136
+        ClientWidth = 207
         Columns = 6
+        Font.Height = -13
+        Font.Name = 'Sans'
+        ParentFont = False
         TabOrder = 5
         object ToggleBox1: TToggleBox
           Left = 2
           Height = 32
           Top = 2
-          Width = 32
+          Width = 33
           Caption = '◌̀'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 0
         end
         object ToggleBox2: TToggleBox
-          Left = 36
+          Left = 37
           Height = 32
           Top = 2
-          Width = 32
+          Width = 33
           Caption = '◌́'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 1
         end
         object ToggleBox3: TToggleBox
-          Left = 70
+          Left = 72
           Height = 32
           Top = 2
-          Width = 32
+          Width = 33
           Caption = '◌̂'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 2
         end
         object ToggleBox4: TToggleBox
-          Left = 104
+          Left = 107
           Height = 32
           Top = 2
-          Width = 32
+          Width = 33
           Caption = '◌̃'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 3
         end
         object ToggleBox5: TToggleBox
-          Left = 138
+          Left = 142
           Height = 32
           Top = 2
-          Width = 32
+          Width = 33
           Caption = '◌̄'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 4
         end
         object ToggleBox6: TToggleBox
-          Left = 172
+          Left = 177
           Height = 32
           Top = 2
-          Width = 31
+          Width = 28
           Caption = '◌̅'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 5
         end
@@ -420,153 +425,153 @@ object MainForm: TMainForm
           Left = 2
           Height = 32
           Top = 36
-          Width = 32
+          Width = 33
           Caption = '◌̆'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 6
         end
         object ToggleBox8: TToggleBox
-          Left = 36
+          Left = 37
           Height = 32
           Top = 36
-          Width = 32
+          Width = 33
           Caption = '◌̇'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 7
         end
         object ToggleBox9: TToggleBox
-          Left = 70
+          Left = 72
           Height = 32
           Top = 36
-          Width = 32
+          Width = 33
           Caption = '◌̈'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 8
         end
         object ToggleBox10: TToggleBox
-          Left = 104
+          Left = 107
           Height = 32
           Top = 36
-          Width = 32
+          Width = 33
           Caption = '◌̉'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 9
         end
         object ToggleBox11: TToggleBox
-          Left = 138
+          Left = 142
           Height = 32
           Top = 36
-          Width = 32
+          Width = 33
           Caption = '◌̊'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 10
         end
         object ToggleBox12: TToggleBox
-          Left = 172
+          Left = 177
           Height = 32
           Top = 36
-          Width = 31
+          Width = 28
           Caption = '◌̋'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 11
         end
         object ToggleBox13: TToggleBox
           Left = 2
-          Height = 32
+          Height = 31
           Top = 70
-          Width = 32
+          Width = 33
           Caption = '◌̌'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 12
         end
         object ToggleBox14: TToggleBox
-          Left = 36
-          Height = 32
+          Left = 37
+          Height = 31
           Top = 70
-          Width = 32
+          Width = 33
           Caption = '◌̏'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 13
         end
         object ToggleBox15: TToggleBox
-          Left = 70
-          Height = 32
+          Left = 72
+          Height = 31
           Top = 70
-          Width = 32
+          Width = 33
           Caption = '◌̨'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 14
         end
         object ToggleBox16: TToggleBox
-          Left = 104
-          Height = 32
+          Left = 107
+          Height = 31
           Top = 70
-          Width = 32
+          Width = 33
           Caption = '◌̧'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 15
         end
         object ToggleBox17: TToggleBox
-          Left = 138
-          Height = 32
+          Left = 142
+          Height = 31
           Top = 70
-          Width = 32
+          Width = 33
           Caption = '◌̰'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 16
         end
         object ToggleBox18: TToggleBox
-          Left = 172
-          Height = 32
+          Left = 177
+          Height = 31
           Top = 70
-          Width = 31
+          Width = 28
           Caption = '◌̱'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 17
         end
         object ToggleBox19: TToggleBox
           Left = 2
-          Height = 29
-          Top = 104
-          Width = 32
+          Height = 31
+          Top = 103
+          Width = 33
           Caption = '◌̒'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 18
         end
         object ToggleBox20: TToggleBox
-          Left = 36
-          Height = 29
-          Top = 104
-          Width = 32
+          Left = 37
+          Height = 31
+          Top = 103
+          Width = 33
           Caption = '◌̓'
-          Font.Height = -16
-          Font.Name = 'Serif'
+          Font.Height = -19
+          Font.Name = 'Sans'
           ParentFont = False
           TabOrder = 19
         end
@@ -574,16 +579,16 @@ object MainForm: TMainForm
     end
     object FormattingSheet: TTabSheet
       Caption = 'Formatting'
-      ClientHeight = 516
-      ClientWidth = 223
+      ClientHeight = 512
+      ClientWidth = 221
       object GroupBox1: TGroupBox
         Left = 8
         Height = 112
         Top = 8
         Width = 203
         Caption = 'Colors'
-        ClientHeight = 95
-        ClientWidth = 199
+        ClientHeight = 94
+        ClientWidth = 201
         TabOrder = 0
         object ColorButton2: TColorButton
           Left = 72
@@ -597,9 +602,9 @@ object MainForm: TMainForm
         end
         object Label1: TLabel
           Left = 8
-          Height = 15
+          Height = 17
           Top = 12
-          Width = 31
+          Width = 27
           Caption = 'Text:'
           ParentColor = False
         end
@@ -1035,6 +1040,42 @@ object MainForm: TMainForm
       end
       object PasteTextMenuItem: TMenuItem
         Caption = 'Paste Text'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000FFFFFF006A6E
+          6C4E6E7370E5686D6BFC686C6AFC676C69FC666B69FC666A68FC656A67FC6469
+          67FC646866FC636866FC696D6BE764686651FFFFFF00FFFFFF00FFFFFF007277
+          75E6ECEDEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFF0F1F1FF6C706EEA64696601FFFFFF00FFFFFF007176
+          74FFFEFEFEFFF2F4F3FFF3F5F4FFF4F6F5FFF5F7F6FFF6F8F7FFF7F8F8FFF7F9
+          F8FFF7F9F8FFF7F8F8FFFFFFFFFF6B706EFC696D6B08FFFFFF00FFFFFF00767B
+          79FFFEFEFEFFD9D9D9FFD3D3D3FFD3D3D3FFD3D3D3FFD7D7D7FFF2F4F3FFF3F5
+          F4FFF3F5F4FFF2F4F3FFFFFFFFFF707573FC6E727008FFFFFF00FFFFFF007B80
+          7DFFFEFEFEFFEBEFEDFFEBEEEDFFECEFEEFFEDF0EEFFEDF0EFFFEEF0EFFFEEF1
+          EFFFEEF1EFFFEFF0F0FFFFFFFFFF757A78FC72777508FFFFFF00FFFFFF007F85
+          82FFFDFEFEFFD6D7D6FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
+          D3FFD3D3D3FFD6D7D6FFFEFEFEFF7A7F7CFC777C7A08FFFFFF00FFFFFF00848A
+          87FFFDFEFDFFE6E9E7FFE3E8E6FFE3E8E5FFE3E8E6FFE4E8E6FFE4E8E6FFE4E9
+          E6FFE4E9E6FFE5E9E7FFFEFEFEFF7E8481FC7C817F08FFFFFF00FFFFFF00898F
+          8CFFFDFEFDFFE4E9E7FFE2E6E4FFE1E6E3FFE0E5E2FFDFE4E2FFDFE4E2FFDFE4
+          E2FFDFE4E2FFE0E5E3FFFEFEFEFF828885FC81868408FFFFFF00FFFFFF008E93
+          91FFFDFEFDFFD6D6D6FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
+          D3FFD3D3D3FFD4D5D4FFFEFEFEFF878C8AFC858B8808FFFFFF00FFFFFF009298
+          96FFFDFEFDFFE5E9E7FFE1E6E4FFE0E5E2FFDEE3E1FFDBE1DFFFD8DFDCFFD5DC
+          D9FFD5DCD9FFD6DDDAFFFEFEFEFF8C918FFC8A908D08FFFFFF00FFFFFF00979D
+          9BFFFDFEFEFFD7D7D7FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
+          D3FFCECFCEFFCAD0CCFFD8DAD9FF909694F98F959203FFFFFF00FFFFFF009CA2
+          9FFFFEFEFEFFE9EDEBFFE6EAE8FFE3E7E5FFE0E5E2FFDCE2DFFFD9DFDCFFBCC2
+          BFFFA7ACA9FFB0B1B1FFD6D8D7FE989E9CB1FFFFFF00FFFFFF00FFFFFF00A1A7
+          A4FFFEFEFEFFD8D9D9FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFBCBC
+          BCFFFFFFFFFFFCFDFDFFA7ACAAF5999F9C3CFFFFFF00FFFFFF00FFFFFF00A5AC
+          A9FFFEFEFEFFF2F3F2FFEDF0EFFFE9EDEBFFE5EAE8FFE1E6E4FFE0E5E3FFD6D8
+          D8FFFDFDFDFFBABFBDF69FA6A375FFFFFF00FFFFFF00FFFFFF00FFFFFF00ACB3
+          B0E4ECEEEDFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFF9FAFAFFE5E7
+          E6FFB0B6B3F6A5ABA879FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00AFB6
+          B349B0B7B4E2AEB4B1FFADB4B1FFACB3B0FFACB2AFFFABB2AFFFABB2AFF6ACB2
+          AFB2A9B0AD44FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+        }
         ImageIndex = 361
         OnClick = PasteTextMenuItemClick
       end
@@ -12743,4 +12784,4 @@ object MainForm: TMainForm
     left = 280
     top = 32
   end
-end
+end

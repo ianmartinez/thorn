@@ -17,7 +17,6 @@ type
     Button3: TButton;
     CharacterPreviewButton: TButton;
     ColorButton2: TColorButton;
-    ColorDialog1: TColorDialog;
     DescriptionMemo: TMemo;
     CharacterGalleryTabs: TPageControl;
     EditMenu: TMenuItem;
@@ -176,4 +175,4 @@ begin
 
 end;
 
-end.
+end.
