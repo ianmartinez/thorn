@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = 403
-  Height = 598
-  Top = 216
+  Left = 44
+  Height = 587
+  Top = 173
   Width = 711
   Caption = 'Thorn Writer'
-  ClientHeight = 575
+  ClientHeight = 564
   ClientWidth = 711
   Menu = MainMenu
   OnActivate = FormActivate
@@ -17,7 +17,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 547
+    Height = 536
     Top = 28
     Width = 484
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -137,7 +137,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 484
-    Height = 547
+    Height = 536
     Top = 28
     Width = 227
     ActivePage = FormattingSheet
@@ -146,7 +146,7 @@ object MainForm: TMainForm
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 512
+      ClientHeight = 501
       ClientWidth = 221
       object TitleLabel: TLabel
         Left = 8
@@ -158,14 +158,14 @@ object MainForm: TMainForm
       end
       object AuthorEdit: TEdit
         Left = 8
-        Height = 29
+        Height = 27
         Top = 72
         Width = 207
         TabOrder = 1
       end
       object TitleEdit: TEdit
         Left = 8
-        Height = 29
+        Height = 27
         Top = 24
         Width = 207
         TabOrder = 0
@@ -188,14 +188,14 @@ object MainForm: TMainForm
       end
       object WebsiteEdit: TEdit
         Left = 8
-        Height = 29
+        Height = 27
         Top = 120
         Width = 182
         TabOrder = 2
       end
       object WebsiteGoButton: TButton
         Left = 193
-        Height = 29
+        Height = 27
         Top = 120
         Width = 22
         Caption = '...'
@@ -215,9 +215,9 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = FileSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 340
+        Height = 336
         Top = 168
-        Width = 201
+        Width = 205
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
@@ -226,7 +226,7 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 512
+      ClientHeight = 501
       ClientWidth = 221
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
@@ -237,7 +237,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 192
+        Height = 181
         Top = 312
         Width = 205
         ActivePage = TabSheet2
@@ -259,7 +259,7 @@ object MainForm: TMainForm
         end
         object TabSheet4: TTabSheet
           Caption = 'IPA'
-          ClientHeight = 157
+          ClientHeight = 146
           ClientWidth = 199
           object PageControl2: TPageControl
             AnchorSideLeft.Control = TabSheet4
@@ -309,7 +309,7 @@ object MainForm: TMainForm
       end
       object PreviewEdit: TEdit
         Left = 8
-        Height = 29
+        Height = 27
         Top = 120
         Width = 209
         TabOrder = 2
@@ -357,7 +357,7 @@ object MainForm: TMainForm
         TabOrder = 5
         object ToggleBox1: TToggleBox
           Left = 2
-          Height = 32
+          Height = 31
           Top = 2
           Width = 33
           Caption = '◌̀'
@@ -368,7 +368,7 @@ object MainForm: TMainForm
         end
         object ToggleBox2: TToggleBox
           Left = 37
-          Height = 32
+          Height = 31
           Top = 2
           Width = 33
           Caption = '◌́'
@@ -379,7 +379,7 @@ object MainForm: TMainForm
         end
         object ToggleBox3: TToggleBox
           Left = 72
-          Height = 32
+          Height = 31
           Top = 2
           Width = 33
           Caption = '◌̂'
@@ -390,7 +390,7 @@ object MainForm: TMainForm
         end
         object ToggleBox4: TToggleBox
           Left = 107
-          Height = 32
+          Height = 31
           Top = 2
           Width = 33
           Caption = '◌̃'
@@ -401,7 +401,7 @@ object MainForm: TMainForm
         end
         object ToggleBox5: TToggleBox
           Left = 142
-          Height = 32
+          Height = 31
           Top = 2
           Width = 33
           Caption = '◌̄'
@@ -412,7 +412,7 @@ object MainForm: TMainForm
         end
         object ToggleBox6: TToggleBox
           Left = 177
-          Height = 32
+          Height = 31
           Top = 2
           Width = 28
           Caption = '◌̅'
@@ -423,8 +423,8 @@ object MainForm: TMainForm
         end
         object ToggleBox7: TToggleBox
           Left = 2
-          Height = 32
-          Top = 36
+          Height = 31
+          Top = 35
           Width = 33
           Caption = '◌̆'
           Font.Height = -19
@@ -434,8 +434,8 @@ object MainForm: TMainForm
         end
         object ToggleBox8: TToggleBox
           Left = 37
-          Height = 32
-          Top = 36
+          Height = 31
+          Top = 35
           Width = 33
           Caption = '◌̇'
           Font.Height = -19
@@ -445,8 +445,8 @@ object MainForm: TMainForm
         end
         object ToggleBox9: TToggleBox
           Left = 72
-          Height = 32
-          Top = 36
+          Height = 31
+          Top = 35
           Width = 33
           Caption = '◌̈'
           Font.Height = -19
@@ -456,8 +456,8 @@ object MainForm: TMainForm
         end
         object ToggleBox10: TToggleBox
           Left = 107
-          Height = 32
-          Top = 36
+          Height = 31
+          Top = 35
           Width = 33
           Caption = '◌̉'
           Font.Height = -19
@@ -467,8 +467,8 @@ object MainForm: TMainForm
         end
         object ToggleBox11: TToggleBox
           Left = 142
-          Height = 32
-          Top = 36
+          Height = 31
+          Top = 35
           Width = 33
           Caption = '◌̊'
           Font.Height = -19
@@ -478,8 +478,8 @@ object MainForm: TMainForm
         end
         object ToggleBox12: TToggleBox
           Left = 177
-          Height = 32
-          Top = 36
+          Height = 31
+          Top = 35
           Width = 28
           Caption = '◌̋'
           Font.Height = -19
@@ -489,8 +489,8 @@ object MainForm: TMainForm
         end
         object ToggleBox13: TToggleBox
           Left = 2
-          Height = 31
-          Top = 70
+          Height = 32
+          Top = 68
           Width = 33
           Caption = '◌̌'
           Font.Height = -19
@@ -500,8 +500,8 @@ object MainForm: TMainForm
         end
         object ToggleBox14: TToggleBox
           Left = 37
-          Height = 31
-          Top = 70
+          Height = 32
+          Top = 68
           Width = 33
           Caption = '◌̏'
           Font.Height = -19
@@ -511,8 +511,8 @@ object MainForm: TMainForm
         end
         object ToggleBox15: TToggleBox
           Left = 72
-          Height = 31
-          Top = 70
+          Height = 32
+          Top = 68
           Width = 33
           Caption = '◌̨'
           Font.Height = -19
@@ -522,8 +522,8 @@ object MainForm: TMainForm
         end
         object ToggleBox16: TToggleBox
           Left = 107
-          Height = 31
-          Top = 70
+          Height = 32
+          Top = 68
           Width = 33
           Caption = '◌̧'
           Font.Height = -19
@@ -533,8 +533,8 @@ object MainForm: TMainForm
         end
         object ToggleBox17: TToggleBox
           Left = 142
-          Height = 31
-          Top = 70
+          Height = 32
+          Top = 68
           Width = 33
           Caption = '◌̰'
           Font.Height = -19
@@ -544,8 +544,8 @@ object MainForm: TMainForm
         end
         object ToggleBox18: TToggleBox
           Left = 177
-          Height = 31
-          Top = 70
+          Height = 32
+          Top = 68
           Width = 28
           Caption = '◌̱'
           Font.Height = -19
@@ -555,8 +555,8 @@ object MainForm: TMainForm
         end
         object ToggleBox19: TToggleBox
           Left = 2
-          Height = 31
-          Top = 103
+          Height = 32
+          Top = 102
           Width = 33
           Caption = '◌̒'
           Font.Height = -19
@@ -566,8 +566,8 @@ object MainForm: TMainForm
         end
         object ToggleBox20: TToggleBox
           Left = 37
-          Height = 31
-          Top = 103
+          Height = 32
+          Top = 102
           Width = 33
           Caption = '◌̓'
           Font.Height = -19
@@ -579,34 +579,84 @@ object MainForm: TMainForm
     end
     object FormattingSheet: TTabSheet
       Caption = 'Formatting'
-      ClientHeight = 512
+      ClientHeight = 501
       ClientWidth = 221
       object GroupBox1: TGroupBox
         Left = 8
-        Height = 112
+        Height = 120
         Top = 8
         Width = 203
         Caption = 'Colors'
-        ClientHeight = 94
+        ClientHeight = 104
         ClientWidth = 201
+        Font.Height = -13
+        Font.Name = 'Sans'
+        ParentFont = False
         TabOrder = 0
         object ColorButton2: TColorButton
-          Left = 72
+          Left = 112
           Height = 22
           Top = 8
-          Width = 114
+          Width = 74
           BorderWidth = 2
           ButtonColorSize = 16
           ButtonColor = clBlack
         end
         object Label1: TLabel
           Left = 8
-          Height = 17
+          Height = 15
           Top = 12
-          Width = 27
+          Width = 31
           Caption = 'Text:'
           ParentColor = False
         end
+        object ColorButton3: TColorButton
+          Left = 112
+          Height = 22
+          Top = 40
+          Width = 74
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clYellow
+        end
+        object Label2: TLabel
+          Left = 8
+          Height = 15
+          Top = 44
+          Width = 63
+          Caption = 'Highlight:'
+          ParentColor = False
+        end
+        object ColorButton4: TColorButton
+          Left = 112
+          Height = 22
+          Top = 68
+          Width = 74
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clWhite
+        end
+        object Label3: TLabel
+          Left = 8
+          Height = 15
+          Top = 72
+          Width = 81
+          Caption = 'Background:'
+          ParentColor = False
+        end
+      end
+      object CalcEdit1: TCalcEdit
+        Left = 41
+        Height = 27
+        Top = 170
+        Width = 155
+        CalculatorLayout = clNormal
+        AsFloat = 0
+        AsInteger = 0
+        ButtonWidth = 23
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 1
       end
     end
   end

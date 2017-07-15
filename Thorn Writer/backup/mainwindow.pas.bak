@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, ComCtrls, StdCtrls, Interfaces, FileTypes, RichMemo;
+  ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, RichMemo;
 
 type
 
@@ -16,8 +16,6 @@ type
     Button2: TButton;
     Button3: TButton;
     CharacterPreviewButton: TButton;
-    ColorButton2: TColorButton;
-    ColorDialog1: TColorDialog;
     DescriptionMemo: TMemo;
     CharacterGalleryTabs: TPageControl;
     EditMenu: TMenuItem;
@@ -25,8 +23,7 @@ type
     CopyMenuItem: TMenuItem;
     CutMenuItem: TMenuItem;
     EditSep2: TMenuItem;
-    GroupBox1: TGroupBox;
-    Label1: TLabel;
+    FormatMenuItem: TMenuItem;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
     PasteMenuItem: TMenuItem;
@@ -47,7 +44,6 @@ type
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
-    FormattingSheet: TTabSheet;
     TabSheet5: TTabSheet;
     TabSheet6: TTabSheet;
     TabSheet7: TTabSheet;
