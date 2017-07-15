@@ -7,14 +7,15 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, mainwindow, filetypes;
+  Forms, mainwindow, filetypes, AboutWindow;
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource := True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TAboutForm, AboutForm);
   Application.Run;
 end.
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, RichMemo;
+  ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, RichMemo,AboutWindow;
 
 type
 
@@ -36,6 +36,8 @@ type
     FontColorMenuItem: TMenuItem;
     HighlightColorMenuItem: TMenuItem;
     BackgroundColorMenuItem: TMenuItem;
+    HelpMenu: TMenuItem;
+    AboutMenuItem: TMenuItem;
     RightMenuItem: TMenuItem;
     ToolButton4: TToolButton;
     LeftToolbarButton: TToolButton;
@@ -121,8 +123,11 @@ type
     AuthorLabel: TLabel;
     ToolButton1: TToolButton;
     DescriptionLabel: TLabel;
+    procedure AboutMenuItemClick(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure MainToolbarClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -142,10 +147,27 @@ begin
      Halt();
 end;
 
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.MainToolbarClick(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
      if ColorDialog1.Execute then
         MainRTF.Color:= ColorDialog1.Color;
+end;
+
+procedure TMainForm.AboutMenuItemClick(Sender: TObject);
+begin
+  AboutForm:=TAboutForm.Create(Nil);
+  AboutForm.ShowModal;
+  FreeAndNil(AboutForm);
 end;
 
 end.
