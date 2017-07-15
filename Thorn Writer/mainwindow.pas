@@ -16,6 +16,7 @@ type
     Button2: TButton;
     Button3: TButton;
     CharacterPreviewButton: TButton;
+    ColorDialog1: TColorDialog;
     DescriptionMemo: TMemo;
     CharacterGalleryTabs: TPageControl;
     EditMenu: TMenuItem;
@@ -23,7 +24,26 @@ type
     CopyMenuItem: TMenuItem;
     CutMenuItem: TMenuItem;
     EditSep2: TMenuItem;
-    FormatMenuItem: TMenuItem;
+    FontMenu: TMenuItem;
+    FontMenuItem: TMenuItem;
+    FormatSep1: TMenuItem;
+    BoldMenuItem: TMenuItem;
+    ItalicMenuItem: TMenuItem;
+    FormatSep2: TMenuItem;
+    LeftMenuItem: TMenuItem;
+    CenterMenuItem: TMenuItem;
+    ColorsMenu: TMenuItem;
+    FontColorMenuItem: TMenuItem;
+    HighlightColorMenuItem: TMenuItem;
+    BackgroundColorMenuItem: TMenuItem;
+    RightMenuItem: TMenuItem;
+    ToolButton4: TToolButton;
+    LeftToolbarButton: TToolButton;
+    CenterToolbarButton: TToolButton;
+    RightToolbarButton: TToolButton;
+    ToolButton5: TToolButton;
+    FontToolbarButton: TToolButton;
+    UnderlineMenuItem: TMenuItem;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
     PasteMenuItem: TMenuItem;
@@ -35,6 +55,10 @@ type
     CutToolbarButton: TToolButton;
     PasteToolbarButton: TToolButton;
     PasteTextToolbarButton: TToolButton;
+    ToolButton3: TToolButton;
+    BoldToolbarButton: TToolButton;
+    ItalicToolbarButton: TToolButton;
+    UnderlineToolbar: TToolButton;
     UndoToolbarButton: TToolButton;
     UndoMenuItem: TMenuItem;
     PreviewEdit: TEdit;
@@ -97,16 +121,8 @@ type
     AuthorLabel: TLabel;
     ToolButton1: TToolButton;
     DescriptionLabel: TLabel;
+    procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
-    procedure MainRTFChange(Sender: TObject);
-    procedure NewMenuItemClick(Sender: TObject);
-    procedure OpenMenuItemClick(Sender: TObject);
-    procedure PageControl2Change(Sender: TObject);
-    procedure PasteTextMenuItemClick(Sender: TObject);
-    procedure SaveAsMenuItemClick(Sender: TObject);
-    procedure SaveMenuItemClick(Sender: TObject);
-    procedure UndoMenuItemClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -121,55 +137,15 @@ implementation
 {$R *.lfm}
 
 { TMainForm }
-
-procedure TMainForm.FormActivate(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.MainRTFChange(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
      Halt();
 end;
 
-procedure TMainForm.NewMenuItemClick(Sender: TObject);
+procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
-
-end;
-
-procedure TMainForm.OpenMenuItemClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.PageControl2Change(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.PasteTextMenuItemClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.SaveAsMenuItemClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.SaveMenuItemClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.UndoMenuItemClick(Sender: TObject);
-begin
-
+     if ColorDialog1.Execute then
+        MainRTF.Color:= ColorDialog1.Color;
 end;
 
 end.
