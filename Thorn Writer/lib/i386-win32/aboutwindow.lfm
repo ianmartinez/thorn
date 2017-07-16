@@ -1,14 +1,15 @@
 object AboutForm: TAboutForm
-  Left = 360
-  Height = 350
-  Top = 268
+  Left = -854
+  Height = 351
+  Top = 1163
   Width = 386
-  BorderIcons = [biSystemMenu]
+  BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'About'
-  ClientHeight = 350
+  ClientHeight = 351
   ClientWidth = 386
   Color = clForm
+  Position = poMainFormCenter
   ShowInTaskBar = stNever
   LCLVersion = '1.6.4.0'
   object Image1: TImage

@@ -1,14 +1,15 @@
 object AboutForm: TAboutForm
-  Left = 360
-  Height = 375
-  Top = 268
+  Left = -854
+  Height = 351
+  Top = 1163
   Width = 386
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'About'
-  ClientHeight = 375
+  ClientHeight = 351
   ClientWidth = 386
   Color = clForm
+  Position = poMainFormCenter
   ShowInTaskBar = stNever
   LCLVersion = '1.6.4.0'
   object Image1: TImage
@@ -728,7 +729,7 @@ object AboutForm: TAboutForm
   object CloseButton: TButton
     Left = 134
     Height = 27
-    Top = 336
+    Top = 312
     Width = 119
     Caption = 'Close'
     ModalResult = 11
@@ -736,7 +737,7 @@ object AboutForm: TAboutForm
   end
   object AboutRTF: TRichMemo
     Left = 8
-    Height = 177
+    Height = 153
     Top = 144
     Width = 369
     BorderStyle = bsNone

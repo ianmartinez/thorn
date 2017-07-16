@@ -127,7 +127,9 @@ type
     procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MainRTFChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
   private
     { private declarations }
@@ -145,7 +147,8 @@ implementation
 { TMainForm }
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
-     Halt();
+     FreeAndNil(MainForm);
+     Application.Terminate;
 end;
 
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
@@ -153,7 +156,18 @@ begin
 
 end;
 
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+     FreeAndNil(MainForm);
+     Application.Terminate;
+end;
+
 procedure TMainForm.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.MainRTFChange(Sender: TObject);
 begin
 
 end;

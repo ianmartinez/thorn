@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="thornwriter.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -62,6 +62,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutWindow"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="splashwindow.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SplashForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SplashWindow"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
