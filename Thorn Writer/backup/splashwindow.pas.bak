@@ -16,6 +16,7 @@ type
     SplashImage: TImage;
     SplashLabel: TLabel;
     procedure FormShow(Sender: TObject);
+    procedure SplashLabelClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -34,7 +35,13 @@ implementation
 
 procedure TSplashForm.FormShow(Sender: TObject);
 begin
-     Self.FormStyle := TFormStyle.fsSplash Or TFormStyle.fsStayOnTop;
+     MainForm.Visible := False;
+     MainForm.Visible := True;
+end;
+
+procedure TSplashForm.SplashLabelClick(Sender: TObject);
+begin
+
 end;
 
 end.

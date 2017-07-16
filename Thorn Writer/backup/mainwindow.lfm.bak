@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = -1414
-  Height = 641
-  Top = 1144
+  Left = 297
+  Height = 654
+  Top = 131
   Width = 711
   Caption = 'Thorn Writer'
-  ClientHeight = 621
+  ClientHeight = 634
   ClientWidth = 711
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
@@ -324,12 +324,13 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 593
+    Height = 606
     Top = 28
     Width = 484
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
     HideSelection = False
+    OnChange = MainRTFChange
     ScrollBars = ssAutoBoth
     TabOrder = 0
     ZoomFactor = 1
@@ -408,14 +409,14 @@ object MainForm: TMainForm
       Style = tbsDivider
     end
     object CopyToolbarButton: TToolButton
-      Left = 131
+      Left = 155
       Top = 0
       Caption = 'Copy'
       ImageIndex = 34
       MenuItem = CopyMenuItem
     end
     object CutToolbarButton: TToolButton
-      Left = 155
+      Left = 131
       Top = 0
       Caption = 'Cut'
       ImageIndex = 36
@@ -428,15 +429,8 @@ object MainForm: TMainForm
       ImageIndex = 42
       MenuItem = PasteMenuItem
     end
-    object PasteTextToolbarButton: TToolButton
-      Left = 203
-      Top = 0
-      Caption = 'Paste Text'
-      ImageIndex = 361
-      MenuItem = PasteTextMenuItem
-    end
     object ToolButton3: TToolButton
-      Left = 227
+      Left = 203
       Height = 24
       Top = 0
       Width = 5
@@ -444,7 +438,7 @@ object MainForm: TMainForm
       Style = tbsDivider
     end
     object BoldToolbarButton: TToolButton
-      Left = 232
+      Left = 208
       Top = 0
       Caption = 'Bold'
       ImageIndex = 331
@@ -452,7 +446,7 @@ object MainForm: TMainForm
       Style = tbsCheck
     end
     object ItalicToolbarButton: TToolButton
-      Left = 256
+      Left = 232
       Top = 0
       Caption = 'Italic'
       ImageIndex = 72
@@ -460,7 +454,7 @@ object MainForm: TMainForm
       Style = tbsCheck
     end
     object UnderlineToolbar: TToolButton
-      Left = 280
+      Left = 256
       Top = 0
       Caption = 'Underline'
       ImageIndex = 74
@@ -468,7 +462,7 @@ object MainForm: TMainForm
       Style = tbsCheck
     end
     object ToolButton4: TToolButton
-      Left = 304
+      Left = 280
       Height = 24
       Top = 0
       Width = 8
@@ -476,28 +470,28 @@ object MainForm: TMainForm
       Style = tbsSeparator
     end
     object LeftToolbarButton: TToolButton
-      Left = 312
+      Left = 288
       Top = 0
       Caption = 'Left Align'
       ImageIndex = 67
       MenuItem = LeftMenuItem
     end
     object CenterToolbarButton: TToolButton
-      Left = 336
+      Left = 312
       Top = 0
       Caption = 'Center Align'
       ImageIndex = 65
       MenuItem = CenterMenuItem
     end
     object RightToolbarButton: TToolButton
-      Left = 360
+      Left = 336
       Top = 0
       Caption = 'Right Align'
       ImageIndex = 68
       MenuItem = RightMenuItem
     end
     object ToolButton5: TToolButton
-      Left = 384
+      Left = 360
       Height = 24
       Top = 0
       Width = 8
@@ -505,7 +499,7 @@ object MainForm: TMainForm
       Style = tbsSeparator
     end
     object FontToolbarButton: TToolButton
-      Left = 392
+      Left = 368
       Top = 0
       Caption = 'Font...'
       ImageIndex = 362
@@ -521,7 +515,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 484
-    Height = 593
+    Height = 606
     Top = 28
     Width = 227
     ActivePage = CharacterSheet
@@ -530,7 +524,7 @@ object MainForm: TMainForm
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 511
+      ClientHeight = 578
       ClientWidth = 219
       object TitleLabel: TLabel
         Left = 8
@@ -599,7 +593,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = FileSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 335
+        Height = 402
         Top = 168
         Width = 203
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -610,7 +604,7 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 565
+      ClientHeight = 578
       ClientWidth = 219
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
@@ -621,7 +615,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 245
+        Height = 258
         Top = 312
         Width = 203
         ActivePage = TabSheet2
@@ -643,7 +637,7 @@ object MainForm: TMainForm
         end
         object TabSheet4: TTabSheet
           Caption = 'IPA'
-          ClientHeight = 217
+          ClientHeight = 230
           ClientWidth = 195
           object PageControl2: TPageControl
             AnchorSideLeft.Control = TabSheet4
@@ -653,12 +647,12 @@ object MainForm: TMainForm
             AnchorSideBottom.Control = TabSheet4
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 217
+            Height = 230
             Top = 0
             Width = 195
-            ActivePage = TabSheet7
+            ActivePage = TabSheet6
             Anchors = [akTop, akLeft, akRight, akBottom]
-            TabIndex = 2
+            TabIndex = 1
             TabOrder = 0
             object TabSheet5: TTabSheet
               Caption = 'Consonants'
@@ -699,7 +693,7 @@ object MainForm: TMainForm
         Text = 'A'
       end
       object Button2: TButton
-        Left = 114
+        Left = 116
         Height = 25
         Top = 88
         Width = 101
@@ -1219,6 +1213,7 @@ object MainForm: TMainForm
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         ImageIndex = 45
+        OnClick = UndoMenuItemClick
       end
       object RedoMenuItem: TMenuItem
         Caption = 'Redo'
@@ -1259,6 +1254,7 @@ object MainForm: TMainForm
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         ImageIndex = 44
+        OnClick = RedoMenuItemClick
       end
       object EditSep1: TMenuItem
         Caption = '-'
@@ -1302,6 +1298,7 @@ object MainForm: TMainForm
           FF00FFFFFF00FFFFFF00FFFFFF00878B8979888E8CBFFFFFFF00
         }
         ImageIndex = 36
+        OnClick = CutMenuItemClick
       end
       object CopyMenuItem: TMenuItem
         Caption = 'Copy'
@@ -1342,6 +1339,7 @@ object MainForm: TMainForm
           95FB969B9985FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         ImageIndex = 34
+        OnClick = CopyMenuItemClick
       end
       object PasteMenuItem: TMenuItem
         Caption = 'Paste'
@@ -1382,46 +1380,7 @@ object MainForm: TMainForm
           9374FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         ImageIndex = 42
-      end
-      object PasteTextMenuItem: TMenuItem
-        Caption = 'Paste Text'
-        Bitmap.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000FFFFFF006A6E
-          6C4E6E7370E5686D6BFC686C6AFC676C69FC666B69FC666A68FC656A67FC6469
-          67FC646866FC636866FC696D6BE764686651FFFFFF00FFFFFF00FFFFFF007277
-          75E6ECEDEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFF0F1F1FF6C706EEA64696601FFFFFF00FFFFFF007176
-          74FFFEFEFEFFF2F4F3FFF3F5F4FFF4F6F5FFF5F7F6FFF6F8F7FFF7F8F8FFF7F9
-          F8FFF7F9F8FFF7F8F8FFFFFFFFFF6B706EFC696D6B08FFFFFF00FFFFFF00767B
-          79FFFEFEFEFFD9D9D9FFD3D3D3FFD3D3D3FFD3D3D3FFD7D7D7FFF2F4F3FFF3F5
-          F4FFF3F5F4FFF2F4F3FFFFFFFFFF707573FC6E727008FFFFFF00FFFFFF007B80
-          7DFFFEFEFEFFEBEFEDFFEBEEEDFFECEFEEFFEDF0EEFFEDF0EFFFEEF0EFFFEEF1
-          EFFFEEF1EFFFEFF0F0FFFFFFFFFF757A78FC72777508FFFFFF00FFFFFF007F85
-          82FFFDFEFEFFD6D7D6FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
-          D3FFD3D3D3FFD6D7D6FFFEFEFEFF7A7F7CFC777C7A08FFFFFF00FFFFFF00848A
-          87FFFDFEFDFFE6E9E7FFE3E8E6FFE3E8E5FFE3E8E6FFE4E8E6FFE4E8E6FFE4E9
-          E6FFE4E9E6FFE5E9E7FFFEFEFEFF7E8481FC7C817F08FFFFFF00FFFFFF00898F
-          8CFFFDFEFDFFE4E9E7FFE2E6E4FFE1E6E3FFE0E5E2FFDFE4E2FFDFE4E2FFDFE4
-          E2FFDFE4E2FFE0E5E3FFFEFEFEFF828885FC81868408FFFFFF00FFFFFF008E93
-          91FFFDFEFDFFD6D6D6FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
-          D3FFD3D3D3FFD4D5D4FFFEFEFEFF878C8AFC858B8808FFFFFF00FFFFFF009298
-          96FFFDFEFDFFE5E9E7FFE1E6E4FFE0E5E2FFDEE3E1FFDBE1DFFFD8DFDCFFD5DC
-          D9FFD5DCD9FFD6DDDAFFFEFEFEFF8C918FFC8A908D08FFFFFF00FFFFFF00979D
-          9BFFFDFEFEFFD7D7D7FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
-          D3FFCECFCEFFCAD0CCFFD8DAD9FF909694F98F959203FFFFFF00FFFFFF009CA2
-          9FFFFEFEFEFFE9EDEBFFE6EAE8FFE3E7E5FFE0E5E2FFDCE2DFFFD9DFDCFFBCC2
-          BFFFA7ACA9FFB0B1B1FFD6D8D7FE989E9CB1FFFFFF00FFFFFF00FFFFFF00A1A7
-          A4FFFEFEFEFFD8D9D9FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFBCBC
-          BCFFFFFFFFFFFCFDFDFFA7ACAAF5999F9C3CFFFFFF00FFFFFF00FFFFFF00A5AC
-          A9FFFEFEFEFFF2F3F2FFEDF0EFFFE9EDEBFFE5EAE8FFE1E6E4FFE0E5E3FFD6D8
-          D8FFFDFDFDFFBABFBDF69FA6A375FFFFFF00FFFFFF00FFFFFF00FFFFFF00ACB3
-          B0E4ECEEEDFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFF9FAFAFFE5E7
-          E6FFB0B6B3F6A5ABA879FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00AFB6
-          B349B0B7B4E2AEB4B1FFADB4B1FFACB3B0FFACB2AFFFABB2AFFFABB2AFF6ACB2
-          AFB2A9B0AD44FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-        ImageIndex = 361
+        OnClick = PasteMenuItemClick
       end
       object EditSep2: TMenuItem
         Caption = '-'
@@ -1465,6 +1424,7 @@ object MainForm: TMainForm
           AFB2A9B0AD44FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         ImageIndex = 302
+        OnClick = SelectAllMenuItemClick
       end
       object ClearMenuItem: TMenuItem
         Caption = 'Clear'
@@ -1505,6 +1465,7 @@ object MainForm: TMainForm
           FF00FFFFFF0004598E48085F94D4035A90FD085E9387FFFFFF00
         }
         ImageIndex = 32
+        OnClick = ClearMenuItemClick
       end
     end
     object FontMenu: TMenuItem

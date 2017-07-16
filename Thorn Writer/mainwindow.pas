@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, RichMemo,AboutWindow;
+  ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
+  RichMemo,AboutWindow;
 
 type
 
@@ -49,14 +50,12 @@ type
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
     PasteMenuItem: TMenuItem;
-    PasteTextMenuItem: TMenuItem;
     RedoMenuItem: TMenuItem;
     RedoToolbarButton: TToolButton;
     ToolButton2: TToolButton;
     CopyToolbarButton: TToolButton;
     CutToolbarButton: TToolButton;
     PasteToolbarButton: TToolButton;
-    PasteTextToolbarButton: TToolButton;
     ToolButton3: TToolButton;
     BoldToolbarButton: TToolButton;
     ItalicToolbarButton: TToolButton;
@@ -125,12 +124,19 @@ type
     DescriptionLabel: TLabel;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
+    procedure ClearMenuItemClick(Sender: TObject);
+    procedure CopyMenuItemClick(Sender: TObject);
+    procedure CutMenuItemClick(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
+    procedure PasteMenuItemClick(Sender: TObject);
+    procedure RedoMenuItemClick(Sender: TObject);
+    procedure SelectAllMenuItemClick(Sender: TObject);
+    procedure UndoMenuItemClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -147,8 +153,8 @@ implementation
 { TMainForm }
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
-     FreeAndNil(MainForm);
-     Application.Terminate;
+  FreeAndNil(MainForm);
+  Application.Terminate;
 end;
 
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
@@ -158,8 +164,8 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-     FreeAndNil(MainForm);
-     Application.Terminate;
+  FreeAndNil(MainForm);
+  Application.Terminate;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
@@ -177,10 +183,48 @@ begin
 
 end;
 
+procedure TMainForm.PasteMenuItemClick(Sender: TObject);
+begin
+  if MainRTF.CanPaste then
+    MainRTF.PasteFromClipboard;
+end;
+
+procedure TMainForm.RedoMenuItemClick(Sender: TObject);
+begin
+  if MainRTF.CanRedo then
+    MainRTF.Redo;
+end;
+
+procedure TMainForm.SelectAllMenuItemClick(Sender: TObject);
+begin
+  MainRTF.SelectAll;
+end;
+
+procedure TMainForm.UndoMenuItemClick(Sender: TObject);
+begin
+  if MainRTF.CanUndo then
+    MainRTF.Undo;
+end;
+
 procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
-     if ColorDialog1.Execute then
-        MainRTF.Color:= ColorDialog1.Color;
+  if ColorDialog1.Execute then
+    MainRTF.Color:= ColorDialog1.Color;
+end;
+
+procedure TMainForm.ClearMenuItemClick(Sender: TObject);
+begin
+  MainRTF.Clear;
+end;
+
+procedure TMainForm.CopyMenuItemClick(Sender: TObject);
+begin
+  MainRTF.CopyToClipboard;
+end;
+
+procedure TMainForm.CutMenuItemClick(Sender: TObject);
+begin
+  MainRTF.CutToClipboard;
 end;
 
 procedure TMainForm.AboutMenuItemClick(Sender: TObject);

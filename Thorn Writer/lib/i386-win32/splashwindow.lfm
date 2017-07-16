@@ -1,7 +1,7 @@
 object SplashForm: TSplashForm
-  Left = -1311
+  Left = 314
   Height = 433
-  Top = 1014
+  Top = 267
   Width = 574
   BorderIcons = []
   BorderStyle = bsNone
@@ -4700,5 +4700,6 @@ object SplashForm: TSplashForm
     Font.Color = clWhite
     ParentColor = False
     ParentFont = False
+    OnClick = SplashLabelClick
   end
 end
