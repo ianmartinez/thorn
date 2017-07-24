@@ -7,15 +7,15 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo,AboutWindow;
+  RichMemo,AboutWindow,Contnrs, Types;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
-    Button2: TButton;
-    Button3: TButton;
+    LocalButton: TButton;
+    FileButton: TButton;
     CharacterPreviewButton: TButton;
     ColorDialog1: TColorDialog;
     DescriptionMemo: TMemo;
@@ -74,26 +74,26 @@ type
     TabSheet7: TTabSheet;
     TabSheet8: TTabSheet;
     TabSheet9: TTabSheet;
-    ToggleBox1: TToggleBox;
-    ToggleBox10: TToggleBox;
-    ToggleBox11: TToggleBox;
-    ToggleBox12: TToggleBox;
-    ToggleBox13: TToggleBox;
-    ToggleBox14: TToggleBox;
-    ToggleBox15: TToggleBox;
-    ToggleBox16: TToggleBox;
-    ToggleBox17: TToggleBox;
-    ToggleBox18: TToggleBox;
-    ToggleBox19: TToggleBox;
-    ToggleBox2: TToggleBox;
-    ToggleBox20: TToggleBox;
-    ToggleBox3: TToggleBox;
-    ToggleBox4: TToggleBox;
-    ToggleBox5: TToggleBox;
-    ToggleBox6: TToggleBox;
-    ToggleBox7: TToggleBox;
-    ToggleBox8: TToggleBox;
-    ToggleBox9: TToggleBox;
+    GraveToggle: TToggleBox;
+    HookAboveToggle: TToggleBox;
+    RingAboveToggle: TToggleBox;
+    DoubleAcuteToggle: TToggleBox;
+    CaronToggle: TToggleBox;
+    DoubleGraveToggle: TToggleBox;
+    OgonekToggle: TToggleBox;
+    CedillaToggle: TToggleBox;
+    TildeBelowToggle: TToggleBox;
+    MacronBelowToggle: TToggleBox;
+    TurnedCommaToggle: TToggleBox;
+    AcuteToggle: TToggleBox;
+    KoronisToggle: TToggleBox;
+    CircumflexToggle: TToggleBox;
+    TildeToggle: TToggleBox;
+    MacronToggle: TToggleBox;
+    OverlineToggle: TToggleBox;
+    BreveToggle: TToggleBox;
+    DotAbove: TToggleBox;
+    UmlautToggle: TToggleBox;
     WebsiteGoButton: TButton;
     WebsiteEdit: TEdit;
     WebsiteLabel: TLabel;
@@ -124,6 +124,7 @@ type
     DescriptionLabel: TLabel;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
+    procedure CharacterPreviewButtonClick(Sender: TObject);
     procedure ClearMenuItemClick(Sender: TObject);
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
@@ -131,14 +132,24 @@ type
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure LocalButtonClick(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
+    procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
+    procedure AccentToggleClick(Sender: TObject);
+
+    procedure BuildCharacter();
+    procedure InsertText(txt: string);
+    function GetAccentToggles() : TComponentList;
   private
     { private declarations }
+
+    accent_toggles: TComponentList;
   public
     { public declarations }
   end;
@@ -151,6 +162,52 @@ implementation
 {$R *.lfm}
 
 { TMainForm }
+procedure TMainForm.BuildCharacter();
+var base: string; accent_count: Integer; accents: TStringList; toggle_count: Integer;
+begin
+  base := PreviewEdit.Text;
+  accents := TStringList.Create;
+
+  { Get checked accent toggles }
+  for toggle_count:=0 to accent_toggles.Count -1 do
+  begin
+    if (accent_toggles[toggle_count] as TToggleBox).Checked then
+      accents.Add(stringreplace((accent_toggles[toggle_count] as TToggleBox).Caption, '◌','',[rfReplaceAll]));
+  end;
+
+  { Combine accent marks }
+  for accent_count := 0 to accents.Count -1 do    base := base + accents[accent_count];
+
+  CharacterPreviewButton.Caption := base;
+end;
+
+procedure TMainForm.InsertText(txt: string);
+var old_sel_pos: Integer;
+begin
+  old_sel_pos:= MainRTF.SelStart;
+  MainRTF.SelText := txt;
+  MainRTF.SelStart:= old_sel_pos + txt.Length;
+end;
+
+procedure TMainForm.AccentToggleClick(Sender: TObject);
+begin
+  BuildCharacter();
+end;
+
+function TMainForm.GetAccentToggles() : TComponentList;
+var toggles: TComponentList; com_count: Integer;
+begin
+  toggles := TComponentList.Create;
+  for com_count:= 0 to ComponentCount-1 do
+  begin
+    if Components[com_count] is TToggleBox then
+      if pos('◌',(Components[com_count] as TToggleBox).Caption) > 0 then
+        toggles.Add(Components[com_count]);
+  end;
+
+  Result := toggles;
+end;
+
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
   FreeAndNil(MainForm);
@@ -169,8 +226,25 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var accent_count: Integer;
 begin
+  accent_toggles := GetAccentToggles();
 
+  { Add handlers to accent toggles }
+  for accent_count:=0 to accent_toggles.Count -1 do
+  begin
+    (accent_toggles[accent_count] as TToggleBox).OnClick:= @AccentToggleClick;
+  end;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+end;
+
+
+procedure TMainForm.LocalButtonClick(Sender: TObject);
+begin
+  self.GetAccentToggles();
 end;
 
 procedure TMainForm.MainRTFChange(Sender: TObject);
@@ -187,6 +261,11 @@ procedure TMainForm.PasteMenuItemClick(Sender: TObject);
 begin
   if MainRTF.CanPaste then
     MainRTF.PasteFromClipboard;
+end;
+
+procedure TMainForm.PreviewEditChange(Sender: TObject);
+begin
+  BuildCharacter();
 end;
 
 procedure TMainForm.RedoMenuItemClick(Sender: TObject);
@@ -210,6 +289,11 @@ procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
   if ColorDialog1.Execute then
     MainRTF.Color:= ColorDialog1.Color;
+end;
+
+procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
+begin
+  InsertText(CharacterPreviewButton.Caption);
 end;
 
 procedure TMainForm.ClearMenuItemClick(Sender: TObject);

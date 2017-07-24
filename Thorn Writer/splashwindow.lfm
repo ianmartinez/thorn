@@ -1,12 +1,12 @@
 object SplashForm: TSplashForm
-  Left = 314
-  Height = 433
-  Top = 267
+  Left = 370
+  Height = 434
+  Top = 444
   Width = 574
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'SplashForm'
-  ClientHeight = 433
+  ClientHeight = 434
   ClientWidth = 574
   Color = clBlack
   FormStyle = fsSplash

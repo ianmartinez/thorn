@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 297
+  Left = 961
   Height = 654
-  Top = 131
+  Top = 188
   Width = 711
   Caption = 'Thorn Writer'
   ClientHeight = 634
@@ -314,6 +314,7 @@ object MainForm: TMainForm
   Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.6.4.0'
   object MainRTF: TRichMemo
@@ -329,8 +330,14 @@ object MainForm: TMainForm
     Width = 484
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
+    Font.CharSet = 4
+    Font.Height = -16
+    Font.Name = 'Open Sans'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     HideSelection = False
     OnChange = MainRTFChange
+    ParentFont = False
     ScrollBars = ssAutoBoth
     TabOrder = 0
     ZoomFactor = 1
@@ -681,6 +688,7 @@ object MainForm: TMainForm
         Font.Height = -24
         Font.Name = 'Sans'
         Font.Style = [fsBold]
+        OnClick = CharacterPreviewButtonClick
         ParentFont = False
         TabOrder = 1
       end
@@ -689,18 +697,21 @@ object MainForm: TMainForm
         Height = 23
         Top = 120
         Width = 209
+        Alignment = taCenter
+        OnChange = PreviewEditChange
         TabOrder = 2
         Text = 'A'
       end
-      object Button2: TButton
+      object LocalButton: TButton
         Left = 116
         Height = 25
         Top = 88
         Width = 101
         Caption = 'Local'
+        OnClick = LocalButtonClick
         TabOrder = 3
       end
-      object Button3: TButton
+      object FileButton: TButton
         Left = 8
         Height = 25
         Top = 88
@@ -732,224 +743,284 @@ object MainForm: TMainForm
         Font.Name = 'Sans'
         ParentFont = False
         TabOrder = 5
-        object ToggleBox1: TToggleBox
+        object GraveToggle: TToggleBox
           Left = 2
           Height = 31
+          Hint = 'Grave Accent'
           Top = 2
           Width = 32
           Caption = '◌̀'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 0
         end
-        object ToggleBox2: TToggleBox
+        object AcuteToggle: TToggleBox
           Left = 36
           Height = 31
+          Hint = 'Acute Accent'
           Top = 2
           Width = 32
           Caption = '◌́'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 1
         end
-        object ToggleBox3: TToggleBox
+        object CircumflexToggle: TToggleBox
           Left = 70
           Height = 31
+          Hint = 'Circumflex'
           Top = 2
           Width = 32
           Caption = '◌̂'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 2
         end
-        object ToggleBox4: TToggleBox
+        object TildeToggle: TToggleBox
           Left = 104
           Height = 31
+          Hint = 'Tilde'
           Top = 2
           Width = 32
           Caption = '◌̃'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 3
         end
-        object ToggleBox5: TToggleBox
+        object MacronToggle: TToggleBox
           Left = 138
           Height = 31
+          Hint = 'Macron'
           Top = 2
           Width = 32
           Caption = '◌̄'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 4
         end
-        object ToggleBox6: TToggleBox
+        object OverlineToggle: TToggleBox
           Left = 172
           Height = 31
+          Hint = 'Overline'
           Top = 2
           Width = 31
           Caption = '◌̅'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 5
         end
-        object ToggleBox7: TToggleBox
+        object BreveToggle: TToggleBox
           Left = 2
           Height = 31
+          Hint = 'Breve'
           Top = 35
           Width = 32
           Caption = '◌̆'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 6
         end
-        object ToggleBox8: TToggleBox
+        object DotAbove: TToggleBox
           Left = 36
           Height = 31
+          Hint = 'Dot Above'
           Top = 35
           Width = 32
           Caption = '◌̇'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 7
         end
-        object ToggleBox9: TToggleBox
+        object UmlautToggle: TToggleBox
           Left = 70
           Height = 31
+          Hint = 'Diaeresis/Umlaut'
           Top = 35
           Width = 32
           Caption = '◌̈'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 8
         end
-        object ToggleBox10: TToggleBox
+        object HookAboveToggle: TToggleBox
           Left = 104
           Height = 31
+          Hint = 'Hook Above'
           Top = 35
           Width = 32
           Caption = '◌̉'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 9
         end
-        object ToggleBox11: TToggleBox
+        object RingAboveToggle: TToggleBox
           Left = 138
           Height = 31
+          Hint = 'Ring Above'
           Top = 35
           Width = 32
           Caption = '◌̊'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 10
         end
-        object ToggleBox12: TToggleBox
+        object DoubleAcuteToggle: TToggleBox
           Left = 172
           Height = 31
+          Hint = 'Double Acute Accent'
           Top = 35
           Width = 31
           Caption = '◌̋'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 11
         end
-        object ToggleBox13: TToggleBox
+        object CaronToggle: TToggleBox
           Left = 2
           Height = 31
+          Hint = 'Caron/Háček'
           Top = 68
           Width = 32
           Caption = '◌̌'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 12
         end
-        object ToggleBox14: TToggleBox
+        object DoubleGraveToggle: TToggleBox
           Left = 36
           Height = 31
+          Hint = 'Double Grave Accent'
           Top = 68
           Width = 32
           Caption = '◌̏'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 13
         end
-        object ToggleBox15: TToggleBox
+        object OgonekToggle: TToggleBox
           Left = 70
           Height = 31
+          Hint = 'Ogonek'
           Top = 68
           Width = 32
           Caption = '◌̨'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 14
         end
-        object ToggleBox16: TToggleBox
+        object CedillaToggle: TToggleBox
           Left = 104
           Height = 31
+          Hint = 'Cedilla'
           Top = 68
           Width = 32
           Caption = '◌̧'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 15
         end
-        object ToggleBox17: TToggleBox
+        object TildeBelowToggle: TToggleBox
           Left = 138
           Height = 31
+          Hint = 'Tilde Below'
           Top = 68
           Width = 32
           Caption = '◌̰'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 16
         end
-        object ToggleBox18: TToggleBox
+        object MacronBelowToggle: TToggleBox
           Left = 172
           Height = 31
+          Hint = 'Macron Below'
           Top = 68
           Width = 31
           Caption = '◌̱'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 17
         end
-        object ToggleBox19: TToggleBox
+        object TurnedCommaToggle: TToggleBox
           Left = 2
           Height = 28
+          Hint = 'Turned Comma Above'
           Top = 101
           Width = 32
           Caption = '◌̒'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 18
         end
-        object ToggleBox20: TToggleBox
+        object KoronisToggle: TToggleBox
           Left = 36
           Height = 28
+          Hint = 'Koronis'
           Top = 101
           Width = 32
           Caption = '◌̓'
           Font.Height = -19
           Font.Name = 'Sans'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 19
         end
       end

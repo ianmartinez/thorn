@@ -13,6 +13,8 @@ interface
   end;
 
 implementation
-
+  procedure SaveWriterFile(WriterFile: ThornWriterFile; Path: string);
+  begin
+  end;
 end.
 
