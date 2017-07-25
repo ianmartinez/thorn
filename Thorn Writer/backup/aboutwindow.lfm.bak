@@ -1,7 +1,7 @@
 object AboutForm: TAboutForm
-  Left = -1297
+  Left = 887
   Height = 351
-  Top = 1230
+  Top = 550
   Width = 386
   BorderIcons = []
   BorderStyle = bsDialog

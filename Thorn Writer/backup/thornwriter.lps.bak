@@ -8,7 +8,7 @@
         <Filename Value="thornwriter.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos Y="20"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -22,7 +22,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="220"/>
         <CursorPos X="34" Y="226"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -32,7 +32,7 @@
         <UnitName Value="FileTypes"/>
         <EditorIndex Value="4"/>
         <CursorPos X="18" Y="2"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -44,7 +44,7 @@
         <UnitName Value="AboutWindow"/>
         <EditorIndex Value="1"/>
         <CursorPos X="45" Y="16"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -57,7 +57,7 @@
         <UnitName Value="SplashWindow"/>
         <EditorIndex Value="2"/>
         <CursorPos X="45" Y="6"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>

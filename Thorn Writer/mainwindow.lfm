@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 403
+  Left = 387
   Height = 677
-  Top = 232
+  Top = 191
   Width = 711
   Caption = 'Thorn Writer'
   ClientHeight = 657
@@ -538,7 +538,7 @@ object MainForm: TMainForm
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 578
+      ClientHeight = 601
       ClientWidth = 219
       object TitleLabel: TLabel
         Left = 8
@@ -607,7 +607,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = FileSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 402
+        Height = 425
         Top = 168
         Width = 203
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -632,13 +632,13 @@ object MainForm: TMainForm
         Height = 281
         Top = 312
         Width = 203
-        ActivePage = TabSheet2
+        ActivePage = TabSheet3
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
         BorderSpacing.Top = 8
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
-        TabIndex = 1
+        TabIndex = 2
         TabOrder = 0
         object TabSheet1: TTabSheet
           Caption = 'File'
