@@ -33,8 +33,6 @@ type
     BoldMenuItem: TMenuItem;
     ItalicMenuItem: TMenuItem;
     FormatSep2: TMenuItem;
-    LeftMenuItem: TMenuItem;
-    CenterMenuItem: TMenuItem;
     ColorsMenu: TMenuItem;
     FontColorMenuItem: TMenuItem;
     HighlightColorMenuItem: TMenuItem;
@@ -42,7 +40,6 @@ type
     HelpMenu: TMenuItem;
     AboutMenuItem: TMenuItem;
     PasteTextMenuItem: TMenuItem;
-    RightMenuItem: TMenuItem;
     ToolButton4: TToolButton;
     LeftToolbarButton: TToolButton;
     CenterToolbarButton: TToolButton;
@@ -50,6 +47,7 @@ type
     ToolButton5: TToolButton;
     FontToolbarButton: TToolButton;
     PasteTextToolbarButton: TToolButton;
+    JustifyToolbarButton: TToolButton;
     UnderlineMenuItem: TMenuItem;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
@@ -128,6 +126,7 @@ type
     DescriptionLabel: TLabel;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
+    procedure CenterToolbarButtonClick(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
     procedure ClearMenuItemClick(Sender: TObject);
     procedure CopyMenuItemClick(Sender: TObject);
@@ -139,13 +138,17 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure HighlightColorMenuItemClick(Sender: TObject);
+    procedure JustifyToolbarButtonClick(Sender: TObject);
+    procedure LeftToolbarButtonClick(Sender: TObject);
     procedure LocalButtonClick(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
+    procedure NewMenuItemClick(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
     procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
+    procedure RightToolbarButtonClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
@@ -270,6 +273,15 @@ begin
 
 end;
 
+procedure TMainForm.JustifyToolbarButtonClick(Sender: TObject);
+begin
+  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paJustify);
+end;
+
+procedure TMainForm.LeftToolbarButtonClick(Sender: TObject);
+begin
+  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paLeft);
+end;
 
 procedure TMainForm.LocalButtonClick(Sender: TObject);
 begin
@@ -282,6 +294,11 @@ begin
 end;
 
 procedure TMainForm.MainToolbarClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.NewMenuItemClick(Sender: TObject);
 begin
 
 end;
@@ -308,6 +325,12 @@ begin
     MainRTF.Redo;
 end;
 
+procedure TMainForm.RightToolbarButtonClick(Sender: TObject);
+begin
+
+  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paRight);
+end;
+
 procedure TMainForm.SelectAllMenuItemClick(Sender: TObject);
 begin
   MainRTF.SelectAll;
@@ -323,6 +346,12 @@ procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
   if ColorDialog1.Execute then
     MainRTF.Color:= ColorDialog1.Color;
+end;
+
+procedure TMainForm.CenterToolbarButtonClick(Sender: TObject);
+begin
+
+  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paCenter);
 end;
 
 procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
