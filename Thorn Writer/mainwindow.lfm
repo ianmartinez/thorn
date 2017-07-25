@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = 961
-  Height = 654
-  Top = 188
+  Left = 403
+  Height = 677
+  Top = 232
   Width = 711
   Caption = 'Thorn Writer'
-  ClientHeight = 634
+  ClientHeight = 657
   ClientWidth = 711
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
@@ -325,7 +325,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 606
+    Height = 629
     Top = 28
     Width = 484
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -437,7 +437,7 @@ object MainForm: TMainForm
       MenuItem = PasteMenuItem
     end
     object ToolButton3: TToolButton
-      Left = 203
+      Left = 227
       Height = 24
       Top = 0
       Width = 5
@@ -445,7 +445,7 @@ object MainForm: TMainForm
       Style = tbsDivider
     end
     object BoldToolbarButton: TToolButton
-      Left = 208
+      Left = 232
       Top = 0
       Caption = 'Bold'
       ImageIndex = 331
@@ -453,7 +453,7 @@ object MainForm: TMainForm
       Style = tbsCheck
     end
     object ItalicToolbarButton: TToolButton
-      Left = 232
+      Left = 256
       Top = 0
       Caption = 'Italic'
       ImageIndex = 72
@@ -461,7 +461,7 @@ object MainForm: TMainForm
       Style = tbsCheck
     end
     object UnderlineToolbar: TToolButton
-      Left = 256
+      Left = 280
       Top = 0
       Caption = 'Underline'
       ImageIndex = 74
@@ -469,7 +469,7 @@ object MainForm: TMainForm
       Style = tbsCheck
     end
     object ToolButton4: TToolButton
-      Left = 280
+      Left = 304
       Height = 24
       Top = 0
       Width = 8
@@ -477,28 +477,28 @@ object MainForm: TMainForm
       Style = tbsSeparator
     end
     object LeftToolbarButton: TToolButton
-      Left = 288
+      Left = 312
       Top = 0
       Caption = 'Left Align'
       ImageIndex = 67
       MenuItem = LeftMenuItem
     end
     object CenterToolbarButton: TToolButton
-      Left = 312
+      Left = 336
       Top = 0
       Caption = 'Center Align'
       ImageIndex = 65
       MenuItem = CenterMenuItem
     end
     object RightToolbarButton: TToolButton
-      Left = 336
+      Left = 360
       Top = 0
       Caption = 'Right Align'
       ImageIndex = 68
       MenuItem = RightMenuItem
     end
     object ToolButton5: TToolButton
-      Left = 360
+      Left = 384
       Height = 24
       Top = 0
       Width = 8
@@ -506,11 +506,18 @@ object MainForm: TMainForm
       Style = tbsSeparator
     end
     object FontToolbarButton: TToolButton
-      Left = 368
+      Left = 392
       Top = 0
       Caption = 'Font...'
       ImageIndex = 362
       MenuItem = FontMenuItem
+    end
+    object PasteTextToolbarButton: TToolButton
+      Left = 203
+      Top = 0
+      Caption = 'Paste Text'
+      ImageIndex = 361
+      MenuItem = PasteTextMenuItem
     end
   end
   object SidebarTabs: TPageControl
@@ -522,7 +529,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 484
-    Height = 606
+    Height = 629
     Top = 28
     Width = 227
     ActivePage = CharacterSheet
@@ -611,7 +618,7 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 578
+      ClientHeight = 601
       ClientWidth = 219
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
@@ -622,7 +629,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 258
+        Height = 281
         Top = 312
         Width = 203
         ActivePage = TabSheet2
@@ -698,6 +705,7 @@ object MainForm: TMainForm
         Top = 120
         Width = 209
         Alignment = taCenter
+        MaxLength = 1
         OnChange = PreviewEditChange
         TabOrder = 2
         Text = 'A'
@@ -1023,6 +1031,18 @@ object MainForm: TMainForm
           ShowHint = True
           TabOrder = 19
         end
+      end
+      object SmartReplaceCheck: TCheckBox
+        Left = 8
+        Height = 19
+        Hint = 'Smart Replace - Automatically replace certain characters modified by combining characters with their single character counterparts.'
+        Top = 60
+        Width = 51
+        Caption = 'Smart'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 6
+        Visible = False
       end
     end
   end
@@ -1453,6 +1473,11 @@ object MainForm: TMainForm
         ImageIndex = 42
         OnClick = PasteMenuItemClick
       end
+      object PasteTextMenuItem: TMenuItem
+        Caption = 'Paste Text'
+        ImageIndex = 361
+        OnClick = PasteTextMenuItemClick
+      end
       object EditSep2: TMenuItem
         Caption = '-'
       end
@@ -1580,6 +1605,7 @@ object MainForm: TMainForm
           AFB2A9B0AD44FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         ImageIndex = 362
+        OnClick = FontMenuItemClick
       end
       object FormatSep1: TMenuItem
         Caption = '-'
@@ -1836,6 +1862,7 @@ object MainForm: TMainForm
       end
       object HighlightColorMenuItem: TMenuItem
         Caption = 'Highlight Color...'
+        OnClick = HighlightColorMenuItemClick
       end
       object BackgroundColorMenuItem: TMenuItem
         Caption = 'Background Color...'
@@ -13494,6 +13521,12 @@ object MainForm: TMainForm
       'ColorP=503e2d'
     )
     left = 288
+    top = 32
+  end
+  object FontDialog1: TFontDialog
+    MinFontSize = 0
+    MaxFontSize = 0
+    left = 200
     top = 32
   end
 end

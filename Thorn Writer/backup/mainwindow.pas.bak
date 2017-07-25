@@ -14,6 +14,8 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    FontDialog1: TFontDialog;
+    SmartReplaceCheck: TCheckBox;
     LocalButton: TButton;
     FileButton: TButton;
     CharacterPreviewButton: TButton;
@@ -39,6 +41,7 @@ type
     BackgroundColorMenuItem: TMenuItem;
     HelpMenu: TMenuItem;
     AboutMenuItem: TMenuItem;
+    PasteTextMenuItem: TMenuItem;
     RightMenuItem: TMenuItem;
     ToolButton4: TToolButton;
     LeftToolbarButton: TToolButton;
@@ -46,6 +49,7 @@ type
     RightToolbarButton: TToolButton;
     ToolButton5: TToolButton;
     FontToolbarButton: TToolButton;
+    PasteTextToolbarButton: TToolButton;
     UnderlineMenuItem: TMenuItem;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
@@ -130,13 +134,16 @@ type
     procedure CutMenuItemClick(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
+    procedure FontMenuItemClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure HighlightColorMenuItemClick(Sender: TObject);
     procedure LocalButtonClick(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
+    procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
@@ -146,6 +153,7 @@ type
     procedure BuildCharacter();
     procedure InsertText(txt: string);
     function GetAccentToggles() : TComponentList;
+    function SmartReplace(input: string) : string;
   private
     { private declarations }
 
@@ -208,6 +216,11 @@ begin
   Result := toggles;
 end;
 
+function TMainForm.SmartReplace(input: string) : string;
+begin
+
+end;
+
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
   FreeAndNil(MainForm);
@@ -217,6 +230,17 @@ end;
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
 begin
 
+end;
+
+procedure TMainForm.FontMenuItemClick(Sender: TObject);
+var old_params: TFontParams;
+begin
+  {MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);}
+
+  if FontDialog1.Execute then
+  begin
+     MainRTF.SetTextAttributes(MainRTF.SelStart, MainRTF.SelLength, FontDialog1.Font);
+  end;
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -241,6 +265,11 @@ procedure TMainForm.FormShow(Sender: TObject);
 begin
 end;
 
+procedure TMainForm.HighlightColorMenuItemClick(Sender: TObject);
+begin
+
+end;
+
 
 procedure TMainForm.LocalButtonClick(Sender: TObject);
 begin
@@ -261,6 +290,11 @@ procedure TMainForm.PasteMenuItemClick(Sender: TObject);
 begin
   if MainRTF.CanPaste then
     MainRTF.PasteFromClipboard;
+end;
+
+procedure TMainForm.PasteTextMenuItemClick(Sender: TObject);
+begin
+  InsertText(clipboard.AsText);
 end;
 
 procedure TMainForm.PreviewEditChange(Sender: TObject);
