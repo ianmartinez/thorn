@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, mainwindow, filetypes, AboutWindow, SplashWindow;
+  Forms, mainwindow, filetypes, AboutWindow, SplashWindow, StartWindow;
 
 {$R *.res}
 
@@ -16,6 +16,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TSplashForm, SplashForm);
+  Application.CreateForm(TStartUpForm, StartUpForm);
   Application.Run;
 end.
 
