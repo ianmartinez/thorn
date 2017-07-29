@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = -1108
+  Left = -913
   Height = 677
-  Top = 1202
+  Top = 1184
   Width = 711
   Caption = 'Thorn Writer'
   ClientHeight = 657
@@ -358,7 +358,7 @@ object MainForm: TMainForm
     ButtonWidth = 24
     Caption = 'MainToolbar'
     Constraints.MinHeight = 24
-    Color = clMenuBar
+    Color = clForm
     EdgeBorders = [ebBottom]
     Images = IconPack
     ParentColor = False
@@ -513,6 +513,7 @@ object MainForm: TMainForm
       Caption = 'Font...'
       ImageIndex = 362
       MenuItem = FontMenuItem
+      OnClick = FontToolbarButtonClick
     end
     object PasteTextToolbarButton: TToolButton
       Left = 203
@@ -1804,7 +1805,7 @@ object MainForm: TMainForm
     end
   end
   object IconPack: TImageList
-    left = 360
+    left = 376
     top = 32
     Bitmap = {
       4C696B0100001000000010000000AFB6B349B0B7B4E2AEB4B1FFADB4B1FFACB3
@@ -13446,13 +13447,21 @@ object MainForm: TMainForm
       'ColorO=ad448f'
       'ColorP=503e2d'
     )
-    left = 288
+    left = 312
     top = 32
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    left = 200
+    left = 240
+    top = 32
+  end
+  object OpenDialog1: TOpenDialog
+    left = 96
+    top = 32
+  end
+  object SaveDialog1: TSaveDialog
+    left = 168
     top = 32
   end
 end

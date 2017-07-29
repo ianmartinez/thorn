@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo,AboutWindow,Contnrs, Types;
+  RichMemo, AboutWindow, Contnrs, Types;
 
 type
 
@@ -15,6 +15,8 @@ type
 
   TMainForm = class(TForm)
     FontDialog1: TFontDialog;
+    OpenDialog1: TOpenDialog;
+    SaveDialog1: TSaveDialog;
     SmartReplaceCheck: TCheckBox;
     LocalButton: TButton;
     FileButton: TButton;
@@ -134,6 +136,7 @@ type
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FontMenuItemClick(Sender: TObject);
+    procedure FontToolbarButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -244,6 +247,10 @@ begin
   begin
      MainRTF.SetTextAttributes(MainRTF.SelStart, MainRTF.SelLength, FontDialog1.Font);
   end;
+end;
+
+procedure TMainForm.FontToolbarButtonClick(Sender: TObject);
+begin
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

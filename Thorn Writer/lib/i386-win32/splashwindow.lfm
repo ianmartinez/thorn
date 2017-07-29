@@ -1,7 +1,7 @@
 object SplashForm: TSplashForm
-  Left = -1293
+  Left = -635
   Height = 434
-  Top = 1219
+  Top = 1097
   Width = 574
   BorderIcons = []
   BorderStyle = bsNone

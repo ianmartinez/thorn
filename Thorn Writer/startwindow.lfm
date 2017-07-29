@@ -1,7 +1,7 @@
 object StartUpForm: TStartUpForm
-  Left = -1067
+  Left = 450
   Height = 439
-  Top = 1277
+  Top = 272
   Width = 442
   BorderStyle = bsDialog
   Caption = 'Start Up'

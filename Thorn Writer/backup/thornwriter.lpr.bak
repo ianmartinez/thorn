@@ -7,16 +7,17 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, mainwindow, filetypes, AboutWindow, SplashWindow, StartWindow;
+  Forms, mainwindow, filetypes, AboutWindow, SplashWindow, StartWindow,
+IniReader;
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource := True;
   Application.Initialize;
-  Application.CreateForm(TStartUpForm, StartUpForm);
-  Application.CreateForm(TSplashForm, SplashForm);
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TSplashForm, SplashForm);
+  Application.CreateForm(TStartUpForm, StartUpForm);
   Application.Run;
 end.
 
