@@ -2,4 +2,5 @@
 <CONFIG>
   <Compiler Value="D:\apps\lazarus\fpc\3.0.2\bin\i386-win32\fpc.exe" Date="1247517510"/>
   <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq &quot;-FiC:\Users\ianma\Documents\GitHub\thorn\Thorn Writer\lib\i386-win32&quot; -FuD:\richmemo\lib\i386-win32 -FuD:\apps\lazarus\components\ideintf\units\i386-win32\win32 -FuD:\apps\lazarus\components\lazcontrols\lib\i386-win32\win32 -FuD:\apps\lazarus\lcl\units\i386-win32\win32 -FuD:\apps\lazarus\lcl\units\i386-win32 -FuD:\apps\lazarus\components\lazutils\lib\i386-win32 -FuD:\apps\lazarus\packager\units\i386-win32 &quot;-FuC:\Users\ianma\Documents\GitHub\thorn\Thorn Writer\&quot; &quot;-FUC:\Users\ianma\Documents\GitHub\thorn\Thorn Writer\lib\i386-win32\&quot; -dLCL -dLCLwin32 thornwriter.lpr"/>
+  <Complete Value="False"/>
 </CONFIG>
