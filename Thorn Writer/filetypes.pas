@@ -27,59 +27,43 @@ implementation
 
   end;
 
+  procedure Split(Delimiter: Char; Str: string; ListOfStrings: TStrings) ;
+  begin
+     ListOfStrings.Clear;
+     ListOfStrings.Delimiter       := Delimiter;
+     ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
+     ListOfStrings.DelimitedText   := Str;
+  end;
+
   function ReadWriterFile(path: string) : ThornWriterFile;
   var
     ret: ThornWriterFile;
-    data: string;
-    input: TextFile;
-    header: string;
-    rtf_data: string;
     INI: TINIFile;
-    INIStream: TStringStream;
-    safe_count: Integer;
+    char_pos: Integer;
   begin
-    AssignFile(input, path);
     try
-      reset(input); // open file
-
-      while not eof(input) do
+      if FileExists(path) then
       begin
-        readln(input, data);
-      end;
+        INI := TINIFile.Create(path);
+        ret.Author := ReadSafeString(INI.ReadString('Properties','Author',''));
+        ret.Description := ReadSafeString(INI.ReadString('Properties','Description',''));
+        ret.Title := ReadSafeString(INI.ReadString('Properties','Title',''));
+        ret.Website := ReadSafeString(INI.ReadString('Properties','Website',''));
+        ret.CustomCharacters := INI.ReadString('Properties','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
+        ret.RtfData := ReadSafeString(INI.ReadString('Document','Page0',''));
 
-      // Is a valid  Extended RTF File
-      if data.Contains('<=rtf-content=>') then
-      begin
-        header := data.Split('<=rtf-content=>')[0];
-        rtf_data := data.Split('<=rtf-content=>')[1];
-        ret.RtfData := ReadSafeString(rtf_data);
-
-        // Create the object, specifying the the ini file that contains the settings
-        INIStream.Create(header);
-        INI := TINIFile.Create(INIStream);
-        try
-          ret.Author := INI.ReadString('Document','Author','');
-          ret.Title := INI.ReadString('Document','Title','');
-          ret.Website := INI.ReadString('Document','Website','');
-          ret.Description := INI.ReadString('Document','Description','');
-          ret.CustomCharacters := INI.ReadString('Document','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
-
-          // Replace safe characters with their original values
-          for safe_count:=0 to Length(ret.CustomCharacters)-1 do
-          begin
-            ret.CustomCharacters[safe_count] := ReadSafeString(ret.CustomCharacters[safe_count]);
-          end;
-        finally
-          INI.Free;
-          result := ret;
+        for char_pos:=0 to Length(ret.CustomCharacters)-1 do
+        begin
+          ret.CustomCharacters[char_pos] := ReadSafeString(ret.CustomCharacters[char_pos]);
         end;
       end;
-
-      CloseFile(input);
     except
       on E: EInOutError do
        ShowMessage('File handling error occurred. Details: ' + E.Message);
     end;
+
+    INI.Free;
+    result := ret;
   end;
 
   function WriteSafeString(source: string) : string;
@@ -94,8 +78,9 @@ implementation
     temp := temp.Replace('>','&gt');
     temp := temp.Replace(';','&sc');
     temp := temp.Replace('|','&bar');
-    temp := temp.Replace(UNIX_LINE,'&unix');
     temp := temp.Replace(WINDOWS_LINE,'&win32');
+    temp := temp.Replace(UNIX_LINE,'&unix');
+    temp := temp.Replace(' ','&sp');
 
     result := temp;
   end;
@@ -112,8 +97,9 @@ implementation
     temp := temp.Replace('&gt','>');
     temp := temp.Replace('&sc',';');
     temp := temp.Replace('&bar','|');
-    temp := temp.Replace('&unix',UNIX_LINE);
     temp := temp.Replace('&win32',WINDOWS_LINE);
+    temp := temp.Replace('&unix',UNIX_LINE);
+    temp := temp.Replace('&sp',' ');
 
     result := temp;
   end;

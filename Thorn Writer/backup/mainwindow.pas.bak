@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo, AboutWindow, Contnrs, Types;
+  RichMemo, AboutWindow, Contnrs;
 
 type
 
@@ -147,6 +147,7 @@ type
     procedure MainRTFChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
+    procedure OpenMenuItemClick(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
     procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
@@ -308,6 +309,21 @@ end;
 procedure TMainForm.NewMenuItemClick(Sender: TObject);
 begin
 
+end;
+
+procedure TMainForm.OpenMenuItemClick(Sender: TObject);
+var rtfx: ThornWriterFile;
+begin
+  if OpenDialog1.Execute then
+  begin
+    rtfx:= ReadWriterFile(OpenDialog1.FileName);
+    TitleEdit.Text:= rtfx.Title;
+    AuthorEdit.Text:= rtfx.Author;
+    WebsiteEdit.Text:= rtfx.Website;
+    DescriptionEdit.Text:= rtfx.Description;
+
+    MainRTF.Rtf := rtfx.RtfData;
+  end;
 end;
 
 procedure TMainForm.PasteMenuItemClick(Sender: TObject);

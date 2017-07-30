@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = 1016
-  Height = 677
-  Top = 160
+  Left = 500
+  Height = 678
+  Top = 199
   Width = 711
   Caption = 'Thorn Writer'
-  ClientHeight = 657
+  ClientHeight = 658
   ClientWidth = 711
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
@@ -325,7 +325,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 629
+    Height = 630
     Top = 28
     Width = 484
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -539,16 +539,16 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 484
-    Height = 629
+    Height = 630
     Top = 28
     Width = 227
-    ActivePage = CharacterSheet
+    ActivePage = FileSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 601
+      ClientHeight = 602
       ClientWidth = 219
       object TitleLabel: TLabel
         Left = 8
@@ -617,7 +617,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = FileSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 425
+        Height = 426
         Top = 168
         Width = 203
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -1145,6 +1145,7 @@ object MainForm: TMainForm
           D2334498D2334499D2334499D337459AD300469AD300469AD300
         }
         ImageIndex = 1
+        OnClick = OpenMenuItemClick
       end
       object FileSep2: TMenuItem
         Caption = '-'
@@ -13457,6 +13458,7 @@ object MainForm: TMainForm
     top = 32
   end
   object OpenDialog1: TOpenDialog
+    Filter = 'Extended Rich Text Format (*.rtfx)|*.RTFX'
     left = 96
     top = 32
   end
