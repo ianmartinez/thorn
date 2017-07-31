@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 500
+  Left = 620
   Height = 678
-  Top = 199
-  Width = 711
+  Top = 145
+  Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 658
-  ClientWidth = 711
+  ClientWidth = 715
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
     0000600000000100200000000000002400006400000064000000000000000000
@@ -327,7 +327,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 630
     Top = 28
-    Width = 484
+    Width = 488
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
     Font.CharSet = 4
@@ -352,7 +352,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 27
     Top = 1
-    Width = 711
+    Width = 715
     BorderSpacing.Top = 1
     ButtonHeight = 24
     ButtonWidth = 24
@@ -538,13 +538,13 @@ object MainForm: TMainForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 484
+    Left = 488
     Height = 630
     Top = 28
     Width = 227
-    ActivePage = FileSheet
+    ActivePage = CharacterSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
@@ -562,14 +562,14 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 72
-        Width = 207
+        Width = 203
         TabOrder = 1
       end
       object TitleEdit: TEdit
         Left = 8
         Height = 23
         Top = 24
-        Width = 207
+        Width = 203
         TabOrder = 0
       end
       object AuthorLabel: TLabel
@@ -592,11 +592,11 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 120
-        Width = 182
+        Width = 176
         TabOrder = 2
       end
       object WebsiteGoButton: TButton
-        Left = 193
+        Left = 189
         Height = 23
         Top = 120
         Width = 22
@@ -628,7 +628,7 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 601
+      ClientHeight = 602
       ClientWidth = 219
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
@@ -639,29 +639,64 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 281
+        Height = 282
         Top = 312
         Width = 203
-        ActivePage = TabSheet3
+        ActivePage = TabSheet1
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
         BorderSpacing.Top = 8
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
-        TabIndex = 2
+        TabIndex = 0
         TabOrder = 0
+        OnChange = CharacterGalleryTabsChange
         object TabSheet1: TTabSheet
           Caption = 'File'
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ClientHeight = 254
+          ClientWidth = 195
+          object FileFlowPanel: TFlowPanel
+            Left = 0
+            Height = 256
+            Top = 0
+            Width = 196
+            ControlList = <>
+            FlowStyle = fsLeftRightTopBottom
+            TabOrder = 0
+          end
         end
         object TabSheet2: TTabSheet
           Caption = 'Local'
+          ClientHeight = 254
+          ClientWidth = 195
+          object LocalFlowPanel: TFlowPanel
+            Left = 0
+            Height = 256
+            Top = 0
+            Width = 196
+            ControlList = <>
+            FlowStyle = fsLeftRightTopBottom
+            TabOrder = 0
+          end
         end
         object TabSheet3: TTabSheet
           Caption = 'Common'
+          ClientHeight = 254
+          ClientWidth = 195
+          object CommonFlowPanel: TFlowPanel
+            Left = 0
+            Height = 256
+            Top = 0
+            Width = 196
+            ControlList = <>
+            FlowStyle = fsLeftRightTopBottom
+            TabOrder = 0
+          end
         end
         object TabSheet4: TTabSheet
           Caption = 'IPA'
-          ClientHeight = 230
+          ClientHeight = 254
           ClientWidth = 195
           object PageControl2: TPageControl
             AnchorSideLeft.Control = TabSheet4
@@ -671,27 +706,83 @@ object MainForm: TMainForm
             AnchorSideBottom.Control = TabSheet4
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 230
+            Height = 254
             Top = 0
             Width = 195
-            ActivePage = TabSheet6
+            ActivePage = TabSheet9
             Anchors = [akTop, akLeft, akRight, akBottom]
-            TabIndex = 1
+            TabIndex = 4
             TabOrder = 0
+            OnChange = PageControl2Change
             object TabSheet5: TTabSheet
               Caption = 'Consonants'
+              ClientHeight = 226
+              ClientWidth = 187
+              object ConsonantsFlowPanel: TFlowPanel
+                Left = 0
+                Height = 256
+                Top = 0
+                Width = 196
+                ControlList = <>
+                FlowStyle = fsLeftRightTopBottom
+                TabOrder = 0
+              end
             end
             object TabSheet6: TTabSheet
               Caption = 'Affricates'
+              ClientHeight = 226
+              ClientWidth = 187
+              object AffricatesFlowPanel: TFlowPanel
+                Left = 0
+                Height = 256
+                Top = 0
+                Width = 196
+                ControlList = <>
+                FlowStyle = fsLeftRightTopBottom
+                TabOrder = 0
+              end
             end
             object TabSheet7: TTabSheet
               Caption = 'Vowels'
+              ClientHeight = 226
+              ClientWidth = 187
+              object VowelsFlowPanel: TFlowPanel
+                Left = 0
+                Height = 256
+                Top = 0
+                Width = 196
+                ControlList = <>
+                FlowStyle = fsLeftRightTopBottom
+                TabOrder = 0
+              end
             end
             object TabSheet8: TTabSheet
               Caption = 'Tones'
+              ClientHeight = 226
+              ClientWidth = 187
+              object TonesFlowPanel: TFlowPanel
+                Left = 0
+                Height = 256
+                Top = 0
+                Width = 196
+                ControlList = <>
+                FlowStyle = fsLeftRightTopBottom
+                TabOrder = 0
+              end
             end
             object TabSheet9: TTabSheet
               Caption = 'Other'
+              ClientHeight = 226
+              ClientWidth = 187
+              object OtherFlowPanel: TFlowPanel
+                Left = 0
+                Height = 256
+                Top = 0
+                Width = 196
+                ControlList = <>
+                FlowStyle = fsLeftRightTopBottom
+                TabOrder = 0
+              end
             end
           end
         end
@@ -699,7 +790,7 @@ object MainForm: TMainForm
       object CharacterPreviewButton: TButton
         Left = 72
         Height = 74
-        Top = 5
+        Top = 8
         Width = 74
         Caption = 'A'
         Font.Height = -24
@@ -713,7 +804,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 120
-        Width = 209
+        Width = 203
         Alignment = taCenter
         MaxLength = 1
         OnChange = PreviewEditChange
@@ -721,10 +812,10 @@ object MainForm: TMainForm
         Text = 'A'
       end
       object LocalButton: TButton
-        Left = 116
+        Left = 114
         Height = 25
         Top = 88
-        Width = 101
+        Width = 97
         Caption = 'Local'
         OnClick = LocalButtonClick
         TabOrder = 3
@@ -733,15 +824,16 @@ object MainForm: TMainForm
         Left = 8
         Height = 25
         Top = 88
-        Width = 101
+        Width = 97
         Caption = 'File'
+        OnClick = FileButtonClick
         TabOrder = 4
       end
       object AccentsGroup: TRadioGroup
         Left = 8
         Height = 152
         Top = 152
-        Width = 209
+        Width = 203
         AutoFill = True
         Caption = 'Accent Marks'
         ChildSizing.LeftRightSpacing = 2
@@ -755,7 +847,7 @@ object MainForm: TMainForm
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 6
         ClientHeight = 131
-        ClientWidth = 205
+        ClientWidth = 199
         Columns = 6
         Font.Height = -13
         Font.Name = 'Sans'
@@ -766,7 +858,7 @@ object MainForm: TMainForm
           Height = 31
           Hint = 'Grave Accent'
           Top = 2
-          Width = 32
+          Width = 30
           Caption = '◌̀'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -776,11 +868,11 @@ object MainForm: TMainForm
           TabOrder = 0
         end
         object AcuteToggle: TToggleBox
-          Left = 36
+          Left = 34
           Height = 31
           Hint = 'Acute Accent'
           Top = 2
-          Width = 32
+          Width = 31
           Caption = '◌́'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -790,11 +882,11 @@ object MainForm: TMainForm
           TabOrder = 1
         end
         object CircumflexToggle: TToggleBox
-          Left = 70
+          Left = 67
           Height = 31
           Hint = 'Circumflex'
           Top = 2
-          Width = 32
+          Width = 31
           Caption = '◌̂'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -804,11 +896,11 @@ object MainForm: TMainForm
           TabOrder = 2
         end
         object TildeToggle: TToggleBox
-          Left = 104
+          Left = 100
           Height = 31
           Hint = 'Tilde'
           Top = 2
-          Width = 32
+          Width = 31
           Caption = '◌̃'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -818,11 +910,11 @@ object MainForm: TMainForm
           TabOrder = 3
         end
         object MacronToggle: TToggleBox
-          Left = 138
+          Left = 133
           Height = 31
           Hint = 'Macron'
           Top = 2
-          Width = 32
+          Width = 31
           Caption = '◌̄'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -832,7 +924,7 @@ object MainForm: TMainForm
           TabOrder = 4
         end
         object OverlineToggle: TToggleBox
-          Left = 172
+          Left = 166
           Height = 31
           Hint = 'Overline'
           Top = 2
@@ -850,7 +942,7 @@ object MainForm: TMainForm
           Height = 31
           Hint = 'Breve'
           Top = 35
-          Width = 32
+          Width = 30
           Caption = '◌̆'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -860,11 +952,11 @@ object MainForm: TMainForm
           TabOrder = 6
         end
         object DotAbove: TToggleBox
-          Left = 36
+          Left = 34
           Height = 31
           Hint = 'Dot Above'
           Top = 35
-          Width = 32
+          Width = 31
           Caption = '◌̇'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -874,11 +966,11 @@ object MainForm: TMainForm
           TabOrder = 7
         end
         object UmlautToggle: TToggleBox
-          Left = 70
+          Left = 67
           Height = 31
           Hint = 'Diaeresis/Umlaut'
           Top = 35
-          Width = 32
+          Width = 31
           Caption = '◌̈'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -888,11 +980,11 @@ object MainForm: TMainForm
           TabOrder = 8
         end
         object HookAboveToggle: TToggleBox
-          Left = 104
+          Left = 100
           Height = 31
           Hint = 'Hook Above'
           Top = 35
-          Width = 32
+          Width = 31
           Caption = '◌̉'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -902,11 +994,11 @@ object MainForm: TMainForm
           TabOrder = 9
         end
         object RingAboveToggle: TToggleBox
-          Left = 138
+          Left = 133
           Height = 31
           Hint = 'Ring Above'
           Top = 35
-          Width = 32
+          Width = 31
           Caption = '◌̊'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -916,7 +1008,7 @@ object MainForm: TMainForm
           TabOrder = 10
         end
         object DoubleAcuteToggle: TToggleBox
-          Left = 172
+          Left = 166
           Height = 31
           Hint = 'Double Acute Accent'
           Top = 35
@@ -934,7 +1026,7 @@ object MainForm: TMainForm
           Height = 31
           Hint = 'Caron/Háček'
           Top = 68
-          Width = 32
+          Width = 30
           Caption = '◌̌'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -944,11 +1036,11 @@ object MainForm: TMainForm
           TabOrder = 12
         end
         object DoubleGraveToggle: TToggleBox
-          Left = 36
+          Left = 34
           Height = 31
           Hint = 'Double Grave Accent'
           Top = 68
-          Width = 32
+          Width = 31
           Caption = '◌̏'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -958,11 +1050,11 @@ object MainForm: TMainForm
           TabOrder = 13
         end
         object OgonekToggle: TToggleBox
-          Left = 70
+          Left = 67
           Height = 31
           Hint = 'Ogonek'
           Top = 68
-          Width = 32
+          Width = 31
           Caption = '◌̨'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -972,11 +1064,11 @@ object MainForm: TMainForm
           TabOrder = 14
         end
         object CedillaToggle: TToggleBox
-          Left = 104
+          Left = 100
           Height = 31
           Hint = 'Cedilla'
           Top = 68
-          Width = 32
+          Width = 31
           Caption = '◌̧'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -986,11 +1078,11 @@ object MainForm: TMainForm
           TabOrder = 15
         end
         object TildeBelowToggle: TToggleBox
-          Left = 138
+          Left = 133
           Height = 31
           Hint = 'Tilde Below'
           Top = 68
-          Width = 32
+          Width = 31
           Caption = '◌̰'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1000,7 +1092,7 @@ object MainForm: TMainForm
           TabOrder = 16
         end
         object MacronBelowToggle: TToggleBox
-          Left = 172
+          Left = 166
           Height = 31
           Hint = 'Macron Below'
           Top = 68
@@ -1018,7 +1110,7 @@ object MainForm: TMainForm
           Height = 28
           Hint = 'Turned Comma Above'
           Top = 101
-          Width = 32
+          Width = 30
           Caption = '◌̒'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1028,11 +1120,11 @@ object MainForm: TMainForm
           TabOrder = 18
         end
         object KoronisToggle: TToggleBox
-          Left = 36
+          Left = 34
           Height = 28
           Hint = 'Koronis'
           Top = 101
-          Width = 32
+          Width = 31
           Caption = '◌̓'
           Font.Height = -19
           Font.Name = 'Sans'

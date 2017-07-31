@@ -1,7 +1,7 @@
 object StartUpForm: TStartUpForm
-  Left = 699
+  Left = 1057
   Height = 439
-  Top = 93
+  Top = 310
   Width = 442
   BorderStyle = bsDialog
   Caption = 'Start Up'
@@ -5274,6 +5274,7 @@ object StartUpForm: TStartUpForm
     }
     GlyphShowMode = gsmAlways
     Layout = blGlyphTop
+    OnClick = OpenButtonClick
     TabOrder = 1
   end
   object AboutButton: TBitBtn

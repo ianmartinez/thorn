@@ -2,37 +2,71 @@ unit FileTypes;
 
 {$mode objfpc}{$H+}
 interface
+  type CharArray = array of string;
   type ThornWriterFile = record
      Title: string;
      Author: string;
      Website: string;
      Description: string;
-     CustomCharacters: array of string;
+     CustomCharacters: CharArray;
      RtfData: string;
   end;
+
   procedure SaveWriterFile(writer_file: ThornWriterFile; path: string);
+
   function ReadWriterFile(path: string) : ThornWriterFile;
   function ReadSafeString(source: string) : string;
   function WriteSafeString(source: string) : string;
+  function AddCharacterToWriterFile(writer_file: ThornWriterFile; value: string) : CharArray;
+  function RemoveCharacterToWriterFile(writer_file: ThornWriterFile; value: string) : CharArray;
 
 implementation
-  uses SysUtils,Dialogs,IniFiles,Classes;
+ uses SysUtils,Dialogs,IniFiles,Classes;
  const
    UNIX_LINE : string = AnsiChar(#10);
    WINDOWS_LINE : string = AnsiString(#13#10);
+
+ function StringListFromStrings(const Strings: array of string): TStringList;
+  var
+    i: Integer;
+  begin
+    Result := TStringList.Create;
+    for i := low(Strings) to high(Strings) do
+      Result.Add(Strings[i]);
+  end;
+
+  function StringsFromStringList(strings: TStringList): CharArray;
+  var
+    i: Integer;
+  begin
+    SetLength(Result, strings.Count);
+
+    for i := 0 to strings.Count -1 do
+      Result[i]:=strings[i];
+  end;
+
+  function AddCharacterToWriterFile(writer_file: ThornWriterFile; value: string) : CharArray;
+  var temp: TStringList;
+  begin
+    temp := StringListFromStrings(writer_file.CustomCharacters);
+    temp.Add(value);
+
+    Result := StringsFromStringList(temp);
+  end;
+
+  function RemoveCharacterToWriterFile(writer_file: ThornWriterFile; value: string): CharArray;
+  var temp: TStringList; found_index: Integer;
+  begin
+    temp := StringListFromStrings(writer_file.CustomCharacters);
+    if temp.Find(value,found_index) then temp.Delete(found_index);
+
+    Result := StringsFromStringList(temp);
+  end;
+
   procedure SaveWriterFile(writer_file: ThornWriterFile; path: string);
   var output: TextFile;
   begin
     AssignFile(output, path);
-
-  end;
-
-  procedure Split(Delimiter: Char; Str: string; ListOfStrings: TStrings) ;
-  begin
-     ListOfStrings.Clear;
-     ListOfStrings.Delimiter       := Delimiter;
-     ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
-     ListOfStrings.DelimitedText   := Str;
   end;
 
   function ReadWriterFile(path: string) : ThornWriterFile;

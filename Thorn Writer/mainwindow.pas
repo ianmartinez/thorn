@@ -14,6 +14,14 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    FileFlowPanel: TFlowPanel;
+    CommonFlowPanel: TFlowPanel;
+    ConsonantsFlowPanel: TFlowPanel;
+    AffricatesFlowPanel: TFlowPanel;
+    OtherFlowPanel: TFlowPanel;
+    TonesFlowPanel: TFlowPanel;
+    VowelsFlowPanel: TFlowPanel;
+    LocalFlowPanel: TFlowPanel;
     FontDialog1: TFontDialog;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
@@ -129,11 +137,13 @@ type
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure CenterToolbarButtonClick(Sender: TObject);
+    procedure CharacterGalleryTabsChange(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
     procedure ClearMenuItemClick(Sender: TObject);
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
+    procedure FileButtonClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FontMenuItemClick(Sender: TObject);
     procedure FontToolbarButtonClick(Sender: TObject);
@@ -148,6 +158,7 @@ type
     procedure MainToolbarClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
+    procedure PageControl2Change(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
     procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
@@ -159,6 +170,9 @@ type
 
     procedure BuildCharacter();
     procedure InsertText(txt: string);
+    procedure CreateButton(button_parent: TComponent; button_caption: string);
+    procedure UpdateFileCharacters();
+    procedure CharacterButtonHandler(Sender: TObject);
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
   private
@@ -171,6 +185,7 @@ type
 
 var
   MainForm: TMainForm;
+  OpenFile: ThornWriterFile;
 
 implementation
 
@@ -201,7 +216,7 @@ var old_sel_pos: Integer;
 begin
   old_sel_pos:= MainRTF.SelStart;
   MainRTF.SelText := txt;
-  MainRTF.SelStart:= old_sel_pos + txt.Length;
+  MainRTF.SelStart:= old_sel_pos;
 end;
 
 procedure TMainForm.AccentToggleClick(Sender: TObject);
@@ -223,6 +238,42 @@ begin
   Result := toggles;
 end;
 
+procedure TMainForm.CharacterButtonHandler(Sender: TObject);
+begin
+     InsertText((Sender as TButton).Caption);
+end;
+
+procedure TMainForm.CreateButton(button_parent: TComponent; button_caption: string);
+var btn: TButton;
+begin
+  btn:= TButton.Create(button_parent);
+  btn.Parent:=button_parent as TWinControl;
+  btn.Caption:=button_caption;
+  btn.Width:=32;
+  btn.Height:=32;
+  btn.OnClick:=@CharacterButtonHandler;
+  btn.Font.Bold:=True;
+  btn.Font.Size:=8;
+end;
+
+procedure TMainForm.UpdateFileCharacters();
+var
+  control_count: Integer;
+  char_count: Integer;
+  control: TControl;
+begin
+  for control_count:=FileFlowPanel.ControlCount - 1 downto 0 do
+  begin
+    control := FileFlowPanel.Controls[control_count];
+    control.Free;
+  end;
+
+  for char_count:=0 to Length(OpenFile.CustomCharacters)-1 do
+  begin
+       CreateButton(FileFlowPanel,OpenFile.CustomCharacters[char_count]);
+  end;
+end;
+
 function TMainForm.SmartReplace(input: string) : string;
 begin
 
@@ -232,6 +283,12 @@ procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
   FreeAndNil(MainForm);
   Application.Terminate;
+end;
+
+procedure TMainForm.FileButtonClick(Sender: TObject);
+begin
+  OpenFile.CustomCharacters := AddCharacterToWriterFile(OpenFile,CharacterPreviewButton.Caption);
+  UpdateFileCharacters();
 end;
 
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
@@ -312,18 +369,24 @@ begin
 end;
 
 procedure TMainForm.OpenMenuItemClick(Sender: TObject);
-var rtfx: ThornWriterFile;
 begin
   if OpenDialog1.Execute then
   begin
-    rtfx:= ReadWriterFile(OpenDialog1.FileName);
-    TitleEdit.Text:= rtfx.Title;
-    AuthorEdit.Text:= rtfx.Author;
-    WebsiteEdit.Text:= rtfx.Website;
-    DescriptionMemo.Text:= rtfx.Description;
+    OpenFile:= ReadWriterFile(OpenDialog1.FileName);
+    TitleEdit.Text:= OpenFile.Title;
+    AuthorEdit.Text:= OpenFile.Author;
+    WebsiteEdit.Text:= OpenFile.Website;
+    DescriptionMemo.Text:= OpenFile.Description;
 
-    MainRTF.Rtf := rtfx.RtfData;
+    UpdateFileCharacters();
+
+    MainRTF.Rtf := OpenFile.RtfData;
   end;
+end;
+
+procedure TMainForm.PageControl2Change(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.PasteMenuItemClick(Sender: TObject);
@@ -375,6 +438,11 @@ procedure TMainForm.CenterToolbarButtonClick(Sender: TObject);
 begin
 
   MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paCenter);
+end;
+
+procedure TMainForm.CharacterGalleryTabsChange(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);

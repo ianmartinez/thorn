@@ -25,6 +25,7 @@ type
     procedure AboutButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure OpenButtonClick(Sender: TObject);
     procedure QuitButtonClick(Sender: TObject);
   private
     { private declarations }
@@ -48,6 +49,11 @@ end;
 procedure TStartUpForm.FormShow(Sender: TObject);
 begin
   self.SetFocus;
+end;
+
+procedure TStartUpForm.OpenButtonClick(Sender: TObject);
+begin
+
 end;
 
 procedure TStartUpForm.AboutButtonClick(Sender: TObject);
