@@ -10,14 +10,15 @@ interface
      Description: string;
      CustomCharacters: CharArray;
      RtfData: string;
+     PageCount: integer;
   end;
 
-  procedure SaveWriterFile(const writer_file: ThornWriterFile; path: string);
-  function ReadWriterFile(path: string) : ThornWriterFile;
-  function ReadSafeString(source: string) : string;
-  function WriteSafeString(source: string) : string;
-  function AddCharacterToWriterFile(writer_file: ThornWriterFile; value: string) : CharArray;
-  function RemoveCharacterToWriterFile(writer_file: ThornWriterFile; value: string) : CharArray;
+  procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
+  function ReadWriterFile(const path: string) : ThornWriterFile;
+  function ReadSafeString(const source: string) : string;
+  function WriteSafeString(const source: string) : string;
+  function AddCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
+  function RemoveCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
 
 implementation
  uses SysUtils,Dialogs,IniFiles,Classes;
@@ -34,7 +35,7 @@ implementation
       Result.Add(Strings[i]);
   end;
 
-  function StringsFromStringList(strings: TStringList): CharArray;
+  function StringsFromStringList(const strings: TStringList): CharArray;
   var
     i: Integer;
   begin
@@ -44,7 +45,7 @@ implementation
       Result[i]:=strings[i];
   end;
 
-  function AddCharacterToWriterFile(writer_file: ThornWriterFile; value: string) : CharArray;
+  function AddCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
   var temp: TStringList;
   begin
     temp := StringListFromStrings(writer_file.CustomCharacters);
@@ -53,7 +54,7 @@ implementation
     Result := StringsFromStringList(temp);
   end;
 
-  function RemoveCharacterToWriterFile(writer_file: ThornWriterFile; value: string): CharArray;
+  function RemoveCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string): CharArray;
   var temp: TStringList; found_index: Integer;
   begin
     temp := StringListFromStrings(writer_file.CustomCharacters);
@@ -62,33 +63,37 @@ implementation
     Result := StringsFromStringList(temp);
   end;
 
-  procedure SaveWriterFile(const writer_file: ThornWriterFile; path: string);
+  procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
   var
     INI: TINIFile;
     char_pos: Integer;
     char_string: string;
   begin
-    if FileExists(path) then DeleteFile(path);
+    try
+      if FileExists(path) then DeleteFile(path);
 
-    INI := TINIFile.Create(path);
-    INI.WriteString('Properties','Title',WriteSafeString(writer_file.Title));
-    INI.WriteString('Properties','Author',WriteSafeString(writer_file.Author));
-    INI.WriteString('Properties','Website',WriteSafeString(writer_file.Website));
-    INI.WriteString('Properties','Description',WriteSafeString(writer_file.Description));
+      INI := TINIFile.Create(path);
+      INI.WriteString('Properties','Title',WriteSafeString(writer_file.Title));
+      INI.WriteString('Properties','Author',WriteSafeString(writer_file.Author));
+      INI.WriteString('Properties','Website',WriteSafeString(writer_file.Website));
+      INI.WriteString('Properties','Description',WriteSafeString(writer_file.Description));
 
-    for char_pos := 0 to Length(writer_file.CustomCharacters) -1 do
-    begin
-       char_string := char_string + WriteSafeString(writer_file.CustomCharacters[char_pos]) + '|';
+      for char_pos := 0 to Length(writer_file.CustomCharacters) -1 do
+      begin
+         char_string := char_string + WriteSafeString(writer_file.CustomCharacters[char_pos]) + '|';
+      end;
+
+      INI.WriteString('Properties','Characters',char_string);
+      INI.WriteInteger('Properties','PageCount',writer_file.PageCount);
+
+      INI.WriteString('Document','Page0',WriteSafeString(writer_file.RtfData));
+      INI.UpdateFile;
+    finally
+      INI.Free;
     end;
-
-    INI.WriteString('Properties','Characters',char_string);
-    INI.WriteString('Document','Page0',writer_file.RtfData);
-    INI.UpdateFile;
-
-    //INI.Free;
   end;
 
-  function ReadWriterFile(path: string) : ThornWriterFile;
+  function ReadWriterFile(const path: string) : ThornWriterFile;
   var
     ret: ThornWriterFile;
     INI: TINIFile;
@@ -110,16 +115,14 @@ implementation
           ret.CustomCharacters[char_pos] := ReadSafeString(ret.CustomCharacters[char_pos]);
         end;
       end;
-    except
-      on E: EInOutError do
-       ShowMessage('File handling error occurred. Details: ' + E.Message);
+    finally
+      INI.Free;
     end;
 
-    INI.Free;
     result := ret;
   end;
 
-  function WriteSafeString(source: string) : string;
+  function WriteSafeString(const source: string) : string;
   var
     temp: string;
   begin
@@ -133,12 +136,11 @@ implementation
     temp := temp.Replace('|','&bar');
     temp := temp.Replace(WINDOWS_LINE,'&win32');
     temp := temp.Replace(UNIX_LINE,'&unix');
-    temp := temp.Replace(' ','&sp');
 
     result := temp;
   end;
 
-  function ReadSafeString(source: string) : string;
+  function ReadSafeString(const source: string) : string;
   var
     temp: string;
   begin
