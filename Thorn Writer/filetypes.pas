@@ -10,6 +10,7 @@ interface
      Description: string;
      CustomCharacters: CharArray;
      RtfData: string;
+     BackgroundColor: string;
      PageCount: integer;
   end;
 
@@ -70,8 +71,6 @@ implementation
     char_string: string;
   begin
     try
-      if FileExists(path) then DeleteFile(path);
-
       INI := TINIFile.Create(path);
       INI.WriteString('Properties','Title',WriteSafeString(writer_file.Title));
       INI.WriteString('Properties','Author',WriteSafeString(writer_file.Author));
@@ -87,8 +86,10 @@ implementation
       INI.WriteInteger('Properties','PageCount',writer_file.PageCount);
 
       INI.WriteString('Document','Page0',WriteSafeString(writer_file.RtfData));
+      INI.WriteString('Document','Page0Background',WriteSafeString(writer_file.BackgroundColor));
       INI.UpdateFile;
-    finally
+
+   finally
       INI.Free;
     end;
   end;
@@ -99,7 +100,7 @@ implementation
     INI: TINIFile;
     char_pos: Integer;
   begin
-    try
+   try
       if FileExists(path) then
       begin
         INI := TINIFile.Create(path);
@@ -110,15 +111,16 @@ implementation
         ret.CustomCharacters := INI.ReadString('Properties','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
         ret.PageCount:=INI.ReadInteger('Properties','PageCount',1);
         ret.RtfData := ReadSafeString(INI.ReadString('Document','Page0',''));
+        ret.BackgroundColor:= ReadSafeString(INI.ReadString('Document','Page0Background','')); ;
 
         for char_pos:=0 to Length(ret.CustomCharacters)-1 do
         begin
           ret.CustomCharacters[char_pos] := ReadSafeString(ret.CustomCharacters[char_pos]);
         end;
       end;
-    finally
-      INI.Free;
-    end;
+     finally
+        INI.Free;
+     end;
 
     result := ret;
   end;

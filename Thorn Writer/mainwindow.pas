@@ -135,6 +135,7 @@ type
     ToolButton1: TToolButton;
     DescriptionLabel: TLabel;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure AuthorEditChange(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure CenterToolbarButtonClick(Sender: TObject);
     procedure CharacterGalleryTabsChange(Sender: TObject);
@@ -142,6 +143,7 @@ type
     procedure ClearMenuItemClick(Sender: TObject);
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
+    procedure DescriptionMemoChange(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FileButtonClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
@@ -165,7 +167,10 @@ type
     procedure RedoMenuItemClick(Sender: TObject);
     procedure RightToolbarButtonClick(Sender: TObject);
     procedure SaveAsMenuItemClick(Sender: TObject);
+    procedure SaveMenuItemClick(Sender: TObject);
+    procedure SaveToolbarButtonClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
+    procedure TitleEditChange(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
 
@@ -176,6 +181,7 @@ type
     procedure CharacterButtonHandler(Sender: TObject);
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
+    procedure WebsiteEditChange(Sender: TObject);
     procedure WebsiteGoButtonClick(Sender: TObject);
   private
     { private declarations }
@@ -188,6 +194,8 @@ type
 var
   MainForm: TMainForm;
   OpenFile: ThornWriterFile;
+  Modified: Boolean = false;
+  FileLocation: String;
 
 implementation
 
@@ -274,11 +282,19 @@ begin
   begin
        CreateButton(FileFlowPanel,OpenFile.CustomCharacters[char_count]);
   end;
+
+  Modified := true;
 end;
 
 function TMainForm.SmartReplace(input: string) : string;
 begin
 
+end;
+
+procedure TMainForm.WebsiteEditChange(Sender: TObject);
+begin
+  OpenFile.Website :=  WebsiteEdit.Text;
+  Modified := true;
 end;
 
 procedure TMainForm.WebsiteGoButtonClick(Sender: TObject);
@@ -326,6 +342,11 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  if Modified then
+  begin
+
+  end;
+
   FreeAndNil(MainForm);
   Application.Terminate;
 end;
@@ -368,7 +389,7 @@ end;
 
 procedure TMainForm.MainRTFChange(Sender: TObject);
 begin
-
+  Modified := true;
 end;
 
 procedure TMainForm.MainToolbarClick(Sender: TObject);
@@ -394,6 +415,11 @@ begin
     UpdateFileCharacters();
 
     MainRTF.Rtf := OpenFile.RtfData;
+    if not OpenFile.BackgroundColor.Equals('') then
+       MainRTF.Color := StringToColor(OpenFile.BackgroundColor);
+
+    FileLocation := OpenDialog1.FileName;
+    Modified := false;
   end;
 end;
 
@@ -426,19 +452,48 @@ end;
 
 procedure TMainForm.RightToolbarButtonClick(Sender: TObject);
 begin
-
   MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paRight);
 end;
 
 procedure TMainForm.SaveAsMenuItemClick(Sender: TObject);
 begin
+  OpenFile.RtfData := MainRTF.Rtf;
+
   if SaveDialog1.Execute then
-     SaveWriterFile(OpenFile,SaveDialog1.FileName);
+  begin
+     FileLocation := SaveDialog1.FileName;
+     Modified := false;
+     SaveWriterFile(OpenFile,FileLocation);
+  end;
+end;
+
+procedure TMainForm.SaveMenuItemClick(Sender: TObject);
+begin
+  OpenFile.RtfData := MainRTF.Rtf;
+
+  if not FileLocation.Equals('') then
+  begin
+    SaveWriterFile(OpenFile,FileLocation);
+    Modified := false;
+  end
+  else
+    SaveAsMenuItemClick(Sender);
+end;
+
+procedure TMainForm.SaveToolbarButtonClick(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.SelectAllMenuItemClick(Sender: TObject);
 begin
   MainRTF.SelectAll;
+end;
+
+procedure TMainForm.TitleEditChange(Sender: TObject);
+begin
+  OpenFile.Title := TitleEdit.Text;
+  Modified := true;
 end;
 
 procedure TMainForm.UndoMenuItemClick(Sender: TObject);
@@ -450,7 +505,11 @@ end;
 procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
   if ColorDialog1.Execute then
+  begin
     MainRTF.Color:= ColorDialog1.Color;
+    Modified := true;
+    OpenFile.BackgroundColor := ColorToString(MainRTF.Color);
+  end;
 end;
 
 procedure TMainForm.CenterToolbarButtonClick(Sender: TObject);
@@ -484,11 +543,23 @@ begin
   MainRTF.CutToClipboard;
 end;
 
+procedure TMainForm.DescriptionMemoChange(Sender: TObject);
+begin
+  OpenFile.Description := DescriptionMemo.Text;
+  Modified := true;
+end;
+
 procedure TMainForm.AboutMenuItemClick(Sender: TObject);
 begin
   AboutForm:=TAboutForm.Create(Nil);
   AboutForm.ShowModal;
   FreeAndNil(AboutForm);
+end;
+
+procedure TMainForm.AuthorEditChange(Sender: TObject);
+begin
+  OpenFile.Author :=  AuthorEdit.Text;
+  Modified := true;
 end;
 
 end.

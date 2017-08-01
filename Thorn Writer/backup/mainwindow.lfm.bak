@@ -386,6 +386,7 @@ object MainForm: TMainForm
       Caption = 'Save'
       ImageIndex = 2
       MenuItem = SaveMenuItem
+      OnClick = SaveToolbarButtonClick
     end
     object ToolButton1: TToolButton
       Left = 73
@@ -563,6 +564,7 @@ object MainForm: TMainForm
         Height = 23
         Top = 72
         Width = 203
+        OnChange = AuthorEditChange
         TabOrder = 1
       end
       object TitleEdit: TEdit
@@ -570,6 +572,7 @@ object MainForm: TMainForm
         Height = 23
         Top = 24
         Width = 203
+        OnChange = TitleEditChange
         TabOrder = 0
       end
       object AuthorLabel: TLabel
@@ -593,6 +596,7 @@ object MainForm: TMainForm
         Height = 23
         Top = 120
         Width = 176
+        OnChange = WebsiteEditChange
         TabOrder = 2
       end
       object WebsiteGoButton: TButton
@@ -624,6 +628,7 @@ object MainForm: TMainForm
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
+        OnChange = DescriptionMemoChange
         TabOrder = 4
       end
     end
@@ -1282,6 +1287,7 @@ object MainForm: TMainForm
           09FFB57C09FFB57C09FFB57C0BFFB57E0FFFB78114FFB782187C
         }
         ImageIndex = 2
+        OnClick = SaveMenuItemClick
       end
       object SaveAsMenuItem: TMenuItem
         Caption = 'Save As...'
@@ -1322,6 +1328,7 @@ object MainForm: TMainForm
           09FFB57C0BFFB57E0FFFB78114FFB9851B77BB871E00BB871F00
         }
         ImageIndex = 3
+        OnClick = SaveAsMenuItemClick
       end
       object FileSep3: TMenuItem
         Caption = '-'
@@ -13551,11 +13558,12 @@ object MainForm: TMainForm
     top = 32
   end
   object OpenDialog1: TOpenDialog
-    Filter = 'Extended Rich Text Format (*.rtfx)|*.RTFX'
+    Filter = 'Thorn Writer File (*.thw)|*.thw'
     left = 96
     top = 32
   end
   object SaveDialog1: TSaveDialog
+    Filter = 'Thorn Writer File (*.thw)|*.thw'
     left = 168
     top = 32
   end
