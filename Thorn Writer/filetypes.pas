@@ -2,6 +2,10 @@ unit FileTypes;
 
 {$mode objfpc}{$H+}
 interface
+  const WRITER_VERSION: integer = 1;
+  const UNIX_LINE: string = AnsiChar(#10);
+  const WINDOWS_LINE: string = AnsiString(#13#10);
+
   type CharArray = array of string;
   type ThornWriterFile = record
      Title: string;
@@ -12,9 +16,11 @@ interface
      RtfData: string;
      BackgroundColor: string;
      PageCount: integer;
+     WriterVersion: integer;
   end;
 
   procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
+
   function ReadWriterFile(const path: string) : ThornWriterFile;
   function ReadSafeString(const source: string) : string;
   function WriteSafeString(const source: string) : string;
@@ -23,9 +29,6 @@ interface
 
 implementation
  uses SysUtils,Dialogs,IniFiles,Classes;
- const
-   UNIX_LINE : string = AnsiChar(#10);
-   WINDOWS_LINE : string = AnsiString(#13#10);
 
  function StringListFromStrings(const Strings: array of string): TStringList;
   var
@@ -72,6 +75,8 @@ implementation
   begin
     try
       INI := TINIFile.Create(path);
+      INI.WriteInteger('Data','ThornWriterVersion', WRITER_VERSION);
+
       INI.WriteString('Properties','Title',WriteSafeString(writer_file.Title));
       INI.WriteString('Properties','Author',WriteSafeString(writer_file.Author));
       INI.WriteString('Properties','Website',WriteSafeString(writer_file.Website));
@@ -104,6 +109,7 @@ implementation
       if FileExists(path) then
       begin
         INI := TINIFile.Create(path);
+        ret.WriterVersion := INI.ReadInteger('Data','ThornWriterVersion',1);
         ret.Author := ReadSafeString(INI.ReadString('Properties','Author',''));
         ret.Description := ReadSafeString(INI.ReadString('Properties','Description',''));
         ret.Title := ReadSafeString(INI.ReadString('Properties','Title',''));
@@ -137,8 +143,8 @@ implementation
     temp := temp.Replace('>','&gt');
     temp := temp.Replace(';','&sc');
     temp := temp.Replace('|','&bar');
-    temp := temp.Replace(WINDOWS_LINE,'&win32');
-    temp := temp.Replace(UNIX_LINE,'&unix');
+    temp := temp.Replace(WINDOWS_LINE,'&win_line');
+    temp := temp.Replace(UNIX_LINE,'&unix_line');
 
     result := temp;
   end;
@@ -155,8 +161,8 @@ implementation
     temp := temp.Replace('&gt','>');
     temp := temp.Replace('&sc',';');
     temp := temp.Replace('&bar','|');
-    temp := temp.Replace('&win32',WINDOWS_LINE);
-    temp := temp.Replace('&unix',UNIX_LINE);
+    temp := temp.Replace('&win_line',WINDOWS_LINE);
+    temp := temp.Replace('&unix_line',UNIX_LINE);
     temp := temp.Replace('&sp',' ');
 
     result := temp;

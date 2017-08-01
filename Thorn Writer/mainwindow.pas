@@ -201,6 +201,24 @@ implementation
 
 {$R *.lfm}
 
+function ColorToHex(Color : TColor) : string;
+begin
+   Result :=
+     IntToHex(GetRValue(ColorToRGB(Color)), 2) +
+     IntToHex(GetGValue(ColorToRGB(Color)), 2) +
+     IntToHex(GetBValue(ColorToRGB(Color)), 2) ;
+end;
+
+function HexToColor(sColor : string) : TColor;
+begin
+   Result :=
+     RGB(
+       StrToInt('$'+Copy(sColor, 1, 2)),
+       StrToInt('$'+Copy(sColor, 3, 2)),
+       StrToInt('$'+Copy(sColor, 5, 2))
+     );
+end;
+
 { TMainForm }
 procedure TMainForm.BuildCharacter();
 var base: string; accent_count: Integer; accents: TStringList; toggle_count: Integer;
@@ -416,7 +434,7 @@ begin
 
     MainRTF.Rtf := OpenFile.RtfData;
     if not OpenFile.BackgroundColor.Equals('') then
-       MainRTF.Color := StringToColor(OpenFile.BackgroundColor);
+       MainRTF.Color := HexToColor(OpenFile.BackgroundColor);
 
     FileLocation := OpenDialog1.FileName;
     Modified := false;
@@ -470,6 +488,7 @@ end;
 procedure TMainForm.SaveMenuItemClick(Sender: TObject);
 begin
   OpenFile.RtfData := MainRTF.Rtf;
+  OpenFile.WriterVersion := WRITER_VERSION;
 
   if not FileLocation.Equals('') then
   begin
@@ -504,11 +523,12 @@ end;
 
 procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
+  ColorDialog1.Color := MainRTF.Color;
   if ColorDialog1.Execute then
   begin
     MainRTF.Color:= ColorDialog1.Color;
     Modified := true;
-    OpenFile.BackgroundColor := ColorToString(MainRTF.Color);
+    OpenFile.BackgroundColor := ColorToHex(MainRTF.Color);
   end;
 end;
 

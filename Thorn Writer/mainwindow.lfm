@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 455
+  Left = 866
   Height = 678
-  Top = 163
+  Top = 131
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 658
@@ -330,6 +330,7 @@ object MainForm: TMainForm
     Width = 488
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
+    Color = clWhite
     Font.CharSet = 4
     Font.Height = -16
     Font.Name = 'Open Sans'

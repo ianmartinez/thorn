@@ -330,6 +330,7 @@ object MainForm: TMainForm
     Width = 488
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
+    Color = clWhite
     Font.CharSet = 4
     Font.Height = -16
     Font.Name = 'Open Sans'
