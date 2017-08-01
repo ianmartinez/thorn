@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 620
+  Left = 455
   Height = 678
-  Top = 145
+  Top = 163
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 658
@@ -601,6 +601,7 @@ object MainForm: TMainForm
         Top = 120
         Width = 22
         Caption = '...'
+        OnClick = WebsiteGoButtonClick
         TabOrder = 3
       end
       object DescriptionLabel: TLabel
@@ -1321,6 +1322,7 @@ object MainForm: TMainForm
           09FFB57C0BFFB57E0FFFB78114FFB9851B77BB871E00BB871F00
         }
         ImageIndex = 3
+        OnClick = SaveAsMenuItemClick
       end
       object FileSep3: TMenuItem
         Caption = '-'
@@ -13550,11 +13552,12 @@ object MainForm: TMainForm
     top = 32
   end
   object OpenDialog1: TOpenDialog
-    Filter = 'Extended Rich Text Format (*.rtfx)|*.RTFX'
+    Filter = 'Thorn Writer File (*.thw)|*.thw'
     left = 96
     top = 32
   end
   object SaveDialog1: TSaveDialog
+    Filter = 'Thorn Writer File (*.thw)|*.thw'
     left = 168
     top = 32
   end

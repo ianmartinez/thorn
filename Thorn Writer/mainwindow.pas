@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo, AboutWindow, Contnrs;
+  RichMemo, AboutWindow, Contnrs, LCLIntf;
 
 type
 
@@ -164,6 +164,7 @@ type
     procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
     procedure RightToolbarButtonClick(Sender: TObject);
+    procedure SaveAsMenuItemClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
@@ -175,6 +176,7 @@ type
     procedure CharacterButtonHandler(Sender: TObject);
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
+    procedure WebsiteGoButtonClick(Sender: TObject);
   private
     { private declarations }
 
@@ -277,6 +279,17 @@ end;
 function TMainForm.SmartReplace(input: string) : string;
 begin
 
+end;
+
+procedure TMainForm.WebsiteGoButtonClick(Sender: TObject);
+var
+  formattedURL: string;
+begin
+     formattedURL:= LowerCase(WebsiteEdit.Text);
+
+     if not formattedURL.StartsWith('http://') then
+       formattedURL := 'http://' + formattedURL;
+     OpenURL(formattedURL);
 end;
 
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
@@ -415,6 +428,12 @@ procedure TMainForm.RightToolbarButtonClick(Sender: TObject);
 begin
 
   MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paRight);
+end;
+
+procedure TMainForm.SaveAsMenuItemClick(Sender: TObject);
+begin
+  if SaveDialog1.Execute then
+     SaveWriterFile(OpenFile,SaveDialog1.FileName);
 end;
 
 procedure TMainForm.SelectAllMenuItemClick(Sender: TObject);

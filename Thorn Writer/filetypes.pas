@@ -12,8 +12,7 @@ interface
      RtfData: string;
   end;
 
-  procedure SaveWriterFile(writer_file: ThornWriterFile; path: string);
-
+  procedure SaveWriterFile(const writer_file: ThornWriterFile; path: string);
   function ReadWriterFile(path: string) : ThornWriterFile;
   function ReadSafeString(source: string) : string;
   function WriteSafeString(source: string) : string;
@@ -63,10 +62,30 @@ implementation
     Result := StringsFromStringList(temp);
   end;
 
-  procedure SaveWriterFile(writer_file: ThornWriterFile; path: string);
-  var output: TextFile;
+  procedure SaveWriterFile(const writer_file: ThornWriterFile; path: string);
+  var
+    INI: TINIFile;
+    char_pos: Integer;
+    char_string: string;
   begin
-    AssignFile(output, path);
+    if FileExists(path) then DeleteFile(path);
+
+    INI := TINIFile.Create(path);
+    INI.WriteString('Properties','Title',WriteSafeString(writer_file.Title));
+    INI.WriteString('Properties','Author',WriteSafeString(writer_file.Author));
+    INI.WriteString('Properties','Website',WriteSafeString(writer_file.Website));
+    INI.WriteString('Properties','Description',WriteSafeString(writer_file.Description));
+
+    for char_pos := 0 to Length(writer_file.CustomCharacters) -1 do
+    begin
+       char_string := char_string + WriteSafeString(writer_file.CustomCharacters[char_pos]) + '|';
+    end;
+
+    INI.WriteString('Properties','Characters',char_string);
+    INI.WriteString('Document','Page0',WriteSafeString(writer_file.RtfData));
+    INI.UpdateFile;
+
+    //INI.Free;
   end;
 
   function ReadWriterFile(path: string) : ThornWriterFile;

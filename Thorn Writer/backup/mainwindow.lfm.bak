@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 620
+  Left = 455
   Height = 678
-  Top = 145
+  Top = 163
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 658
@@ -542,9 +542,9 @@ object MainForm: TMainForm
     Height = 630
     Top = 28
     Width = 227
-    ActivePage = CharacterSheet
+    ActivePage = FileSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
@@ -601,6 +601,7 @@ object MainForm: TMainForm
         Top = 120
         Width = 22
         Caption = '...'
+        OnClick = WebsiteGoButtonClick
         TabOrder = 3
       end
       object DescriptionLabel: TLabel

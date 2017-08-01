@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo, AboutWindow, Contnrs;
+  RichMemo, AboutWindow, Contnrs, LCLIntf;
 
 type
 
@@ -175,6 +175,7 @@ type
     procedure CharacterButtonHandler(Sender: TObject);
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
+    procedure WebsiteGoButtonClick(Sender: TObject);
   private
     { private declarations }
 
@@ -279,6 +280,17 @@ begin
 
 end;
 
+procedure TMainForm.WebsiteGoButtonClick(Sender: TObject);
+var
+  formattedURL: string;
+begin
+     formattedURL:= LowerCase(WebsiteEdit.Text);
+
+     if not formattedURL.StartsWith('http://') then
+       formattedURL := 'http://' + formattedURL;
+     OpenURL(formattedURL);
+end;
+
 procedure TMainForm.ExitMenuItemClick(Sender: TObject);
 begin
   FreeAndNil(MainForm);
@@ -287,7 +299,7 @@ end;
 
 procedure TMainForm.FileButtonClick(Sender: TObject);
 begin
-  AddCharacterToWriterFile(OpenFile,CharacterPreviewButton.Caption);
+  OpenFile.CustomCharacters := AddCharacterToWriterFile(OpenFile,CharacterPreviewButton.Caption);
   UpdateFileCharacters();
 end;
 
