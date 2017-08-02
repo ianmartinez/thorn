@@ -1,11 +1,11 @@
 object StartUpForm: TStartUpForm
-  Left = 1057
-  Height = 439
-  Top = 310
+  Left = 770
+  Height = 517
+  Top = 228
   Width = 442
   BorderStyle = bsDialog
   Caption = 'Start Up'
-  ClientHeight = 439
+  ClientHeight = 517
   ClientWidth = 442
   FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate
@@ -5274,6 +5274,7 @@ object StartUpForm: TStartUpForm
     }
     GlyphShowMode = gsmAlways
     Layout = blGlyphTop
+    OnClick = OpenButtonClick
     TabOrder = 1
   end
   object AboutButton: TBitBtn
@@ -5721,45 +5722,78 @@ object StartUpForm: TStartUpForm
     Layout = blGlyphTop
     TabOrder = 2
   end
-  object RecentFilesGroup: TGroupBox
-    Left = 8
-    Height = 168
-    Top = 240
-    Width = 427
-    Caption = 'Recent Files'
-    ClientHeight = 148
-    ClientWidth = 423
-    TabOrder = 5
-    object RecentFilesList: TListView
-      AnchorSideLeft.Control = RecentFilesGroup
-      AnchorSideTop.Control = RecentFilesGroup
-      AnchorSideRight.Control = RecentFilesGroup
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = RecentFilesGroup
-      AnchorSideBottom.Side = asrBottom
-      Left = 4
-      Height = 143
-      Top = 1
-      Width = 415
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 1
-      BorderSpacing.Right = 4
-      BorderSpacing.Bottom = 4
-      Columns = <>
-      TabOrder = 0
-    end
-  end
   object CheckBox1: TCheckBox
     Left = 340
     Height = 19
-    Top = 413
+    Top = 488
     Width = 95
     Caption = 'Show On Start'
     Checked = True
     Color = clDefault
     ParentColor = False
     State = cbChecked
+    TabOrder = 5
+  end
+  object MainPageControl: TPageControl
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
+    Left = 8
+    Height = 238
+    Top = 240
+    Width = 429
+    ActivePage = TemplatesSheet
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 1
     TabOrder = 6
+    object RecentSheet: TTabSheet
+      Caption = 'Recent Documents'
+      ClientHeight = 210
+      ClientWidth = 421
+      object RecentFilesList: TListView
+        AnchorSideLeft.Control = RecentSheet
+        AnchorSideTop.Control = RecentSheet
+        AnchorSideRight.Control = RecentSheet
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = RecentSheet
+        AnchorSideBottom.Side = asrBottom
+        Left = 4
+        Height = 202
+        Top = 4
+        Width = 413
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 4
+        BorderSpacing.Top = 4
+        BorderSpacing.Right = 4
+        BorderSpacing.Bottom = 4
+        BorderStyle = bsNone
+        Columns = <>
+        TabOrder = 0
+      end
+    end
+    object TemplatesSheet: TTabSheet
+      Caption = 'Templates'
+      ClientHeight = 210
+      ClientWidth = 421
+      object RecentFilesList1: TListView
+        AnchorSideLeft.Control = TemplatesSheet
+        AnchorSideTop.Control = TemplatesSheet
+        AnchorSideRight.Control = TemplatesSheet
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = TemplatesSheet
+        AnchorSideBottom.Side = asrBottom
+        Left = 4
+        Height = 202
+        Top = 4
+        Width = 413
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 4
+        BorderSpacing.Top = 4
+        BorderSpacing.Right = 4
+        BorderSpacing.Bottom = 4
+        BorderStyle = bsNone
+        Columns = <>
+        TabOrder = 0
+      end
+    end
   end
 end

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo, AboutWindow, Contnrs, LCLIntf;
+  RichMemo, AboutWindow, Contnrs, LCLIntf, Types;
 
 type
 
@@ -140,6 +140,8 @@ type
     procedure CenterToolbarButtonClick(Sender: TObject);
     procedure CharacterGalleryTabsChange(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
+    procedure CharacterSheetContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
     procedure ClearMenuItemClick(Sender: TObject);
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
@@ -546,6 +548,12 @@ end;
 procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
 begin
   InsertText(CharacterPreviewButton.Caption);
+end;
+
+procedure TMainForm.CharacterSheetContextPopup(Sender: TObject;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+
 end;
 
 procedure TMainForm.ClearMenuItemClick(Sender: TObject);

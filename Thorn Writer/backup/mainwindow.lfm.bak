@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 455
+  Left = 1097
   Height = 678
-  Top = 163
+  Top = 251
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 658
@@ -544,9 +544,9 @@ object MainForm: TMainForm
     Height = 630
     Top = 28
     Width = 227
-    ActivePage = FileSheet
+    ActivePage = CharacterSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
@@ -637,6 +637,7 @@ object MainForm: TMainForm
       Caption = 'Characters'
       ClientHeight = 602
       ClientWidth = 219
+      OnContextPopup = CharacterSheetContextPopup
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
         AnchorSideTop.Control = AccentsGroup

@@ -16,12 +16,15 @@ type
     NewButton: TBitBtn;
     OpenButton: TBitBtn;
     AboutButton: TBitBtn;
+    MainPageControl: TPageControl;
     QuitButton: TBitBtn;
     PatreonButton: TBitBtn;
     CheckBox1: TCheckBox;
-    RecentFilesGroup: TGroupBox;
     HeaderImage: TImage;
     RecentFilesList: TListView;
+    RecentFilesList1: TListView;
+    RecentSheet: TTabSheet;
+    TemplatesSheet: TTabSheet;
     procedure AboutButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -50,7 +53,6 @@ procedure TStartUpForm.FormShow(Sender: TObject);
 begin
   self.SetFocus;
 end;
-
 procedure TStartUpForm.OpenButtonClick(Sender: TObject);
 begin
 
