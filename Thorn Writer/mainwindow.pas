@@ -346,9 +346,17 @@ begin
 end;
 
 procedure TMainForm.FontMenuItemClick(Sender: TObject);
-var old_params: TFontParams;
+var old_params: TFontParams; old_font: TFont;
 begin
-  {MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);}
+  MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);
+
+  old_font := TFont.Create;
+  old_font.Name := old_params.Name;
+  old_font.Size := old_params.Size;
+  old_font.Style := old_params.Style;
+  old_font.Color := old_params.Color;
+
+  FontDialog1.Font := old_font;
 
   if FontDialog1.Execute then
   begin

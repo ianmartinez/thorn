@@ -5741,9 +5741,9 @@ object StartUpForm: TStartUpForm
     Height = 238
     Top = 240
     Width = 429
-    ActivePage = TemplatesSheet
+    ActivePage = RecentSheet
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 6
     object RecentSheet: TTabSheet
       Caption = 'Recent Documents'
