@@ -758,7 +758,6 @@ object MainForm: TMainForm
               Top = 0
               Width = 227
               Align = alClient
-              Anchors = []
               AutoSize = True
               BevelOuter = bvNone
               ControlList = <>
@@ -892,7 +891,6 @@ object MainForm: TMainForm
                   Top = 0
                   Width = 219
                   Align = alClient
-                  Anchors = []
                   AutoSize = True
                   BevelOuter = bvNone
                   ControlList = <>
@@ -995,7 +993,6 @@ object MainForm: TMainForm
         Top = 120
         Width = 235
         Alignment = taCenter
-        MaxLength = 1
         OnChange = PreviewEditChange
         TabOrder = 2
         Text = 'A'

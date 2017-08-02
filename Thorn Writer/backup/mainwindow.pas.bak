@@ -319,7 +319,7 @@ begin
   btn.Width:=48;
   btn.Height:=48;
   btn.OnClick:=@CharacterButtonHandler;
-  btn.Font.Bold:=True;
+  btn.Font.Bold:=False;
   btn.Font.Size:=14;
 end;
 
@@ -431,43 +431,43 @@ begin
   local_chars:= CharsFromFile('resources/local.txt');
   for char_pos:= 0 to Length(local_chars) -1 do
   begin
-     if not local_chars[char_pos].Equals('') then CreateButton(LocalFlowPanel,local_chars[char_pos]);
+     if not local_chars[char_pos].Trim.Equals('') then CreateButton(LocalFlowPanel,local_chars[char_pos]);
   end;
 
   common_chars:= CharsFromFile('resources/common.txt');
   for char_pos:= 0 to Length(common_chars) -1 do
   begin
-     if not common_chars[char_pos].Equals('') then CreateButton(CommonFlowPanel,common_chars[char_pos]);
+     if not common_chars[char_pos].Trim.Equals('') then CreateButton(CommonFlowPanel,common_chars[char_pos]);
   end;
 
   consonants_chars:= CharsFromFile('resources/consonants.txt');
   for char_pos:= 0 to Length(consonants_chars) -1 do
   begin
-     if not consonants_chars[char_pos].Equals('') then CreateButton(ConsonantsFlowPanel,consonants_chars[char_pos]);
+     if not consonants_chars[char_pos].Trim.Equals('') then CreateButton(ConsonantsFlowPanel,consonants_chars[char_pos]);
   end;
 
   affricates_chars:= CharsFromFile('resources/affricates.txt');
   for char_pos:= 0 to Length(affricates_chars) -1 do
   begin
-     if not affricates_chars[char_pos].Equals('') then CreateButton(AffricatesFlowPanel,affricates_chars[char_pos]);
+     if not affricates_chars[char_pos].Trim.Equals('') then CreateButton(AffricatesFlowPanel,affricates_chars[char_pos]);
   end;
 
   vowels_chars:= CharsFromFile('resources/vowels.txt');
   for char_pos:= 0 to Length(vowels_chars) -1 do
   begin
-     if not vowels_chars[char_pos].Equals('') then CreateButton(VowelsFlowPanel,vowels_chars[char_pos]);
+     if not vowels_chars[char_pos].Trim.Equals('') then CreateButton(VowelsFlowPanel,vowels_chars[char_pos]);
   end;
 
   tones_chars:= CharsFromFile('resources/tones_intonation.txt');
   for char_pos:= 0 to Length(tones_chars) -1 do
   begin
-     if not tones_chars[char_pos].Equals('') then CreateButton(TonesFlowPanel,tones_chars[char_pos]);
+     if not tones_chars[char_pos].Trim.Equals('') then CreateButton(TonesFlowPanel,tones_chars[char_pos]);
   end;
 
   other_chars:= CharsFromFile('resources/other.txt');
   for char_pos:= 0 to Length(other_chars) -1 do
   begin
-     if not other_chars[char_pos].Equals('') then CreateButton(OtherFlowPanel,other_chars[char_pos]);
+     if not other_chars[char_pos].Trim.Equals('') then CreateButton(OtherFlowPanel,other_chars[char_pos]);
   end;
 end;
 

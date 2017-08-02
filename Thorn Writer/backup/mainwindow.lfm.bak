@@ -758,7 +758,6 @@ object MainForm: TMainForm
               Top = 0
               Width = 227
               Align = alClient
-              Anchors = []
               AutoSize = True
               BevelOuter = bvNone
               ControlList = <>
@@ -892,7 +891,6 @@ object MainForm: TMainForm
                   Top = 0
                   Width = 219
                   Align = alClient
-                  Anchors = []
                   AutoSize = True
                   BevelOuter = bvNone
                   ControlList = <>
@@ -906,28 +904,28 @@ object MainForm: TMainForm
               ClientHeight = 217
               ClientWidth = 219
               object TonesScrollBox: TScrollBox
-                AnchorSideLeft.Control = FileTabSheet
-                AnchorSideTop.Control = FileTabSheet
-                AnchorSideRight.Control = FileTabSheet
+                AnchorSideLeft.Control = TonesTabSheet
+                AnchorSideTop.Control = TonesTabSheet
+                AnchorSideRight.Control = TonesTabSheet
                 AnchorSideRight.Side = asrBottom
-                AnchorSideBottom.Control = FileTabSheet
+                AnchorSideBottom.Control = TonesTabSheet
                 AnchorSideBottom.Side = asrBottom
                 Left = 0
-                Height = 236
+                Height = 217
                 Top = 0
-                Width = 259
+                Width = 219
                 HorzScrollBar.Page = 1
                 VertScrollBar.Page = 1
                 Anchors = [akTop, akLeft, akRight, akBottom]
                 BorderStyle = bsNone
-                ClientHeight = 236
-                ClientWidth = 259
+                ClientHeight = 217
+                ClientWidth = 219
                 TabOrder = 0
                 object TonesFlowPanel: TFlowPanel
                   Left = 0
-                  Height = 236
+                  Height = 217
                   Top = 0
-                  Width = 259
+                  Width = 219
                   Align = alClient
                   AutoSize = True
                   BevelOuter = bvNone
