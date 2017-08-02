@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = 616
-  Height = 678
-  Top = 317
+  Left = 552
+  Height = 669
+  Top = 230
   Width = 715
   Caption = 'Thorn Writer'
-  ClientHeight = 658
+  ClientHeight = 649
   ClientWidth = 715
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
@@ -325,9 +325,9 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 630
+    Height = 621
     Top = 28
-    Width = 488
+    Width = 456
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
     Color = clWhite
@@ -387,7 +387,6 @@ object MainForm: TMainForm
       Caption = 'Save'
       ImageIndex = 2
       MenuItem = SaveMenuItem
-      OnClick = SaveToolbarButtonClick
     end
     object ToolButton1: TToolButton
       Left = 73
@@ -515,7 +514,6 @@ object MainForm: TMainForm
       Caption = 'Font...'
       ImageIndex = 362
       MenuItem = FontMenuItem
-      OnClick = FontToolbarButtonClick
     end
     object PasteTextToolbarButton: TToolButton
       Left = 203
@@ -540,18 +538,18 @@ object MainForm: TMainForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 488
-    Height = 630
+    Left = 456
+    Height = 621
     Top = 28
-    Width = 227
+    Width = 259
     ActivePage = CharacterSheet
     Anchors = [akTop, akRight, akBottom]
     TabIndex = 1
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 602
-      ClientWidth = 219
+      ClientHeight = 593
+      ClientWidth = 251
       object TitleLabel: TLabel
         Left = 8
         Height = 15
@@ -564,7 +562,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 72
-        Width = 203
+        Width = 235
         OnChange = AuthorEditChange
         TabOrder = 1
       end
@@ -572,7 +570,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 24
-        Width = 203
+        Width = 235
         OnChange = TitleEditChange
         TabOrder = 0
       end
@@ -596,12 +594,12 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 120
-        Width = 176
+        Width = 208
         OnChange = WebsiteEditChange
         TabOrder = 2
       end
       object WebsiteGoButton: TButton
-        Left = 189
+        Left = 221
         Height = 23
         Top = 120
         Width = 22
@@ -623,9 +621,9 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = FileSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 426
+        Height = 417
         Top = 168
-        Width = 203
+        Width = 235
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
@@ -635,8 +633,8 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 602
-      ClientWidth = 219
+      ClientHeight = 593
+      ClientWidth = 251
       OnContextPopup = CharacterSheetContextPopup
       object CharacterGalleryTabs: TPageControl
         AnchorSideLeft.Control = CharacterSheet
@@ -647,10 +645,10 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 282
+        Height = 273
         Top = 312
-        Width = 203
-        ActivePage = TabSheet4
+        Width = 235
+        ActivePage = IPATabSheet
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
         BorderSpacing.Top = 8
@@ -659,144 +657,327 @@ object MainForm: TMainForm
         TabIndex = 3
         TabOrder = 0
         OnChange = CharacterGalleryTabsChange
-        object TabSheet1: TTabSheet
+        object FileTabSheet: TTabSheet
           Caption = 'File'
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ClientHeight = 254
-          ClientWidth = 195
-          object FileFlowPanel: TFlowPanel
-            Left = 0
-            Height = 256
-            Top = 0
-            Width = 196
-            ControlList = <>
-            FlowStyle = fsLeftRightTopBottom
-            TabOrder = 0
-          end
-        end
-        object TabSheet2: TTabSheet
-          Caption = 'Local'
-          ClientHeight = 254
-          ClientWidth = 195
-          object LocalFlowPanel: TFlowPanel
-            Left = 0
-            Height = 256
-            Top = 0
-            Width = 196
-            ControlList = <>
-            FlowStyle = fsLeftRightTopBottom
-            TabOrder = 0
-          end
-        end
-        object TabSheet3: TTabSheet
-          Caption = 'Common'
-          ClientHeight = 254
-          ClientWidth = 195
-          object CommonFlowPanel: TFlowPanel
-            Left = 0
-            Height = 256
-            Top = 0
-            Width = 196
-            ControlList = <>
-            FlowStyle = fsLeftRightTopBottom
-            TabOrder = 0
-          end
-        end
-        object TabSheet4: TTabSheet
-          Caption = 'IPA'
-          ClientHeight = 254
-          ClientWidth = 195
-          object PageControl2: TPageControl
-            AnchorSideLeft.Control = TabSheet4
-            AnchorSideTop.Control = TabSheet4
-            AnchorSideRight.Control = TabSheet4
+          ClientHeight = 245
+          ClientWidth = 227
+          object FileScrollBox: TScrollBox
+            AnchorSideLeft.Control = FileTabSheet
+            AnchorSideTop.Control = FileTabSheet
+            AnchorSideRight.Control = FileTabSheet
             AnchorSideRight.Side = asrBottom
-            AnchorSideBottom.Control = TabSheet4
+            AnchorSideBottom.Control = FileTabSheet
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 254
+            Height = 245
             Top = 0
-            Width = 195
-            ActivePage = TabSheet8
+            Width = 227
+            HorzScrollBar.Page = 1
+            VertScrollBar.Page = 1
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            BorderStyle = bsNone
+            ClientHeight = 245
+            ClientWidth = 227
+            TabOrder = 0
+            object FileFlowPanel: TFlowPanel
+              Left = 0
+              Height = 245
+              Top = 0
+              Width = 227
+              Align = alClient
+              AutoSize = True
+              BevelOuter = bvNone
+              ControlList = <>
+              FlowStyle = fsLeftRightTopBottom
+              TabOrder = 0
+            end
+          end
+        end
+        object LocalTabSheet: TTabSheet
+          Caption = 'Local'
+          ClientHeight = 245
+          ClientWidth = 227
+          object LocalScrollBox: TScrollBox
+            AnchorSideLeft.Control = LocalTabSheet
+            AnchorSideTop.Control = LocalTabSheet
+            AnchorSideRight.Control = LocalTabSheet
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = LocalTabSheet
+            AnchorSideBottom.Side = asrBottom
+            Left = 0
+            Height = 245
+            Top = 0
+            Width = 227
+            HorzScrollBar.Page = 1
+            VertScrollBar.Page = 1
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            BorderStyle = bsNone
+            ClientHeight = 245
+            ClientWidth = 227
+            TabOrder = 0
+            object LocalFlowPanel: TFlowPanel
+              Left = 0
+              Height = 245
+              Top = 0
+              Width = 227
+              Align = alClient
+              AutoSize = True
+              BevelOuter = bvNone
+              ControlList = <>
+              FlowStyle = fsLeftRightTopBottom
+              TabOrder = 0
+            end
+          end
+        end
+        object CommonTabSheet: TTabSheet
+          Caption = 'Common'
+          ClientHeight = 245
+          ClientWidth = 227
+          object CommonScrollBox: TScrollBox
+            AnchorSideLeft.Control = CommonTabSheet
+            AnchorSideTop.Control = CommonTabSheet
+            AnchorSideRight.Control = CommonTabSheet
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = CommonTabSheet
+            AnchorSideBottom.Side = asrBottom
+            Left = 0
+            Height = 245
+            Top = 0
+            Width = 227
+            HorzScrollBar.Page = 1
+            VertScrollBar.Page = 1
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            BorderStyle = bsNone
+            ClientHeight = 245
+            ClientWidth = 227
+            TabOrder = 0
+            object CommonFlowPanel: TFlowPanel
+              Left = 0
+              Height = 245
+              Top = 0
+              Width = 227
+              Align = alClient
+              Anchors = []
+              AutoSize = True
+              BevelOuter = bvNone
+              ControlList = <>
+              FlowStyle = fsLeftRightTopBottom
+              TabOrder = 0
+              OnClick = CommonFlowPanelClick
+            end
+          end
+        end
+        object IPATabSheet: TTabSheet
+          Caption = 'IPA'
+          ClientHeight = 245
+          ClientWidth = 227
+          object IPACategoriesTabs: TPageControl
+            AnchorSideLeft.Control = IPATabSheet
+            AnchorSideTop.Control = IPATabSheet
+            AnchorSideRight.Control = IPATabSheet
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = IPATabSheet
+            AnchorSideBottom.Side = asrBottom
+            Left = 0
+            Height = 245
+            Top = 0
+            Width = 227
+            ActivePage = TonesTabSheet
             Anchors = [akTop, akLeft, akRight, akBottom]
             TabIndex = 3
             TabOrder = 0
-            OnChange = PageControl2Change
-            object TabSheet5: TTabSheet
+            OnChange = IPACategoriesTabsChange
+            object ConsonantsTabSheet: TTabSheet
               Caption = 'Consonants'
-              ClientHeight = 226
-              ClientWidth = 187
-              object ConsonantsFlowPanel: TFlowPanel
+              ClientHeight = 217
+              ClientWidth = 219
+              OnContextPopup = ConsonantsTabSheetContextPopup
+              object ConsonantsScrollBox: TScrollBox
+                AnchorSideLeft.Control = ConsonantsTabSheet
+                AnchorSideTop.Control = ConsonantsTabSheet
+                AnchorSideRight.Control = ConsonantsTabSheet
+                AnchorSideRight.Side = asrBottom
+                AnchorSideBottom.Control = ConsonantsTabSheet
+                AnchorSideBottom.Side = asrBottom
                 Left = 0
-                Height = 256
+                Height = 217
                 Top = 0
-                Width = 196
-                ControlList = <>
-                FlowStyle = fsLeftRightTopBottom
+                Width = 219
+                HorzScrollBar.Page = 1
+                VertScrollBar.Page = 1
+                Anchors = [akTop, akLeft, akRight, akBottom]
+                BorderStyle = bsNone
+                ClientHeight = 217
+                ClientWidth = 219
                 TabOrder = 0
+                OnClick = ConsonantsScrollBoxClick
+                object ConsonantsFlowPanel: TFlowPanel
+                  Left = 0
+                  Height = 217
+                  Top = 0
+                  Width = 219
+                  Align = alClient
+                  AutoSize = True
+                  BevelOuter = bvNone
+                  ControlList = <>
+                  FlowStyle = fsLeftRightTopBottom
+                  TabOrder = 0
+                  OnClick = ConsonantsFlowPanelClick
+                end
               end
             end
-            object TabSheet6: TTabSheet
+            object AffricatesTabSheet: TTabSheet
               Caption = 'Affricates'
-              ClientHeight = 226
-              ClientWidth = 187
-              object AffricatesFlowPanel: TFlowPanel
+              ClientHeight = 217
+              ClientWidth = 219
+              object AffricatesScrollBox: TScrollBox
+                AnchorSideLeft.Control = AffricatesTabSheet
+                AnchorSideTop.Control = AffricatesTabSheet
+                AnchorSideRight.Control = AffricatesTabSheet
+                AnchorSideRight.Side = asrBottom
+                AnchorSideBottom.Control = AffricatesTabSheet
+                AnchorSideBottom.Side = asrBottom
                 Left = 0
-                Height = 256
+                Height = 217
                 Top = 0
-                Width = 196
-                ControlList = <>
-                FlowStyle = fsLeftRightTopBottom
+                Width = 219
+                HorzScrollBar.Page = 1
+                VertScrollBar.Page = 1
+                Anchors = [akTop, akLeft, akRight, akBottom]
+                BorderStyle = bsNone
+                ClientHeight = 217
+                ClientWidth = 219
                 TabOrder = 0
+                object AffricatesFlowPanel: TFlowPanel
+                  Left = 0
+                  Height = 217
+                  Top = 0
+                  Width = 219
+                  Align = alClient
+                  AutoSize = True
+                  BevelOuter = bvNone
+                  ControlList = <>
+                  FlowStyle = fsLeftRightTopBottom
+                  TabOrder = 0
+                  OnClick = AffricatesFlowPanelClick
+                end
               end
             end
-            object TabSheet7: TTabSheet
+            object VowelsTabSheet: TTabSheet
               Caption = 'Vowels'
-              ClientHeight = 226
-              ClientWidth = 187
-              object VowelsFlowPanel: TFlowPanel
+              ClientHeight = 217
+              ClientWidth = 219
+              object VowelsScrollBox: TScrollBox
+                AnchorSideLeft.Control = VowelsTabSheet
+                AnchorSideTop.Control = VowelsTabSheet
+                AnchorSideRight.Control = VowelsTabSheet
+                AnchorSideRight.Side = asrBottom
+                AnchorSideBottom.Control = VowelsTabSheet
+                AnchorSideBottom.Side = asrBottom
                 Left = 0
-                Height = 256
+                Height = 217
                 Top = 0
-                Width = 196
-                ControlList = <>
-                FlowStyle = fsLeftRightTopBottom
+                Width = 219
+                HorzScrollBar.Page = 1
+                VertScrollBar.Page = 1
+                Anchors = [akTop, akLeft, akRight, akBottom]
+                BorderStyle = bsNone
+                ClientHeight = 217
+                ClientWidth = 219
                 TabOrder = 0
+                object VowelsFlowPanel: TFlowPanel
+                  Left = 0
+                  Height = 217
+                  Top = 0
+                  Width = 219
+                  Align = alClient
+                  Anchors = []
+                  AutoSize = True
+                  BevelOuter = bvNone
+                  ControlList = <>
+                  FlowStyle = fsLeftRightTopBottom
+                  TabOrder = 0
+                end
               end
             end
-            object TabSheet8: TTabSheet
+            object TonesTabSheet: TTabSheet
               Caption = 'Tones'
-              ClientHeight = 226
-              ClientWidth = 187
-              object TonesFlowPanel: TFlowPanel
+              ClientHeight = 217
+              ClientWidth = 219
+              object TonesScrollBox: TScrollBox
+                AnchorSideLeft.Control = TonesTabSheet
+                AnchorSideTop.Control = TonesTabSheet
+                AnchorSideRight.Control = TonesTabSheet
+                AnchorSideRight.Side = asrBottom
+                AnchorSideBottom.Control = TonesTabSheet
+                AnchorSideBottom.Side = asrBottom
                 Left = 0
-                Height = 256
+                Height = 217
                 Top = 0
-                Width = 196
-                ControlList = <>
-                FlowStyle = fsLeftRightTopBottom
+                Width = 219
+                HorzScrollBar.Page = 1
+                VertScrollBar.Page = 1
+                Anchors = [akTop, akLeft, akRight, akBottom]
+                BorderStyle = bsNone
+                ClientHeight = 217
+                ClientWidth = 219
                 TabOrder = 0
+                object TonesFlowPanel: TFlowPanel
+                  Left = 0
+                  Height = 217
+                  Top = 0
+                  Width = 219
+                  Align = alClient
+                  AutoSize = True
+                  BevelOuter = bvNone
+                  ControlList = <>
+                  FlowStyle = fsLeftRightTopBottom
+                  TabOrder = 0
+                end
               end
             end
-            object TabSheet9: TTabSheet
+            object OtherTabSheet: TTabSheet
               Caption = 'Other'
-              ClientHeight = 226
-              ClientWidth = 187
-              object OtherFlowPanel: TFlowPanel
+              ClientHeight = 217
+              ClientWidth = 219
+              object OtherScrollBox: TScrollBox
+                AnchorSideLeft.Control = OtherTabSheet
+                AnchorSideTop.Control = OtherTabSheet
+                AnchorSideRight.Control = OtherTabSheet
+                AnchorSideRight.Side = asrBottom
+                AnchorSideBottom.Control = OtherTabSheet
+                AnchorSideBottom.Side = asrBottom
                 Left = 0
-                Height = 256
+                Height = 217
                 Top = 0
-                Width = 196
-                ControlList = <>
-                FlowStyle = fsLeftRightTopBottom
+                Width = 219
+                HorzScrollBar.Page = 1
+                VertScrollBar.Page = 1
+                Anchors = [akTop, akLeft, akRight, akBottom]
+                BorderStyle = bsNone
+                ClientHeight = 217
+                ClientWidth = 219
                 TabOrder = 0
+                object OtherFlowPanel: TFlowPanel
+                  Left = 0
+                  Height = 217
+                  Top = 0
+                  Width = 219
+                  Align = alClient
+                  AutoSize = True
+                  BevelOuter = bvNone
+                  ControlList = <>
+                  FlowStyle = fsLeftRightTopBottom
+                  TabOrder = 0
+                end
               end
             end
           end
         end
       end
       object CharacterPreviewButton: TButton
-        Left = 72
+        Left = 88
         Height = 74
         Top = 8
         Width = 74
@@ -812,7 +993,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 120
-        Width = 203
+        Width = 235
         Alignment = taCenter
         MaxLength = 1
         OnChange = PreviewEditChange
@@ -820,10 +1001,10 @@ object MainForm: TMainForm
         Text = 'A'
       end
       object LocalButton: TButton
-        Left = 114
+        Left = 130
         Height = 25
         Top = 88
-        Width = 97
+        Width = 113
         Caption = 'Local'
         OnClick = LocalButtonClick
         TabOrder = 3
@@ -832,7 +1013,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 25
         Top = 88
-        Width = 97
+        Width = 112
         Caption = 'File'
         OnClick = FileButtonClick
         TabOrder = 4
@@ -841,7 +1022,7 @@ object MainForm: TMainForm
         Left = 8
         Height = 152
         Top = 152
-        Width = 203
+        Width = 235
         AutoFill = True
         Caption = 'Accent Marks'
         ChildSizing.LeftRightSpacing = 2
@@ -855,7 +1036,7 @@ object MainForm: TMainForm
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 6
         ClientHeight = 131
-        ClientWidth = 199
+        ClientWidth = 231
         Columns = 6
         Font.Height = -13
         Font.Name = 'Sans'
@@ -866,7 +1047,7 @@ object MainForm: TMainForm
           Height = 31
           Hint = 'Grave Accent'
           Top = 2
-          Width = 30
+          Width = 37
           Caption = '◌̀'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -876,11 +1057,11 @@ object MainForm: TMainForm
           TabOrder = 0
         end
         object AcuteToggle: TToggleBox
-          Left = 34
+          Left = 41
           Height = 31
           Hint = 'Acute Accent'
           Top = 2
-          Width = 31
+          Width = 37
           Caption = '◌́'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -890,11 +1071,11 @@ object MainForm: TMainForm
           TabOrder = 1
         end
         object CircumflexToggle: TToggleBox
-          Left = 67
+          Left = 80
           Height = 31
           Hint = 'Circumflex'
           Top = 2
-          Width = 31
+          Width = 37
           Caption = '◌̂'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -904,11 +1085,11 @@ object MainForm: TMainForm
           TabOrder = 2
         end
         object TildeToggle: TToggleBox
-          Left = 100
+          Left = 119
           Height = 31
           Hint = 'Tilde'
           Top = 2
-          Width = 31
+          Width = 37
           Caption = '◌̃'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -918,11 +1099,11 @@ object MainForm: TMainForm
           TabOrder = 3
         end
         object MacronToggle: TToggleBox
-          Left = 133
+          Left = 158
           Height = 31
           Hint = 'Macron'
           Top = 2
-          Width = 31
+          Width = 37
           Caption = '◌̄'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -932,11 +1113,11 @@ object MainForm: TMainForm
           TabOrder = 4
         end
         object OverlineToggle: TToggleBox
-          Left = 166
+          Left = 197
           Height = 31
           Hint = 'Overline'
           Top = 2
-          Width = 31
+          Width = 32
           Caption = '◌̅'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -950,7 +1131,7 @@ object MainForm: TMainForm
           Height = 31
           Hint = 'Breve'
           Top = 35
-          Width = 30
+          Width = 37
           Caption = '◌̆'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -960,11 +1141,11 @@ object MainForm: TMainForm
           TabOrder = 6
         end
         object DotAbove: TToggleBox
-          Left = 34
+          Left = 41
           Height = 31
           Hint = 'Dot Above'
           Top = 35
-          Width = 31
+          Width = 37
           Caption = '◌̇'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -974,11 +1155,11 @@ object MainForm: TMainForm
           TabOrder = 7
         end
         object UmlautToggle: TToggleBox
-          Left = 67
+          Left = 80
           Height = 31
           Hint = 'Diaeresis/Umlaut'
           Top = 35
-          Width = 31
+          Width = 37
           Caption = '◌̈'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -988,11 +1169,11 @@ object MainForm: TMainForm
           TabOrder = 8
         end
         object HookAboveToggle: TToggleBox
-          Left = 100
+          Left = 119
           Height = 31
           Hint = 'Hook Above'
           Top = 35
-          Width = 31
+          Width = 37
           Caption = '◌̉'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1002,11 +1183,11 @@ object MainForm: TMainForm
           TabOrder = 9
         end
         object RingAboveToggle: TToggleBox
-          Left = 133
+          Left = 158
           Height = 31
           Hint = 'Ring Above'
           Top = 35
-          Width = 31
+          Width = 37
           Caption = '◌̊'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1016,11 +1197,11 @@ object MainForm: TMainForm
           TabOrder = 10
         end
         object DoubleAcuteToggle: TToggleBox
-          Left = 166
+          Left = 197
           Height = 31
           Hint = 'Double Acute Accent'
           Top = 35
-          Width = 31
+          Width = 32
           Caption = '◌̋'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1034,7 +1215,7 @@ object MainForm: TMainForm
           Height = 31
           Hint = 'Caron/Háček'
           Top = 68
-          Width = 30
+          Width = 37
           Caption = '◌̌'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1044,11 +1225,11 @@ object MainForm: TMainForm
           TabOrder = 12
         end
         object DoubleGraveToggle: TToggleBox
-          Left = 34
+          Left = 41
           Height = 31
           Hint = 'Double Grave Accent'
           Top = 68
-          Width = 31
+          Width = 37
           Caption = '◌̏'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1058,11 +1239,11 @@ object MainForm: TMainForm
           TabOrder = 13
         end
         object OgonekToggle: TToggleBox
-          Left = 67
+          Left = 80
           Height = 31
           Hint = 'Ogonek'
           Top = 68
-          Width = 31
+          Width = 37
           Caption = '◌̨'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1072,11 +1253,11 @@ object MainForm: TMainForm
           TabOrder = 14
         end
         object CedillaToggle: TToggleBox
-          Left = 100
+          Left = 119
           Height = 31
           Hint = 'Cedilla'
           Top = 68
-          Width = 31
+          Width = 37
           Caption = '◌̧'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1086,11 +1267,11 @@ object MainForm: TMainForm
           TabOrder = 15
         end
         object TildeBelowToggle: TToggleBox
-          Left = 133
+          Left = 158
           Height = 31
           Hint = 'Tilde Below'
           Top = 68
-          Width = 31
+          Width = 37
           Caption = '◌̰'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1100,11 +1281,11 @@ object MainForm: TMainForm
           TabOrder = 16
         end
         object MacronBelowToggle: TToggleBox
-          Left = 166
+          Left = 197
           Height = 31
           Hint = 'Macron Below'
           Top = 68
-          Width = 31
+          Width = 32
           Caption = '◌̱'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1118,7 +1299,7 @@ object MainForm: TMainForm
           Height = 28
           Hint = 'Turned Comma Above'
           Top = 101
-          Width = 30
+          Width = 37
           Caption = '◌̒'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1128,11 +1309,11 @@ object MainForm: TMainForm
           TabOrder = 18
         end
         object KoronisToggle: TToggleBox
-          Left = 34
+          Left = 41
           Height = 28
           Hint = 'Koronis'
           Top = 101
-          Width = 31
+          Width = 37
           Caption = '◌̓'
           Font.Height = -19
           Font.Name = 'Sans'
@@ -1158,7 +1339,7 @@ object MainForm: TMainForm
   end
   object MainMenu: TMainMenu
     Images = IconPack
-    left = 432
+    left = 368
     top = 32
     object FileMenu: TMenuItem
       Caption = 'File'
@@ -1908,7 +2089,7 @@ object MainForm: TMainForm
     end
   end
   object IconPack: TImageList
-    left = 376
+    left = 304
     top = 32
     Bitmap = {
       4C696B0100001000000010000000AFB6B349B0B7B4E2AEB4B1FFADB4B1FFACB3
@@ -13550,23 +13731,23 @@ object MainForm: TMainForm
       'ColorO=ad448f'
       'ColorP=503e2d'
     )
-    left = 312
+    left = 240
     top = 32
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
-    left = 240
+    left = 168
     top = 32
   end
   object OpenDialog1: TOpenDialog
     Filter = 'Thorn Writer File (*.thw)|*.thw'
-    left = 96
+    left = 24
     top = 32
   end
   object SaveDialog1: TSaveDialog
     Filter = 'Thorn Writer File (*.thw)|*.thw'
-    left = 168
+    left = 96
     top = 32
   end
 end

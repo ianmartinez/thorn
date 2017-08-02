@@ -5,6 +5,7 @@ interface
   const WRITER_VERSION: integer = 1;
   const UNIX_LINE: string = AnsiChar(#10);
   const WINDOWS_LINE: string = AnsiString(#13#10);
+
   type CharArray = array of string;
   type ThornWriterFile = record
      Title: string;
@@ -19,6 +20,7 @@ interface
   end;
 
   procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
+
   function ReadWriterFile(const path: string) : ThornWriterFile;
   function ReadSafeString(const source: string) : string;
   function WriteSafeString(const source: string) : string;

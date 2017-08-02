@@ -15,13 +15,21 @@ type
 
   TMainForm = class(TForm)
     FileFlowPanel: TFlowPanel;
-    CommonFlowPanel: TFlowPanel;
     ConsonantsFlowPanel: TFlowPanel;
-    AffricatesFlowPanel: TFlowPanel;
-    OtherFlowPanel: TFlowPanel;
+    CommonFlowPanel: TFlowPanel;
+    CommonScrollBox: TScrollBox;
     TonesFlowPanel: TFlowPanel;
+    TonesScrollBox: TScrollBox;
+    OtherFlowPanel: TFlowPanel;
+    OtherScrollBox: TScrollBox;
     VowelsFlowPanel: TFlowPanel;
+    VowelsScrollBox: TScrollBox;
+    AffricatesFlowPanel: TFlowPanel;
+    AffricatesScrollBox: TScrollBox;
     LocalFlowPanel: TFlowPanel;
+    LocalScrollBox: TScrollBox;
+    ConsonantsScrollBox: TScrollBox;
+    FileScrollBox: TScrollBox;
     FontDialog1: TFontDialog;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
@@ -75,17 +83,17 @@ type
     UndoToolbarButton: TToolButton;
     UndoMenuItem: TMenuItem;
     PreviewEdit: TEdit;
-    PageControl2: TPageControl;
+    IPACategoriesTabs: TPageControl;
     AccentsGroup: TRadioGroup;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
-    TabSheet4: TTabSheet;
-    TabSheet5: TTabSheet;
-    TabSheet6: TTabSheet;
-    TabSheet7: TTabSheet;
-    TabSheet8: TTabSheet;
-    TabSheet9: TTabSheet;
+    FileTabSheet: TTabSheet;
+    LocalTabSheet: TTabSheet;
+    CommonTabSheet: TTabSheet;
+    IPATabSheet: TTabSheet;
+    ConsonantsTabSheet: TTabSheet;
+    AffricatesTabSheet: TTabSheet;
+    VowelsTabSheet: TTabSheet;
+    TonesTabSheet: TTabSheet;
+    OtherTabSheet: TTabSheet;
     GraveToggle: TToggleBox;
     HookAboveToggle: TToggleBox;
     RingAboveToggle: TToggleBox;
@@ -135,6 +143,7 @@ type
     ToolButton1: TToolButton;
     DescriptionLabel: TLabel;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure AffricatesFlowPanelClick(Sender: TObject);
     procedure AuthorEditChange(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure CenterToolbarButtonClick(Sender: TObject);
@@ -143,6 +152,11 @@ type
     procedure CharacterSheetContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
     procedure ClearMenuItemClick(Sender: TObject);
+    procedure CommonFlowPanelClick(Sender: TObject);
+    procedure ConsonantsFlowPanelClick(Sender: TObject);
+    procedure ConsonantsScrollBoxClick(Sender: TObject);
+    procedure ConsonantsTabSheetContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
     procedure DescriptionMemoChange(Sender: TObject);
@@ -150,7 +164,6 @@ type
     procedure FileButtonClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FontMenuItemClick(Sender: TObject);
-    procedure FontToolbarButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -162,7 +175,7 @@ type
     procedure MainToolbarClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
-    procedure PageControl2Change(Sender: TObject);
+    procedure IPACategoriesTabsChange(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
     procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
@@ -170,11 +183,12 @@ type
     procedure RightToolbarButtonClick(Sender: TObject);
     procedure SaveAsMenuItemClick(Sender: TObject);
     procedure SaveMenuItemClick(Sender: TObject);
-    procedure SaveToolbarButtonClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure TitleEditChange(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
+    procedure WebsiteEditChange(Sender: TObject);
+    procedure WebsiteGoButtonClick(Sender: TObject);
 
     procedure BuildCharacter();
     procedure InsertText(txt: string);
@@ -183,8 +197,7 @@ type
     procedure CharacterButtonHandler(Sender: TObject);
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
-    procedure WebsiteEditChange(Sender: TObject);
-    procedure WebsiteGoButtonClick(Sender: TObject);
+    function CharsFromFile(path: string) : CharArray;
   private
     { private declarations }
 
@@ -202,6 +215,30 @@ var
 implementation
 
 {$R *.lfm}
+function TMainForm.CharsFromFile(path: string) : CharArray;
+var
+  f_stream: TFileStream;
+  f_list: TStringList;
+  temp : CharArray;
+  char_pos: Integer;
+begin
+  try
+    f_list := TStringList.Create;
+    f_stream:= TFileStream.Create(path, fmShareDenyNone);
+    f_list.LoadFromStream(f_stream);
+    temp := f_list.Text.Split(UNIX_LINE,TStringSplitOptions.ExcludeEmpty);
+
+    for char_pos:= 0 to Length(temp)-1 do
+    begin
+      temp[char_pos]:= StringReplace(StringReplace(temp[char_pos], #10, '', [rfReplaceAll]), #13, '', [rfReplaceAll]);
+    end;
+
+    Result:= temp;
+  finally
+    f_stream.Free();
+    f_list.Free();
+  end;
+end;
 
 function ColorToHex(Color : TColor) : string;
 begin
@@ -270,7 +307,7 @@ end;
 
 procedure TMainForm.CharacterButtonHandler(Sender: TObject);
 begin
-     InsertText((Sender as TButton).Caption);
+  InsertText((Sender as TButton).Caption);
 end;
 
 procedure TMainForm.CreateButton(button_parent: TComponent; button_caption: string);
@@ -279,11 +316,11 @@ begin
   btn:= TButton.Create(button_parent);
   btn.Parent:=button_parent as TWinControl;
   btn.Caption:=button_caption;
-  btn.Width:=32;
-  btn.Height:=32;
+  btn.Width:=48;
+  btn.Height:=48;
   btn.OnClick:=@CharacterButtonHandler;
   btn.Font.Bold:=True;
-  btn.Font.Size:=8;
+  btn.Font.Size:=14;
 end;
 
 procedure TMainForm.UpdateFileCharacters();
@@ -364,10 +401,6 @@ begin
   end;
 end;
 
-procedure TMainForm.FontToolbarButtonClick(Sender: TObject);
-begin
-end;
-
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Modified then
@@ -380,7 +413,11 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
-var accent_count: Integer;
+var
+  accent_count, char_pos: Integer;
+
+  local_chars, common_chars, consonants_chars, affricates_chars,
+  vowels_chars, tones_chars, other_chars: CharArray;
 begin
   accent_toggles := GetAccentToggles();
 
@@ -388,6 +425,49 @@ begin
   for accent_count:=0 to accent_toggles.Count -1 do
   begin
     (accent_toggles[accent_count] as TToggleBox).OnClick:= @AccentToggleClick;
+  end;
+
+  { Load characters from resources folder }
+  local_chars:= CharsFromFile('resources/local.txt');
+  for char_pos:= 0 to Length(local_chars) -1 do
+  begin
+     if not local_chars[char_pos].Equals('') then CreateButton(LocalFlowPanel,local_chars[char_pos]);
+  end;
+
+  common_chars:= CharsFromFile('resources/common.txt');
+  for char_pos:= 0 to Length(common_chars) -1 do
+  begin
+     if not common_chars[char_pos].Equals('') then CreateButton(CommonFlowPanel,common_chars[char_pos]);
+  end;
+
+  consonants_chars:= CharsFromFile('resources/consonants.txt');
+  for char_pos:= 0 to Length(consonants_chars) -1 do
+  begin
+     if not consonants_chars[char_pos].Equals('') then CreateButton(ConsonantsFlowPanel,consonants_chars[char_pos]);
+  end;
+
+  affricates_chars:= CharsFromFile('resources/affricates.txt');
+  for char_pos:= 0 to Length(affricates_chars) -1 do
+  begin
+     if not affricates_chars[char_pos].Equals('') then CreateButton(AffricatesFlowPanel,affricates_chars[char_pos]);
+  end;
+
+  vowels_chars:= CharsFromFile('resources/vowels.txt');
+  for char_pos:= 0 to Length(vowels_chars) -1 do
+  begin
+     if not vowels_chars[char_pos].Equals('') then CreateButton(VowelsFlowPanel,vowels_chars[char_pos]);
+  end;
+
+  tones_chars:= CharsFromFile('resources/tones_intonation.txt');
+  for char_pos:= 0 to Length(tones_chars) -1 do
+  begin
+     if not tones_chars[char_pos].Equals('') then CreateButton(TonesFlowPanel,tones_chars[char_pos]);
+  end;
+
+  other_chars:= CharsFromFile('resources/other.txt');
+  for char_pos:= 0 to Length(other_chars) -1 do
+  begin
+     if not other_chars[char_pos].Equals('') then CreateButton(OtherFlowPanel,other_chars[char_pos]);
   end;
 end;
 
@@ -451,7 +531,7 @@ begin
   end;
 end;
 
-procedure TMainForm.PageControl2Change(Sender: TObject);
+procedure TMainForm.IPACategoriesTabsChange(Sender: TObject);
 begin
 
 end;
@@ -509,11 +589,6 @@ begin
     SaveAsMenuItemClick(Sender);
 end;
 
-procedure TMainForm.SaveToolbarButtonClick(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.SelectAllMenuItemClick(Sender: TObject);
 begin
   MainRTF.SelectAll;
@@ -569,6 +644,27 @@ begin
   MainRTF.Clear;
 end;
 
+procedure TMainForm.CommonFlowPanelClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.ConsonantsFlowPanelClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.ConsonantsScrollBoxClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.ConsonantsTabSheetContextPopup(Sender: TObject;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+
+end;
+
 procedure TMainForm.CopyMenuItemClick(Sender: TObject);
 begin
   MainRTF.CopyToClipboard;
@@ -590,6 +686,11 @@ begin
   AboutForm:=TAboutForm.Create(Nil);
   AboutForm.ShowModal;
   FreeAndNil(AboutForm);
+end;
+
+procedure TMainForm.AffricatesFlowPanelClick(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.AuthorEditChange(Sender: TObject);

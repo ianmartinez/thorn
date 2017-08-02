@@ -136,15 +136,15 @@ implementation
     temp: string;
   begin
     temp := source;
-    temp := temp.Replace('[','&lsbr');
-    temp := temp.Replace(']','&rsbr');
-    temp := temp.Replace('=','&eq');
-    temp := temp.Replace('<','&lt');
-    temp := temp.Replace('>','&gt');
-    temp := temp.Replace(';','&sc');
-    temp := temp.Replace('|','&bar');
-    temp := temp.Replace(WINDOWS_LINE,'&win_line');
-    temp := temp.Replace(UNIX_LINE,'&unix_line');
+    temp := temp.Replace('[','&lsbr', [rfReplaceAll]);
+    temp := temp.Replace(']','&rsbr', [rfReplaceAll]);
+    temp := temp.Replace('=','&eq', [rfReplaceAll]);
+    temp := temp.Replace('<','&lt', [rfReplaceAll]);
+    temp := temp.Replace('>','&gt', [rfReplaceAll]);
+    temp := temp.Replace(';','&sc', [rfReplaceAll]);
+    temp := temp.Replace('|','&bar', [rfReplaceAll]);
+    temp := temp.Replace(WINDOWS_LINE,'&win_line', [rfReplaceAll]);
+    temp := temp.Replace(UNIX_LINE,'&unix_line', [rfReplaceAll]);
 
     result := temp;
   end;
@@ -154,16 +154,16 @@ implementation
     temp: string;
   begin
     temp := source;
-    temp := temp.Replace('&lsbr','[');
-    temp := temp.Replace('&rsbr',']');
-    temp := temp.Replace('&eq','=');
-    temp := temp.Replace('&lt','<');
-    temp := temp.Replace('&gt','>');
-    temp := temp.Replace('&sc',';');
-    temp := temp.Replace('&bar','|');
-    temp := temp.Replace('&win_line',WINDOWS_LINE);
-    temp := temp.Replace('&unix_line',UNIX_LINE);
-    temp := temp.Replace('&sp',' ');
+    temp := temp.Replace('&lsbr','[', [rfReplaceAll]);
+    temp := temp.Replace('&rsbr',']', [rfReplaceAll]);
+    temp := temp.Replace('&eq','=', [rfReplaceAll]);
+    temp := temp.Replace('&lt','<', [rfReplaceAll]);
+    temp := temp.Replace('&gt','>', [rfReplaceAll]);
+    temp := temp.Replace('&sc',';', [rfReplaceAll]);
+    temp := temp.Replace('&bar','|', [rfReplaceAll]);
+    temp := temp.Replace('&win_line',WINDOWS_LINE, [rfReplaceAll]);
+    temp := temp.Replace('&unix_line',UNIX_LINE, [rfReplaceAll]);
+    temp := temp.Replace('&sp',' ', [rfReplaceAll]);
 
     result := temp;
   end;
