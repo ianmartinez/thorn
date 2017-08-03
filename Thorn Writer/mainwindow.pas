@@ -18,6 +18,10 @@ type
     ConsonantsFlowPanel: TFlowPanel;
     CommonFlowPanel: TFlowPanel;
     CommonScrollBox: TScrollBox;
+    InsertMenu: TMenuItem;
+    ImageMenuItem: TMenuItem;
+    FormatSep1: TMenuItem;
+    FontMenuItem: TMenuItem;
     TonesFlowPanel: TFlowPanel;
     TonesScrollBox: TScrollBox;
     OtherFlowPanel: TFlowPanel;
@@ -45,13 +49,7 @@ type
     CopyMenuItem: TMenuItem;
     CutMenuItem: TMenuItem;
     EditSep2: TMenuItem;
-    FontMenu: TMenuItem;
-    FontMenuItem: TMenuItem;
-    FormatSep1: TMenuItem;
-    BoldMenuItem: TMenuItem;
-    ItalicMenuItem: TMenuItem;
-    FormatSep2: TMenuItem;
-    ColorsMenu: TMenuItem;
+    FormatMenu: TMenuItem;
     FontColorMenuItem: TMenuItem;
     HighlightColorMenuItem: TMenuItem;
     BackgroundColorMenuItem: TMenuItem;
@@ -66,7 +64,6 @@ type
     FontToolbarButton: TToolButton;
     PasteTextToolbarButton: TToolButton;
     JustifyToolbarButton: TToolButton;
-    UnderlineMenuItem: TMenuItem;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
     PasteMenuItem: TMenuItem;
