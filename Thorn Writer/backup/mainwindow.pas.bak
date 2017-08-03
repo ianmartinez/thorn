@@ -79,7 +79,7 @@ type
     ToolButton3: TToolButton;
     BoldToolbarButton: TToolButton;
     ItalicToolbarButton: TToolButton;
-    UnderlineToolbar: TToolButton;
+    UnderlineToolbarButton: TToolButton;
     UndoToolbarButton: TToolButton;
     UndoMenuItem: TMenuItem;
     PreviewEdit: TEdit;
@@ -146,6 +146,7 @@ type
     procedure AffricatesFlowPanelClick(Sender: TObject);
     procedure AuthorEditChange(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
+    procedure BoldToolbarButtonClick(Sender: TObject);
     procedure CenterToolbarButtonClick(Sender: TObject);
     procedure CharacterGalleryTabsChange(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
@@ -168,10 +169,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure HighlightColorMenuItemClick(Sender: TObject);
+    procedure ItalicToolbarButtonClick(Sender: TObject);
     procedure JustifyToolbarButtonClick(Sender: TObject);
     procedure LeftToolbarButtonClick(Sender: TObject);
     procedure LocalButtonClick(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
+    procedure MainRTFSelectionChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
@@ -185,6 +188,7 @@ type
     procedure SaveMenuItemClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure TitleEditChange(Sender: TObject);
+    procedure UnderlineToolbarButtonClick(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
     procedure WebsiteEditChange(Sender: TObject);
@@ -480,6 +484,11 @@ begin
 
 end;
 
+procedure TMainForm.ItalicToolbarButtonClick(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.JustifyToolbarButtonClick(Sender: TObject);
 begin
   MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paJustify);
@@ -498,6 +507,31 @@ end;
 procedure TMainForm.MainRTFChange(Sender: TObject);
 begin
   Modified := true;
+  MainRTFSelectionChange(Sender);
+end;
+
+procedure TMainForm.MainRTFSelectionChange(Sender: TObject);
+var old_params: TFontParams;
+begin
+  MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);
+
+  if (fsBold in old_params.Style) then
+     BoldToolbarButton.Down:= true
+  else
+     BoldToolbarButton.Down:= false;
+
+  if (fsItalic in old_params.Style) then
+     ItalicToolbarButton.Down:= true
+  else
+     ItalicToolbarButton.Down:= false;
+
+  if (fsUnderline in old_params.Style) then
+     UnderlineToolbarButton.Down:= true
+  else
+     UnderlineToolbarButton.Down:= false;
+
+  MainRTF.Refresh;
+
 end;
 
 procedure TMainForm.MainToolbarClick(Sender: TObject);
@@ -600,6 +634,11 @@ begin
   Modified := true;
 end;
 
+procedure TMainForm.UnderlineToolbarButtonClick(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.UndoMenuItemClick(Sender: TObject);
 begin
   if MainRTF.CanUndo then
@@ -615,6 +654,11 @@ begin
     Modified := true;
     OpenFile.BackgroundColor := ColorToHex(MainRTF.Color);
   end;
+end;
+
+procedure TMainForm.BoldToolbarButtonClick(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.CenterToolbarButtonClick(Sender: TObject);
