@@ -546,9 +546,9 @@ object MainForm: TMainForm
     Height = 621
     Top = 28
     Width = 259
-    ActivePage = CharacterSheet
+    ActivePage = FileSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
@@ -598,16 +598,16 @@ object MainForm: TMainForm
         Left = 8
         Height = 23
         Top = 120
-        Width = 208
+        Width = 184
         OnChange = WebsiteEditChange
         TabOrder = 2
       end
       object WebsiteGoButton: TButton
-        Left = 221
-        Height = 23
-        Top = 120
-        Width = 22
-        Caption = '...'
+        Left = 200
+        Height = 40
+        Top = 112
+        Width = 43
+        Caption = 'Go'
         OnClick = WebsiteGoButtonClick
         TabOrder = 3
       end

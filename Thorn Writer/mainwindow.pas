@@ -382,8 +382,25 @@ begin
 end;
 
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
+var old_params: TFontParams; old_font: TFont;
 begin
+  MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);
 
+  old_font := TFont.Create;
+  old_font.Name := old_params.Name;
+  old_font.Size := old_params.Size;
+  old_font.Style := old_params.Style;
+  old_font.Color := old_params.Color;
+
+  ColorDialog1.Color := old_font.Color;
+  if ColorDialog1.Execute then
+  begin
+    old_font.Color:= ColorDialog1.Color;
+    Modified := true;
+    MainRTF.SetTextAttributes(MainRTF.SelStart, MainRTF.SelLength, old_font);
+  end;
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.FontMenuItemClick(Sender: TObject);

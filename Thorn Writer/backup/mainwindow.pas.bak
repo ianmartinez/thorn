@@ -400,9 +400,9 @@ begin
   FontDialog1.Font := old_font;
 
   if FontDialog1.Execute then
-  begin
      MainRTF.SetTextAttributes(MainRTF.SelStart, MainRTF.SelLength, FontDialog1.Font);
-  end;
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
