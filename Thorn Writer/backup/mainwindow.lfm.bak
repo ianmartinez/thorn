@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 497
+  Left = 522
   Height = 669
-  Top = 156
+  Top = 273
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 649
@@ -513,7 +513,7 @@ object MainForm: TMainForm
       Left = 416
       Top = 0
       Caption = 'Font...'
-      ImageIndex = 362
+      MenuItem = FontMenuItem
     end
     object PasteTextToolbarButton: TToolButton
       Left = 203
@@ -542,9 +542,9 @@ object MainForm: TMainForm
     Height = 621
     Top = 28
     Width = 259
-    ActivePage = FileSheet
+    ActivePage = CharacterSheet
     Anchors = [akTop, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
@@ -1902,6 +1902,7 @@ object MainForm: TMainForm
       Caption = 'Format'
       object FontMenuItem: TMenuItem
         Caption = 'Font...'
+        ImageIndex = 360
         OnClick = FontMenuItemClick
       end
       object FormatSep1: TMenuItem
