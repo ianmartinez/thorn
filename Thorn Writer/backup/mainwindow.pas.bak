@@ -18,10 +18,15 @@ type
     ConsonantsFlowPanel: TFlowPanel;
     CommonFlowPanel: TFlowPanel;
     CommonScrollBox: TScrollBox;
-    InsertMenu: TMenuItem;
-    ImageMenuItem: TMenuItem;
     FormatSep1: TMenuItem;
     FontMenuItem: TMenuItem;
+    CharacterMenu: TPopupMenu;
+    DeleteMenuItem: TMenuItem;
+    CharacterSep1: TMenuItem;
+    MoveToFileMenuItem: TMenuItem;
+    MoveToLocalMenuItem: TMenuItem;
+    CopyToEditorMenuItem: TMenuItem;
+    CharacterSep2: TMenuItem;
     TonesFlowPanel: TFlowPanel;
     TonesScrollBox: TScrollBox;
     OtherFlowPanel: TFlowPanel;
@@ -146,6 +151,7 @@ type
     procedure BoldToolbarButtonClick(Sender: TObject);
     procedure CenterToolbarButtonClick(Sender: TObject);
     procedure CharacterGalleryTabsChange(Sender: TObject);
+    procedure CharacterMenuPopup(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
     procedure CharacterSheetContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
@@ -156,7 +162,9 @@ type
     procedure ConsonantsTabSheetContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
     procedure CopyMenuItemClick(Sender: TObject);
+    procedure CopyToEditorMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
+    procedure DeleteMenuItemClick(Sender: TObject);
     procedure DescriptionMemoChange(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FileButtonClick(Sender: TObject);
@@ -320,6 +328,7 @@ begin
   btn.Width:=48;
   btn.Height:=48;
   btn.OnClick:=@CharacterButtonHandler;
+  btn.PopupMenu:=CharacterMenu;
   btn.Font.Bold:=False;
   btn.Font.Size:=14;
 end;
@@ -686,6 +695,33 @@ begin
 
 end;
 
+procedure TMainForm.CharacterMenuPopup(Sender: TObject);
+var btn: TButton;
+begin
+  btn:= (CharacterMenu.PopupComponent as TButton);
+  if ((btn.Parent as TFlowPanel) = FileFlowPanel) then
+  begin
+    CharacterSep2.Visible:=true;
+    DeleteMenuItem.Visible:=true;
+    MoveToFileMenuItem.Visible:=false;
+    MoveToLocalMenuItem.Visible:=true;
+  end
+  else if or ((btn.Parent as TFlowPanel) = LocalFlowPanel) then
+  begin
+    CharacterSep2.Visible:=true;
+    DeleteMenuItem.Visible:=true;
+    MoveToFileMenuItem.Visible:=true;
+    MoveToLocalMenuItem.Visible:=false;
+  end
+  else
+  begin
+    CharacterSep2.Visible:=false;
+    DeleteMenuItem.Visible:=false;
+    MoveToFileMenuItem.Visible:=true;
+    MoveToLocalMenuItem.Visible:=true;
+  end;
+end;
+
 procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
 begin
   InsertText(CharacterPreviewButton.Caption);
@@ -728,9 +764,24 @@ begin
   MainRTF.CopyToClipboard;
 end;
 
+procedure TMainForm.CopyToEditorMenuItemClick(Sender: TObject);
+var btn: TButton;
+begin
+  btn:= (CharacterMenu.PopupComponent as TButton);
+  PreviewEdit.Text:= btn.Caption;
+end;
+
 procedure TMainForm.CutMenuItemClick(Sender: TObject);
 begin
   MainRTF.CutToClipboard;
+end;
+
+procedure TMainForm.DeleteMenuItemClick(Sender: TObject);
+var btn: TButton;
+begin
+  btn:= (CharacterMenu.PopupComponent as TButton);
+  OpenFile.CustomCharacters:= RemoveCharacterFromWriterFileAt(OpenFile, (btn.Parent as TFlowPanel).GetControlIndex(btn));
+  UpdateFileCharacters();
 end;
 
 procedure TMainForm.DescriptionMemoChange(Sender: TObject);

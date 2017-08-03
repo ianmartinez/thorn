@@ -25,7 +25,8 @@ interface
   function ReadSafeString(const source: string) : string;
   function WriteSafeString(const source: string) : string;
   function AddCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
-  function RemoveCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
+  function RemoveCharacterFromWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
+  function RemoveCharacterFromWriterFileAt(const writer_file: ThornWriterFile; const position: integer): CharArray;
 
 implementation
  uses SysUtils,Dialogs,IniFiles,Classes;
@@ -58,11 +59,20 @@ implementation
     Result := StringsFromStringList(temp);
   end;
 
-  function RemoveCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string): CharArray;
-  var temp: TStringList; found_index: Integer;
+  function RemoveCharacterFromWriterFile(const writer_file: ThornWriterFile; const value: string): CharArray;
+  var temp: TStringList;
   begin
     temp := StringListFromStrings(writer_file.CustomCharacters);
-    if temp.Find(value,found_index) then temp.Delete(found_index);
+    if not temp.IndexOf(value) = -1 then temp.Delete(temp.IndexOf(value));
+
+    Result := StringsFromStringList(temp);
+  end;
+
+  function RemoveCharacterFromWriterFileAt(const writer_file: ThornWriterFile; const position: integer): CharArray;
+  var temp: TStringList;
+  begin
+    temp := StringListFromStrings(writer_file.CustomCharacters);
+    temp.Delete(position);
 
     Result := StringsFromStringList(temp);
   end;

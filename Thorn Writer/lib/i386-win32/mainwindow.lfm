@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 522
+  Left = 582
   Height = 669
-  Top = 273
+  Top = 252
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 649
@@ -1891,13 +1891,6 @@ object MainForm: TMainForm
         }
         ImageIndex = 32
         OnClick = ClearMenuItemClick
-      end
-    end
-    object InsertMenu: TMenuItem
-      Caption = 'Insert'
-      object ImageMenuItem: TMenuItem
-        Caption = 'Image...'
-        ImageIndex = 384
       end
     end
     object FormatMenu: TMenuItem
@@ -15164,5 +15157,30 @@ object MainForm: TMainForm
     Filter = 'Thorn Writer File (*.thw)|*.thw'
     left = 96
     top = 32
+  end
+  object CharacterMenu: TPopupMenu
+    OnPopup = CharacterMenuPopup
+    left = 24
+    top = 104
+    object CopyToEditorMenuItem: TMenuItem
+      Caption = 'Copy To Editor'
+      OnClick = CopyToEditorMenuItemClick
+    end
+    object CharacterSep1: TMenuItem
+      Caption = '-'
+    end
+    object MoveToLocalMenuItem: TMenuItem
+      Caption = 'Move To Local'
+    end
+    object MoveToFileMenuItem: TMenuItem
+      Caption = 'Move To File'
+    end
+    object CharacterSep2: TMenuItem
+      Caption = '-'
+    end
+    object DeleteMenuItem: TMenuItem
+      Caption = 'Delete'
+      OnClick = DeleteMenuItemClick
+    end
   end
 end
