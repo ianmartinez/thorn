@@ -564,7 +564,7 @@ begin
       NewMenuItemClick(sender);
     end;
 
-    if (StartUpFile <> '') and (StartUpFile <> '|OpenFile') and (StartUpFile <> '|NewFile') then
+    if (StartUpFile <> '') or (StartUpFile <> '|OpenFile') or (StartUpFile <> '|NewFile') then
     begin
       if FileExists(StartUpFile) then
       begin

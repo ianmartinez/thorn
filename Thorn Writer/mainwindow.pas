@@ -334,12 +334,12 @@ begin
   btn:= TButton.Create(button_parent);
   btn.Parent:=button_parent as TWinControl;
   btn.Caption:=button_caption;
-  btn.Width:=48;
-  btn.Height:=48;
+  btn.Width:=40;
+  btn.Height:=40;
   btn.OnClick:=@CharacterButtonHandler;
   btn.PopupMenu:=CharacterMenu;
   btn.Font.Bold:=False;
-  btn.Font.Size:=14;
+  btn.Font.Size:=10;
 end;
 
 procedure TMainForm.UpdateFileCharacters();
