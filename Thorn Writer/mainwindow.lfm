@@ -649,13 +649,13 @@ object MainForm: TMainForm
         Height = 273
         Top = 312
         Width = 235
-        ActivePage = FileTabSheet
+        ActivePage = LocalTabSheet
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
         BorderSpacing.Top = 8
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         OnChange = CharacterGalleryTabsChange
         object FileTabSheet: TTabSheet
@@ -15168,15 +15168,23 @@ object MainForm: TMainForm
     end
     object CharacterSep1: TMenuItem
       Caption = '-'
+      OnClick = CharacterSep1Click
     end
     object MoveToLocalMenuItem: TMenuItem
-      Caption = 'Move To Local'
+      Caption = 'Copy To Local'
+      OnClick = MoveToLocalMenuItemClick
     end
     object MoveToFileMenuItem: TMenuItem
-      Caption = 'Move To File'
+      Caption = 'Copy To File'
+      OnClick = MoveToFileMenuItemClick
     end
     object CharacterSep2: TMenuItem
       Caption = '-'
+      OnClick = CharacterSep2Click
+    end
+    object RemoveDuplicatesMenuItem: TMenuItem
+      Caption = 'Remove Duplicates'
+      OnClick = RemoveDuplicatesMenuItemClick
     end
     object DeleteMenuItem: TMenuItem
       Caption = 'Delete'

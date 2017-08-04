@@ -23,6 +23,7 @@ type
     CharacterMenu: TPopupMenu;
     DeleteMenuItem: TMenuItem;
     CharacterSep1: TMenuItem;
+    RemoveDuplicatesMenuItem: TMenuItem;
     MoveToFileMenuItem: TMenuItem;
     MoveToLocalMenuItem: TMenuItem;
     CopyToEditorMenuItem: TMenuItem;
@@ -153,6 +154,8 @@ type
     procedure CharacterGalleryTabsChange(Sender: TObject);
     procedure CharacterMenuPopup(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
+    procedure CharacterSep1Click(Sender: TObject);
+    procedure CharacterSep2Click(Sender: TObject);
     procedure CharacterSheetContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
     procedure ClearMenuItemClick(Sender: TObject);
@@ -181,6 +184,8 @@ type
     procedure MainRTFChange(Sender: TObject);
     procedure MainRTFSelectionChange(Sender: TObject);
     procedure MainToolbarClick(Sender: TObject);
+    procedure MoveToFileMenuItemClick(Sender: TObject);
+    procedure MoveToLocalMenuItemClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
     procedure IPACategoriesTabsChange(Sender: TObject);
@@ -188,6 +193,7 @@ type
     procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
+    procedure RemoveDuplicatesMenuItemClick(Sender: TObject);
     procedure RightToolbarButtonClick(Sender: TObject);
     procedure SaveAsMenuItemClick(Sender: TObject);
     procedure SaveMenuItemClick(Sender: TObject);
@@ -585,6 +591,22 @@ begin
 
 end;
 
+procedure TMainForm.MoveToFileMenuItemClick(Sender: TObject);
+var btn: TButton;
+begin
+  btn:= (CharacterMenu.PopupComponent as TButton);
+  OpenFile.CustomCharacters := AddCharacterToCharArray(OpenFile.CustomCharacters,btn.Caption);
+  UpdateFileCharacters();
+end;
+
+procedure TMainForm.MoveToLocalMenuItemClick(Sender: TObject);
+var btn: TButton;
+begin
+  btn:= (CharacterMenu.PopupComponent as TButton);
+  LocalCharacters := AddCharacterToCharArray(LocalCharacters,btn.Caption);
+  UpdateLocalCharacters();
+end;
+
 procedure TMainForm.NewMenuItemClick(Sender: TObject);
 begin
 
@@ -636,6 +658,38 @@ procedure TMainForm.RedoMenuItemClick(Sender: TObject);
 begin
   if MainRTF.CanRedo then
     MainRTF.Redo;
+end;
+
+procedure TMainForm.RemoveDuplicatesMenuItemClick(Sender: TObject);
+var
+  btn: TButton;
+  flow: TFlowPanel;
+  btn_index: Integer;
+  char_pos: Integer;
+begin
+  btn:= (CharacterMenu.PopupComponent as TButton);
+  flow:= (btn.Parent as TFlowPanel);
+  btn_index:= flow.GetControlIndex(btn);
+
+  if flow = FileFlowPanel then
+  begin
+    for char_pos:= Length(OpenFile.CustomCharacters)-1 downto 0 do
+    begin
+      if (char_pos<>btn_index) and (OpenFile.CustomCharacters[char_pos].Equals(btn.Caption)) then
+        OpenFile.CustomCharacters:= RemoveCharacterFromCharArrayAt(OpenFile.CustomCharacters, char_pos);
+    end;
+  end
+  else if flow = LocalFlowPanel then
+  begin
+    for char_pos:= Length(LocalCharacters)-1 downto 0 do
+    begin
+      if (char_pos<>btn_index) and (LocalCharacters[char_pos].Equals(btn.Caption)) then
+        LocalCharacters:= RemoveCharacterFromCharArrayAt(LocalCharacters, char_pos);
+    end;
+  end;
+
+  UpdateLocalCharacters();
+  UpdateFileCharacters();
 end;
 
 procedure TMainForm.RightToolbarButtonClick(Sender: TObject);
@@ -719,19 +773,25 @@ begin
 end;
 
 procedure TMainForm.CharacterMenuPopup(Sender: TObject);
-var btn: TButton;
+var
+  btn: TButton;
+  flow: TFlowPanel;
 begin
   btn:= (CharacterMenu.PopupComponent as TButton);
-  if (btn.Parent as TFlowPanel) = FileFlowPanel then
+  flow:= (btn.Parent as TFlowPanel);
+
+  if flow = FileFlowPanel then
   begin
     CharacterSep2.Visible:=true;
+    RemoveDuplicatesMenuItem.Visible:=true;
     DeleteMenuItem.Visible:=true;
     MoveToFileMenuItem.Visible:=false;
     MoveToLocalMenuItem.Visible:=true;
   end
-  else if (btn.Parent as TFlowPanel) = LocalFlowPanel then
+  else if flow = LocalFlowPanel then
   begin
     CharacterSep2.Visible:=true;
+    RemoveDuplicatesMenuItem.Visible:=true;
     DeleteMenuItem.Visible:=true;
     MoveToFileMenuItem.Visible:=true;
     MoveToLocalMenuItem.Visible:=false;
@@ -739,6 +799,7 @@ begin
   else
   begin
     CharacterSep2.Visible:=false;
+    RemoveDuplicatesMenuItem.Visible:=false;
     DeleteMenuItem.Visible:=false;
     MoveToFileMenuItem.Visible:=true;
     MoveToLocalMenuItem.Visible:=true;
@@ -748,6 +809,16 @@ end;
 procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
 begin
   InsertText(CharacterPreviewButton.Caption);
+end;
+
+procedure TMainForm.CharacterSep1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.CharacterSep2Click(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.CharacterSheetContextPopup(Sender: TObject;
@@ -800,11 +871,23 @@ begin
 end;
 
 procedure TMainForm.DeleteMenuItemClick(Sender: TObject);
-var btn: TButton;
+var
+  btn: TButton;
+  flow: TFlowPanel;
 begin
   btn:= (CharacterMenu.PopupComponent as TButton);
-  OpenFile.CustomCharacters:= RemoveCharacterFromCharArrayAt(OpenFile.CustomCharacters, (btn.Parent as TFlowPanel).GetControlIndex(btn));
-  UpdateFileCharacters();
+  flow:= (btn.Parent as TFlowPanel);
+
+  if flow = FileFlowPanel then
+  begin
+    OpenFile.CustomCharacters:= RemoveCharacterFromCharArrayAt(OpenFile.CustomCharacters, flow.GetControlIndex(btn));
+    UpdateFileCharacters();
+  end
+  else if flow = LocalFlowPanel then
+  begin
+    LocalCharacters:= RemoveCharacterFromCharArrayAt(LocalCharacters, flow.GetControlIndex(btn));
+    UpdateLocalCharacters();
+  end
 end;
 
 procedure TMainForm.DescriptionMemoChange(Sender: TObject);
