@@ -5131,6 +5131,7 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
+    OnClick = NewButtonClick
     TabOrder = 0
   end
   object OpenButton: TBitBtn
@@ -5562,7 +5563,7 @@ object StartUpForm: TStartUpForm
   object PatreonButton: TBitBtn
     Left = 368
     Height = 51
-    Hint = 'Help pay my tuition.'
+    Hint = 'Help me pay my tuition!'
     Top = 344
     Width = 200
     Caption = 'Patreon'
@@ -5720,7 +5721,7 @@ object StartUpForm: TStartUpForm
     ShowHint = True
     TabOrder = 2
   end
-  object CheckBox1: TCheckBox
+  object ShowOnStartCheck: TCheckBox
     Left = 472
     Height = 19
     Top = 200
@@ -5729,6 +5730,7 @@ object StartUpForm: TStartUpForm
     Checked = True
     Color = clDefault
     Font.Color = clBtnText
+    OnChange = ShowOnStartCheckChange
     ParentColor = False
     ParentFont = False
     State = cbChecked
@@ -5762,6 +5764,7 @@ object StartUpForm: TStartUpForm
       Columns = <>
       ReadOnly = True
       TabOrder = 0
+      OnClick = RecentFilesListClick
     end
   end
 end

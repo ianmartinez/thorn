@@ -19,23 +19,28 @@ type
     AboutButton: TBitBtn;
     QuitButton: TBitBtn;
     PatreonButton: TBitBtn;
-    CheckBox1: TCheckBox;
+    ShowOnStartCheck: TCheckBox;
     HeaderImage: TImage;
     RecentFilesList: TListView;
     procedure AboutButtonClick(Sender: TObject);
+    procedure ShowOnStartCheckChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure NewButtonClick(Sender: TObject);
     procedure OpenButtonClick(Sender: TObject);
     procedure QuitButtonClick(Sender: TObject);
     procedure Init(SettingsFile: ThornWriterSettings);
+    procedure RecentFilesListClick(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
+    FileToOpen: string;
   end;
 
 var
   StartUpForm: TStartUpForm;
+  Settings: ThornWriterSettings;
 
 implementation
 
@@ -48,11 +53,22 @@ var
   file_pos: Integer;
   current_item: TListItem;
 begin
-  for file_pos:= 0 to Length(SettingsFile.RecentFiles)-1 do
+  for file_pos:= Length(SettingsFile.RecentFiles)-1 downto 0 do
   begin
     current_item:= RecentFilesList.Items.Add;
     current_item.Caption:=SettingsFile.RecentFiles[file_pos];
    // RecentFilesList.Items.AddItem(current_item);
+  end;
+
+  Settings:=SettingsFile;
+end;
+
+procedure TStartUpForm.RecentFilesListClick(Sender: TObject);
+begin
+  if (RecentFilesList.ItemIndex <> -1) then
+  begin
+    FileToOpen:= Settings.RecentFiles[RecentFilesList.Items.Count-1-RecentFilesList.ItemIndex];
+    self.Close;
   end;
 end;
 
@@ -65,9 +81,17 @@ procedure TStartUpForm.FormShow(Sender: TObject);
 begin
   self.SetFocus;
 end;
+
+procedure TStartUpForm.NewButtonClick(Sender: TObject);
+begin
+  FileToOpen:= '|NewFile';
+  self.Close;
+end;
+
 procedure TStartUpForm.OpenButtonClick(Sender: TObject);
 begin
-
+  FileToOpen:= '|OpenFile';
+  self.Close;
 end;
 
 procedure TStartUpForm.AboutButtonClick(Sender: TObject);
@@ -75,6 +99,11 @@ begin
   AboutForm:=TAboutForm.Create(Nil);
   AboutForm.ShowModal;
   FreeAndNil(AboutForm);
+end;
+
+procedure TStartUpForm.ShowOnStartCheckChange(Sender: TObject);
+begin
+    Settings.ShowStartScreen:= ShowOnStartCheck.Checked;
 end;
 
 procedure TStartUpForm.QuitButtonClick(Sender: TObject);

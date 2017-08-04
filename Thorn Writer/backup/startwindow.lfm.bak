@@ -5131,6 +5131,7 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
+    OnClick = NewButtonClick
     TabOrder = 0
   end
   object OpenButton: TBitBtn
@@ -5562,7 +5563,7 @@ object StartUpForm: TStartUpForm
   object PatreonButton: TBitBtn
     Left = 368
     Height = 51
-    Hint = 'Help pay my tuition.'
+    Hint = 'Help me pay my tuition!'
     Top = 344
     Width = 200
     Caption = 'Patreon'
@@ -5760,7 +5761,9 @@ object StartUpForm: TStartUpForm
       BorderSpacing.Right = 4
       BorderSpacing.Bottom = 4
       Columns = <>
+      ReadOnly = True
       TabOrder = 0
+      OnClick = RecentFilesListClick
     end
   end
 end

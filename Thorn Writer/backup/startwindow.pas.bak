@@ -25,17 +25,21 @@ type
     procedure AboutButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure NewButtonClick(Sender: TObject);
     procedure OpenButtonClick(Sender: TObject);
     procedure QuitButtonClick(Sender: TObject);
     procedure Init(SettingsFile: ThornWriterSettings);
+    procedure RecentFilesListClick(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
+    FileToOpen: string;
   end;
 
 var
   StartUpForm: TStartUpForm;
+  Settings: ThornWriterSettings;
 
 implementation
 
@@ -48,12 +52,20 @@ var
   file_pos: Integer;
   current_item: TListItem;
 begin
-  for file_pos:= 0 to Length(SettingsFile.RecentFiles)-1 do
+  for file_pos:= Length(SettingsFile.RecentFiles)-1 downto 0 do
   begin
     current_item:= RecentFilesList.Items.Add;
     current_item.Caption:=SettingsFile.RecentFiles[file_pos];
    // RecentFilesList.Items.AddItem(current_item);
   end;
+
+  Settings:=SettingsFile;
+end;
+
+procedure TStartUpForm.RecentFilesListClick(Sender: TObject);
+begin
+  if (RecentFilesList.ItemIndex <> -1) then
+    FileToOpen:= Settings.RecentFiles[RecentFilesList.Items.Count-1-RecentFilesList.ItemIndex];
 end;
 
 procedure TStartUpForm.FormCreate(Sender: TObject);
@@ -65,9 +77,17 @@ procedure TStartUpForm.FormShow(Sender: TObject);
 begin
   self.SetFocus;
 end;
+
+procedure TStartUpForm.NewButtonClick(Sender: TObject);
+begin
+  FileToOpen:= '|NewFile';
+  self.Close;
+end;
+
 procedure TStartUpForm.OpenButtonClick(Sender: TObject);
 begin
-
+  FileToOpen:= '|OpenFile';
+  self.Close;
 end;
 
 procedure TStartUpForm.AboutButtonClick(Sender: TObject);

@@ -1,0 +1,14 @@
+[Data]
+ThornWriterVersion=1
+
+[Properties]
+Title=
+Author=
+Website=
+Description=
+Characters=Ä|
+PageCount=0
+
+[Document]
+Page0={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Open Sans&sc}}&win_line{\colortbl &sc\red0\green0\blue0&sc}&win_line{\*\generator Riched20 10.0.15063}\viewkind4\uc1 &win_line\pard\cf1\f0\fs24 Hello World!\par&win_line}&win_line
+Page0Background=

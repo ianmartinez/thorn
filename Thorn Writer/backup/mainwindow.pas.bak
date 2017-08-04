@@ -228,6 +228,7 @@ var
   SettingsFile: ThornWriterSettings;
   Modified: Boolean = false;
   FileLocation: String;
+  StartUpFile: String;
 
 implementation
 
@@ -547,10 +548,43 @@ begin
   if SettingsFile.ShowStartScreen then
   begin
     StartUpForm:=TStartUpForm.Create(Nil);
-    StartUpForm.SettingsFile:=SettingsFile;
-    StartUpForm.Init();
+    StartUpForm.Init(SettingsFile);
     StartUpForm.Visible:=false;
     StartUpForm.ShowModal;
+
+    StartUpFile:= StartUpForm.FileToOpen;
+
+    if StartUpFile='|OpenFile' then
+    begin
+      OpenMenuItemClick(sender);
+    end;
+
+    if StartUpFile='|NewFile' then
+    begin
+      NewMenuItemClick(sender);
+    end;
+
+    if (StartUpFile <> '') and (StartUpFile <> '|OpenFile') and (StartUpFile <> '|NewFile') then
+    begin
+      if FileExists(StartUpFile) then
+      begin
+        OpenFile:= ReadWriterFile(StartUpFile);
+        TitleEdit.Text:= OpenFile.Title;
+        AuthorEdit.Text:= OpenFile.Author;
+        WebsiteEdit.Text:= OpenFile.Website;
+        DescriptionMemo.Text:= OpenFile.Description;
+
+        UpdateFileCharacters();
+
+        MainRTF.Rtf := OpenFile.RtfData;
+        if not OpenFile.BackgroundColor.Equals('') then
+           MainRTF.Color := HexToColor(OpenFile.BackgroundColor);
+
+        FileLocation := StartUpFile;
+        Modified := false;
+      end;
+    end;
+
     FreeAndNil(StartUpForm);
   end;
 end;
