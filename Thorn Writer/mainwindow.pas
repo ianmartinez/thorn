@@ -173,6 +173,7 @@ type
     procedure FileButtonClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FontMenuItemClick(Sender: TObject);
+    procedure FontToolbarButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -438,22 +439,35 @@ begin
 end;
 
 procedure TMainForm.FontMenuItemClick(Sender: TObject);
-var old_params: TFontParams; old_font: TFont;
+var fnt_params: TFontParams; old_font: TFont;
 begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);
+  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
 
   old_font := TFont.Create;
-  old_font.Name := old_params.Name;
-  old_font.Size := old_params.Size;
-  old_font.Style := old_params.Style;
-  old_font.Color := old_params.Color;
+  old_font.Name := fnt_params.Name;
+  old_font.Size := fnt_params.Size;
+  old_font.Style := fnt_params.Style;
+  old_font.Color := fnt_params.Color;
 
   FontDialog1.Font := old_font;
 
   if FontDialog1.Execute then
-     MainRTF.SetTextAttributes(MainRTF.SelStart, MainRTF.SelLength, FontDialog1.Font);
+  begin
+    fnt_params.Name:= FontDialog1.Font.Name;
+    fnt_params.Size:= FontDialog1.Font.Size;
+    fnt_params.Style:= FontDialog1.Font.Style;
+    fnt_params.Color:= FontDialog1.Font.Color;
+
+    MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],old_font.Style);
+    MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Color,tmm_Name,tmm_Size,tmm_Styles],fnt_params,fnt_params.Style,[]);
+  end;
 
   MainRTFSelectionChange(Sender);
+end;
+
+procedure TMainForm.FontToolbarButtonClick(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -531,13 +545,35 @@ begin
 end;
 
 procedure TMainForm.HighlightColorMenuItemClick(Sender: TObject);
+var fnt_params: TFontParams;
 begin
+  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
 
+  if fnt_params.HasBkClr then ColorDialog1.Color := fnt_params.BkColor;
+  if ColorDialog1.Execute then
+  begin
+    Modified := true;
+
+    fnt_params.BkColor:=ColorDialog1.Color;
+    fnt_params.HasBkClr:=true;
+    MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_BackColor],fnt_params,[],[]);
+  end;
 end;
 
 procedure TMainForm.ItalicToolbarButtonClick(Sender: TObject);
+var fnt_params: TFontParams; old_font: TFont;
 begin
+  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
 
+  old_font := TFont.Create;
+  old_font.Style := fnt_params.Style;
+
+  if ItalicToolbarButton.Down then
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsItalic],[])
+  else
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],[fsItalic]);
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.JustifyToolbarButtonClick(Sender: TObject);
@@ -703,9 +739,13 @@ begin
 
   if SaveDialog1.Execute then
   begin
+     self.Cursor:=crHourGlass;
+
      FileLocation := SaveDialog1.FileName;
      Modified := false;
      SaveWriterFile(OpenFile,FileLocation);
+
+     self.Cursor:=crDefault;
   end;
 end;
 
@@ -716,8 +756,12 @@ begin
 
   if not FileLocation.Equals('') then
   begin
+    self.Cursor:=crHourGlass;
+
     SaveWriterFile(OpenFile,FileLocation);
     Modified := false;
+
+    self.Cursor:=crDefault;
   end
   else
     SaveAsMenuItemClick(Sender);
@@ -735,8 +779,19 @@ begin
 end;
 
 procedure TMainForm.UnderlineToolbarButtonClick(Sender: TObject);
+var fnt_params: TFontParams; old_font: TFont;
 begin
+  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
 
+  old_font := TFont.Create;
+  old_font.Style := fnt_params.Style;
+
+  if UnderlineToolbarButton.Down then
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsUnderline],[])
+  else
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],[fsUnderline]);
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.UndoMenuItemClick(Sender: TObject);
@@ -757,8 +812,19 @@ begin
 end;
 
 procedure TMainForm.BoldToolbarButtonClick(Sender: TObject);
+var fnt_params: TFontParams; old_font: TFont;
 begin
+  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
 
+  old_font := TFont.Create;
+  old_font.Style := fnt_params.Style;
+
+  if BoldToolbarButton.Down then
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsBold],[])
+  else
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],[fsBold]);
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.CenterToolbarButtonClick(Sender: TObject);
