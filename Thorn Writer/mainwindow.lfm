@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 582
+  Left = 575
   Height = 669
-  Top = 252
+  Top = 216
   Width = 715
   Caption = 'Thorn Writer'
   ClientHeight = 649

@@ -24,9 +24,9 @@ interface
   function ReadWriterFile(const path: string) : ThornWriterFile;
   function ReadSafeString(const source: string) : string;
   function WriteSafeString(const source: string) : string;
-  function AddCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
-  function RemoveCharacterFromWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
-  function RemoveCharacterFromWriterFileAt(const writer_file: ThornWriterFile; const position: integer): CharArray;
+  function AddCharacterToCharArray(const char_array: CharArray; const value: string) : CharArray;
+  function RemoveCharacterFromCharArray(const char_array: CharArray; const value: string) : CharArray;
+  function RemoveCharacterFromCharArrayAt(const char_array: CharArray; const position: integer): CharArray;
 
 implementation
  uses SysUtils,Dialogs,IniFiles,Classes;
@@ -50,28 +50,28 @@ implementation
       Result[i]:=strings[i];
   end;
 
-  function AddCharacterToWriterFile(const writer_file: ThornWriterFile; const value: string) : CharArray;
+  function AddCharacterToCharArray(const char_array: CharArray; const value: string) : CharArray;
   var temp: TStringList;
   begin
-    temp := StringListFromStrings(writer_file.CustomCharacters);
+    temp := StringListFromStrings(char_array);
     temp.Add(value);
 
     Result := StringsFromStringList(temp);
   end;
 
-  function RemoveCharacterFromWriterFile(const writer_file: ThornWriterFile; const value: string): CharArray;
+  function RemoveCharacterFromCharArray(const char_array: CharArray; const value: string): CharArray;
   var temp: TStringList;
   begin
-    temp := StringListFromStrings(writer_file.CustomCharacters);
+    temp := StringListFromStrings(char_array);
     if not temp.IndexOf(value) = -1 then temp.Delete(temp.IndexOf(value));
 
     Result := StringsFromStringList(temp);
   end;
 
-  function RemoveCharacterFromWriterFileAt(const writer_file: ThornWriterFile; const position: integer): CharArray;
+  function RemoveCharacterFromCharArrayAt(const char_array: CharArray; const position: integer): CharArray;
   var temp: TStringList;
   begin
-    temp := StringListFromStrings(writer_file.CustomCharacters);
+    temp := StringListFromStrings(char_array);
     temp.Delete(position);
 
     Result := StringsFromStringList(temp);

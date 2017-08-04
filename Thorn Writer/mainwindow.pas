@@ -203,6 +203,7 @@ type
     procedure InsertText(txt: string);
     procedure CreateButton(button_parent: TComponent; button_caption: string);
     procedure UpdateFileCharacters();
+    procedure UpdateLocalCharacters();
     procedure CharacterButtonHandler(Sender: TObject);
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
@@ -218,6 +219,7 @@ type
 var
   MainForm: TMainForm;
   OpenFile: ThornWriterFile;
+  LocalCharacters: CharArray;
   Modified: Boolean = false;
   FileLocation: String;
 
@@ -353,6 +355,26 @@ begin
   Modified := true;
 end;
 
+procedure TMainForm.UpdateLocalCharacters();
+var
+  control_count: Integer;
+  char_count: Integer;
+  control: TControl;
+begin
+  for control_count:=LocalFlowPanel.ControlCount - 1 downto 0 do
+  begin
+    control := LocalFlowPanel.Controls[control_count];
+    control.Free;
+  end;
+
+  for char_count:=0 to Length(LocalCharacters)-1 do
+  begin
+       CreateButton(LocalFlowPanel,LocalCharacters[char_count]);
+  end;
+
+  Modified := true;
+end;
+
 function TMainForm.SmartReplace(input: string) : string;
 begin
 
@@ -383,7 +405,7 @@ end;
 
 procedure TMainForm.FileButtonClick(Sender: TObject);
 begin
-  OpenFile.CustomCharacters := AddCharacterToWriterFile(OpenFile,CharacterPreviewButton.Caption);
+  OpenFile.CustomCharacters := AddCharacterToCharArray(OpenFile.CustomCharacters,CharacterPreviewButton.Caption);
   UpdateFileCharacters();
 end;
 
@@ -524,7 +546,8 @@ end;
 
 procedure TMainForm.LocalButtonClick(Sender: TObject);
 begin
-  self.GetAccentToggles();
+  LocalCharacters := AddCharacterToCharArray(LocalCharacters,CharacterPreviewButton.Caption);
+  UpdateLocalCharacters();
 end;
 
 procedure TMainForm.MainRTFChange(Sender: TObject);
@@ -780,7 +803,7 @@ procedure TMainForm.DeleteMenuItemClick(Sender: TObject);
 var btn: TButton;
 begin
   btn:= (CharacterMenu.PopupComponent as TButton);
-  OpenFile.CustomCharacters:= RemoveCharacterFromWriterFileAt(OpenFile, (btn.Parent as TFlowPanel).GetControlIndex(btn));
+  OpenFile.CustomCharacters:= RemoveCharacterFromCharArrayAt(OpenFile.CustomCharacters, (btn.Parent as TFlowPanel).GetControlIndex(btn));
   UpdateFileCharacters();
 end;
 
