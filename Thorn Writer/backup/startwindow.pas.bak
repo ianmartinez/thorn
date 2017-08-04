@@ -13,18 +13,15 @@ type
   { TStartUpForm }
 
   TStartUpForm = class(TForm)
+    RecentFilesGroupBox: TGroupBox;
     NewButton: TBitBtn;
     OpenButton: TBitBtn;
     AboutButton: TBitBtn;
-    MainPageControl: TPageControl;
     QuitButton: TBitBtn;
     PatreonButton: TBitBtn;
     CheckBox1: TCheckBox;
     HeaderImage: TImage;
     RecentFilesList: TListView;
-    RecentFilesList1: TListView;
-    RecentSheet: TTabSheet;
-    TemplatesSheet: TTabSheet;
     procedure AboutButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

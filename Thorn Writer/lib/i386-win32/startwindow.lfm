@@ -1,12 +1,12 @@
 object StartUpForm: TStartUpForm
-  Left = 711
-  Height = 494
-  Top = 241
-  Width = 441
+  Left = 1100
+  Height = 515
+  Top = 195
+  Width = 576
   BorderStyle = bsDialog
   Caption = 'Start Up'
-  ClientHeight = 494
-  ClientWidth = 441
+  ClientHeight = 515
+  ClientWidth = 576
   FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
@@ -14,77 +14,15 @@ object StartUpForm: TStartUpForm
   ShowInTaskBar = stNever
   LCLVersion = '1.6.4.0'
   Visible = True
-  object MainPageControl: TPageControl
-    AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Side = asrBottom
-    Left = 8
-    Height = 248
-    Top = 240
-    Width = 428
-    ActivePage = RecentSheet
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
-    TabOrder = 6
-    object RecentSheet: TTabSheet
-      Caption = 'Recent Documents'
-      ClientHeight = 220
-      ClientWidth = 420
-      object RecentFilesList: TListView
-        AnchorSideLeft.Control = RecentSheet
-        AnchorSideTop.Control = RecentSheet
-        AnchorSideRight.Control = RecentSheet
-        AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = RecentSheet
-        AnchorSideBottom.Side = asrBottom
-        Left = 4
-        Height = 212
-        Top = 4
-        Width = 412
-        Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Left = 4
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 4
-        BorderSpacing.Bottom = 4
-        BorderStyle = bsNone
-        Columns = <>
-        TabOrder = 0
-      end
-    end
-    object TemplatesSheet: TTabSheet
-      Caption = 'Templates'
-      ClientHeight = 210
-      ClientWidth = 421
-      object RecentFilesList1: TListView
-        AnchorSideLeft.Control = TemplatesSheet
-        AnchorSideTop.Control = TemplatesSheet
-        AnchorSideRight.Control = TemplatesSheet
-        AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = TemplatesSheet
-        AnchorSideBottom.Side = asrBottom
-        Left = 4
-        Height = 202
-        Top = 4
-        Width = 413
-        Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Left = 4
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 4
-        BorderSpacing.Bottom = 4
-        BorderStyle = bsNone
-        Columns = <>
-        TabOrder = 0
-      end
-    end
-  end
   object HeaderImage: TImage
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 0
-    Height = 152
+    Height = 192
     Top = 0
-    Width = 441
+    Width = 576
     AntialiasingMode = amOn
     Anchors = [akTop, akLeft, akRight]
     Picture.Data = {
@@ -5055,10 +4993,10 @@ object StartUpForm: TStartUpForm
     Proportional = True
   end
   object NewButton: TBitBtn
-    Left = 8
-    Height = 75
-    Top = 160
-    Width = 75
+    Left = 368
+    Height = 51
+    Top = 232
+    Width = 200
     Caption = 'New File'
     Glyph.Data = {
       36100000424D3610000000000000360000002800000020000000200000000100
@@ -5193,14 +5131,13 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
-    Layout = blGlyphTop
     TabOrder = 0
   end
   object OpenButton: TBitBtn
-    Left = 96
-    Height = 75
-    Top = 160
-    Width = 75
+    Left = 368
+    Height = 51
+    Top = 288
+    Width = 200
     Caption = 'Open File'
     Glyph.Data = {
       36100000424D3610000000000000360000002800000020000000200000000100
@@ -5335,15 +5272,14 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
-    Layout = blGlyphTop
     OnClick = OpenButtonClick
     TabOrder = 1
   end
   object AboutButton: TBitBtn
-    Left = 272
-    Height = 75
-    Top = 160
-    Width = 75
+    Left = 368
+    Height = 51
+    Top = 400
+    Width = 200
     Caption = 'About'
     Glyph.Data = {
       36100000424D3610000000000000360000002800000020000000200000000100
@@ -5478,15 +5414,14 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
-    Layout = blGlyphTop
     OnClick = AboutButtonClick
     TabOrder = 3
   end
   object QuitButton: TBitBtn
-    Left = 360
-    Height = 75
-    Top = 160
-    Width = 75
+    Left = 368
+    Height = 51
+    Top = 456
+    Width = 200
     Caption = 'Quit'
     Glyph.Data = {
       36100000424D3610000000000000360000002800000020000000200000000100
@@ -5621,15 +5556,15 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
-    Layout = blGlyphTop
     OnClick = QuitButtonClick
     TabOrder = 4
   end
   object PatreonButton: TBitBtn
-    Left = 184
-    Height = 75
-    Top = 160
-    Width = 75
+    Left = 368
+    Height = 51
+    Hint = 'Help pay my tuition.'
+    Top = 344
+    Width = 200
     Caption = 'Patreon'
     Glyph.Data = {
       46120000424D4612000000000000360000002800000022000000220000000100
@@ -5781,13 +5716,14 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
-    Layout = blGlyphTop
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 2
   end
   object CheckBox1: TCheckBox
-    Left = 8
+    Left = 472
     Height = 19
-    Top = 8
+    Top = 200
     Width = 95
     Caption = 'Show On Start'
     Checked = True
@@ -5797,5 +5733,34 @@ object StartUpForm: TStartUpForm
     ParentFont = False
     State = cbChecked
     TabOrder = 5
+  end
+  object RecentFilesGroupBox: TGroupBox
+    Left = 8
+    Height = 308
+    Top = 200
+    Width = 345
+    Caption = 'Recent Files'
+    ClientHeight = 288
+    ClientWidth = 341
+    TabOrder = 6
+    object RecentFilesList: TListView
+      AnchorSideLeft.Control = RecentFilesGroupBox
+      AnchorSideTop.Control = RecentFilesGroupBox
+      AnchorSideRight.Control = RecentFilesGroupBox
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = RecentFilesGroupBox
+      AnchorSideBottom.Side = asrBottom
+      Left = 4
+      Height = 280
+      Top = 4
+      Width = 333
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      BorderSpacing.Right = 4
+      BorderSpacing.Bottom = 4
+      Columns = <>
+      TabOrder = 0
+    end
   end
 end

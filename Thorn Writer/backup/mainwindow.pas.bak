@@ -568,9 +568,6 @@ begin
   old_font := TFont.Create;
   old_font.Style := fnt_params.Style;
 
-
-  MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],old_font.Style);
-
   if ItalicToolbarButton.Down then
      MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsItalic],[])
   else
@@ -789,9 +786,6 @@ begin
   old_font := TFont.Create;
   old_font.Style := fnt_params.Style;
 
-
-  MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],old_font.Style);
-
   if UnderlineToolbarButton.Down then
      MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsUnderline],[])
   else
@@ -824,9 +818,6 @@ begin
 
   old_font := TFont.Create;
   old_font.Style := fnt_params.Style;
-
-
-  MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],old_font.Style);
 
   if BoldToolbarButton.Down then
      MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsBold],[])
