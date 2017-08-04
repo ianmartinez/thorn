@@ -1,11 +1,11 @@
 object StartUpForm: TStartUpForm
-  Left = 1100
-  Height = 515
-  Top = 195
+  Left = 1079
+  Height = 514
+  Top = 404
   Width = 576
   BorderStyle = bsDialog
   Caption = 'Start Up'
-  ClientHeight = 515
+  ClientHeight = 514
   ClientWidth = 576
   FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons, ComCtrls, AboutWindow;
+  StdCtrls, Buttons, ComCtrls, FileTypes, AboutWindow;
 
 type
 
@@ -27,6 +27,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure OpenButtonClick(Sender: TObject);
     procedure QuitButtonClick(Sender: TObject);
+    procedure Init(SettingsFile: ThornWriterSettings);
   private
     { private declarations }
   public
@@ -42,8 +43,22 @@ implementation
 
 { TStartUpForm }
 
+procedure TStartUpForm.Init(SettingsFile: ThornWriterSettings);
+var
+  file_pos: Integer;
+  current_item: TListItem;
+begin
+  for file_pos:= 0 to Length(SettingsFile.RecentFiles)-1 do
+  begin
+    current_item:= RecentFilesList.Items.Add;
+    current_item.Caption:=SettingsFile.RecentFiles[file_pos];
+   // RecentFilesList.Items.AddItem(current_item);
+  end;
+end;
+
 procedure TStartUpForm.FormCreate(Sender: TObject);
 begin
+
 end;
 
 procedure TStartUpForm.FormShow(Sender: TObject);

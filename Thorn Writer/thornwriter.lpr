@@ -16,7 +16,6 @@ begin
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TSplashForm, SplashForm);
-  Application.CreateForm(TStartUpForm, StartUpForm);
   Application.Run;
 end.
 

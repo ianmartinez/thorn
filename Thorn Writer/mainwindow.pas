@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo, AboutWindow, Contnrs, LCLIntf, Types;
+  RichMemo, AboutWindow, StartWindow, Contnrs, LCLIntf, Types;
 
 type
 
@@ -184,7 +184,6 @@ type
     procedure LocalButtonClick(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
     procedure MainRTFSelectionChange(Sender: TObject);
-    procedure MainToolbarClick(Sender: TObject);
     procedure MoveToFileMenuItemClick(Sender: TObject);
     procedure MoveToLocalMenuItemClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
@@ -226,7 +225,7 @@ type
 var
   MainForm: TMainForm;
   OpenFile: ThornWriterFile;
-  LocalCharacters: CharArray;
+  SettingsFile: ThornWriterSettings;
   Modified: Boolean = false;
   FileLocation: String;
 
@@ -368,15 +367,15 @@ var
   char_count: Integer;
   control: TControl;
 begin
-  for control_count:=LocalFlowPanel.ControlCount - 1 downto 0 do
+  for control_count:= LocalFlowPanel.ControlCount - 1 downto 0 do
   begin
     control := LocalFlowPanel.Controls[control_count];
     control.Free;
   end;
 
-  for char_count:=0 to Length(LocalCharacters)-1 do
+  for char_count:=0 to Length(SettingsFile.CustomCharacters)-1 do
   begin
-       CreateButton(LocalFlowPanel,LocalCharacters[char_count]);
+       CreateButton(LocalFlowPanel,SettingsFile.CustomCharacters[char_count]);
   end;
 
   Modified := true;
@@ -538,10 +537,21 @@ begin
   begin
      if not other_chars[char_pos].Trim.Equals('') then CreateButton(OtherFlowPanel,other_chars[char_pos]);
   end;
+
+  SettingsFile:= ReadWriterSettings('settings.ini');
+  UpdateLocalCharacters();
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
+  if SettingsFile.ShowStartScreen then
+  begin
+    StartUpForm:=TStartUpForm.Create(Nil);
+    StartUpForm.Init(SettingsFile);
+    StartUpForm.Visible:=false;
+    StartUpForm.ShowModal;
+    FreeAndNil(StartUpForm);
+  end;
 end;
 
 procedure TMainForm.HighlightColorMenuItemClick(Sender: TObject);
@@ -588,7 +598,7 @@ end;
 
 procedure TMainForm.LocalButtonClick(Sender: TObject);
 begin
-  LocalCharacters := AddCharacterToCharArray(LocalCharacters,CharacterPreviewButton.Caption);
+  SettingsFile.CustomCharacters := AddCharacterToCharArray(SettingsFile.CustomCharacters,CharacterPreviewButton.Caption);
   UpdateLocalCharacters();
 end;
 
@@ -622,11 +632,6 @@ begin
 
 end;
 
-procedure TMainForm.MainToolbarClick(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.MoveToFileMenuItemClick(Sender: TObject);
 var btn: TButton;
 begin
@@ -639,7 +644,7 @@ procedure TMainForm.MoveToLocalMenuItemClick(Sender: TObject);
 var btn: TButton;
 begin
   btn:= (CharacterMenu.PopupComponent as TButton);
-  LocalCharacters := AddCharacterToCharArray(LocalCharacters,btn.Caption);
+  SettingsFile.CustomCharacters := AddCharacterToCharArray(SettingsFile.CustomCharacters,btn.Caption);
   UpdateLocalCharacters();
 end;
 
@@ -717,10 +722,10 @@ begin
   end
   else if flow = LocalFlowPanel then
   begin
-    for char_pos:= Length(LocalCharacters)-1 downto 0 do
+    for char_pos:= Length(SettingsFile.CustomCharacters)-1 downto 0 do
     begin
-      if (char_pos<>btn_index) and (LocalCharacters[char_pos].Equals(btn.Caption)) then
-        LocalCharacters:= RemoveCharacterFromCharArrayAt(LocalCharacters, char_pos);
+      if (char_pos<>btn_index) and (SettingsFile.CustomCharacters[char_pos].Equals(btn.Caption)) then
+        SettingsFile.CustomCharacters:= RemoveCharacterFromCharArrayAt(SettingsFile.CustomCharacters, char_pos);
     end;
   end;
 
@@ -951,7 +956,7 @@ begin
   end
   else if flow = LocalFlowPanel then
   begin
-    LocalCharacters:= RemoveCharacterFromCharArrayAt(LocalCharacters, flow.GetControlIndex(btn));
+    SettingsFile.CustomCharacters:= RemoveCharacterFromCharArrayAt(SettingsFile.CustomCharacters, flow.GetControlIndex(btn));
     UpdateLocalCharacters();
   end
 end;

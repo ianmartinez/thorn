@@ -7,6 +7,7 @@ interface
   const WINDOWS_LINE: string = AnsiString(#13#10);
 
   type CharArray = array of string;
+  type PathArray = array of string;
   type ThornWriterFile = record
      Title: string;
      Author: string;
@@ -19,9 +20,17 @@ interface
      WriterVersion: integer;
   end;
 
-  procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
+  type ThornWriterSettings = record
+     ShowStartScreen: boolean;
+     CustomCharacters: CharArray;
+     RecentFiles: PathArray;
+  end;
 
   function ReadWriterFile(const path: string) : ThornWriterFile;
+  procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
+  function ReadWriterSettings(const path: string) : ThornWriterSettings;
+  procedure SaveWriterSettings(const writer_settings: ThornWriterSettings; const path: string);
+
   function ReadSafeString(const source: string) : string;
   function WriteSafeString(const source: string) : string;
   function AddCharacterToCharArray(const char_array: CharArray; const value: string) : CharArray;
@@ -77,6 +86,106 @@ implementation
     Result := StringsFromStringList(temp);
   end;
 
+  function ReadWriterSettings(const path: string) : ThornWriterSettings;
+  var
+    ret: ThornWriterSettings;
+    INI: TINIFile;
+    char_pos: Integer;
+    file_pos: Integer;
+  begin
+   if FileExists(path) then
+     try
+        begin
+          INI := TINIFile.Create(path);
+          ret.ShowStartScreen:= INI.ReadBool('Settings','ShowStartScreen',true);
+          ret.CustomCharacters := INI.ReadString('Settings','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
+          ret.RecentFiles := INI.ReadString('Settings','RecentFiles','').Split('|',TStringSplitOptions.ExcludeEmpty);
+
+          for char_pos:=0 to Length(ret.CustomCharacters)-1 do
+          begin
+            ret.CustomCharacters[char_pos] := ReadSafeString(ret.CustomCharacters[char_pos]);
+          end;
+
+          for file_pos:=0 to Length(ret.RecentFiles)-1 do
+          begin
+            ret.RecentFiles[file_pos] := ReadSafeString(ret.RecentFiles[file_pos]);
+          end;
+        end
+
+       finally
+          INI.Free;
+       end
+    else
+    begin
+      ret.ShowStartScreen:=true;
+    end;
+
+    result := ret;
+   end;
+
+  procedure SaveWriterSettings(const writer_settings: ThornWriterSettings; const path: string);
+  var
+    INI: TINIFile;
+    char_pos: Integer;
+    char_string: string;
+    file_pos: Integer;
+    file_string: string;
+  begin
+    try
+      INI := TINIFile.Create(path);
+
+      INI.WriteBool('Settings','ShowStartScreen',writer_settings.ShowStartScreen);
+
+      for char_pos := 0 to Length(writer_settings.CustomCharacters) -1 do
+      begin
+         char_string := char_string + WriteSafeString(writer_settings.CustomCharacters[char_pos]) + '|';
+      end;
+      INI.WriteString('Settings','Characters',char_string);
+
+      for file_pos := 0 to Length(writer_settings.RecentFiles) -1 do
+      begin
+         file_string := file_string + WriteSafeString(writer_settings.RecentFiles[file_pos]) + '|';
+      end;
+      INI.WriteString('Settings','RecentFiles',file_string);
+
+      INI.UpdateFile;
+   finally
+      INI.Free;
+    end;
+  end;
+
+  function ReadWriterFile(const path: string) : ThornWriterFile;
+  var
+    ret: ThornWriterFile;
+    INI: TINIFile;
+    char_pos: Integer;
+  begin
+    if FileExists(path) then
+    begin
+      try
+        INI := TINIFile.Create(path);
+        ret.WriterVersion := INI.ReadInteger('Data','ThornWriterVersion',1);
+        ret.Author := ReadSafeString(INI.ReadString('Properties','Author',''));
+        ret.Description := ReadSafeString(INI.ReadString('Properties','Description',''));
+        ret.Title := ReadSafeString(INI.ReadString('Properties','Title',''));
+        ret.Website := ReadSafeString(INI.ReadString('Properties','Website',''));
+        ret.CustomCharacters := INI.ReadString('Properties','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
+        ret.PageCount:=INI.ReadInteger('Properties','PageCount',1);
+        ret.RtfData := ReadSafeString(INI.ReadString('Document','Page0',''));
+        ret.BackgroundColor:= ReadSafeString(INI.ReadString('Document','Page0Background','')); ;
+
+        for char_pos:=0 to Length(ret.CustomCharacters)-1 do
+        begin
+          ret.CustomCharacters[char_pos] := ReadSafeString(ret.CustomCharacters[char_pos]);
+        end;
+       finally
+          INI.Free;
+       end;
+     end;
+
+    result := ret;
+  end;
+
   procedure SaveWriterFile(const writer_file: ThornWriterFile; const path: string);
   var
     INI: TINIFile;
@@ -107,38 +216,6 @@ implementation
    finally
       INI.Free;
     end;
-  end;
-
-  function ReadWriterFile(const path: string) : ThornWriterFile;
-  var
-    ret: ThornWriterFile;
-    INI: TINIFile;
-    char_pos: Integer;
-  begin
-   try
-      if FileExists(path) then
-      begin
-        INI := TINIFile.Create(path);
-        ret.WriterVersion := INI.ReadInteger('Data','ThornWriterVersion',1);
-        ret.Author := ReadSafeString(INI.ReadString('Properties','Author',''));
-        ret.Description := ReadSafeString(INI.ReadString('Properties','Description',''));
-        ret.Title := ReadSafeString(INI.ReadString('Properties','Title',''));
-        ret.Website := ReadSafeString(INI.ReadString('Properties','Website',''));
-        ret.CustomCharacters := INI.ReadString('Properties','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
-        ret.PageCount:=INI.ReadInteger('Properties','PageCount',1);
-        ret.RtfData := ReadSafeString(INI.ReadString('Document','Page0',''));
-        ret.BackgroundColor:= ReadSafeString(INI.ReadString('Document','Page0Background','')); ;
-
-        for char_pos:=0 to Length(ret.CustomCharacters)-1 do
-        begin
-          ret.CustomCharacters[char_pos] := ReadSafeString(ret.CustomCharacters[char_pos]);
-        end;
-      end;
-     finally
-        INI.Free;
-     end;
-
-    result := ret;
   end;
 
   function WriteSafeString(const source: string) : string;
