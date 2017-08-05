@@ -173,6 +173,7 @@ type
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CopyToEditorMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
+    procedure DecreaseSizeMenuItemClick(Sender: TObject);
     procedure DeleteMenuItemClick(Sender: TObject);
     procedure DescriptionMemoChange(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
@@ -181,6 +182,7 @@ type
     procedure FontMenuItemClick(Sender: TObject);
     procedure FontToolbarButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure HighlightColorMenuItemClick(Sender: TObject);
@@ -475,13 +477,28 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+    SaveWriterSettings(SettingsFile,'settings.ini');
+
+    FreeAndNil(MainForm);
+    Application.Terminate;
+end;
+
+procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+var
+  diag_result : Integer;
+begin
   if Modified then
   begin
+      diag_result := MessageDlg('The file you are working on has unsaved changes. Do you want to save before exiting?', mtWarning, [mbYes,mbNo,mbCancel], 0);
+      if diag_result= mrCancel then CanClose := false;
+      if diag_result= mrNo then CanClose := true;
 
+      if diag_result= mrYes then
+      begin
+          SaveMenuItemClick(sender);
+          CanClose := true;
+      end;
   end;
-
-  FreeAndNil(MainForm);
-  Application.Terminate;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
@@ -544,12 +561,15 @@ begin
 
   SettingsFile:= ReadWriterSettings('settings.ini');
   UpdateLocalCharacters();
+
+  Modified:= false;
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
   if SettingsFile.ShowStartScreen then
   begin
+    Modified:= false;
     StartUpForm:=TStartUpForm.Create(Nil);
     StartUpForm.Init(SettingsFile);
     StartUpForm.Visible:=false;
@@ -609,8 +629,26 @@ begin
 end;
 
 procedure TMainForm.IncreaseSizeMenuItemClick(Sender: TObject);
+var
+  fnt_params: TFontParams;
+  char_pos: Integer;
+  old_start: Integer;
+  old_length: Integer;
 begin
+  old_start:= MainRTF.SelStart;
+  old_length:= MainRTF.SelLength;
+  for char_pos:=old_start to old_length-1 do
+  begin
+    MainRTF.GetTextAttributes(char_pos,fnt_params);
+    fnt_params.Size:= fnt_params.Size + 2;
 
+    MainRTF.SetRangeParams(char_pos,1,[tmm_Size],fnt_params,[],[]);
+  end;
+
+  MainRTF.SelStart:= old_start;
+  MainRTF.SelLength:= old_length;
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.ItalicToolbarButtonClick(Sender: TObject);
@@ -692,8 +730,33 @@ begin
 end;
 
 procedure TMainForm.NewMenuItemClick(Sender: TObject);
+var
+  diag_result : Integer;
 begin
+  if Modified then
+  begin
+      diag_result := MessageDlg('The file you are working on has unsaved changes. Are you sure you want to erase it?', mtWarning, [mbYes,mbNo,mbCancel], 0);
+      if diag_result= mrCancel then exit;
+      if diag_result= mrNo then exit;
+  end;
 
+  MainRTF.Clear;
+  AuthorEdit.Clear;
+  OpenFile.Author:= '';
+  MainRTF.Color:= clWhite;
+  OpenFile.BackgroundColor:= '';
+  OpenFile.CustomCharacters:= nil;
+  OpenFile.PageCount:= 0;
+  DescriptionMemo.Clear;
+  OpenFile.Description:= '';
+  TitleEdit.Clear;
+  OpenFile.Title:='';
+  WebsiteEdit.Clear;
+  OpenFile.Website:='';
+  Openfile.WriterVersion:= WRITER_VERSION;
+  UpdateFileCharacters();
+
+  Modified:= false;
 end;
 
 procedure TMainForm.OpenMenuItemClick(Sender: TObject);
@@ -713,6 +776,7 @@ begin
        MainRTF.Color := HexToColor(OpenFile.BackgroundColor);
 
     FileLocation := OpenDialog1.FileName;
+    SettingsFile.RecentFiles:= AddCharacterToCharArray(SettingsFile.RecentFiles, OpenDialog1.FileName);
     Modified := false;
   end;
 end;
@@ -789,6 +853,7 @@ begin
   begin
      self.Cursor:=crHourGlass;
 
+     SettingsFile.RecentFiles:= AddCharacterToCharArray(SettingsFile.RecentFiles, SaveDialog1.FileName);
      FileLocation := SaveDialog1.FileName;
      Modified := false;
      SaveWriterFile(OpenFile,FileLocation);
@@ -982,6 +1047,30 @@ end;
 procedure TMainForm.CutMenuItemClick(Sender: TObject);
 begin
   MainRTF.CutToClipboard;
+end;
+
+procedure TMainForm.DecreaseSizeMenuItemClick(Sender: TObject);
+var
+  fnt_params: TFontParams;
+  char_pos: Integer;
+  old_start: Integer;
+  old_length: Integer;
+begin
+  old_start:= MainRTF.SelStart;
+  old_length:= MainRTF.SelLength;
+
+  for char_pos:=old_start to old_length-1 do
+  begin
+    MainRTF.GetTextAttributes(char_pos,fnt_params);
+    fnt_params.Size:= fnt_params.Size - 2;
+
+    MainRTF.SetRangeParams(char_pos,1,[tmm_Size],fnt_params,[],[]);
+  end;
+
+  MainRTF.SelStart:= old_start;
+  MainRTF.SelLength:= old_length;
+
+  MainRTFSelectionChange(Sender);
 end;
 
 procedure TMainForm.DeleteMenuItemClick(Sender: TObject);

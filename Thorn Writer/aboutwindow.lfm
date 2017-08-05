@@ -1,12 +1,12 @@
 object AboutForm: TAboutForm
-  Left = 1620
-  Height = 351
-  Top = 496
+  Left = 525
+  Height = 350
+  Top = 265
   Width = 386
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'About'
-  ClientHeight = 351
+  ClientHeight = 350
   ClientWidth = 386
   Color = clForm
   Position = poMainFormCenter
@@ -744,7 +744,7 @@ object AboutForm: TAboutForm
     Color = clForm
     HideSelection = False
     Lines.Strings = (
-      'Thorn Writer'
+      'Thorn Writer 1.0'
       'A rich text editor for linguistics. Part of the Thorn Project.'
       ''
       'Thorn Project'
@@ -754,7 +754,7 @@ object AboutForm: TAboutForm
       'Author'
       'Ian Martinez'
     )
-    Rtf = '{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fnil Segoe UI;}}'#13#10'{\colortbl ;\red0\green0\blue0;}'#13#10'{\*\generator Riched20 10.0.15063}\viewkind4\uc1 '#13#10'\pard\cf1\b\f0\fs18 Thorn Writer\par'#13#10'\cf0\b0 A rich text editor for linguistics. Part of the Thorn Project.\par'#13#10'\par'#13#10'\cf1\b Thorn Project\par'#13#10'\cf0\b0 A free, open source, and cross platform software collection written in Free Pascal dedicated to linguistics. \f1\par'#13#10'\par'#13#10'\cf1\b\f0 Author\par'#13#10'\cf0\b0 Ian Martinez\cf1\b\par'#13#10'}'#13#10#0
+    Rtf = '{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fnil Segoe UI;}}'#13#10'{\colortbl ;\red0\green0\blue0;}'#13#10'{\*\generator Riched20 10.0.15063}\viewkind4\uc1 '#13#10'\pard\cf1\b\f0\fs18 Thorn Writer 1.0\par'#13#10'\cf0\b0 A rich text editor for linguistics. Part of the Thorn Project.\par'#13#10'\par'#13#10'\cf1\b Thorn Project\par'#13#10'\cf0\b0 A free, open source, and cross platform software collection written in Free Pascal dedicated to linguistics. \f1\par'#13#10'\par'#13#10'\cf1\b\f0 Author\par'#13#10'\cf0\b0 Ian Martinez\cf1\b\par'#13#10'}'#13#10#0
     TabOrder = 1
     ZoomFactor = 1
   end

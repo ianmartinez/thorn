@@ -1,7 +1,7 @@
 object StartUpForm: TStartUpForm
-  Left = 881
+  Left = 430
   Height = 514
-  Top = 280
+  Top = 209
   Width = 576
   BorderStyle = bsDialog
   Caption = 'Start Up'
@@ -5717,6 +5717,7 @@ object StartUpForm: TStartUpForm
       FF00FFFFFF00FFFFFF00
     }
     GlyphShowMode = gsmAlways
+    OnClick = PatreonButtonClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2

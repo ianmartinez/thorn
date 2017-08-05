@@ -1,10 +1,10 @@
 object MainForm: TMainForm
-  Left = -1436
-  Height = 681
-  Top = 1077
+  Left = 367
+  Height = 716
+  Top = 233
   Width = 875
   Caption = 'Thorn Writer'
-  ClientHeight = 661
+  ClientHeight = 696
   ClientWidth = 875
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
@@ -313,6 +313,7 @@ object MainForm: TMainForm
   }
   Menu = MainMenu
   OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
@@ -325,7 +326,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 633
+    Height = 668
     Top = 28
     Width = 616
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -562,7 +563,7 @@ object MainForm: TMainForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 616
-    Height = 633
+    Height = 668
     Top = 28
     Width = 259
     ActivePage = FileSheet
@@ -571,7 +572,7 @@ object MainForm: TMainForm
     TabOrder = 2
     object FileSheet: TTabSheet
       Caption = 'File'
-      ClientHeight = 605
+      ClientHeight = 640
       ClientWidth = 251
       object TitleLabel: TLabel
         Left = 8
@@ -644,7 +645,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = FileSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 429
+        Height = 464
         Top = 168
         Width = 235
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -656,7 +657,7 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 534
+      ClientHeight = 605
       ClientWidth = 251
       OnContextPopup = CharacterSheetContextPopup
       object CharacterGalleryTabs: TPageControl
@@ -668,7 +669,7 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 214
+        Height = 285
         Top = 312
         Width = 235
         ActivePage = FileTabSheet
@@ -683,7 +684,7 @@ object MainForm: TMainForm
         object FileTabSheet: TTabSheet
           Caption = 'File'
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ClientHeight = 186
+          ClientHeight = 257
           ClientWidth = 227
           object FileScrollBox: TScrollBox
             AnchorSideLeft.Control = FileTabSheet
@@ -693,19 +694,19 @@ object MainForm: TMainForm
             AnchorSideBottom.Control = FileTabSheet
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 186
+            Height = 257
             Top = 0
             Width = 227
             HorzScrollBar.Page = 1
             VertScrollBar.Page = 1
             Anchors = [akTop, akLeft, akRight, akBottom]
             BorderStyle = bsNone
-            ClientHeight = 186
+            ClientHeight = 257
             ClientWidth = 227
             TabOrder = 0
             object FileFlowPanel: TFlowPanel
               Left = 0
-              Height = 186
+              Height = 257
               Top = 0
               Width = 227
               Align = alClient
@@ -1925,6 +1926,7 @@ object MainForm: TMainForm
       object DecreaseSizeMenuItem: TMenuItem
         Caption = 'Decrease Font Size'
         ImageIndex = 192
+        OnClick = DecreaseSizeMenuItemClick
       end
       object FormatSep1: TMenuItem
         Caption = '-'
@@ -15194,8 +15196,8 @@ object MainForm: TMainForm
   end
   object CharacterMenu: TPopupMenu
     OnPopup = CharacterMenuPopup
-    left = 24
-    top = 104
+    left = 448
+    top = 32
     object CopyToEditorMenuItem: TMenuItem
       Caption = 'Copy To Editor'
       OnClick = CopyToEditorMenuItemClick

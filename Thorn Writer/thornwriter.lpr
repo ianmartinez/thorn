@@ -12,6 +12,7 @@ uses
 {$R *.res}
 
 begin
+  Application.Title:='Thorn Writer';
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);

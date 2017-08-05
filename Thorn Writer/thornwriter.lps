@@ -8,7 +8,7 @@
         <Filename Value="thornwriter.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="32" Y="9"/>
-        <UsageCount Value="179"/>
+        <UsageCount Value="183"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -18,11 +18,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainWindow"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="611"/>
-        <CursorPos X="3" Y="613"/>
-        <UsageCount Value="179"/>
+        <TopLine Value="565"/>
+        <CursorPos X="41" Y="579"/>
+        <UsageCount Value="183"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,9 +30,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="FileTypes"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="95"/>
-        <CursorPos X="8" Y="120"/>
-        <UsageCount Value="179"/>
+        <TopLine Value="10"/>
+        <CursorPos X="31" Y="32"/>
+        <UsageCount Value="183"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -43,8 +42,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutWindow"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="136"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -58,7 +58,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="10"/>
         <CursorPos X="20" Y="8"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -70,9 +70,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="StartWindow"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="66"/>
-        <CursorPos X="3" Y="68"/>
-        <UsageCount Value="103"/>
+        <TopLine Value="11"/>
+        <CursorPos X="5" Y="40"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -162,8 +162,8 @@
         <Filename Value="D:/richmemo/richmemo.pas"/>
         <UnitName Value="RichMemo"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="20"/>
-        <CursorPos X="23" Y="39"/>
+        <TopLine Value="7"/>
+        <CursorPos X="5" Y="38"/>
         <UsageCount Value="10"/>
       </Unit18>
       <Unit19>
@@ -175,127 +175,123 @@
         <UsageCount Value="9"/>
       </Unit19>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="536" Column="23" TopLine="531"/>
+        <Caret Line="631" TopLine="630"/>
       </Position1>
       <Position2>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="673" Column="54" TopLine="656"/>
+        <Caret Line="613" TopLine="612"/>
       </Position2>
       <Position3>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="564" Column="7" TopLine="541"/>
+        <Caret Line="1013" Column="69" TopLine="1007"/>
       </Position3>
       <Position4>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="667" Column="3" TopLine="665"/>
+        <Caret Line="725" Column="17" TopLine="711"/>
       </Position4>
       <Position5>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="583" Column="36" TopLine="561"/>
+        <Caret Line="722" Column="25" TopLine="326"/>
       </Position5>
       <Position6>
-        <Filename Value="startwindow.pas"/>
-        <Caret Line="82" Column="77" TopLine="61"/>
+        <Filename Value="mainwindow.pas"/>
+        <Caret Line="740" Column="24" TopLine="717"/>
       </Position6>
       <Position7>
-        <Filename Value="mainwindow.pas"/>
-        <Caret Line="566" Column="11" TopLine="560"/>
+        <Filename Value="startwindow.pas"/>
+        <Caret Line="69" Column="3" TopLine="67"/>
       </Position7>
       <Position8>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="210" Column="27" TopLine="192"/>
+        <Caret Line="744" Column="20" TopLine="713"/>
       </Position8>
       <Position9>
-        <Filename Value="thornwriter.lpr"/>
-        <Caret Line="20"/>
+        <Filename Value="startwindow.pas"/>
+        <Caret Line="107" Column="50" TopLine="84"/>
       </Position9>
       <Position10>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="338" Column="17" TopLine="331"/>
+        <Caret Line="10" Column="46"/>
       </Position10>
       <Position11>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="438" Column="106" TopLine="410"/>
+        <Caret Line="763" Column="106" TopLine="747"/>
       </Position11>
       <Position12>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="860" TopLine="859"/>
+        <Caret Line="851" Column="3" TopLine="846"/>
       </Position12>
       <Position13>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="428" Column="33" TopLine="430"/>
+        <Caret Line="841" Column="94" TopLine="833"/>
       </Position13>
       <Position14>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="430" Column="43" TopLine="431"/>
+        <Caret Line="479" Column="3" TopLine="477"/>
       </Position14>
       <Position15>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="431" Column="43" TopLine="431"/>
+        <Caret Line="718" TopLine="717"/>
       </Position15>
       <Position16>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="430" Column="43" TopLine="430"/>
+        <Caret Line="495" Column="3" TopLine="488"/>
       </Position16>
       <Position17>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="431" Column="43" TopLine="431"/>
+        <Caret Line="478" Column="4" TopLine="477"/>
       </Position17>
       <Position18>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="430" Column="43" TopLine="430"/>
+        <Caret Line="479" Column="6" TopLine="461"/>
       </Position18>
       <Position19>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="440" Column="150" TopLine="430"/>
+        <Caret Line="480" Column="53" TopLine="475"/>
       </Position19>
       <Position20>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="439" Column="150" TopLine="429"/>
+        <Caret Line="644" Column="13" TopLine="631"/>
       </Position20>
       <Position21>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="440" Column="150" TopLine="430"/>
+        <Caret Line="1057" Column="51" TopLine="1053"/>
       </Position21>
       <Position22>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="439" Column="150" TopLine="429"/>
+        <Caret Line="776" Column="80" TopLine="760"/>
       </Position22>
       <Position23>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="440" Column="150" TopLine="430"/>
+        <Caret Line="640" Column="45" TopLine="631"/>
       </Position23>
       <Position24>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="439" Column="150" TopLine="429"/>
+        <Caret Line="639" Column="75" TopLine="621"/>
       </Position24>
       <Position25>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="440" Column="150" TopLine="430"/>
+        <Caret Line="766" Column="37" TopLine="762"/>
       </Position25>
       <Position26>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="441" Column="150" TopLine="431"/>
+        <Caret Line="184" Column="46" TopLine="166"/>
       </Position26>
       <Position27>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="442" Column="150" TopLine="432"/>
+        <Caret Line="165" Column="59" TopLine="147"/>
       </Position27>
       <Position28>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="443" Column="150" TopLine="433"/>
+        <Caret Line="166" Column="11" TopLine="148"/>
       </Position28>
       <Position29>
         <Filename Value="mainwindow.pas"/>
-        <Caret Line="444" Column="150" TopLine="434"/>
+        <Caret Line="171" Column="63" TopLine="153"/>
       </Position29>
-      <Position30>
-        <Filename Value="mainwindow.pas"/>
-        <Caret Line="446" Column="150" TopLine="436"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
