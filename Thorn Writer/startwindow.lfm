@@ -1,7 +1,7 @@
 object StartUpForm: TStartUpForm
-  Left = 1079
+  Left = 881
   Height = 514
-  Top = 404
+  Top = 280
   Width = 576
   BorderStyle = bsDialog
   Caption = 'Start Up'
@@ -5722,7 +5722,7 @@ object StartUpForm: TStartUpForm
     TabOrder = 2
   end
   object ShowOnStartCheck: TCheckBox
-    Left = 472
+    Left = 368
     Height = 19
     Top = 200
     Width = 95

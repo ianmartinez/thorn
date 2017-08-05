@@ -18,11 +18,14 @@ type
     ConsonantsFlowPanel: TFlowPanel;
     CommonFlowPanel: TFlowPanel;
     CommonScrollBox: TScrollBox;
-    FormatSep1: TMenuItem;
+    FormatSep2: TMenuItem;
     FontMenuItem: TMenuItem;
     CharacterMenu: TPopupMenu;
     DeleteMenuItem: TMenuItem;
     CharacterSep1: TMenuItem;
+    DecreaseSizeMenuItem: TMenuItem;
+    IncreaseSizeMenuItem: TMenuItem;
+    FormatSep1: TMenuItem;
     RemoveDuplicatesMenuItem: TMenuItem;
     MoveToFileMenuItem: TMenuItem;
     MoveToLocalMenuItem: TMenuItem;
@@ -32,6 +35,9 @@ type
     TonesScrollBox: TScrollBox;
     OtherFlowPanel: TFlowPanel;
     OtherScrollBox: TScrollBox;
+    ToolButton6: TToolButton;
+    IncreaseSizeToolbarButton: TToolButton;
+    DecreaseSizeToolbarButton: TToolButton;
     VowelsFlowPanel: TFlowPanel;
     VowelsScrollBox: TScrollBox;
     AffricatesFlowPanel: TFlowPanel;
@@ -178,6 +184,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure HighlightColorMenuItemClick(Sender: TObject);
+    procedure IncreaseSizeMenuItemClick(Sender: TObject);
     procedure ItalicToolbarButtonClick(Sender: TObject);
     procedure JustifyToolbarButtonClick(Sender: TObject);
     procedure LeftToolbarButtonClick(Sender: TObject);
@@ -417,22 +424,18 @@ begin
 end;
 
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
-var old_params: TFontParams; old_font: TFont;
+var fnt_params: TFontParams; old_font: TFont;
 begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);
+  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
 
   old_font := TFont.Create;
-  old_font.Name := old_params.Name;
-  old_font.Size := old_params.Size;
-  old_font.Style := old_params.Style;
-  old_font.Color := old_params.Color;
+  old_font.Color := fnt_params.Color;
 
-  ColorDialog1.Color := old_font.Color;
+  ColorDialog1.Color:= fnt_params.Color;
   if ColorDialog1.Execute then
   begin
-    old_font.Color:= ColorDialog1.Color;
-    Modified := true;
-    MainRTF.SetTextAttributes(MainRTF.SelStart, MainRTF.SelLength, old_font);
+     fnt_params.Color:= ColorDialog1.Color;
+     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Color],fnt_params,[],[]);
   end;
 
   MainRTFSelectionChange(Sender);
@@ -603,6 +606,11 @@ begin
     fnt_params.HasBkClr:=true;
     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_BackColor],fnt_params,[],[]);
   end;
+end;
+
+procedure TMainForm.IncreaseSizeMenuItemClick(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.ItalicToolbarButtonClick(Sender: TObject);

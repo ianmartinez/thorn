@@ -5721,8 +5721,8 @@ object StartUpForm: TStartUpForm
     ShowHint = True
     TabOrder = 2
   end
-  object CheckBox1: TCheckBox
-    Left = 472
+  object ShowOnStartCheck: TCheckBox
+    Left = 368
     Height = 19
     Top = 200
     Width = 95
@@ -5730,6 +5730,7 @@ object StartUpForm: TStartUpForm
     Checked = True
     Color = clDefault
     Font.Color = clBtnText
+    OnChange = ShowOnStartCheckChange
     ParentColor = False
     ParentFont = False
     State = cbChecked
