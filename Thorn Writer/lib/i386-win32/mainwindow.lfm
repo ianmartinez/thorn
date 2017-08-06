@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 367
+  Left = 440
   Height = 716
-  Top = 233
-  Width = 875
+  Top = 225
+  Width = 1051
   Caption = 'Thorn Writer'
   ClientHeight = 696
-  ClientWidth = 875
+  ClientWidth = 1051
   Icon.Data = {
     BE2500000000010001003030000001002000A825000016000000280000003000
     0000600000000100200000000000002400006400000064000000000000000000
@@ -318,44 +318,16 @@ object MainForm: TMainForm
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.6.4.0'
-  object MainRTF: TRichMemo
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = MainToolbar
-    AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = SidebarTabs
-    AnchorSideBottom.Control = Owner
-    AnchorSideBottom.Side = asrBottom
-    Left = 0
-    Height = 668
-    Top = 28
-    Width = 616
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderStyle = bsNone
-    Color = clWhite
-    Font.CharSet = 4
-    Font.Height = -16
-    Font.Name = 'Open Sans'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    HideSelection = False
-    OnChange = MainRTFChange
-    OnSelectionChange = MainRTFSelectionChange
-    ParentFont = False
-    ScrollBars = ssAutoBoth
-    TabOrder = 0
-    ZoomFactor = 1
-  end
   object MainToolbar: TToolBar
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = MainRTF
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 27
     Top = 1
-    Width = 875
+    Width = 1051
     BorderSpacing.Top = 1
     ButtonHeight = 24
     ButtonWidth = 24
@@ -367,7 +339,7 @@ object MainForm: TMainForm
     ParentColor = False
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 1
+    TabOrder = 0
     object NewToolbarButton: TToolButton
       Left = 1
       Top = 0
@@ -397,120 +369,37 @@ object MainForm: TMainForm
       Caption = 'ToolButton1'
       Style = tbsDivider
     end
-    object UndoToolbarButton: TToolButton
-      Left = 78
-      Top = 0
-      Caption = 'Undo'
-      ImageIndex = 45
-      MenuItem = UndoMenuItem
-    end
-    object RedoToolbarButton: TToolButton
-      Left = 102
-      Top = 0
-      Caption = 'Redo'
-      ImageIndex = 44
-      MenuItem = RedoMenuItem
-    end
-    object ToolButton2: TToolButton
-      Left = 126
-      Height = 24
-      Top = 0
-      Width = 5
-      Caption = 'ToolButton2'
-      Style = tbsDivider
-    end
     object CopyToolbarButton: TToolButton
-      Left = 155
+      Left = 102
       Top = 0
       Caption = 'Copy'
       ImageIndex = 34
       MenuItem = CopyMenuItem
     end
     object CutToolbarButton: TToolButton
-      Left = 131
+      Left = 78
       Top = 0
       Caption = 'Cut'
       ImageIndex = 36
       MenuItem = CutMenuItem
     end
     object PasteToolbarButton: TToolButton
-      Left = 179
+      Left = 126
       Top = 0
       Caption = 'Paste'
       ImageIndex = 42
       MenuItem = PasteMenuItem
     end
     object ToolButton3: TToolButton
-      Left = 227
+      Left = 174
       Height = 24
       Top = 0
       Width = 5
       Caption = 'ToolButton3'
       Style = tbsDivider
     end
-    object BoldToolbarButton: TToolButton
-      Left = 232
-      Top = 0
-      Caption = 'Bold'
-      ImageIndex = 331
-      OnClick = BoldToolbarButtonClick
-      Style = tbsCheck
-    end
-    object ItalicToolbarButton: TToolButton
-      Left = 256
-      Top = 0
-      Caption = 'Italic'
-      ImageIndex = 72
-      OnClick = ItalicToolbarButtonClick
-      Style = tbsCheck
-    end
-    object UnderlineToolbarButton: TToolButton
-      Left = 280
-      Top = 0
-      Caption = 'Underline'
-      ImageIndex = 74
-      OnClick = UnderlineToolbarButtonClick
-      Style = tbsCheck
-    end
-    object ToolButton4: TToolButton
-      Left = 304
-      Height = 24
-      Top = 0
-      Width = 8
-      Caption = 'ToolButton4'
-      Style = tbsSeparator
-    end
-    object LeftToolbarButton: TToolButton
-      Left = 312
-      Top = 0
-      Caption = 'Left Align'
-      ImageIndex = 67
-      OnClick = LeftToolbarButtonClick
-    end
-    object CenterToolbarButton: TToolButton
-      Left = 336
-      Top = 0
-      Caption = 'Center Align'
-      ImageIndex = 65
-      OnClick = CenterToolbarButtonClick
-    end
-    object RightToolbarButton: TToolButton
-      Left = 360
-      Top = 0
-      Caption = 'Right Align'
-      ImageIndex = 68
-      OnClick = RightToolbarButtonClick
-    end
-    object ToolButton5: TToolButton
-      Left = 408
-      Height = 24
-      Top = 0
-      Width = 8
-      Caption = 'ToolButton5'
-      Style = tbsSeparator
-    end
     object FontToolbarButton: TToolButton
-      Left = 416
+      Left = 179
       Top = 0
       Caption = 'Font...'
       ImageIndex = 360
@@ -518,36 +407,20 @@ object MainForm: TMainForm
       OnClick = FontToolbarButtonClick
     end
     object PasteTextToolbarButton: TToolButton
-      Left = 203
+      Left = 150
       Top = 0
       Caption = 'Paste Text'
       ImageIndex = 361
-      MenuItem = PasteTextMenuItem
-    end
-    object JustifyToolbarButton: TToolButton
-      Left = 384
-      Top = 0
-      Caption = 'Justify'
-      ImageIndex = 136
-      OnClick = JustifyToolbarButtonClick
-    end
-    object ToolButton6: TToolButton
-      Left = 440
-      Height = 24
-      Top = 0
-      Width = 8
-      Caption = 'ToolButton6'
-      Style = tbsSeparator
     end
     object IncreaseSizeToolbarButton: TToolButton
-      Left = 448
+      Left = 203
       Top = 0
       Caption = 'Increase Font Size'
       ImageIndex = 191
       MenuItem = IncreaseSizeMenuItem
     end
     object DecreaseSizeToolbarButton: TToolButton
-      Left = 472
+      Left = 227
       Top = 0
       Caption = 'Decrease Font Size'
       ImageIndex = 192
@@ -562,14 +435,14 @@ object MainForm: TMainForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 616
+    Left = 792
     Height = 668
     Top = 28
     Width = 259
     ActivePage = FileSheet
     Anchors = [akTop, akRight, akBottom]
     TabIndex = 0
-    TabOrder = 2
+    TabOrder = 1
     object FileSheet: TTabSheet
       Caption = 'File'
       ClientHeight = 640
@@ -657,7 +530,7 @@ object MainForm: TMainForm
     end
     object CharacterSheet: TTabSheet
       Caption = 'Characters'
-      ClientHeight = 605
+      ClientHeight = 640
       ClientWidth = 251
       OnContextPopup = CharacterSheetContextPopup
       object CharacterGalleryTabs: TPageControl
@@ -669,22 +542,21 @@ object MainForm: TMainForm
         AnchorSideBottom.Control = CharacterSheet
         AnchorSideBottom.Side = asrBottom
         Left = 8
-        Height = 285
+        Height = 320
         Top = 312
         Width = 235
-        ActivePage = FileTabSheet
+        ActivePage = LocalTabSheet
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
         BorderSpacing.Top = 8
         BorderSpacing.Right = 8
         BorderSpacing.Bottom = 8
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
-        OnChange = CharacterGalleryTabsChange
         object FileTabSheet: TTabSheet
           Caption = 'File'
           ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ClientHeight = 257
+          ClientHeight = 292
           ClientWidth = 227
           object FileScrollBox: TScrollBox
             AnchorSideLeft.Control = FileTabSheet
@@ -694,19 +566,19 @@ object MainForm: TMainForm
             AnchorSideBottom.Control = FileTabSheet
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 257
+            Height = 292
             Top = 0
             Width = 227
             HorzScrollBar.Page = 1
             VertScrollBar.Page = 1
             Anchors = [akTop, akLeft, akRight, akBottom]
             BorderStyle = bsNone
-            ClientHeight = 257
+            ClientHeight = 292
             ClientWidth = 227
             TabOrder = 0
             object FileFlowPanel: TFlowPanel
               Left = 0
-              Height = 257
+              Height = 292
               Top = 0
               Width = 227
               Align = alClient
@@ -720,7 +592,7 @@ object MainForm: TMainForm
         end
         object LocalTabSheet: TTabSheet
           Caption = 'Local'
-          ClientHeight = 186
+          ClientHeight = 292
           ClientWidth = 227
           object LocalScrollBox: TScrollBox
             AnchorSideLeft.Control = LocalTabSheet
@@ -730,19 +602,19 @@ object MainForm: TMainForm
             AnchorSideBottom.Control = LocalTabSheet
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 186
+            Height = 292
             Top = 0
             Width = 227
             HorzScrollBar.Page = 1
             VertScrollBar.Page = 1
             Anchors = [akTop, akLeft, akRight, akBottom]
             BorderStyle = bsNone
-            ClientHeight = 186
+            ClientHeight = 292
             ClientWidth = 227
             TabOrder = 0
             object LocalFlowPanel: TFlowPanel
               Left = 0
-              Height = 186
+              Height = 292
               Top = 0
               Width = 227
               Align = alClient
@@ -787,7 +659,6 @@ object MainForm: TMainForm
               ControlList = <>
               FlowStyle = fsLeftRightTopBottom
               TabOrder = 0
-              OnClick = CommonFlowPanelClick
             end
           end
         end
@@ -815,7 +686,6 @@ object MainForm: TMainForm
               Caption = 'Consonants'
               ClientHeight = 217
               ClientWidth = 219
-              OnContextPopup = ConsonantsTabSheetContextPopup
               object ConsonantsScrollBox: TScrollBox
                 AnchorSideLeft.Control = ConsonantsTabSheet
                 AnchorSideTop.Control = ConsonantsTabSheet
@@ -834,7 +704,6 @@ object MainForm: TMainForm
                 ClientHeight = 217
                 ClientWidth = 219
                 TabOrder = 0
-                OnClick = ConsonantsScrollBoxClick
                 object ConsonantsFlowPanel: TFlowPanel
                   Left = 0
                   Height = 217
@@ -846,7 +715,6 @@ object MainForm: TMainForm
                   ControlList = <>
                   FlowStyle = fsLeftRightTopBottom
                   TabOrder = 0
-                  OnClick = ConsonantsFlowPanelClick
                 end
               end
             end
@@ -1358,6 +1226,32 @@ object MainForm: TMainForm
       end
     end
   end
+  object MainMemo: TRichMemo
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = MainToolbar
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = SidebarTabs
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 668
+    Top = 28
+    Width = 792
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderStyle = bsNone
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    HideSelection = False
+    Lines.Strings = (
+      ''
+    )
+    ParentFont = False
+    Rtf = '{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil Segoe UI;}}'#13#10'{\*\generator Riched20 10.0.15063}\viewkind4\uc1 '#13#10'\pard\f0\fs18\par'#13#10'\par'#13#10'}'#13#10#0
+    ScrollBars = ssBoth
+    TabOrder = 2
+    ZoomFactor = 1
+  end
   object MainMenu: TMainMenu
     Images = IconPack
     left = 368
@@ -1581,91 +1475,6 @@ object MainForm: TMainForm
     end
     object EditMenu: TMenuItem
       Caption = 'Edit'
-      object UndoMenuItem: TMenuItem
-        Caption = 'Undo'
-        Bitmap.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00006D370EFFFFFF0004733C3C0475
-          397804743AB404743AF004743ACD057539620080330AFFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000763B27FFFFFF002FE1883C31DF
-          887830E087B430DF86F024C373FF139753FF05773BF107753A23FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000077330FFFFFFF0004733C3C0475
-          397804743AB405773CF0109852FF1FC771FF13A45AFF04743A88FFFFFF00FFFF
-          FF00FFFFFF0003753C5904763BD905763BA0FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00008B460B04773A76088847FF18C86EFF04773CEAFFFFFF00FFFF
-          FF00057A3E620D8648FE35BA77FF057D40FF00773C1EFFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF0000000001047B3EF024CD78FF0B8D4AFFFFFFFF000582
-          4162138D4EFE6BDDA3FF3EB678FF058141CB00993305FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF000080400C04824176119351FF3ED589FF078242EA0783454A1793
-          54FE8DE5B9FF52BE87FF058644FF058644FF058644FF058644FF058644FF0586
-          44FF058644FF088847FF28A867FF56D695FF34B573FF06854488058C48BD98E0
-          BBFFB5F5D4FF95F0C1FF95F0C1FF95F0C1FF95F0C1FF95F0C1FF95F0C1FF95F0
-          C1FF95F0C1FF94F0C0FF6FD6A1FF33AC6FFF078D48F1078A49230793484723A0
-          61FECCF1DFFF7ECDA4FF06924AFF06924AFF06924AFF06924AFF06924AFF0692
-          4AFF06924AFF06924AFF069249CD0592496200994D0AFFFFFF00FFFFFF000597
-          4B6228A665FEE4F6EDFF92D4B2FF06974CC5FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00059A4E6229A968FEE8F6EFFF31AB6CFF089E4B22FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00059A4D5D069A4EDF06994D9EFFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-        ImageIndex = 45
-        OnClick = UndoMenuItemClick
-      end
-      object RedoMenuItem: TMenuItem
-        Caption = 'Redo'
-        Bitmap.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
-          00010475394804753AB104743AFD04743AC304733B8703743A4B006D370EFFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000010475
-          3AD20E8C4BFF1FB86BFF2EDD85FF30E087C32FE1868730E0884B22CC770FFFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00047539480B8B
-          49FF22D178FF13A259FF077B3FFF04743AC304733B8703743A4B0077330FFFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0004763BB112B2
-          61FF0EA055FF05763AA60076371CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF0005773C6B03763BDE04763C9100800002FFFFFF00FFFFFF00047B3EFA26D2
-          7CFF088847FF057A3D32FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00057B3EE22AAD6BFF189655FF037B3D9E00800002FFFFFF00048241B12EBE
-          75FF22AC65FF058141A60980401CFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF0006814186239F60FF71E2A9FF239F60FF0581419E00808002048743481B9C
-          5AFF60E1A0FF32B371FF0D8D4CFF058644FF058644FF058644FF058644FF0586
-          44FF058644FF058644FF30A56AFF94EABEFF30A56AFF0585439B00FF0001058C
-          46D225A261FF61CB95FF90ECBDFF95F0C1FF95F0C1FF95F0C1FF95F0C1FF95F0
-          C1FF95F0C1FF95F0C1FF95F0C1FFAAF3CDFFB7F0D3FF10924FFFFFFFFF0000FF
-          000107914A48069249B106924AFD06924AFF06924AFF06924AFF06924AFF0692
-          4AFF06924AFF06924AFF4CB57FFFD5F6E5FF4CB57FFF06914A9EFFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF0005974C9158B987FFEDF9F3FF58B987FF06984C9E00808002FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00069A4EDE9BD7B8FF5CBD8BFF06994D9E00808002FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00079B4F6B06994EE2069A4E8600808002FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-        ImageIndex = 44
-        OnClick = RedoMenuItemClick
-      end
-      object EditSep1: TMenuItem
-        Caption = '-'
-      end
       object CutMenuItem: TMenuItem
         Caption = 'Cut'
         Bitmap.Data = {
@@ -1789,47 +1598,6 @@ object MainForm: TMainForm
         ImageIndex = 42
         OnClick = PasteMenuItemClick
       end
-      object PasteTextMenuItem: TMenuItem
-        Caption = 'Paste Text'
-        Bitmap.Data = {
-          36040000424D3604000000000000360000002800000010000000100000000100
-          2000000000000004000064000000640000000000000000000000FFFFFF006A6E
-          6C4E6E7370E5686D6BFC686C6AFC676C69FC666B69FC666A68FC656A67FC6469
-          67FC646866FC636866FC696D6BE764686651FFFFFF00FFFFFF00FFFFFF007277
-          75E6ECEDEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFF0F1F1FF6C706EEA64696601FFFFFF00FFFFFF007176
-          74FFFEFEFEFFF2F4F3FFF3F5F4FFF4F6F5FFF5F7F6FFF6F8F7FFF7F8F8FFF7F9
-          F8FFF7F9F8FFF7F8F8FFFFFFFFFF6B706EFC696D6B08FFFFFF00FFFFFF00767B
-          79FFFEFEFEFFD9D9D9FFD3D3D3FFD3D3D3FFD3D3D3FFD7D7D7FFF2F4F3FFF3F5
-          F4FFF3F5F4FFF2F4F3FFFFFFFFFF707573FC6E727008FFFFFF00FFFFFF007B80
-          7DFFFEFEFEFFEBEFEDFFEBEEEDFFECEFEEFFEDF0EEFFEDF0EFFFEEF0EFFFEEF1
-          EFFFEEF1EFFFEFF0F0FFFFFFFFFF757A78FC72777508FFFFFF00FFFFFF007F85
-          82FFFDFEFEFFD6D7D6FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
-          D3FFD3D3D3FFD6D7D6FFFEFEFEFF7A7F7CFC777C7A08FFFFFF00FFFFFF00848A
-          87FFFDFEFDFFE6E9E7FFE3E8E6FFE3E8E5FFE3E8E6FFE4E8E6FFE4E8E6FFE4E9
-          E6FFE4E9E6FFE5E9E7FFFEFEFEFF7E8481FC7C817F08FFFFFF00FFFFFF00898F
-          8CFFFDFEFDFFE4E9E7FFE2E6E4FFE1E6E3FFE0E5E2FFDFE4E2FFDFE4E2FFDFE4
-          E2FFDFE4E2FFE0E5E3FFFEFEFEFF828885FC81868408FFFFFF00FFFFFF008E93
-          91FFFDFEFDFFD6D6D6FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
-          D3FFD3D3D3FFD4D5D4FFFEFEFEFF878C8AFC858B8808FFFFFF00FFFFFF009298
-          96FFFDFEFDFFE5E9E7FFE1E6E4FFE0E5E2FFDEE3E1FFDBE1DFFFD8DFDCFFD5DC
-          D9FFD5DCD9FFD6DDDAFFFEFEFEFF8C918FFC8A908D08FFFFFF00FFFFFF00979D
-          9BFFFDFEFEFFD7D7D7FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3
-          D3FFCECFCEFFCAD0CCFFD8DAD9FF909694F98F959203FFFFFF00FFFFFF009CA2
-          9FFFFEFEFEFFE9EDEBFFE6EAE8FFE3E7E5FFE0E5E2FFDCE2DFFFD9DFDCFFBCC2
-          BFFFA7ACA9FFB0B1B1FFD6D8D7FE989E9CB1FFFFFF00FFFFFF00FFFFFF00A1A7
-          A4FFFEFEFEFFD8D9D9FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFBCBC
-          BCFFFFFFFFFFFCFDFDFFA7ACAAF5999F9C3CFFFFFF00FFFFFF00FFFFFF00A5AC
-          A9FFFEFEFEFFF2F3F2FFEDF0EFFFE9EDEBFFE5EAE8FFE1E6E4FFE0E5E3FFD6D8
-          D8FFFDFDFDFFBABFBDF69FA6A375FFFFFF00FFFFFF00FFFFFF00FFFFFF00ACB3
-          B0E4ECEEEDFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFF9FAFAFFE5E7
-          E6FFB0B6B3F6A5ABA879FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00AFB6
-          B349B0B7B4E2AEB4B1FFADB4B1FFACB3B0FFACB2AFFFABB2AFFFABB2AFF6ACB2
-          AFB2A9B0AD44FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-        ImageIndex = 361
-        OnClick = PasteTextMenuItemClick
-      end
       object EditSep2: TMenuItem
         Caption = '-'
       end
@@ -1916,15 +1684,87 @@ object MainForm: TMainForm
         OnClick = ClearMenuItemClick
       end
     end
-    object FormatMenu: TMenuItem
-      Caption = 'Format'
+    object DisplayMenu: TMenuItem
+      Caption = 'Display'
       object IncreaseSizeMenuItem: TMenuItem
         Caption = 'Increase Font Size'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008C512681884B22FB884B22FB8C51
+          2681FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00884B22FBD7B190FFC9976BFF884B
+          22FBFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00874A20FFD7B393FFC79467FF874A
+          20FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00894C21FFD0A988FFBD8758FF874A
+          20FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF0094572A81925429FB915327FF8F5226FF925528F7C59976FFB3794AFF8E52
+          26F7894C21FF884B21FF874A21FB8A4F2481FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00985A2CFBBC8D68FFA46635FFA56635FFA66837FFA86A39FFA96C3BFFAA6D
+          3DFFAC6F3FFFAD7141FFAB7040FF8A4D23FBFFFFFF00FFFFFF00FFFFFF00FFFF
+          FF009D5F30FBC39A79FFC79F7FFFC59D7DFFC49A7AFFB7835CFFA96D3EFFBE90
+          6DFFC19674FFC09472FFB98A66FF905227FBFFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00A4673781A26333FBA06131FF9F6030FFA4683AF7CAA486FFB37D53FF9D5E
+          31F7985A2CFF97592BFF96582BFB96592B81FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00A36433FFD2B196FFBD8D67FF9F60
+          30FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00A46534FFD9BCA4FFC89E7BFFA465
+          34FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00A56635FBDCC0A9FFDABDA6FFA566
+          35FBFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00A86B3B81A56736FBA56736FBA86B
+          3B81FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+        }
         ImageIndex = 191
         OnClick = IncreaseSizeMenuItemClick
       end
       object DecreaseSizeMenuItem: TMenuItem
         Caption = 'Decrease Font Size'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF0094572A81925429FB915327FF8F5226FF8E5125FF8D4F24FF8C4E23FF8A4D
+          22FF894C21FF884B21FF874A21FB8A4F2481FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00985A2CFBBC8D68FFA46635FFA56635FFA66837FFA86A39FFA96C3BFFAA6D
+          3DFFAC6F3FFFAD7141FFAB7040FF8A4D23FBFFFFFF00FFFFFF00FFFFFF00FFFF
+          FF009D5F30FBC39A79FFC79F7FFFC59D7DFFC59B7CFFC49A7AFFC39978FFC297
+          76FFC19674FFC09472FFB98A66FF905227FBFFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00A4673781A26333FBA06131FF9F6030FF9D5F2FFF9C5E2FFF9B5D2EFF9A5B
+          2DFF985A2CFF97592BFF96582BFB96592B81FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+        }
         ImageIndex = 192
         OnClick = DecreaseSizeMenuItemClick
       end
@@ -1978,10 +1818,6 @@ object MainForm: TMainForm
       object FontColorMenuItem: TMenuItem
         Caption = 'Font Color...'
         OnClick = FontColorMenuItemClick
-      end
-      object HighlightColorMenuItem: TMenuItem
-        Caption = 'Highlight Color...'
-        OnClick = HighlightColorMenuItemClick
       end
       object BackgroundColorMenuItem: TMenuItem
         Caption = 'Background Color...'
@@ -15204,7 +15040,6 @@ object MainForm: TMainForm
     end
     object CharacterSep1: TMenuItem
       Caption = '-'
-      OnClick = CharacterSep1Click
     end
     object MoveToLocalMenuItem: TMenuItem
       Caption = 'Copy To Local'
@@ -15216,7 +15051,6 @@ object MainForm: TMainForm
     end
     object CharacterSep2: TMenuItem
       Caption = '-'
-      OnClick = CharacterSep2Click
     end
     object RemoveDuplicatesMenuItem: TMenuItem
       Caption = 'Remove Duplicates'

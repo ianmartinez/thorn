@@ -7,10 +7,9 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ExtCtrls, ComCtrls, StdCtrls, EditBtn, Interfaces, FileTypes, Clipbrd,
-  RichMemo, AboutWindow, StartWindow, Contnrs, LCLIntf, Types;
+  RichMemo, SynEdit, AboutWindow, StartWindow, Contnrs, LCLIntf, Types;
 
 type
-
   { TMainForm }
 
   TMainForm = class(TForm)
@@ -26,6 +25,7 @@ type
     DecreaseSizeMenuItem: TMenuItem;
     IncreaseSizeMenuItem: TMenuItem;
     FormatSep1: TMenuItem;
+    MainMemo: TRichMemo;
     RemoveDuplicatesMenuItem: TMenuItem;
     MoveToFileMenuItem: TMenuItem;
     MoveToLocalMenuItem: TMenuItem;
@@ -35,7 +35,6 @@ type
     TonesScrollBox: TScrollBox;
     OtherFlowPanel: TFlowPanel;
     OtherScrollBox: TScrollBox;
-    ToolButton6: TToolButton;
     IncreaseSizeToolbarButton: TToolButton;
     DecreaseSizeToolbarButton: TToolButton;
     VowelsFlowPanel: TFlowPanel;
@@ -57,40 +56,23 @@ type
     DescriptionMemo: TMemo;
     CharacterGalleryTabs: TPageControl;
     EditMenu: TMenuItem;
-    EditSep1: TMenuItem;
     CopyMenuItem: TMenuItem;
     CutMenuItem: TMenuItem;
     EditSep2: TMenuItem;
-    FormatMenu: TMenuItem;
+    DisplayMenu: TMenuItem;
     FontColorMenuItem: TMenuItem;
-    HighlightColorMenuItem: TMenuItem;
     BackgroundColorMenuItem: TMenuItem;
     HelpMenu: TMenuItem;
     AboutMenuItem: TMenuItem;
-    PasteTextMenuItem: TMenuItem;
-    ToolButton4: TToolButton;
-    LeftToolbarButton: TToolButton;
-    CenterToolbarButton: TToolButton;
-    RightToolbarButton: TToolButton;
-    ToolButton5: TToolButton;
     FontToolbarButton: TToolButton;
     PasteTextToolbarButton: TToolButton;
-    JustifyToolbarButton: TToolButton;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
     PasteMenuItem: TMenuItem;
-    RedoMenuItem: TMenuItem;
-    RedoToolbarButton: TToolButton;
-    ToolButton2: TToolButton;
     CopyToolbarButton: TToolButton;
     CutToolbarButton: TToolButton;
     PasteToolbarButton: TToolButton;
     ToolButton3: TToolButton;
-    BoldToolbarButton: TToolButton;
-    ItalicToolbarButton: TToolButton;
-    UnderlineToolbarButton: TToolButton;
-    UndoToolbarButton: TToolButton;
-    UndoMenuItem: TMenuItem;
     PreviewEdit: TEdit;
     IPACategoriesTabs: TPageControl;
     AccentsGroup: TRadioGroup;
@@ -133,7 +115,6 @@ type
     MainMenu: TMainMenu;
     FileMenu: TMenuItem;
     FileSep2: TMenuItem;
-    MainRTF: TRichMemo;
     SidebarTabs: TPageControl;
     SaveMenuItem: TMenuItem;
     SaveAsMenuItem: TMenuItem;
@@ -155,27 +136,18 @@ type
     procedure AffricatesFlowPanelClick(Sender: TObject);
     procedure AuthorEditChange(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
-    procedure BoldToolbarButtonClick(Sender: TObject);
-    procedure CenterToolbarButtonClick(Sender: TObject);
-    procedure CharacterGalleryTabsChange(Sender: TObject);
     procedure CharacterMenuPopup(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
-    procedure CharacterSep1Click(Sender: TObject);
-    procedure CharacterSep2Click(Sender: TObject);
     procedure CharacterSheetContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
     procedure ClearMenuItemClick(Sender: TObject);
-    procedure CommonFlowPanelClick(Sender: TObject);
-    procedure ConsonantsFlowPanelClick(Sender: TObject);
-    procedure ConsonantsScrollBoxClick(Sender: TObject);
-    procedure ConsonantsTabSheetContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
     procedure CopyMenuItemClick(Sender: TObject);
     procedure CopyToEditorMenuItemClick(Sender: TObject);
     procedure CutMenuItemClick(Sender: TObject);
     procedure DecreaseSizeMenuItemClick(Sender: TObject);
     procedure DeleteMenuItemClick(Sender: TObject);
     procedure DescriptionMemoChange(Sender: TObject);
+    procedure EditSep1Click(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FileButtonClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
@@ -185,30 +157,23 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure HighlightColorMenuItemClick(Sender: TObject);
     procedure IncreaseSizeMenuItemClick(Sender: TObject);
-    procedure ItalicToolbarButtonClick(Sender: TObject);
-    procedure JustifyToolbarButtonClick(Sender: TObject);
-    procedure LeftToolbarButtonClick(Sender: TObject);
     procedure LocalButtonClick(Sender: TObject);
+    procedure MainMemoChange(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
-    procedure MainRTFSelectionChange(Sender: TObject);
     procedure MoveToFileMenuItemClick(Sender: TObject);
     procedure MoveToLocalMenuItemClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
     procedure IPACategoriesTabsChange(Sender: TObject);
     procedure PasteMenuItemClick(Sender: TObject);
-    procedure PasteTextMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
     procedure RemoveDuplicatesMenuItemClick(Sender: TObject);
-    procedure RightToolbarButtonClick(Sender: TObject);
     procedure SaveAsMenuItemClick(Sender: TObject);
     procedure SaveMenuItemClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure TitleEditChange(Sender: TObject);
-    procedure UnderlineToolbarButtonClick(Sender: TObject);
     procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
     procedure WebsiteEditChange(Sender: TObject);
@@ -220,12 +185,15 @@ type
     procedure UpdateFileCharacters();
     procedure UpdateLocalCharacters();
     procedure CharacterButtonHandler(Sender: TObject);
+    procedure SaveDisplay();
+    procedure ClearDisplay();
+    procedure RenderDisplay();
     function GetAccentToggles() : TComponentList;
     function SmartReplace(input: string) : string;
     function CharsFromFile(path: string) : CharArray;
+
   private
     { private declarations }
-
     accent_toggles: TComponentList;
   public
     { public declarations }
@@ -240,8 +208,64 @@ var
   StartUpFile: String;
 
 implementation
-
 {$R *.lfm}
+
+function ColorToHex(Color : TColor) : string;
+begin
+   Result :=
+     IntToHex(GetRValue(ColorToRGB(Color)), 2) +
+     IntToHex(GetGValue(ColorToRGB(Color)), 2) +
+     IntToHex(GetBValue(ColorToRGB(Color)), 2) ;
+end;
+
+function HexToColor(sColor : string) : TColor;
+begin
+   Result :=
+     RGB(
+       StrToInt('$'+Copy(sColor, 1, 2)),
+       StrToInt('$'+Copy(sColor, 3, 2)),
+       StrToInt('$'+Copy(sColor, 5, 2))
+     );
+end;
+
+procedure TMainForm.SaveDisplay();
+begin
+  OpenFile.TextDisplay.BackgroundColor:= ColorToHex(MainMemo.Color);
+  OpenFile.TextDisplay.FontColor:= ColorToHex(MainMemo.Font.Color);
+  OpenFile.TextDisplay.FontName:= MainMemo.Font.Name;
+  OpenFile.TextDisplay.FontSize:= MainMemo.Font.Size;
+  OpenFile.TextDisplay.FontBold:= MainMemo.Font.Bold;
+  OpenFile.TextDisplay.FontItalic:= MainMemo.Font.Italic;
+  OpenFile.TextDisplay.FontUnderline:= MainMemo.Font.Underline;
+  OpenFile.TextDisplay.FontStrike:= MainMemo.Font.StrikeThrough;
+end;
+
+procedure TMainForm.ClearDisplay();
+begin
+  OpenFile.TextDisplay.BackgroundColor:= ColorToHex(clWhite);
+  OpenFile.TextDisplay.FontColor:= ColorToHex(clBlack);
+  OpenFile.TextDisplay.FontName:= DEFAULT_FONT;
+  OpenFile.TextDisplay.FontSize:= 12;
+  OpenFile.TextDisplay.FontBold:= false;
+  OpenFile.TextDisplay.FontItalic:= false;
+  OpenFile.TextDisplay.FontUnderline:= false;
+  OpenFile.TextDisplay.FontStrike:= false;
+
+  RenderDisplay();
+end;
+
+procedure TMainForm.RenderDisplay();
+begin
+  MainMemo.Color:= HexToColor(OpenFile.TextDisplay.BackgroundColor);
+  MainMemo.Font.Color:= HexToColor(OpenFile.TextDisplay.FontColor);
+  MainMemo.Font.Name:= OpenFile.TextDisplay.FontName;
+  MainMemo.Font.Size:= OpenFile.TextDisplay.FontSize;
+  MainMemo.Font.Bold:= OpenFile.TextDisplay.FontBold;
+  MainMemo.Font.Italic:= OpenFile.TextDisplay.FontItalic;
+  MainMemo.Font.Underline:= OpenFile.TextDisplay.FontUnderline;
+  MainMemo.Font.StrikeThrough:= OpenFile.TextDisplay.FontStrike;
+end;
+
 function TMainForm.CharsFromFile(path: string) : CharArray;
 var
   f_stream: TFileStream;
@@ -267,24 +291,6 @@ begin
   end;
 end;
 
-function ColorToHex(Color : TColor) : string;
-begin
-   Result :=
-     IntToHex(GetRValue(ColorToRGB(Color)), 2) +
-     IntToHex(GetGValue(ColorToRGB(Color)), 2) +
-     IntToHex(GetBValue(ColorToRGB(Color)), 2) ;
-end;
-
-function HexToColor(sColor : string) : TColor;
-begin
-   Result :=
-     RGB(
-       StrToInt('$'+Copy(sColor, 1, 2)),
-       StrToInt('$'+Copy(sColor, 3, 2)),
-       StrToInt('$'+Copy(sColor, 5, 2))
-     );
-end;
-
 { TMainForm }
 procedure TMainForm.BuildCharacter();
 var base: string; accent_count: Integer; accents: TStringList; toggle_count: Integer;
@@ -300,17 +306,17 @@ begin
   end;
 
   { Combine accent marks }
-  for accent_count := 0 to accents.Count -1 do    base := base + accents[accent_count];
+  for accent_count := 0 to accents.Count -1 do base := base + accents[accent_count];
 
-  CharacterPreviewButton.Caption := base;
+  CharacterPreviewButton.Caption:= base;
 end;
 
 procedure TMainForm.InsertText(txt: string);
 var old_sel_pos: Integer;
 begin
-  old_sel_pos:= MainRTF.SelStart;
-  MainRTF.SelText := txt;
-  MainRTF.SelStart:= old_sel_pos;
+  old_sel_pos:= MainMemo.SelStart;
+  MainMemo.SelText := txt;
+  MainMemo.SelStart:= old_sel_pos;
 end;
 
 procedure TMainForm.AccentToggleClick(Sender: TObject);
@@ -426,48 +432,26 @@ begin
 end;
 
 procedure TMainForm.FontColorMenuItemClick(Sender: TObject);
-var fnt_params: TFontParams; old_font: TFont;
 begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
-
-  old_font := TFont.Create;
-  old_font.Color := fnt_params.Color;
-
-  ColorDialog1.Color:= fnt_params.Color;
+  ColorDialog1.Color:= MainMemo.Font.Color;
   if ColorDialog1.Execute then
   begin
-     fnt_params.Color:= ColorDialog1.Color;
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Color],fnt_params,[],[]);
+     MainMemo.Font.Color:=ColorDialog1.Color;
+     Modified := true;
   end;
 
-  MainRTFSelectionChange(Sender);
+  SaveDisplay();
 end;
 
 procedure TMainForm.FontMenuItemClick(Sender: TObject);
-var fnt_params: TFontParams; old_font: TFont;
 begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
-
-  old_font := TFont.Create;
-  old_font.Name := fnt_params.Name;
-  old_font.Size := fnt_params.Size;
-  old_font.Style := fnt_params.Style;
-  old_font.Color := fnt_params.Color;
-
-  FontDialog1.Font := old_font;
-
+  FontDialog1.Font:= MainMemo.Font;
   if FontDialog1.Execute then
   begin
-    fnt_params.Name:= FontDialog1.Font.Name;
-    fnt_params.Size:= FontDialog1.Font.Size;
-    fnt_params.Style:= FontDialog1.Font.Style;
-    fnt_params.Color:= FontDialog1.Font.Color;
-
-    MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],old_font.Style);
-    MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Color,tmm_Name,tmm_Size,tmm_Styles],fnt_params,fnt_params.Style,[]);
+     MainMemo.Font:= FontDialog1.Font;
+     Modified := true;
   end;
-
-  MainRTFSelectionChange(Sender);
+  SaveDisplay();
 end;
 
 procedure TMainForm.FontToolbarButtonClick(Sender: TObject);
@@ -576,7 +560,8 @@ begin
     StartUpForm.ShowModal;
 
     StartUpFile:= StartUpForm.FileToOpen;
-
+    SettingsFile:= StartUpForm.Settings;
+    NewMenuItemClick(sender);
     if StartUpFile='|OpenFile' then
     begin
       OpenMenuItemClick(sender);
@@ -599,11 +584,11 @@ begin
 
         UpdateFileCharacters();
 
-        MainRTF.Rtf := OpenFile.RtfData;
-        if not OpenFile.BackgroundColor.Equals('') then
-           MainRTF.Color := HexToColor(OpenFile.BackgroundColor);
+        MainMemo.Text := OpenFile.Text;
+        RenderDisplay();
 
         FileLocation := StartUpFile;
+        SettingsFile.RecentFiles:= AddCharacterToCharArray(SettingsFile.RecentFiles, StartUpFile);
         Modified := false;
       end;
     end;
@@ -612,69 +597,11 @@ begin
   end;
 end;
 
-procedure TMainForm.HighlightColorMenuItemClick(Sender: TObject);
-var fnt_params: TFontParams;
-begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
-
-  if fnt_params.HasBkClr then ColorDialog1.Color := fnt_params.BkColor;
-  if ColorDialog1.Execute then
-  begin
-    Modified := true;
-
-    fnt_params.BkColor:=ColorDialog1.Color;
-    fnt_params.HasBkClr:=true;
-    MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_BackColor],fnt_params,[],[]);
-  end;
-end;
-
 procedure TMainForm.IncreaseSizeMenuItemClick(Sender: TObject);
-var
-  fnt_params: TFontParams;
-  char_pos: Integer;
-  old_start: Integer;
-  old_length: Integer;
 begin
-  old_start:= MainRTF.SelStart;
-  old_length:= MainRTF.SelLength;
-  for char_pos:=old_start to old_length-1 do
-  begin
-    MainRTF.GetTextAttributes(char_pos,fnt_params);
-    fnt_params.Size:= fnt_params.Size + 2;
-
-    MainRTF.SetRangeParams(char_pos,1,[tmm_Size],fnt_params,[],[]);
-  end;
-
-  MainRTF.SelStart:= old_start;
-  MainRTF.SelLength:= old_length;
-
-  MainRTFSelectionChange(Sender);
-end;
-
-procedure TMainForm.ItalicToolbarButtonClick(Sender: TObject);
-var fnt_params: TFontParams; old_font: TFont;
-begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
-
-  old_font := TFont.Create;
-  old_font.Style := fnt_params.Style;
-
-  if ItalicToolbarButton.Down then
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsItalic],[])
-  else
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],[fsItalic]);
-
-  MainRTFSelectionChange(Sender);
-end;
-
-procedure TMainForm.JustifyToolbarButtonClick(Sender: TObject);
-begin
-  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paJustify);
-end;
-
-procedure TMainForm.LeftToolbarButtonClick(Sender: TObject);
-begin
-  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paLeft);
+  MainMemo.Font.Size:= MainMemo.Font.Size + 1;
+  Modified := true;
+  SaveDisplay();
 end;
 
 procedure TMainForm.LocalButtonClick(Sender: TObject);
@@ -683,34 +610,14 @@ begin
   UpdateLocalCharacters();
 end;
 
+procedure TMainForm.MainMemoChange(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.MainRTFChange(Sender: TObject);
 begin
   Modified := true;
-  MainRTFSelectionChange(Sender);
-end;
-
-procedure TMainForm.MainRTFSelectionChange(Sender: TObject);
-var old_params: TFontParams;
-begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,old_params);
-
-  if (fsBold in old_params.Style) then
-     BoldToolbarButton.Down:= true
-  else
-     BoldToolbarButton.Down:= false;
-
-  if (fsItalic in old_params.Style) then
-     ItalicToolbarButton.Down:= true
-  else
-     ItalicToolbarButton.Down:= false;
-
-  if (fsUnderline in old_params.Style) then
-     UnderlineToolbarButton.Down:= true
-  else
-     UnderlineToolbarButton.Down:= false;
-
-  MainRTF.Refresh;
-
 end;
 
 procedure TMainForm.MoveToFileMenuItemClick(Sender: TObject);
@@ -733,6 +640,7 @@ procedure TMainForm.NewMenuItemClick(Sender: TObject);
 var
   diag_result : Integer;
 begin
+
   if Modified then
   begin
       diag_result := MessageDlg('The file you are working on has unsaved changes. Are you sure you want to erase it?', mtWarning, [mbYes,mbNo,mbCancel], 0);
@@ -740,11 +648,10 @@ begin
       if diag_result= mrNo then exit;
   end;
 
-  MainRTF.Clear;
+  MainMemo.Clear;
   AuthorEdit.Clear;
   OpenFile.Author:= '';
-  MainRTF.Color:= clWhite;
-  OpenFile.BackgroundColor:= '';
+  MainMemo.Color:= clWhite;
   OpenFile.CustomCharacters:= nil;
   OpenFile.PageCount:= 0;
   DescriptionMemo.Clear;
@@ -754,6 +661,7 @@ begin
   WebsiteEdit.Clear;
   OpenFile.Website:='';
   Openfile.WriterVersion:= WRITER_VERSION;
+  ClearDisplay();
   UpdateFileCharacters();
 
   Modified:= false;
@@ -771,9 +679,8 @@ begin
 
     UpdateFileCharacters();
 
-    MainRTF.Rtf := OpenFile.RtfData;
-    if not OpenFile.BackgroundColor.Equals('') then
-       MainRTF.Color := HexToColor(OpenFile.BackgroundColor);
+    MainMemo.Text := OpenFile.Text;
+    RenderDisplay();
 
     FileLocation := OpenDialog1.FileName;
     SettingsFile.RecentFiles:= AddCharacterToCharArray(SettingsFile.RecentFiles, OpenDialog1.FileName);
@@ -788,13 +695,7 @@ end;
 
 procedure TMainForm.PasteMenuItemClick(Sender: TObject);
 begin
-  if MainRTF.CanPaste then
-    MainRTF.PasteFromClipboard;
-end;
-
-procedure TMainForm.PasteTextMenuItemClick(Sender: TObject);
-begin
-  InsertText(clipboard.AsText);
+    InsertText(clipboard.AsText);
 end;
 
 procedure TMainForm.PreviewEditChange(Sender: TObject);
@@ -804,8 +705,8 @@ end;
 
 procedure TMainForm.RedoMenuItemClick(Sender: TObject);
 begin
-  if MainRTF.CanRedo then
-    MainRTF.Redo;
+  if MainMemo.CanRedo then
+    MainMemo.Redo;
 end;
 
 procedure TMainForm.RemoveDuplicatesMenuItemClick(Sender: TObject);
@@ -840,14 +741,11 @@ begin
   UpdateFileCharacters();
 end;
 
-procedure TMainForm.RightToolbarButtonClick(Sender: TObject);
-begin
-  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paRight);
-end;
-
 procedure TMainForm.SaveAsMenuItemClick(Sender: TObject);
 begin
-  OpenFile.RtfData := MainRTF.Rtf;
+  OpenFile.Text := MainMemo.Text;
+  SaveDisplay();
+  OpenFile.WriterVersion := WRITER_VERSION;
 
   if SaveDialog1.Execute then
   begin
@@ -864,7 +762,8 @@ end;
 
 procedure TMainForm.SaveMenuItemClick(Sender: TObject);
 begin
-  OpenFile.RtfData := MainRTF.Rtf;
+  OpenFile.Text := MainMemo.Text;
+  SaveDisplay();
   OpenFile.WriterVersion := WRITER_VERSION;
 
   if not FileLocation.Equals('') then
@@ -882,7 +781,7 @@ end;
 
 procedure TMainForm.SelectAllMenuItemClick(Sender: TObject);
 begin
-  MainRTF.SelectAll;
+  MainMemo.SelectAll;
 end;
 
 procedure TMainForm.TitleEditChange(Sender: TObject);
@@ -891,64 +790,22 @@ begin
   Modified := true;
 end;
 
-procedure TMainForm.UnderlineToolbarButtonClick(Sender: TObject);
-var fnt_params: TFontParams; old_font: TFont;
-begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
-
-  old_font := TFont.Create;
-  old_font.Style := fnt_params.Style;
-
-  if UnderlineToolbarButton.Down then
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsUnderline],[])
-  else
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],[fsUnderline]);
-
-  MainRTFSelectionChange(Sender);
-end;
-
 procedure TMainForm.UndoMenuItemClick(Sender: TObject);
 begin
-  if MainRTF.CanUndo then
-    MainRTF.Undo;
+  if MainMemo.CanUndo then
+    MainMemo.Undo;
 end;
 
 procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
-  ColorDialog1.Color := MainRTF.Color;
+  ColorDialog1.Color := MainMemo.Color;
   if ColorDialog1.Execute then
   begin
-    MainRTF.Color:= ColorDialog1.Color;
+    MainMemo.Color:= ColorDialog1.Color;
     Modified := true;
-    OpenFile.BackgroundColor := ColorToHex(MainRTF.Color);
   end;
-end;
 
-procedure TMainForm.BoldToolbarButtonClick(Sender: TObject);
-var fnt_params: TFontParams; old_font: TFont;
-begin
-  MainRTF.GetTextAttributes(MainRTF.SelStart,fnt_params);
-
-  old_font := TFont.Create;
-  old_font.Style := fnt_params.Style;
-
-  if BoldToolbarButton.Down then
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[fsBold],[])
-  else
-     MainRTF.SetRangeParams(MainRTF.SelStart,MainRTF.SelLength,[tmm_Styles],fnt_params,[],[fsBold]);
-
-  MainRTFSelectionChange(Sender);
-end;
-
-procedure TMainForm.CenterToolbarButtonClick(Sender: TObject);
-begin
-
-  MainRTF.SetParaAlignment(MainRTF.SelStart,MainRTF.SelLength, RichMemo.paCenter);
-end;
-
-procedure TMainForm.CharacterGalleryTabsChange(Sender: TObject);
-begin
-
+  SaveDisplay();
 end;
 
 procedure TMainForm.CharacterMenuPopup(Sender: TObject);
@@ -989,17 +846,6 @@ procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
 begin
   InsertText(CharacterPreviewButton.Caption);
 end;
-
-procedure TMainForm.CharacterSep1Click(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.CharacterSep2Click(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.CharacterSheetContextPopup(Sender: TObject;
   MousePos: TPoint; var Handled: Boolean);
 begin
@@ -1008,33 +854,12 @@ end;
 
 procedure TMainForm.ClearMenuItemClick(Sender: TObject);
 begin
-  MainRTF.Clear;
-end;
-
-procedure TMainForm.CommonFlowPanelClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.ConsonantsFlowPanelClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.ConsonantsScrollBoxClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.ConsonantsTabSheetContextPopup(Sender: TObject;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
+  MainMemo.Clear;
 end;
 
 procedure TMainForm.CopyMenuItemClick(Sender: TObject);
 begin
-  MainRTF.CopyToClipboard;
+  MainMemo.CopyToClipboard;
 end;
 
 procedure TMainForm.CopyToEditorMenuItemClick(Sender: TObject);
@@ -1046,31 +871,14 @@ end;
 
 procedure TMainForm.CutMenuItemClick(Sender: TObject);
 begin
-  MainRTF.CutToClipboard;
+  MainMemo.CutToClipboard;
 end;
 
 procedure TMainForm.DecreaseSizeMenuItemClick(Sender: TObject);
-var
-  fnt_params: TFontParams;
-  char_pos: Integer;
-  old_start: Integer;
-  old_length: Integer;
 begin
-  old_start:= MainRTF.SelStart;
-  old_length:= MainRTF.SelLength;
-
-  for char_pos:=old_start to old_length-1 do
-  begin
-    MainRTF.GetTextAttributes(char_pos,fnt_params);
-    fnt_params.Size:= fnt_params.Size - 2;
-
-    MainRTF.SetRangeParams(char_pos,1,[tmm_Size],fnt_params,[],[]);
-  end;
-
-  MainRTF.SelStart:= old_start;
-  MainRTF.SelLength:= old_length;
-
-  MainRTFSelectionChange(Sender);
+  MainMemo.Font.Size:= MainMemo.Font.Size - 1;
+  Modified := true;
+  SaveDisplay();
 end;
 
 procedure TMainForm.DeleteMenuItemClick(Sender: TObject);
@@ -1097,6 +905,11 @@ procedure TMainForm.DescriptionMemoChange(Sender: TObject);
 begin
   OpenFile.Description := DescriptionMemo.Text;
   Modified := true;
+end;
+
+procedure TMainForm.EditSep1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.AboutMenuItemClick(Sender: TObject);

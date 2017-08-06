@@ -7,11 +7,12 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, mainwindow, filetypes, AboutWindow, SplashWindow, StartWindow;
+  Forms, mainwindow, filetypes, AboutWindow, SplashWindow, StartWindow, History;
 
 {$R *.res}
 
 begin
+  Application.Title:='Thorn Writer';
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);

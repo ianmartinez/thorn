@@ -5,17 +5,28 @@ interface
   const WRITER_VERSION: integer = 1;
   const UNIX_LINE: string = AnsiChar(#10);
   const WINDOWS_LINE: string = AnsiString(#13#10);
+  const DEFAULT_FONT: string = 'Segoe UI';
 
   type CharArray = array of string;
   type PathArray = array of string;
+  type Display = record
+     FontName: string;
+     FontSize: integer;
+     FontBold: boolean;
+     FontItalic: boolean;
+     FontUnderline: boolean;
+     FontStrike: boolean;
+     FontColor: string;
+     BackgroundColor: string;
+  end;
   type ThornWriterFile = record
      Title: string;
      Author: string;
      Website: string;
      Description: string;
      CustomCharacters: CharArray;
-     RtfData: string;
-     BackgroundColor: string;
+     Text: string;
+     TextDisplay: Display;
      PageCount: integer;
      WriterVersion: integer;
   end;
@@ -171,8 +182,17 @@ implementation
         ret.Website := ReadSafeString(INI.ReadString('Properties','Website',''));
         ret.CustomCharacters := INI.ReadString('Properties','Characters','').Split('|',TStringSplitOptions.ExcludeEmpty);
         ret.PageCount:=INI.ReadInteger('Properties','PageCount',1);
-        ret.RtfData := ReadSafeString(INI.ReadString('Document','Page0',''));
-        ret.BackgroundColor:= ReadSafeString(INI.ReadString('Document','Page0Background','')); ;
+        ret.Text := ReadSafeString(INI.ReadString('Document','Page0',''));
+
+        // Display
+        ret.TextDisplay.BackgroundColor:=  ReadSafeString(INI.ReadString('Display','Page0Background','ffffff'));
+        ret.TextDisplay.FontColor:=  ReadSafeString(INI.ReadString('Display','Page0FontColor','000000'));
+        ret.TextDisplay.FontName :=  ReadSafeString(INI.ReadString('Display','Page0FontName',DEFAULT_FONT));
+        ret.TextDisplay.FontSize :=  INI.ReadInteger('Display','Page0FontSize',12);
+        ret.TextDisplay.FontBold :=  INI.ReadBool('Display','Page0FontBold',false);
+        ret.TextDisplay.FontItalic :=  INI.ReadBool('Display','Page0FontItalic',false);
+        ret.TextDisplay.FontUnderline :=  INI.ReadBool('Display','Page0FontUnderline',false);
+        ret.TextDisplay.FontStrike :=  INI.ReadBool('Display','Page0FontStrike',false);
 
         for char_pos:=0 to Length(ret.CustomCharacters)-1 do
         begin
@@ -209,8 +229,17 @@ implementation
       INI.WriteString('Properties','Characters',char_string);
       INI.WriteInteger('Properties','PageCount',writer_file.PageCount);
 
-      INI.WriteString('Document','Page0',WriteSafeString(writer_file.RtfData));
-      INI.WriteString('Document','Page0Background',WriteSafeString(writer_file.BackgroundColor));
+      INI.WriteString('Document','Page0',WriteSafeString(writer_file.Text));
+
+      INI.WriteString('Display','Page0Background',WriteSafeString(writer_file.TextDisplay.BackgroundColor));
+      INI.WriteString('Display','Page0FontColor',WriteSafeString(writer_file.TextDisplay.FontColor));
+      INI.WriteString('Display','Page0FontName',WriteSafeString(writer_file.TextDisplay.FontName));
+      INI.WriteInteger('Display','Page0FontSize',writer_file.TextDisplay.FontSize);
+      INI.WriteBool('Display','Page0FontBold',writer_file.TextDisplay.FontBold);
+      INI.WriteBool('Display','Page0FontItalic',writer_file.TextDisplay.FontItalic);
+      INI.WriteBool('Display','Page0FontUnderline',writer_file.TextDisplay.FontUnderLine);
+      INI.WriteBool('Display','Page0FontStrike',writer_file.TextDisplay.FontStrike);
+
       INI.UpdateFile;
 
    finally

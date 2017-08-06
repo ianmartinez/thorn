@@ -1,0 +1,26 @@
+unit History;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, Graphics, SysUtils;
+
+inteface
+type
+  HistoryChangeType = (hsFontName, hsFontSize, hsFontStyle, hsFontColor, hsBackColor);
+  HistoryState = record
+     ChangeType: HistoryChangeType;
+
+     FontName: string;
+     FontSize: string;
+     FontStyle:  TFontStyles;
+     FontColor: TColor;
+
+     Text: string;
+  end;
+
+implementation
+end.
+
