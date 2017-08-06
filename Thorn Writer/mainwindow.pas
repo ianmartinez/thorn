@@ -56,23 +56,14 @@ type
     DescriptionMemo: TMemo;
     CharacterGalleryTabs: TPageControl;
     EditMenu: TMenuItem;
-    CopyMenuItem: TMenuItem;
-    CutMenuItem: TMenuItem;
-    EditSep2: TMenuItem;
     DisplayMenu: TMenuItem;
     FontColorMenuItem: TMenuItem;
     BackgroundColorMenuItem: TMenuItem;
     HelpMenu: TMenuItem;
     AboutMenuItem: TMenuItem;
     FontToolbarButton: TToolButton;
-    PasteTextToolbarButton: TToolButton;
     SelectAllMenuItem: TMenuItem;
     ClearMenuItem: TMenuItem;
-    PasteMenuItem: TMenuItem;
-    CopyToolbarButton: TToolButton;
-    CutToolbarButton: TToolButton;
-    PasteToolbarButton: TToolButton;
-    ToolButton3: TToolButton;
     PreviewEdit: TEdit;
     IPACategoriesTabs: TPageControl;
     AccentsGroup: TRadioGroup;
@@ -133,40 +124,30 @@ type
     ToolButton1: TToolButton;
     DescriptionLabel: TLabel;
     procedure AboutMenuItemClick(Sender: TObject);
-    procedure AffricatesFlowPanelClick(Sender: TObject);
     procedure AuthorEditChange(Sender: TObject);
     procedure BackgroundColorMenuItemClick(Sender: TObject);
     procedure CharacterMenuPopup(Sender: TObject);
     procedure CharacterPreviewButtonClick(Sender: TObject);
-    procedure CharacterSheetContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
     procedure ClearMenuItemClick(Sender: TObject);
-    procedure CopyMenuItemClick(Sender: TObject);
     procedure CopyToEditorMenuItemClick(Sender: TObject);
-    procedure CutMenuItemClick(Sender: TObject);
     procedure DecreaseSizeMenuItemClick(Sender: TObject);
     procedure DeleteMenuItemClick(Sender: TObject);
     procedure DescriptionMemoChange(Sender: TObject);
-    procedure EditSep1Click(Sender: TObject);
     procedure ExitMenuItemClick(Sender: TObject);
     procedure FileButtonClick(Sender: TObject);
     procedure FontColorMenuItemClick(Sender: TObject);
     procedure FontMenuItemClick(Sender: TObject);
-    procedure FontToolbarButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure IncreaseSizeMenuItemClick(Sender: TObject);
     procedure LocalButtonClick(Sender: TObject);
-    procedure MainMemoChange(Sender: TObject);
     procedure MainRTFChange(Sender: TObject);
     procedure MoveToFileMenuItemClick(Sender: TObject);
     procedure MoveToLocalMenuItemClick(Sender: TObject);
     procedure NewMenuItemClick(Sender: TObject);
     procedure OpenMenuItemClick(Sender: TObject);
-    procedure IPACategoriesTabsChange(Sender: TObject);
-    procedure PasteMenuItemClick(Sender: TObject);
     procedure PreviewEditChange(Sender: TObject);
     procedure RedoMenuItemClick(Sender: TObject);
     procedure RemoveDuplicatesMenuItemClick(Sender: TObject);
@@ -174,7 +155,6 @@ type
     procedure SaveMenuItemClick(Sender: TObject);
     procedure SelectAllMenuItemClick(Sender: TObject);
     procedure TitleEditChange(Sender: TObject);
-    procedure UndoMenuItemClick(Sender: TObject);
     procedure AccentToggleClick(Sender: TObject);
     procedure WebsiteEditChange(Sender: TObject);
     procedure WebsiteGoButtonClick(Sender: TObject);
@@ -454,11 +434,6 @@ begin
   SaveDisplay();
 end;
 
-procedure TMainForm.FontToolbarButtonClick(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
     SaveWriterSettings(SettingsFile,'settings.ini');
@@ -610,11 +585,6 @@ begin
   UpdateLocalCharacters();
 end;
 
-procedure TMainForm.MainMemoChange(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.MainRTFChange(Sender: TObject);
 begin
   Modified := true;
@@ -686,16 +656,6 @@ begin
     SettingsFile.RecentFiles:= AddCharacterToCharArray(SettingsFile.RecentFiles, OpenDialog1.FileName);
     Modified := false;
   end;
-end;
-
-procedure TMainForm.IPACategoriesTabsChange(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.PasteMenuItemClick(Sender: TObject);
-begin
-    InsertText(clipboard.AsText);
 end;
 
 procedure TMainForm.PreviewEditChange(Sender: TObject);
@@ -790,12 +750,6 @@ begin
   Modified := true;
 end;
 
-procedure TMainForm.UndoMenuItemClick(Sender: TObject);
-begin
-  if MainMemo.CanUndo then
-    MainMemo.Undo;
-end;
-
 procedure TMainForm.BackgroundColorMenuItemClick(Sender: TObject);
 begin
   ColorDialog1.Color := MainMemo.Color;
@@ -846,20 +800,9 @@ procedure TMainForm.CharacterPreviewButtonClick(Sender: TObject);
 begin
   InsertText(CharacterPreviewButton.Caption);
 end;
-procedure TMainForm.CharacterSheetContextPopup(Sender: TObject;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
-
 procedure TMainForm.ClearMenuItemClick(Sender: TObject);
 begin
   MainMemo.Clear;
-end;
-
-procedure TMainForm.CopyMenuItemClick(Sender: TObject);
-begin
-  MainMemo.CopyToClipboard;
 end;
 
 procedure TMainForm.CopyToEditorMenuItemClick(Sender: TObject);
@@ -867,11 +810,6 @@ var btn: TButton;
 begin
   btn:= (CharacterMenu.PopupComponent as TButton);
   PreviewEdit.Text:= btn.Caption;
-end;
-
-procedure TMainForm.CutMenuItemClick(Sender: TObject);
-begin
-  MainMemo.CutToClipboard;
 end;
 
 procedure TMainForm.DecreaseSizeMenuItemClick(Sender: TObject);
@@ -907,11 +845,6 @@ begin
   Modified := true;
 end;
 
-procedure TMainForm.EditSep1Click(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.AboutMenuItemClick(Sender: TObject);
 begin
   AboutForm:=TAboutForm.Create(Nil);
@@ -919,15 +852,9 @@ begin
   FreeAndNil(AboutForm);
 end;
 
-procedure TMainForm.AffricatesFlowPanelClick(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.AuthorEditChange(Sender: TObject);
 begin
   OpenFile.Author :=  AuthorEdit.Text;
   Modified := true;
 end;
-
 end.
