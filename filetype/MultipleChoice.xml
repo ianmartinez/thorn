@@ -1,0 +1,8 @@
+<img src="@images/red_shirt.jpg"/>
+The shirt is 
+<!-- By default, a question is specified as 1 point/total points per chapter -->
+<dropdown>
+	<w>blue</w> <!-- Wrong -->
+	<r>red</r> <!-- Right -->
+	<w>green</w> <!-- Right -->
+</dropdown>.
