@@ -1,0 +1,18 @@
+== Thorn Files ==
+A thorn file (*.th) is a compressed zip file. These files a specific to Thorn, but the can be exported to both HTML and MarkUp.
+
+== Tree Structure ==
+There are 3 tree folders represented in the tree control: 
+	- Pages
+		Contains all the text files that are stored in an HTML-like format that has been modified to suit the needs of Thorn.
+		
+	- Dictionary:
+		Contains a list words defined in sections. 
+		
+		Example use from within page markup:
+			<word section="animals">dog</word>
+	- Media:
+		Contains media that can be accessed from within the page markup.
+		
+		Example use of an image file called "test.jpg" that is stored in the media folder from the page markup:
+			<img src="@media/test.jpg"/>

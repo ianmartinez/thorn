@@ -12,6 +12,7 @@
 
 //(*Headers(ThornFrame)
 #include <wx/frame.h>
+#include <wx/imaglist.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/splitter.h>
@@ -43,6 +44,7 @@ class ThornFrame: public wxFrame
         //*)
 
         //(*Declarations(ThornFrame)
+        wxImageList* TreeImages;
         wxPanel* Panel1;
         wxSplitterWindow* SplitterWindow1;
         wxStatusBar* StatusBar1;

@@ -2,8 +2,26 @@
 <wxsmith>
 	<object class="wxFrame" name="ThornFrame">
 		<size>669,512</size>
-		<object class="wxAuiNotebook" name="ID_AUINOTEBOOK1" variable="AuiNotebook1" member="yes">
-			<pos>400,176</pos>
+		<object class="wxSplitterWindow" name="ID_SPLITTERWINDOW1" variable="SplitterWindow1" member="yes">
+			<sashpos>100</sashpos>
+			<minpanesize>10</minpanesize>
+			<orientation>vertical</orientation>
+			<pos>312,400</pos>
+			<object class="wxTreeCtrl" name="ID_TREECTRL1" variable="TreeCtrl1" member="yes">
+				<image_list>&lt;none&gt;</image_list>
+				<tree_items>
+					<item>TreeCtrl1</item>
+					<item>&lt;none&gt;</item>
+				</tree_items>
+				<items_text>
+					<item2>TreeCtrl1</item2>
+					<item2>&lt;none&gt;</item2>
+				</items_text>
+				<pos>264,281</pos>
+			</object>
+			<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+				<pos>434,321</pos>
+			</object>
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="Menu1" member="no">
