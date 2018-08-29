@@ -6,20 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>955</width>
+    <height>635</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>955</width>
      <height>21</height>
     </rect>
    </property>
@@ -43,10 +60,16 @@
      <string>&amp;Dictionary</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menuNotebook"/>
    <addaction name="menuDictionary"/>
+   <addaction name="menu_Help"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -58,6 +81,12 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="dockWidget">
+   <property name="minimumSize">
+    <size>
+     <width>300</width>
+     <height>105</height>
+    </size>
+   </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
@@ -79,7 +108,7 @@
        </property>
        <column>
         <property name="text">
-         <string>1</string>
+         <string>Project</string>
         </property>
        </column>
        <item>
@@ -88,7 +117,25 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../icons/breeze/Icons/application-msonenote.svg</normaloff>../../icons/breeze/Icons/application-msonenote.svg</iconset>
+          <normaloff>../../icons/breeze/Icons/edit-group.svg</normaloff>../../icons/breeze/Icons/edit-group.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Dictionary</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../icons/breeze/Icons/view-calendar-agenda.svg</normaloff>../../icons/breeze/Icons/view-calendar-agenda.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Resources</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../icons/breeze/Icons/folder.svg</normaloff>../../icons/breeze/Icons/folder.svg</iconset>
         </property>
        </item>
       </widget>
