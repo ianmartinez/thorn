@@ -13,11 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolBar>
@@ -31,7 +32,7 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout;
     QTabWidget *tabWidget;
     QWidget *tab;
     QWidget *tab_2;
@@ -47,6 +48,9 @@ public:
     QWidget *dockWidgetContents;
     QVBoxLayout *verticalLayout;
     QTreeWidget *treeWidget;
+    QDockWidget *dockWidget_3;
+    QWidget *dockWidgetContents_3;
+    QPushButton *pushButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -55,10 +59,10 @@ public:
         MainWindow->resize(955, 635);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        horizontalLayout = new QHBoxLayout(centralWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tab = new QWidget();
@@ -68,7 +72,7 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         tabWidget->addTab(tab_2, QString());
 
-        horizontalLayout->addWidget(tabWidget);
+        gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -93,7 +97,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         dockWidget = new QDockWidget(MainWindow);
         dockWidget->setObjectName(QStringLiteral("dockWidget"));
-        dockWidget->setMinimumSize(QSize(300, 105));
+        dockWidget->setMinimumSize(QSize(300, 113));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
         verticalLayout = new QVBoxLayout(dockWidgetContents);
@@ -101,12 +105,13 @@ public:
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
+        treeWidget->headerItem()->setText(0, QString());
         QIcon icon;
-        icon.addFile(QStringLiteral("../../icons/breeze/Icons/edit-group.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral("../../icons/custom/pages.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QIcon icon1;
-        icon1.addFile(QStringLiteral("../../icons/breeze/Icons/view-calendar-agenda.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral("../../icons/custom/dictionary.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QIcon icon2;
-        icon2.addFile(QStringLiteral("../../icons/breeze/Icons/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral("../../icons/custom/resources.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setIcon(0, icon);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(treeWidget);
@@ -121,11 +126,26 @@ public:
         treeWidget->setSizePolicy(sizePolicy);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
+        treeWidget->header()->setVisible(false);
 
         verticalLayout->addWidget(treeWidget);
 
         dockWidget->setWidget(dockWidgetContents);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidget);
+        dockWidget_3 = new QDockWidget(MainWindow);
+        dockWidget_3->setObjectName(QStringLiteral("dockWidget_3"));
+        dockWidgetContents_3 = new QWidget();
+        dockWidgetContents_3->setObjectName(QStringLiteral("dockWidgetContents_3"));
+        pushButton = new QPushButton(dockWidgetContents_3);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(99, 20, 101, 51));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(12);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy1);
+        dockWidget_3->setWidget(dockWidgetContents_3);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidget_3);
 
         menuBar->addAction(menu_File->menuAction());
         menuBar->addAction(menu_Edit->menuAction());
@@ -134,6 +154,9 @@ public:
         menuBar->addAction(menu_Help->menuAction());
 
         retranslateUi(MainWindow);
+
+        tabWidget->setCurrentIndex(1);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -148,19 +171,20 @@ public:
         menuNotebook->setTitle(QApplication::translate("MainWindow", "&Notebook", nullptr));
         menuDictionary->setTitle(QApplication::translate("MainWindow", "&Dictionary", nullptr));
         menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Project", nullptr));
+        dockWidget->setWindowTitle(QApplication::translate("MainWindow", "Project", nullptr));
 
         const bool __sortingEnabled = treeWidget->isSortingEnabled();
         treeWidget->setSortingEnabled(false);
-        QTreeWidgetItem *___qtreewidgetitem1 = treeWidget->topLevelItem(0);
-        ___qtreewidgetitem1->setText(0, QApplication::translate("MainWindow", "Pages", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem2 = treeWidget->topLevelItem(1);
-        ___qtreewidgetitem2->setText(0, QApplication::translate("MainWindow", "Dictionary", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem3 = treeWidget->topLevelItem(2);
-        ___qtreewidgetitem3->setText(0, QApplication::translate("MainWindow", "Resources", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem = treeWidget->topLevelItem(0);
+        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Pages", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem1 = treeWidget->topLevelItem(1);
+        ___qtreewidgetitem1->setText(0, QApplication::translate("MainWindow", "Dictionary", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem2 = treeWidget->topLevelItem(2);
+        ___qtreewidgetitem2->setText(0, QApplication::translate("MainWindow", "Resources", nullptr));
         treeWidget->setSortingEnabled(__sortingEnabled);
 
+        dockWidget_3->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };

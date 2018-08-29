@@ -14,9 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Tab 1</string>
@@ -84,8 +87,11 @@
    <property name="minimumSize">
     <size>
      <width>300</width>
-     <height>105</height>
+     <height>113</height>
     </size>
+   </property>
+   <property name="windowTitle">
+    <string>Project</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
@@ -106,9 +112,12 @@
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
+       <attribute name="headerVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
-         <string>Project</string>
+         <string/>
         </property>
        </column>
        <item>
@@ -117,7 +126,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../icons/breeze/Icons/edit-group.svg</normaloff>../../icons/breeze/Icons/edit-group.svg</iconset>
+          <normaloff>../../icons/custom/pages.svg</normaloff>../../icons/custom/pages.svg</iconset>
         </property>
        </item>
        <item>
@@ -126,7 +135,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../icons/breeze/Icons/view-calendar-agenda.svg</normaloff>../../icons/breeze/Icons/view-calendar-agenda.svg</iconset>
+          <normaloff>../../icons/custom/dictionary.svg</normaloff>../../icons/custom/dictionary.svg</iconset>
         </property>
        </item>
        <item>
@@ -135,12 +144,41 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../icons/breeze/Icons/folder.svg</normaloff>../../icons/breeze/Icons/folder.svg</iconset>
+          <normaloff>../../icons/custom/resources.svg</normaloff>../../icons/custom/resources.svg</iconset>
         </property>
        </item>
       </widget>
      </item>
     </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_3">
+   <property name="windowTitle">
+    <string>Characters</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>99</x>
+       <y>20</y>
+       <width>101</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>12</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
