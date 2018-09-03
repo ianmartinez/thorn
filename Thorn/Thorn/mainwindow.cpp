@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+/*
     // Create new item (top level item)
     QTreeWidgetItem *topLevelItem = new QTreeWidgetItem(ui->treeWidget);
     // Add it on our tree as the top item.
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Create new item and add as child item
     QTreeWidgetItem *item=new QTreeWidgetItem(topLevelItem);
     // Set text for item
-    item->setText(0,"SubItem");
+    item->setText(0,"SubItem"); */
 }
 
 MainWindow::~MainWindow()
