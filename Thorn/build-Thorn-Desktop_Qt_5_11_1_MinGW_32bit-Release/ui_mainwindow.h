@@ -600,16 +600,25 @@ public:
         action_Cut->setShortcut(QApplication::translate("MainWindow", "Ctrl+X", nullptr));
 #endif // QT_NO_SHORTCUT
         action_Find_Replace->setText(QApplication::translate("MainWindow", "&Find/Replace", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Find_Replace->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", nullptr));
+#endif // QT_NO_SHORTCUT
         actionSelect_All->setText(QApplication::translate("MainWindow", "Select &All", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionSelect_All->setShortcut(QApplication::translate("MainWindow", "Ctrl+A", nullptr));
 #endif // QT_NO_SHORTCUT
         action_Deselect_All->setText(QApplication::translate("MainWindow", "&Deselect All", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Deselect_All->setShortcut(QApplication::translate("MainWindow", "Ctrl+D", nullptr));
+#endif // QT_NO_SHORTCUT
         actionUsing_Thorn_Markup->setText(QApplication::translate("MainWindow", "&Contents...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionUsing_Thorn_Markup->setShortcut(QApplication::translate("MainWindow", "F1", nullptr));
+#endif // QT_NO_SHORTCUT
         actionAbout->setText(QApplication::translate("MainWindow", "About...", nullptr));
         actionZoom_In->setText(QApplication::translate("MainWindow", "Zoom &In", nullptr));
 #ifndef QT_NO_SHORTCUT
-        actionZoom_In->setShortcut(QApplication::translate("MainWindow", "Ctrl+=", nullptr));
+        actionZoom_In->setShortcut(QApplication::translate("MainWindow", "Ctrl++", nullptr));
 #endif // QT_NO_SHORTCUT
         actionZoom_Out->setText(QApplication::translate("MainWindow", "Zoom &Out", nullptr));
 #ifndef QT_NO_SHORTCUT
@@ -635,28 +644,73 @@ public:
         actionR_ename_Page->setText(QApplication::translate("MainWindow", "R&ename Page...", nullptr));
         action_16->setText(QApplication::translate("MainWindow", "-", nullptr));
         action_Add->setText(QApplication::translate("MainWindow", "&Add", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Add->setShortcut(QApplication::translate("MainWindow", "Ctrl+T", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Remove->setText(QApplication::translate("MainWindow", "&Remove", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Remove->setShortcut(QApplication::translate("MainWindow", "Ctrl+W", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Duplicate->setText(QApplication::translate("MainWindow", "&Duplicate", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Duplicate->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", nullptr));
+#endif // QT_NO_SHORTCUT
         actionR_ename->setText(QApplication::translate("MainWindow", "R&ename", nullptr));
         action_Import->setText(QApplication::translate("MainWindow", "&Import...", nullptr));
         actionE_xport->setText(QApplication::translate("MainWindow", "E&xport...", nullptr));
         actionSettin_gs->setText(QApplication::translate("MainWindow", "Settin&gs...", nullptr));
         actionProject_Explorer->setText(QApplication::translate("MainWindow", "&Project Explorer", nullptr));
         action_Image->setText(QApplication::translate("MainWindow", "&Image...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Image->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+\303\215", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Video->setText(QApplication::translate("MainWindow", "&Video...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Video->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+V", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Audio->setText(QApplication::translate("MainWindow", "&Audio...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Audio->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+A", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Table->setText(QApplication::translate("MainWindow", "&Table...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Table->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+T", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Heading->setText(QApplication::translate("MainWindow", "&Heading...", nullptr));
         actionConvert_to_MarkDown->setText(QApplication::translate("MainWindow", "Convert to &Markdown....", nullptr));
         action_List->setText(QApplication::translate("MainWindow", "&List...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_List->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+L", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Paragraph->setText(QApplication::translate("MainWindow", "&Paragraph", nullptr));
         actionDictionary_Word->setText(QApplication::translate("MainWindow", "Dictionary &Word...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionDictionary_Word->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+W", nullptr));
+#endif // QT_NO_SHORTCUT
         actionT_ooltip->setText(QApplication::translate("MainWindow", "T&ooltip...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionT_ooltip->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+O", nullptr));
+#endif // QT_NO_SHORTCUT
         actionLin_k->setText(QApplication::translate("MainWindow", "Lin&k...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionLin_k->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+K", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Keyboard->setText(QApplication::translate("MainWindow", "Ke&yboard", nullptr));
+#ifndef QT_NO_SHORTCUT
+        action_Keyboard->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+K", nullptr));
+#endif // QT_NO_SHORTCUT
         actionD_ropdown->setText(QApplication::translate("MainWindow", "D&ropdown", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionD_ropdown->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+R", nullptr));
+#endif // QT_NO_SHORTCUT
         actionRad_io->setText(QApplication::translate("MainWindow", "Rad&io", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionRad_io->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+I", nullptr));
+#endif // QT_NO_SHORTCUT
         actionE_ntry->setText(QApplication::translate("MainWindow", "E&ntry", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionE_ntry->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+N", nullptr));
+#endif // QT_NO_SHORTCUT
         action_Add_Section->setText(QApplication::translate("MainWindow", "&Add Section...", nullptr));
         action_Remove_Section->setText(QApplication::translate("MainWindow", "&Remove Section", nullptr));
         action_Add_2->setText(QApplication::translate("MainWindow", "&Add...", nullptr));

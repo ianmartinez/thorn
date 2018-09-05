@@ -417,6 +417,9 @@
    <property name="text">
     <string>&amp;Find/Replace</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
   </action>
   <action name="actionSelect_All">
    <property name="icon">
@@ -438,10 +441,16 @@
    <property name="text">
     <string>&amp;Deselect All</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="actionUsing_Thorn_Markup">
    <property name="text">
     <string>&amp;Contents...</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -462,7 +471,7 @@
     <string>Zoom &amp;In</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+=</string>
+    <string>Ctrl++</string>
    </property>
   </action>
   <action name="actionZoom_Out">
@@ -577,6 +586,9 @@
    <property name="text">
     <string>&amp;Add</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
   </action>
   <action name="action_Remove">
    <property name="icon">
@@ -586,6 +598,9 @@
    <property name="text">
     <string>&amp;Remove</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
   </action>
   <action name="action_Duplicate">
    <property name="icon">
@@ -594,6 +609,9 @@
    </property>
    <property name="text">
     <string>&amp;Duplicate</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
   <action name="actionR_ename">
@@ -651,6 +669,9 @@
    <property name="text">
     <string>&amp;Image...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Í</string>
+   </property>
   </action>
   <action name="action_Video">
    <property name="icon">
@@ -659,6 +680,9 @@
    </property>
    <property name="text">
     <string>&amp;Video...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+V</string>
    </property>
   </action>
   <action name="action_Audio">
@@ -669,6 +693,9 @@
    <property name="text">
     <string>&amp;Audio...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+A</string>
+   </property>
   </action>
   <action name="action_Table">
    <property name="icon">
@@ -677,6 +704,9 @@
    </property>
    <property name="text">
     <string>&amp;Table...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+T</string>
    </property>
   </action>
   <action name="action_Heading">
@@ -705,6 +735,9 @@
    <property name="text">
     <string>&amp;List...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+L</string>
+   </property>
   </action>
   <action name="action_Paragraph">
    <property name="text">
@@ -719,6 +752,9 @@
    <property name="text">
     <string>Dictionary &amp;Word...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
+   </property>
   </action>
   <action name="actionT_ooltip">
    <property name="icon">
@@ -727,6 +763,9 @@
    </property>
    <property name="text">
     <string>T&amp;ooltip...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+O</string>
    </property>
   </action>
   <action name="actionLin_k">
@@ -737,6 +776,9 @@
    <property name="text">
     <string>Lin&amp;k...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+K</string>
+   </property>
   </action>
   <action name="action_Keyboard">
    <property name="icon">
@@ -746,20 +788,32 @@
    <property name="text">
     <string>Ke&amp;yboard</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+K</string>
+   </property>
   </action>
   <action name="actionD_ropdown">
    <property name="text">
     <string>D&amp;ropdown</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+R</string>
    </property>
   </action>
   <action name="actionRad_io">
    <property name="text">
     <string>Rad&amp;io</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+I</string>
+   </property>
   </action>
   <action name="actionE_ntry">
    <property name="text">
     <string>E&amp;ntry</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+N</string>
    </property>
   </action>
   <action name="action_Add_Section">
