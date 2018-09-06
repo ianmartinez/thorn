@@ -89,6 +89,7 @@ public:
     QAction *action_Remove_Section;
     QAction *action_Add_2;
     QAction *action_Remove_2;
+    QAction *actionRun;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *tabWidget;
@@ -362,6 +363,11 @@ public:
         action_Remove_2 = new QAction(MainWindow);
         action_Remove_2->setObjectName(QStringLiteral("action_Remove_2"));
         action_Remove_2->setIcon(icon39);
+        actionRun = new QAction(MainWindow);
+        actionRun->setObjectName(QStringLiteral("actionRun"));
+        QIcon icon40;
+        icon40.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/run-build.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRun->setIcon(icon40);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -416,6 +422,8 @@ public:
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setIconSize(QSize(26, 26));
+        mainToolBar->setFloatable(true);
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -436,18 +444,18 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
         treeWidget->headerItem()->setText(0, QString());
-        QIcon icon40;
-        icon40.addFile(QStringLiteral("../../icons/custom/pages.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QIcon icon41;
-        icon41.addFile(QStringLiteral("../../icons/custom/dictionary.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon41.addFile(QStringLiteral("../../icons/custom/pages.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QIcon icon42;
-        icon42.addFile(QStringLiteral("../../icons/custom/resources.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon42.addFile(QStringLiteral("../../icons/custom/dictionary.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon43;
+        icon43.addFile(QStringLiteral("../../icons/custom/resources.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
-        __qtreewidgetitem->setIcon(0, icon40);
+        __qtreewidgetitem->setIcon(0, icon41);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(treeWidget);
-        __qtreewidgetitem1->setIcon(0, icon41);
+        __qtreewidgetitem1->setIcon(0, icon42);
         QTreeWidgetItem *__qtreewidgetitem2 = new QTreeWidgetItem(treeWidget);
-        __qtreewidgetitem2->setIcon(0, icon42);
+        __qtreewidgetitem2->setIcon(0, icon43);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy3.setHorizontalStretch(0);
@@ -456,6 +464,7 @@ public:
         treeWidget->setSizePolicy(sizePolicy3);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
+        treeWidget->setIconSize(QSize(26, 26));
         treeWidget->header()->setVisible(false);
 
         verticalLayout->addWidget(treeWidget);
@@ -506,6 +515,7 @@ public:
         menu_Edit->addAction(action_Deselect_All);
         menuProject->addSeparator();
         menuProject->addAction(actionProperties);
+        menuProject->addAction(actionRun);
         menu_Help->addAction(actionUsing_Thorn_Markup);
         menu_Help->addSeparator();
         menu_Help->addAction(actionAbout);
@@ -546,6 +556,21 @@ public:
         menu_Dictionary->addAction(action_Remove_Section);
         menu_Resources->addAction(action_Add_2);
         menu_Resources->addAction(action_Remove_2);
+        mainToolBar->addAction(action_New);
+        mainToolBar->addAction(action_Open);
+        mainToolBar->addAction(action_Save);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(action_Undo);
+        mainToolBar->addAction(action_Redo);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(action_Cut);
+        mainToolBar->addAction(action_Copy);
+        mainToolBar->addAction(action_Paste);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(action_Find_Replace);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionProperties);
+        mainToolBar->addAction(actionRun);
 
         retranslateUi(MainWindow);
 
@@ -715,6 +740,10 @@ public:
         action_Remove_Section->setText(QApplication::translate("MainWindow", "&Remove Section", nullptr));
         action_Add_2->setText(QApplication::translate("MainWindow", "&Add...", nullptr));
         action_Remove_2->setText(QApplication::translate("MainWindow", "&Remove", nullptr));
+        actionRun->setText(QApplication::translate("MainWindow", "&Run...", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionRun->setShortcut(QApplication::translate("MainWindow", "F5", nullptr));
+#endif // QT_NO_SHORTCUT
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
