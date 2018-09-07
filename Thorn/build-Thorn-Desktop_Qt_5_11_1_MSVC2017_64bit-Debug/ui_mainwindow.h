@@ -20,11 +20,11 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <qwebengineview.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -94,9 +94,8 @@ public:
     QAction *actionR_esources;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QTabWidget *tabWidget;
-    QWidget *tab;
-    QWidget *tab_2;
+    QWebEngineView *widget;
+    QVBoxLayout *verticalLayout_2;
     QMenuBar *menuBar;
     QMenu *menu_File;
     QMenu *menu_Edit;
@@ -386,23 +385,14 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        tabWidget = new QTabWidget(centralWidget);
-        tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
-        tabWidget->setSizePolicy(sizePolicy1);
-        tabWidget->setTabsClosable(true);
-        tabWidget->setMovable(true);
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        tabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        tabWidget->addTab(tab_2, QString());
+        widget = new QWebEngineView(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        verticalLayout_2 = new QVBoxLayout(widget);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
 
-        gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
+        gridLayout->addWidget(widget, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -434,11 +424,11 @@ public:
         MainWindow->setStatusBar(statusBar);
         dockWidget = new QDockWidget(MainWindow);
         dockWidget->setObjectName(QStringLiteral("dockWidget"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(dockWidget->sizePolicy().hasHeightForWidth());
-        dockWidget->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(dockWidget->sizePolicy().hasHeightForWidth());
+        dockWidget->setSizePolicy(sizePolicy1);
         dockWidget->setMinimumSize(QSize(300, 113));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
@@ -459,11 +449,11 @@ public:
         __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
         __qtreewidgetitem1->setIcon(0, icon43);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
-        treeWidget->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
+        treeWidget->setSizePolicy(sizePolicy2);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
         treeWidget->setIndentation(15);
@@ -471,6 +461,7 @@ public:
         treeWidget->setAnimated(true);
         treeWidget->setHeaderHidden(true);
         treeWidget->header()->setVisible(false);
+        treeWidget->header()->setProperty("showSortIndicator", QVariant(false));
 
         verticalLayout->addWidget(treeWidget);
 
@@ -478,11 +469,11 @@ public:
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidget);
         dockWidget_3 = new QDockWidget(MainWindow);
         dockWidget_3->setObjectName(QStringLiteral("dockWidget_3"));
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(dockWidget_3->sizePolicy().hasHeightForWidth());
-        dockWidget_3->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(dockWidget_3->sizePolicy().hasHeightForWidth());
+        dockWidget_3->setSizePolicy(sizePolicy3);
         dockWidgetContents_3 = new QWidget();
         dockWidgetContents_3->setObjectName(QStringLiteral("dockWidgetContents_3"));
         dockWidget_3->setWidget(dockWidgetContents_3);
@@ -569,13 +560,15 @@ public:
         mainToolBar->addSeparator();
         mainToolBar->addAction(action_Find_Replace);
         mainToolBar->addSeparator();
+        mainToolBar->addAction(action_Add);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(action_Dictionary);
+        mainToolBar->addAction(actionR_esources);
+        mainToolBar->addSeparator();
         mainToolBar->addAction(actionProperties);
         mainToolBar->addAction(actionRun);
 
         retranslateUi(MainWindow);
-
-        tabWidget->setCurrentIndex(1);
-
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -746,8 +739,6 @@ public:
 #endif // QT_NO_SHORTCUT
         action_Dictionary->setText(QApplication::translate("MainWindow", "&Dictionary....", nullptr));
         actionR_esources->setText(QApplication::translate("MainWindow", "R&esources...", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
         menu_Edit->setTitle(QApplication::translate("MainWindow", "&Edit", nullptr));
         menuProject->setTitle(QApplication::translate("MainWindow", "&Project", nullptr));

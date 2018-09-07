@@ -26,32 +26,8 @@
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
-      <property name="tabsClosable">
-       <bool>true</bool>
-      </property>
-      <property name="movable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Tab 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-      </widget>
+     <widget class="QWebEngineView" name="widget" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_2"/>
      </widget>
     </item>
    </layout>
@@ -200,6 +176,11 @@
    <addaction name="separator"/>
    <addaction name="action_Find_Replace"/>
    <addaction name="separator"/>
+   <addaction name="action_Add"/>
+   <addaction name="separator"/>
+   <addaction name="action_Dictionary"/>
+   <addaction name="actionR_esources"/>
+   <addaction name="separator"/>
    <addaction name="actionProperties"/>
    <addaction name="actionRun"/>
   </widget>
@@ -252,6 +233,9 @@
         <bool>true</bool>
        </property>
        <attribute name="headerVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="headerShowSortIndicator" stdset="0">
         <bool>false</bool>
        </attribute>
        <column>
@@ -899,6 +883,14 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">qwebengineview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

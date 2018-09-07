@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QTreeWidgetItem *item=new QTreeWidgetItem(topLevelItem);
     // Set text for item
     item->setText(0,"SubItem"); */
+    ui->widget->setHtml("<h1>Header1</h1>");
 }
 
 MainWindow::~MainWindow()
