@@ -36,6 +36,12 @@
       <property name="currentIndex">
        <number>1</number>
       </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Tab 1</string>
@@ -93,6 +99,9 @@
     <property name="title">
      <string>&amp;Project</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionR_esources"/>
+    <addaction name="action_Dictionary"/>
     <addaction name="separator"/>
     <addaction name="actionProperties"/>
     <addaction name="actionRun"/>
@@ -155,30 +164,12 @@
     <addaction name="separator"/>
     <addaction name="action_Import"/>
     <addaction name="actionE_xport"/>
-    <addaction name="separator"/>
-    <addaction name="actionConvert_to_MarkDown"/>
-   </widget>
-   <widget class="QMenu" name="menu_Dictionary">
-    <property name="title">
-     <string>&amp;Dictionary</string>
-    </property>
-    <addaction name="action_Add_Section"/>
-    <addaction name="action_Remove_Section"/>
-   </widget>
-   <widget class="QMenu" name="menu_Resources">
-    <property name="title">
-     <string>&amp;Resources</string>
-    </property>
-    <addaction name="action_Add_2"/>
-    <addaction name="action_Remove_2"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuProject"/>
    <addaction name="menuP_ages"/>
-   <addaction name="menu_Dictionary"/>
-   <addaction name="menu_Resources"/>
    <addaction name="menu_Insert"/>
    <addaction name="menu_Window"/>
    <addaction name="menu_Help"/>
@@ -248,6 +239,18 @@
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
+       <property name="indentation">
+        <number>15</number>
+       </property>
+       <property name="rootIsDecorated">
+        <bool>true</bool>
+       </property>
+       <property name="animated">
+        <bool>true</bool>
+       </property>
+       <property name="headerHidden">
+        <bool>true</bool>
+       </property>
        <attribute name="headerVisible">
         <bool>false</bool>
        </attribute>
@@ -258,30 +261,27 @@
        </column>
        <item>
         <property name="text">
-         <string>Pages</string>
+         <string>Home</string>
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../../icons/custom/pages.svg</normaloff>../../icons/custom/pages.svg</iconset>
+          <normaloff>../../icons/breeze-icons/icons/places/32/folder.svg</normaloff>../../icons/breeze-icons/icons/places/32/folder.svg</iconset>
         </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Dictionary</string>
+        <property name="flags">
+         <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
         </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../../icons/custom/dictionary.svg</normaloff>../../icons/custom/dictionary.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Resources</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../../icons/custom/resources.svg</normaloff>../../icons/custom/resources.svg</iconset>
-        </property>
+        <item>
+         <property name="text">
+          <string>Page 1</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg</normaloff>../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg</iconset>
+         </property>
+         <property name="flags">
+          <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+         </property>
+        </item>
        </item>
       </widget>
      </item>
@@ -749,7 +749,7 @@
   <action name="action_List">
    <property name="icon">
     <iconset>
-     <normaloff>../../icons/breeze-icons/icons/actions/16/format-list-unordered.svg</normaloff>../../icons/breeze-icons/icons/actions/16/format-list-unordered.svg</iconset>
+     <normaloff>../../icons/breeze-icons/icons/actions/16/view-media-playlist.svg</normaloff>../../icons/breeze-icons/icons/actions/16/view-media-playlist.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;List...</string>
@@ -800,10 +800,6 @@
    </property>
   </action>
   <action name="action_Keyboard">
-   <property name="icon">
-    <iconset>
-     <normaloff>../../icons/breeze-icons/icons/devices/16/input-keyboard.svg</normaloff>../../icons/breeze-icons/icons/devices/16/input-keyboard.svg</iconset>
-   </property>
    <property name="text">
     <string>Ke&amp;yboard</string>
    </property>
@@ -881,6 +877,24 @@
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="action_Dictionary">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../icons/breeze-icons/icons/actions/16/address-book-new.svg</normaloff>../../icons/breeze-icons/icons/actions/16/address-book-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Dictionary....</string>
+   </property>
+  </action>
+  <action name="actionR_esources">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../icons/breeze-icons/icons/actions/16/node.svg</normaloff>../../icons/breeze-icons/icons/actions/16/node.svg</iconset>
+   </property>
+   <property name="text">
+    <string>R&amp;esources...</string>
    </property>
   </action>
  </widget>

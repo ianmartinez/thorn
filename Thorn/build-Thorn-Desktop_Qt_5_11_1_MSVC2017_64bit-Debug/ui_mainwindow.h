@@ -90,6 +90,8 @@ public:
     QAction *action_Add_2;
     QAction *action_Remove_2;
     QAction *actionRun;
+    QAction *action_Dictionary;
+    QAction *actionR_esources;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *tabWidget;
@@ -104,8 +106,6 @@ public:
     QMenu *menu_Window;
     QMenu *menu_Insert;
     QMenu *menuP_ages;
-    QMenu *menu_Dictionary;
-    QMenu *menu_Resources;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QDockWidget *dockWidget;
@@ -317,7 +317,7 @@ public:
         action_List = new QAction(MainWindow);
         action_List->setObjectName(QStringLiteral("action_List"));
         QIcon icon33;
-        icon33.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/format-list-unordered.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon33.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/view-media-playlist.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_List->setIcon(icon33);
         action_Paragraph = new QAction(MainWindow);
         action_Paragraph->setObjectName(QStringLiteral("action_Paragraph"));
@@ -365,6 +365,16 @@ public:
         QIcon icon39;
         icon39.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/run-build.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionRun->setIcon(icon39);
+        action_Dictionary = new QAction(MainWindow);
+        action_Dictionary->setObjectName(QStringLiteral("action_Dictionary"));
+        QIcon icon40;
+        icon40.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/address-book-new.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Dictionary->setIcon(icon40);
+        actionR_esources = new QAction(MainWindow);
+        actionR_esources->setObjectName(QStringLiteral("actionR_esources"));
+        QIcon icon41;
+        icon41.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/node.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionR_esources->setIcon(icon41);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -383,6 +393,8 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
         tabWidget->setSizePolicy(sizePolicy1);
+        tabWidget->setTabsClosable(true);
+        tabWidget->setMovable(true);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         tabWidget->addTab(tab, QString());
@@ -412,10 +424,6 @@ public:
         menu_Insert->setObjectName(QStringLiteral("menu_Insert"));
         menuP_ages = new QMenu(menuBar);
         menuP_ages->setObjectName(QStringLiteral("menuP_ages"));
-        menu_Dictionary = new QMenu(menuBar);
-        menu_Dictionary->setObjectName(QStringLiteral("menu_Dictionary"));
-        menu_Resources = new QMenu(menuBar);
-        menu_Resources->setObjectName(QStringLiteral("menu_Resources"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -440,18 +448,16 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
         treeWidget->headerItem()->setText(0, QString());
-        QIcon icon40;
-        icon40.addFile(QStringLiteral("../../icons/custom/pages.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        QIcon icon41;
-        icon41.addFile(QStringLiteral("../../icons/custom/dictionary.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QIcon icon42;
-        icon42.addFile(QStringLiteral("../../icons/custom/resources.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon42.addFile(QStringLiteral("../../icons/breeze-icons/icons/places/32/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon43;
+        icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
-        __qtreewidgetitem->setIcon(0, icon40);
-        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(treeWidget);
-        __qtreewidgetitem1->setIcon(0, icon41);
-        QTreeWidgetItem *__qtreewidgetitem2 = new QTreeWidgetItem(treeWidget);
-        __qtreewidgetitem2->setIcon(0, icon42);
+        __qtreewidgetitem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
+        __qtreewidgetitem->setIcon(0, icon42);
+        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(__qtreewidgetitem);
+        __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
+        __qtreewidgetitem1->setIcon(0, icon43);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy3.setHorizontalStretch(0);
@@ -460,6 +466,10 @@ public:
         treeWidget->setSizePolicy(sizePolicy3);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
+        treeWidget->setIndentation(15);
+        treeWidget->setRootIsDecorated(true);
+        treeWidget->setAnimated(true);
+        treeWidget->setHeaderHidden(true);
         treeWidget->header()->setVisible(false);
 
         verticalLayout->addWidget(treeWidget);
@@ -483,8 +493,6 @@ public:
         menuBar->addAction(menu_View->menuAction());
         menuBar->addAction(menuProject->menuAction());
         menuBar->addAction(menuP_ages->menuAction());
-        menuBar->addAction(menu_Dictionary->menuAction());
-        menuBar->addAction(menu_Resources->menuAction());
         menuBar->addAction(menu_Insert->menuAction());
         menuBar->addAction(menu_Window->menuAction());
         menuBar->addAction(menu_Help->menuAction());
@@ -508,6 +516,9 @@ public:
         menu_Edit->addSeparator();
         menu_Edit->addAction(actionSelect_All);
         menu_Edit->addAction(action_Deselect_All);
+        menuProject->addSeparator();
+        menuProject->addAction(actionR_esources);
+        menuProject->addAction(action_Dictionary);
         menuProject->addSeparator();
         menuProject->addAction(actionProperties);
         menuProject->addAction(actionRun);
@@ -545,12 +556,6 @@ public:
         menuP_ages->addSeparator();
         menuP_ages->addAction(action_Import);
         menuP_ages->addAction(actionE_xport);
-        menuP_ages->addSeparator();
-        menuP_ages->addAction(actionConvert_to_MarkDown);
-        menu_Dictionary->addAction(action_Add_Section);
-        menu_Dictionary->addAction(action_Remove_Section);
-        menu_Resources->addAction(action_Add_2);
-        menu_Resources->addAction(action_Remove_2);
         mainToolBar->addAction(action_New);
         mainToolBar->addAction(action_Open);
         mainToolBar->addAction(action_Save);
@@ -739,6 +744,8 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionRun->setShortcut(QApplication::translate("MainWindow", "F5", nullptr));
 #endif // QT_NO_SHORTCUT
+        action_Dictionary->setText(QApplication::translate("MainWindow", "&Dictionary....", nullptr));
+        actionR_esources->setText(QApplication::translate("MainWindow", "R&esources...", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
@@ -749,19 +756,15 @@ public:
         menu_Window->setTitle(QApplication::translate("MainWindow", "&Window", nullptr));
         menu_Insert->setTitle(QApplication::translate("MainWindow", "&Insert", nullptr));
         menuP_ages->setTitle(QApplication::translate("MainWindow", "P&ages", nullptr));
-        menu_Dictionary->setTitle(QApplication::translate("MainWindow", "&Dictionary", nullptr));
-        menu_Resources->setTitle(QApplication::translate("MainWindow", "&Resources", nullptr));
         mainToolBar->setWindowTitle(QString());
         dockWidget->setWindowTitle(QApplication::translate("MainWindow", "Project", nullptr));
 
         const bool __sortingEnabled = treeWidget->isSortingEnabled();
         treeWidget->setSortingEnabled(false);
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->topLevelItem(0);
-        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Pages", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem1 = treeWidget->topLevelItem(1);
-        ___qtreewidgetitem1->setText(0, QApplication::translate("MainWindow", "Dictionary", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem2 = treeWidget->topLevelItem(2);
-        ___qtreewidgetitem2->setText(0, QApplication::translate("MainWindow", "Resources", nullptr));
+        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Home", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem1 = ___qtreewidgetitem->child(0);
+        ___qtreewidgetitem1->setText(0, QApplication::translate("MainWindow", "Page 1", nullptr));
         treeWidget->setSortingEnabled(__sortingEnabled);
 
         dockWidget_3->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));

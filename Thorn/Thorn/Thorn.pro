@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets
+QT       += core gui widgets webenginewidgets
 
 TARGET = Thorn
 TEMPLATE = app
@@ -24,10 +24,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    thornfile.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    thornfile.h
 
 FORMS += \
         mainwindow.ui
