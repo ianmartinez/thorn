@@ -26,12 +26,12 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     thornfile.cpp \
-    xmlsyntaxhighlighter.cpp
+    markuphighlighter.cpp
 
 HEADERS += \
         mainwindow.h \
     thornfile.h \
-    xmlsyntaxhighlighter.h
+    markuphighlighter.h
 
 FORMS += \
         mainwindow.ui

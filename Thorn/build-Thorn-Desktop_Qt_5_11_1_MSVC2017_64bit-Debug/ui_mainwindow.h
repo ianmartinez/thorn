@@ -443,6 +443,7 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         documentEdit = new QTextEdit(editTab);
         documentEdit->setObjectName(QStringLiteral("documentEdit"));
+        documentEdit->setLineWrapMode(QTextEdit::NoWrap);
         documentEdit->setAcceptRichText(false);
 
         gridLayout_3->addWidget(documentEdit, 0, 0, 1, 1);
@@ -812,7 +813,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(2);
+        pageViewTabs->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);
 
@@ -897,7 +898,7 @@ public:
         action_Add_Page->setText(QApplication::translate("MainWindow", "&Add Page", nullptr));
         action_Remove_Page->setText(QApplication::translate("MainWindow", "&Remove Page", nullptr));
         action_Word_Wrap->setText(QApplication::translate("MainWindow", "&Word Wrap", nullptr));
-        action_Character_Editor->setText(QApplication::translate("MainWindow", "&Character Palette", nullptr));
+        action_Character_Editor->setText(QApplication::translate("MainWindow", "&Characters", nullptr));
         action_Duplicate_Page->setText(QApplication::translate("MainWindow", "&Duplicate Page", nullptr));
         actionImport_Page->setText(QApplication::translate("MainWindow", "&Import Page...", nullptr));
         action_Export_Page->setText(QApplication::translate("MainWindow", "&Export Page...", nullptr));
@@ -924,7 +925,7 @@ public:
         action_Import->setText(QApplication::translate("MainWindow", "&Import...", nullptr));
         actionE_xport->setText(QApplication::translate("MainWindow", "E&xport...", nullptr));
         actionSettin_gs->setText(QApplication::translate("MainWindow", "Settin&gs...", nullptr));
-        actionProject_Explorer->setText(QApplication::translate("MainWindow", "&Project Explorer", nullptr));
+        actionProject_Explorer->setText(QApplication::translate("MainWindow", "&Pages", nullptr));
         action_Image->setText(QApplication::translate("MainWindow", "&Image...", nullptr));
 #ifndef QT_NO_SHORTCUT
         action_Image->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+\303\215", nullptr));

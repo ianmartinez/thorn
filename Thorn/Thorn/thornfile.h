@@ -6,17 +6,23 @@ using namespace std;
 
 struct DictionaryWord
 {
-    QString Section,
+    QString Subject,
     Key,
     Pronunciation,
     Definition;
+};
+
+struct Page
+{
+    QString Section,
+    Markup;
 };
 
 class ThornFile
 {
 public:
     ThornFile();
-    vector<QString> Pages;
+    vector<Page> Pages;
     vector<DictionaryWord> Dictionary;
     vector<QString> Characters;
 };

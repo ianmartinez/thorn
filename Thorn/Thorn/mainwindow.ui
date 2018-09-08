@@ -28,7 +28,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="pageViewTabs">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="editTab">
        <attribute name="icon">
@@ -41,6 +41,9 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
          <widget class="QTextEdit" name="documentEdit">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
           <property name="acceptRichText">
            <bool>false</bool>
           </property>
@@ -858,7 +861,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Character Palette</string>
+    <string>&amp;Characters</string>
    </property>
   </action>
   <action name="action_Duplicate_Page">
@@ -983,7 +986,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Project Explorer</string>
+    <string>&amp;Pages</string>
    </property>
   </action>
   <action name="action_Image">
