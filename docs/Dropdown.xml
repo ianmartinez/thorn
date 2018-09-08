@@ -1,3 +1,8 @@
 <img src="@media/red_shirt.jpg"/>
 
-The shirt is <dropdown> <w>blue</w> <r>red</r> <w>green</w> </dropdown>.
+The shirt is 
+<dropdown> 
+	<w>blue</w> 
+	<r>red</r> 
+	<w>green</w> 
+</dropdown>.
