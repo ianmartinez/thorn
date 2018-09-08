@@ -14,14 +14,20 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolBox>
@@ -68,7 +74,7 @@ public:
     QAction *action_16;
     QAction *action_Add;
     QAction *action_Remove;
-    QAction *action_Duplicate;
+    QAction *action_Clone;
     QAction *actionR_ename;
     QAction *action_Import;
     QAction *actionE_xport;
@@ -105,6 +111,22 @@ public:
     QWidget *previewTab;
     QGridLayout *gridLayout_2;
     QWebEngineView *documentPreview;
+    QWidget *dictionaryTab;
+    QGridLayout *gridLayout_7;
+    QTableWidget *tableWidget;
+    QWidget *resourcesTab;
+    QListWidget *listWidget;
+    QWidget *propertiesTab;
+    QGridLayout *gridLayout_8;
+    QFormLayout *formLayout;
+    QLabel *label;
+    QLineEdit *lineEdit;
+    QLabel *label_2;
+    QLineEdit *lineEdit_2;
+    QLabel *label_3;
+    QLineEdit *lineEdit_3;
+    QLabel *label_4;
+    QTextBrowser *textBrowser;
     QMenuBar *menuBar;
     QMenu *menu_File;
     QMenu *menu_Edit;
@@ -273,18 +295,18 @@ public:
         action_Add = new QAction(MainWindow);
         action_Add->setObjectName(QStringLiteral("action_Add"));
         QIcon icon20;
-        icon20.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/tab-new.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon20.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/archive-insert.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Add->setIcon(icon20);
         action_Remove = new QAction(MainWindow);
         action_Remove->setObjectName(QStringLiteral("action_Remove"));
         QIcon icon21;
-        icon21.addFile(QStringLiteral("../../icons/custom/tab-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon21.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/archive-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Remove->setIcon(icon21);
-        action_Duplicate = new QAction(MainWindow);
-        action_Duplicate->setObjectName(QStringLiteral("action_Duplicate"));
+        action_Clone = new QAction(MainWindow);
+        action_Clone->setObjectName(QStringLiteral("action_Clone"));
         QIcon icon22;
-        icon22.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/tab-duplicate.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Duplicate->setIcon(icon22);
+        icon22.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-clone.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Clone->setIcon(icon22);
         actionR_ename = new QAction(MainWindow);
         actionR_ename->setObjectName(QStringLiteral("actionR_ename"));
         QIcon icon23;
@@ -421,12 +443,11 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         documentEdit = new QTextEdit(editTab);
         documentEdit->setObjectName(QStringLiteral("documentEdit"));
-        documentEdit->setFrameShape(QFrame::NoFrame);
         documentEdit->setAcceptRichText(false);
 
         gridLayout_3->addWidget(documentEdit, 0, 0, 1, 1);
 
-        pageViewTabs->addTab(editTab, QString());
+        pageViewTabs->addTab(editTab, icon23, QString());
         previewTab = new QWidget();
         previewTab->setObjectName(QStringLiteral("previewTab"));
         gridLayout_2 = new QGridLayout(previewTab);
@@ -438,7 +459,106 @@ public:
 
         gridLayout_2->addWidget(documentPreview, 0, 0, 1, 1);
 
-        pageViewTabs->addTab(previewTab, QString());
+        QIcon icon42;
+        icon42.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/visibility.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pageViewTabs->addTab(previewTab, icon42, QString());
+        dictionaryTab = new QWidget();
+        dictionaryTab->setObjectName(QStringLiteral("dictionaryTab"));
+        gridLayout_7 = new QGridLayout(dictionaryTab);
+        gridLayout_7->setSpacing(6);
+        gridLayout_7->setContentsMargins(11, 11, 11, 11);
+        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
+        tableWidget = new QTableWidget(dictionaryTab);
+        if (tableWidget->columnCount() < 5)
+            tableWidget->setColumnCount(5);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setAlternatingRowColors(true);
+        tableWidget->verticalHeader()->setVisible(false);
+
+        gridLayout_7->addWidget(tableWidget, 0, 0, 1, 1);
+
+        pageViewTabs->addTab(dictionaryTab, icon40, QString());
+        resourcesTab = new QWidget();
+        resourcesTab->setObjectName(QStringLiteral("resourcesTab"));
+        listWidget = new QListWidget(resourcesTab);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setGeometry(QRect(310, 110, 256, 192));
+        listWidget->setViewMode(QListView::IconMode);
+        QIcon icon43;
+        icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/package-available.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pageViewTabs->addTab(resourcesTab, icon43, QString());
+        propertiesTab = new QWidget();
+        propertiesTab->setObjectName(QStringLiteral("propertiesTab"));
+        gridLayout_8 = new QGridLayout(propertiesTab);
+        gridLayout_8->setSpacing(6);
+        gridLayout_8->setContentsMargins(11, 11, 11, 11);
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        formLayout = new QFormLayout();
+        formLayout->setSpacing(6);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setHorizontalSpacing(12);
+        formLayout->setVerticalSpacing(12);
+        label = new QLabel(propertiesTab);
+        label->setObjectName(QStringLiteral("label"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label);
+
+        lineEdit = new QLineEdit(propertiesTab);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, lineEdit);
+
+        label_2 = new QLabel(propertiesTab);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
+
+        lineEdit_2 = new QLineEdit(propertiesTab);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, lineEdit_2);
+
+        label_3 = new QLabel(propertiesTab);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_3);
+
+        lineEdit_3 = new QLineEdit(propertiesTab);
+        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, lineEdit_3);
+
+        label_4 = new QLabel(propertiesTab);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_4);
+
+        textBrowser = new QTextBrowser(propertiesTab);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy1);
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, textBrowser);
+
+
+        gridLayout_8->addLayout(formLayout, 0, 0, 1, 1);
+
+        QIcon icon44;
+        icon44.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/project-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pageViewTabs->addTab(propertiesTab, icon44, QString());
 
         gridLayout->addWidget(pageViewTabs, 0, 0, 1, 1);
 
@@ -472,11 +592,11 @@ public:
         MainWindow->setStatusBar(statusBar);
         pagesDock = new QDockWidget(MainWindow);
         pagesDock->setObjectName(QStringLiteral("pagesDock"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
-        pagesDock->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
+        pagesDock->setSizePolicy(sizePolicy2);
         pagesDock->setMinimumSize(QSize(200, 113));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
@@ -486,22 +606,19 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
         treeWidget->headerItem()->setText(0, QString());
-        QIcon icon42;
-        icon42.addFile(QStringLiteral("../../icons/breeze-icons/icons/places/32/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        QIcon icon43;
-        icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon45;
+        icon45.addFile(QStringLiteral("../../icons/breeze-icons/icons/places/32/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon46;
+        icon46.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem->setIcon(0, icon42);
+        __qtreewidgetitem->setIcon(0, icon45);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(__qtreewidgetitem);
         __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem1->setIcon(0, icon43);
+        __qtreewidgetitem1->setIcon(0, icon46);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
-        treeWidget->setSizePolicy(sizePolicy2);
+        sizePolicy1.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
+        treeWidget->setSizePolicy(sizePolicy1);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
         treeWidget->setIndentation(15);
@@ -559,16 +676,19 @@ public:
         toolBox->setFrameShadow(QFrame::Plain);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 258, 72));
+        page->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page, QStringLiteral("Consonants"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
+        page_3->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_3, QStringLiteral("Affricates"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
+        page_4->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_4, QStringLiteral("Vowels"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
+        page_5->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_5, QStringLiteral("Tones"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -588,12 +708,13 @@ public:
 
         insertCharButton = new QPushButton(dockWidgetContents_3);
         insertCharButton->setObjectName(QStringLiteral("insertCharButton"));
-        QSizePolicy sizePolicy4(QSizePolicy::Maximum, QSizePolicy::Expanding);
+        QSizePolicy sizePolicy4(QSizePolicy::Maximum, QSizePolicy::Fixed);
         sizePolicy4.setHorizontalStretch(0);
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(insertCharButton->sizePolicy().hasHeightForWidth());
         insertCharButton->setSizePolicy(sizePolicy4);
         insertCharButton->setMinimumSize(QSize(0, 80));
+        insertCharButton->setMaximumSize(QSize(16777215, 120));
         QFont font;
         font.setPointSize(18);
         font.setBold(true);
@@ -637,10 +758,6 @@ public:
         menu_Edit->addAction(actionSelect_All);
         menu_Edit->addAction(action_Deselect_All);
         menuProject->addSeparator();
-        menuProject->addAction(actionR_esources);
-        menuProject->addAction(action_Dictionary);
-        menuProject->addSeparator();
-        menuProject->addAction(actionProperties);
         menuProject->addAction(actionRun);
         menu_Help->addAction(actionUsing_Thorn_Markup);
         menu_Help->addSeparator();
@@ -672,7 +789,7 @@ public:
         menu_Insert->addAction(actionE_ntry);
         menuP_ages->addAction(action_Add);
         menuP_ages->addAction(action_Remove);
-        menuP_ages->addAction(action_Duplicate);
+        menuP_ages->addAction(action_Clone);
         menuP_ages->addSeparator();
         menuP_ages->addAction(action_Import);
         menuP_ages->addAction(actionE_xport);
@@ -691,15 +808,11 @@ public:
         mainToolBar->addSeparator();
         mainToolBar->addAction(action_Add);
         mainToolBar->addSeparator();
-        mainToolBar->addAction(action_Dictionary);
-        mainToolBar->addAction(actionR_esources);
-        mainToolBar->addSeparator();
-        mainToolBar->addAction(actionProperties);
         mainToolBar->addAction(actionRun);
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(0);
+        pageViewTabs->setCurrentIndex(2);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);
 
@@ -803,9 +916,9 @@ public:
 #ifndef QT_NO_SHORTCUT
         action_Remove->setShortcut(QApplication::translate("MainWindow", "Ctrl+W", nullptr));
 #endif // QT_NO_SHORTCUT
-        action_Duplicate->setText(QApplication::translate("MainWindow", "&Duplicate", nullptr));
+        action_Clone->setText(QApplication::translate("MainWindow", "&Clone", nullptr));
 #ifndef QT_NO_SHORTCUT
-        action_Duplicate->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", nullptr));
+        action_Clone->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", nullptr));
 #endif // QT_NO_SHORTCUT
         actionR_ename->setText(QApplication::translate("MainWindow", "R&ename", nullptr));
         action_Import->setText(QApplication::translate("MainWindow", "&Import...", nullptr));
@@ -875,6 +988,23 @@ public:
         actionR_esources->setText(QApplication::translate("MainWindow", "R&esources...", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(editTab), QApplication::translate("MainWindow", "Edit", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(previewTab), QApplication::translate("MainWindow", "Preview", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Subject", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Word", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Pronunciation", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Definition", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Notes", nullptr));
+        pageViewTabs->setTabText(pageViewTabs->indexOf(dictionaryTab), QApplication::translate("MainWindow", "Dictionary", nullptr));
+        pageViewTabs->setTabText(pageViewTabs->indexOf(resourcesTab), QApplication::translate("MainWindow", "Resources", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Title:", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "Language:", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "Author:", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "Info:", nullptr));
+        pageViewTabs->setTabText(pageViewTabs->indexOf(propertiesTab), QApplication::translate("MainWindow", "Properties", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
         menu_Edit->setTitle(QApplication::translate("MainWindow", "&Edit", nullptr));
         menuProject->setTitle(QApplication::translate("MainWindow", "&Project", nullptr));

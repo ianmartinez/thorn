@@ -28,18 +28,19 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="pageViewTabs">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="editTab">
+       <attribute name="icon">
+        <iconset>
+         <normaloff>../../icons/breeze-icons/icons/actions/16/document-edit.svg</normaloff>../../icons/breeze-icons/icons/actions/16/document-edit.svg</iconset>
+       </attribute>
        <attribute name="title">
         <string>Edit</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
          <widget class="QTextEdit" name="documentEdit">
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
           <property name="acceptRichText">
            <bool>false</bool>
           </property>
@@ -48,12 +49,152 @@
        </layout>
       </widget>
       <widget class="QWidget" name="previewTab">
+       <attribute name="icon">
+        <iconset>
+         <normaloff>../../icons/breeze-icons/icons/actions/16/visibility.svg</normaloff>../../icons/breeze-icons/icons/actions/16/visibility.svg</iconset>
+       </attribute>
        <attribute name="title">
         <string>Preview</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <widget class="QWebEngineView" name="documentPreview" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="dictionaryTab">
+       <attribute name="icon">
+        <iconset>
+         <normaloff>../../icons/breeze-icons/icons/actions/16/address-book-new.svg</normaloff>../../icons/breeze-icons/icons/actions/16/address-book-new.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Dictionary</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidget">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Subject</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Word</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Pronunciation</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Definition</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Notes</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="resourcesTab">
+       <attribute name="icon">
+        <iconset>
+         <normaloff>../../icons/breeze-icons/icons/actions/16/package-available.svg</normaloff>../../icons/breeze-icons/icons/actions/16/package-available.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Resources</string>
+       </attribute>
+       <widget class="QListWidget" name="listWidget">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>110</y>
+          <width>256</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="viewMode">
+         <enum>QListView::IconMode</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="propertiesTab">
+       <attribute name="icon">
+        <iconset>
+         <normaloff>../../icons/breeze-icons/icons/actions/16/project-open.svg</normaloff>../../icons/breeze-icons/icons/actions/16/project-open.svg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Properties</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <layout class="QFormLayout" name="formLayout">
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>12</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Title:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEdit"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Language:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEdit_2"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Author:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEdit_3"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Info:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QTextBrowser" name="textBrowser">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -105,10 +246,6 @@
      <string>&amp;Project</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionR_esources"/>
-    <addaction name="action_Dictionary"/>
-    <addaction name="separator"/>
-    <addaction name="actionProperties"/>
     <addaction name="actionRun"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
@@ -165,7 +302,7 @@
     </property>
     <addaction name="action_Add"/>
     <addaction name="action_Remove"/>
-    <addaction name="action_Duplicate"/>
+    <addaction name="action_Clone"/>
     <addaction name="separator"/>
     <addaction name="action_Import"/>
     <addaction name="actionE_xport"/>
@@ -207,10 +344,6 @@
    <addaction name="separator"/>
    <addaction name="action_Add"/>
    <addaction name="separator"/>
-   <addaction name="action_Dictionary"/>
-   <addaction name="actionR_esources"/>
-   <addaction name="separator"/>
-   <addaction name="actionProperties"/>
    <addaction name="actionRun"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -366,8 +499,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>258</width>
-                <height>72</height>
+                <width>100</width>
+                <height>30</height>
                </rect>
               </property>
               <attribute name="label">
@@ -375,16 +508,40 @@
               </attribute>
              </widget>
              <widget class="QWidget" name="page_3">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>100</width>
+                <height>30</height>
+               </rect>
+              </property>
               <attribute name="label">
                <string>Affricates</string>
               </attribute>
              </widget>
              <widget class="QWidget" name="page_4">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>100</width>
+                <height>30</height>
+               </rect>
+              </property>
               <attribute name="label">
                <string>Vowels</string>
               </attribute>
              </widget>
              <widget class="QWidget" name="page_5">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>100</width>
+                <height>30</height>
+               </rect>
+              </property>
               <attribute name="label">
                <string>Tones</string>
               </attribute>
@@ -418,7 +575,7 @@
        <item row="0" column="0" alignment="Qt::AlignHCenter">
         <widget class="QPushButton" name="insertCharButton">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -427,6 +584,12 @@
           <size>
            <width>0</width>
            <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>120</height>
           </size>
          </property>
          <property name="font">
@@ -743,7 +906,7 @@
   <action name="action_Add">
    <property name="icon">
     <iconset>
-     <normaloff>../../icons/breeze-icons/icons/actions/16/tab-new.svg</normaloff>../../icons/breeze-icons/icons/actions/16/tab-new.svg</iconset>
+     <normaloff>../../icons/breeze-icons/icons/actions/16/archive-insert.svg</normaloff>../../icons/breeze-icons/icons/actions/16/archive-insert.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Add</string>
@@ -755,7 +918,7 @@
   <action name="action_Remove">
    <property name="icon">
     <iconset>
-     <normaloff>../../icons/custom/tab-remove.svg</normaloff>../../icons/custom/tab-remove.svg</iconset>
+     <normaloff>../../icons/breeze-icons/icons/actions/16/archive-remove.svg</normaloff>../../icons/breeze-icons/icons/actions/16/archive-remove.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Remove</string>
@@ -764,13 +927,13 @@
     <string>Ctrl+W</string>
    </property>
   </action>
-  <action name="action_Duplicate">
+  <action name="action_Clone">
    <property name="icon">
     <iconset>
-     <normaloff>../../icons/breeze-icons/icons/actions/16/tab-duplicate.svg</normaloff>../../icons/breeze-icons/icons/actions/16/tab-duplicate.svg</iconset>
+     <normaloff>../../icons/breeze-icons/icons/actions/16/edit-clone.svg</normaloff>../../icons/breeze-icons/icons/actions/16/edit-clone.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Duplicate</string>
+    <string>&amp;Clone</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
