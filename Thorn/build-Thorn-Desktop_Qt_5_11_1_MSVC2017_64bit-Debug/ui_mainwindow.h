@@ -19,10 +19,12 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QToolBox>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -120,6 +122,23 @@ public:
     QTreeWidget *treeWidget;
     QDockWidget *charactersDock;
     QWidget *dockWidgetContents_3;
+    QGridLayout *gridLayout_5;
+    QGridLayout *gridLayout_4;
+    QPushButton *globalButton;
+    QTabWidget *tabWidget;
+    QWidget *projectCharTab;
+    QWidget *globalCharTab;
+    QWidget *commomCharTab;
+    QWidget *ipaCharTab;
+    QGridLayout *gridLayout_6;
+    QToolBox *toolBox;
+    QWidget *page;
+    QWidget *page_3;
+    QWidget *page_4;
+    QWidget *page_5;
+    QWidget *page_2;
+    QPushButton *projectButton;
+    QPushButton *insertCharButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -402,6 +421,8 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         documentEdit = new QTextEdit(editTab);
         documentEdit->setObjectName(QStringLiteral("documentEdit"));
+        documentEdit->setFrameShape(QFrame::NoFrame);
+        documentEdit->setAcceptRichText(false);
 
         gridLayout_3->addWidget(documentEdit, 0, 0, 1, 1);
 
@@ -456,7 +477,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
         pagesDock->setSizePolicy(sizePolicy1);
-        pagesDock->setMinimumSize(QSize(300, 113));
+        pagesDock->setMinimumSize(QSize(200, 113));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
         verticalLayout = new QVBoxLayout(dockWidgetContents);
@@ -503,6 +524,87 @@ public:
         charactersDock->setSizePolicy(sizePolicy3);
         dockWidgetContents_3 = new QWidget();
         dockWidgetContents_3->setObjectName(QStringLiteral("dockWidgetContents_3"));
+        gridLayout_5 = new QGridLayout(dockWidgetContents_3);
+        gridLayout_5->setSpacing(6);
+        gridLayout_5->setContentsMargins(11, 11, 11, 11);
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
+        gridLayout_4 = new QGridLayout();
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        globalButton = new QPushButton(dockWidgetContents_3);
+        globalButton->setObjectName(QStringLiteral("globalButton"));
+
+        gridLayout_4->addWidget(globalButton, 2, 0, 1, 1);
+
+        tabWidget = new QTabWidget(dockWidgetContents_3);
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        projectCharTab = new QWidget();
+        projectCharTab->setObjectName(QStringLiteral("projectCharTab"));
+        tabWidget->addTab(projectCharTab, QString());
+        globalCharTab = new QWidget();
+        globalCharTab->setObjectName(QStringLiteral("globalCharTab"));
+        tabWidget->addTab(globalCharTab, QString());
+        commomCharTab = new QWidget();
+        commomCharTab->setObjectName(QStringLiteral("commomCharTab"));
+        tabWidget->addTab(commomCharTab, QString());
+        ipaCharTab = new QWidget();
+        ipaCharTab->setObjectName(QStringLiteral("ipaCharTab"));
+        gridLayout_6 = new QGridLayout(ipaCharTab);
+        gridLayout_6->setSpacing(6);
+        gridLayout_6->setContentsMargins(11, 11, 11, 11);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        toolBox = new QToolBox(ipaCharTab);
+        toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setFrameShape(QFrame::NoFrame);
+        toolBox->setFrameShadow(QFrame::Plain);
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        page->setGeometry(QRect(0, 0, 258, 72));
+        toolBox->addItem(page, QStringLiteral("Consonants"));
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        toolBox->addItem(page_3, QStringLiteral("Affricates"));
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        toolBox->addItem(page_4, QStringLiteral("Vowels"));
+        page_5 = new QWidget();
+        page_5->setObjectName(QStringLiteral("page_5"));
+        toolBox->addItem(page_5, QStringLiteral("Tones"));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        page_2->setGeometry(QRect(0, 0, 232, 70));
+        toolBox->addItem(page_2, QStringLiteral("Other"));
+
+        gridLayout_6->addWidget(toolBox, 0, 0, 1, 1);
+
+        tabWidget->addTab(ipaCharTab, QString());
+
+        gridLayout_4->addWidget(tabWidget, 3, 0, 1, 1);
+
+        projectButton = new QPushButton(dockWidgetContents_3);
+        projectButton->setObjectName(QStringLiteral("projectButton"));
+
+        gridLayout_4->addWidget(projectButton, 1, 0, 1, 1);
+
+        insertCharButton = new QPushButton(dockWidgetContents_3);
+        insertCharButton->setObjectName(QStringLiteral("insertCharButton"));
+        QSizePolicy sizePolicy4(QSizePolicy::Maximum, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(insertCharButton->sizePolicy().hasHeightForWidth());
+        insertCharButton->setSizePolicy(sizePolicy4);
+        insertCharButton->setMinimumSize(QSize(0, 80));
+        QFont font;
+        font.setPointSize(18);
+        font.setBold(true);
+        font.setWeight(75);
+        insertCharButton->setFont(font);
+
+        gridLayout_4->addWidget(insertCharButton, 0, 0, 1, 1, Qt::AlignHCenter);
+
+
+        gridLayout_5->addLayout(gridLayout_4, 0, 0, 1, 1);
+
         charactersDock->setWidget(dockWidgetContents_3);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), charactersDock);
 
@@ -598,6 +700,8 @@ public:
         retranslateUi(MainWindow);
 
         pageViewTabs->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
+        toolBox->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -791,6 +895,18 @@ public:
         treeWidget->setSortingEnabled(__sortingEnabled);
 
         charactersDock->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));
+        globalButton->setText(QApplication::translate("MainWindow", "Global", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(projectCharTab), QApplication::translate("MainWindow", "Project", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(globalCharTab), QApplication::translate("MainWindow", "Global", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(commomCharTab), QApplication::translate("MainWindow", "Common", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Consonants", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "Affricates", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "Vowels", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MainWindow", "Tones", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Other", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(ipaCharTab), QApplication::translate("MainWindow", "IPA", nullptr));
+        projectButton->setText(QApplication::translate("MainWindow", "Project", nullptr));
+        insertCharButton->setText(QApplication::translate("MainWindow", "A", nullptr));
     } // retranslateUi
 
 };

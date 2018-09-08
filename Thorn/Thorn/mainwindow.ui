@@ -36,7 +36,14 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QTextEdit" name="documentEdit"/>
+         <widget class="QTextEdit" name="documentEdit">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -216,7 +223,7 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>300</width>
+     <width>200</width>
      <height>113</height>
     </size>
    </property>
@@ -307,7 +314,137 @@
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_3"/>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="2" column="0">
+        <widget class="QPushButton" name="globalButton">
+         <property name="text">
+          <string>Global</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>3</number>
+         </property>
+         <widget class="QWidget" name="projectCharTab">
+          <attribute name="title">
+           <string>Project</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="globalCharTab">
+          <attribute name="title">
+           <string>Global</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="commomCharTab">
+          <attribute name="title">
+           <string>Common</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="ipaCharTab">
+          <attribute name="title">
+           <string>IPA</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QToolBox" name="toolBox">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="currentIndex">
+              <number>4</number>
+             </property>
+             <widget class="QWidget" name="page">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>258</width>
+                <height>72</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Consonants</string>
+              </attribute>
+             </widget>
+             <widget class="QWidget" name="page_3">
+              <attribute name="label">
+               <string>Affricates</string>
+              </attribute>
+             </widget>
+             <widget class="QWidget" name="page_4">
+              <attribute name="label">
+               <string>Vowels</string>
+              </attribute>
+             </widget>
+             <widget class="QWidget" name="page_5">
+              <attribute name="label">
+               <string>Tones</string>
+              </attribute>
+             </widget>
+             <widget class="QWidget" name="page_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>232</width>
+                <height>70</height>
+               </rect>
+              </property>
+              <attribute name="label">
+               <string>Other</string>
+              </attribute>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="projectButton">
+         <property name="text">
+          <string>Project</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="insertCharButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>A</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="action_Open">
    <property name="icon">
