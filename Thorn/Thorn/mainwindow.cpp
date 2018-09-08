@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qtreeview.h"
 #include "qtreewidget.h"
+#include "xmlsyntaxhighlighter.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,7 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QTreeWidgetItem *item=new QTreeWidgetItem(topLevelItem);
     // Set text for item
     item->setText(0,"SubItem"); */
-    ui->documentPreview->setHtml("<h1>Header1</h1>");
+
+    XMLSyntaxHighlighter* highlighter = new XMLSyntaxHighlighter(ui->documentEdit);
+    Q_UNUSED(highlighter);
 }
 
 MainWindow::~MainWindow()

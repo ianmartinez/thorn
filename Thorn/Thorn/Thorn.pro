@@ -25,11 +25,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    thornfile.cpp
+    thornfile.cpp \
+    xmlsyntaxhighlighter.cpp
 
 HEADERS += \
         mainwindow.h \
-    thornfile.h
+    thornfile.h \
+    xmlsyntaxhighlighter.h
 
 FORMS += \
         mainwindow.ui
