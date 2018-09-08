@@ -26,8 +26,30 @@
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QWebEngineView" name="widget" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+     <widget class="QTabWidget" name="pageViewTabs">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="editTab">
+       <attribute name="title">
+        <string>Edit</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="documentEdit"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="previewTab">
+       <attribute name="title">
+        <string>Preview</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QWebEngineView" name="documentPreview" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -185,7 +207,7 @@
    <addaction name="actionRun"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QDockWidget" name="dockWidget">
+  <widget class="QDockWidget" name="pagesDock">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
      <horstretch>0</horstretch>
@@ -199,7 +221,7 @@
     </size>
    </property>
    <property name="windowTitle">
-    <string>Project</string>
+    <string>Pages</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
@@ -272,7 +294,7 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dockWidget_3">
+  <widget class="QDockWidget" name="charactersDock">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
      <horstretch>0</horstretch>

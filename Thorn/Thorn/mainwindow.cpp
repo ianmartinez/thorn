@@ -19,10 +19,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QTreeWidgetItem *item=new QTreeWidgetItem(topLevelItem);
     // Set text for item
     item->setText(0,"SubItem"); */
-    ui->widget->setHtml("<h1>Header1</h1>");
+    ui->documentPreview->setHtml("<h1>Header1</h1>");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pageViewTabs_currentChanged(int index)
+{
+    if(index == 1) {
+        ui->documentPreview->setHtml(ui->documentEdit->toPlainText());
+    }
 }

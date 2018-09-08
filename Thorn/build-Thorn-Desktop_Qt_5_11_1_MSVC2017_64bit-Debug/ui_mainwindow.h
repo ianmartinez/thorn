@@ -20,6 +20,8 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -94,8 +96,13 @@ public:
     QAction *actionR_esources;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QWebEngineView *widget;
-    QVBoxLayout *verticalLayout_2;
+    QTabWidget *pageViewTabs;
+    QWidget *editTab;
+    QGridLayout *gridLayout_3;
+    QTextEdit *documentEdit;
+    QWidget *previewTab;
+    QGridLayout *gridLayout_2;
+    QWebEngineView *documentPreview;
     QMenuBar *menuBar;
     QMenu *menu_File;
     QMenu *menu_Edit;
@@ -107,11 +114,11 @@ public:
     QMenu *menuP_ages;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
-    QDockWidget *dockWidget;
+    QDockWidget *pagesDock;
     QWidget *dockWidgetContents;
     QVBoxLayout *verticalLayout;
     QTreeWidget *treeWidget;
-    QDockWidget *dockWidget_3;
+    QDockWidget *charactersDock;
     QWidget *dockWidgetContents_3;
 
     void setupUi(QMainWindow *MainWindow)
@@ -385,14 +392,34 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        widget = new QWebEngineView(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        verticalLayout_2 = new QVBoxLayout(widget);
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        pageViewTabs = new QTabWidget(centralWidget);
+        pageViewTabs->setObjectName(QStringLiteral("pageViewTabs"));
+        editTab = new QWidget();
+        editTab->setObjectName(QStringLiteral("editTab"));
+        gridLayout_3 = new QGridLayout(editTab);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        documentEdit = new QTextEdit(editTab);
+        documentEdit->setObjectName(QStringLiteral("documentEdit"));
 
-        gridLayout->addWidget(widget, 0, 0, 1, 1);
+        gridLayout_3->addWidget(documentEdit, 0, 0, 1, 1);
+
+        pageViewTabs->addTab(editTab, QString());
+        previewTab = new QWidget();
+        previewTab->setObjectName(QStringLiteral("previewTab"));
+        gridLayout_2 = new QGridLayout(previewTab);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        documentPreview = new QWebEngineView(previewTab);
+        documentPreview->setObjectName(QStringLiteral("documentPreview"));
+
+        gridLayout_2->addWidget(documentPreview, 0, 0, 1, 1);
+
+        pageViewTabs->addTab(previewTab, QString());
+
+        gridLayout->addWidget(pageViewTabs, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -422,14 +449,14 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
-        dockWidget = new QDockWidget(MainWindow);
-        dockWidget->setObjectName(QStringLiteral("dockWidget"));
+        pagesDock = new QDockWidget(MainWindow);
+        pagesDock->setObjectName(QStringLiteral("pagesDock"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(dockWidget->sizePolicy().hasHeightForWidth());
-        dockWidget->setSizePolicy(sizePolicy1);
-        dockWidget->setMinimumSize(QSize(300, 113));
+        sizePolicy1.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
+        pagesDock->setSizePolicy(sizePolicy1);
+        pagesDock->setMinimumSize(QSize(300, 113));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
         verticalLayout = new QVBoxLayout(dockWidgetContents);
@@ -465,19 +492,19 @@ public:
 
         verticalLayout->addWidget(treeWidget);
 
-        dockWidget->setWidget(dockWidgetContents);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidget);
-        dockWidget_3 = new QDockWidget(MainWindow);
-        dockWidget_3->setObjectName(QStringLiteral("dockWidget_3"));
+        pagesDock->setWidget(dockWidgetContents);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), pagesDock);
+        charactersDock = new QDockWidget(MainWindow);
+        charactersDock->setObjectName(QStringLiteral("charactersDock"));
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(dockWidget_3->sizePolicy().hasHeightForWidth());
-        dockWidget_3->setSizePolicy(sizePolicy3);
+        sizePolicy3.setHeightForWidth(charactersDock->sizePolicy().hasHeightForWidth());
+        charactersDock->setSizePolicy(sizePolicy3);
         dockWidgetContents_3 = new QWidget();
         dockWidgetContents_3->setObjectName(QStringLiteral("dockWidgetContents_3"));
-        dockWidget_3->setWidget(dockWidgetContents_3);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockWidget_3);
+        charactersDock->setWidget(dockWidgetContents_3);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), charactersDock);
 
         menuBar->addAction(menu_File->menuAction());
         menuBar->addAction(menu_Edit->menuAction());
@@ -569,6 +596,9 @@ public:
         mainToolBar->addAction(actionRun);
 
         retranslateUi(MainWindow);
+
+        pageViewTabs->setCurrentIndex(1);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -739,6 +769,8 @@ public:
 #endif // QT_NO_SHORTCUT
         action_Dictionary->setText(QApplication::translate("MainWindow", "&Dictionary....", nullptr));
         actionR_esources->setText(QApplication::translate("MainWindow", "R&esources...", nullptr));
+        pageViewTabs->setTabText(pageViewTabs->indexOf(editTab), QApplication::translate("MainWindow", "Edit", nullptr));
+        pageViewTabs->setTabText(pageViewTabs->indexOf(previewTab), QApplication::translate("MainWindow", "Preview", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
         menu_Edit->setTitle(QApplication::translate("MainWindow", "&Edit", nullptr));
         menuProject->setTitle(QApplication::translate("MainWindow", "&Project", nullptr));
@@ -748,7 +780,7 @@ public:
         menu_Insert->setTitle(QApplication::translate("MainWindow", "&Insert", nullptr));
         menuP_ages->setTitle(QApplication::translate("MainWindow", "P&ages", nullptr));
         mainToolBar->setWindowTitle(QString());
-        dockWidget->setWindowTitle(QApplication::translate("MainWindow", "Project", nullptr));
+        pagesDock->setWindowTitle(QApplication::translate("MainWindow", "Pages", nullptr));
 
         const bool __sortingEnabled = treeWidget->isSortingEnabled();
         treeWidget->setSortingEnabled(false);
@@ -758,7 +790,7 @@ public:
         ___qtreewidgetitem1->setText(0, QApplication::translate("MainWindow", "Page 1", nullptr));
         treeWidget->setSortingEnabled(__sortingEnabled);
 
-        dockWidget_3->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));
+        charactersDock->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));
     } // retranslateUi
 
 };
