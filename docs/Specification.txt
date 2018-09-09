@@ -10,9 +10,9 @@ There are 3 tree folders represented in the tree control:
 		Contains a list words defined in sections. 
 		
 		Example use from within page markup:
-			<word section="animals">dog</word>
+			<word subject="animals">dog</word>
 	- Media:
 		Contains media that can be accessed from within the page markup.
 		
 		Example use of an image file called "test.jpg" that is stored in the media folder from the page markup:
-			<img src="@media/test.jpg"/>
+			<img src="@test.jpg"/>

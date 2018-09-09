@@ -1,5 +1,5 @@
 <!-- Same as dropdown, but uses radiobuttons instead -->
-<img src="@media/red_shirt.jpg"/>
+<img src="@red_shirt.jpg"/>
 
 The shirt is 
 <radio> 
