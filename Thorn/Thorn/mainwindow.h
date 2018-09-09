@@ -22,6 +22,8 @@ private slots:
 
     void on_removeWordButton_clicked();
 
+    void on_action_Quit_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

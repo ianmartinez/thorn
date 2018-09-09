@@ -47,3 +47,8 @@ void MainWindow::on_removeWordButton_clicked()
     if (row_index >= 0)
         ui->dictionaryTable->removeRow(row_index);
 }
+
+void MainWindow::on_action_Quit_triggered()
+{
+    QApplication::quit();
+}
