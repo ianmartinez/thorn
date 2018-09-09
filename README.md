@@ -8,7 +8,7 @@ It is currently under construction and it aims to fix numerous deficiencies in i
   
 ## Improvements to Thorn 2:
   - Completely rewritten in C++ and QT, which allows it to run on Windows, MacOs, and Linux
-  - Merges the more advanced text editing features of Language Pad with the language learning acquisition features of Thorn 1
+  - Merges the more advanced text editing features of Language Pad with the language acquisition features of Thorn 1
   - Pages can be arranged into sections
   - Dictionary words can be grouped into subjects
   - A simplified character editor- the symbols panel, custom symbols dialog, and accent mark dialog have been merged into one panel
