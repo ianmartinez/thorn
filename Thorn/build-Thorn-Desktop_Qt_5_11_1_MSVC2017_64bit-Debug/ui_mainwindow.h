@@ -15,6 +15,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -113,11 +114,23 @@ public:
     QWebEngineView *documentPreview;
     QWidget *dictionaryTab;
     QGridLayout *gridLayout_7;
-    QTableWidget *tableWidget;
+    QFrame *frame;
+    QGridLayout *gridLayout_9;
+    QPushButton *addWordButton;
+    QPushButton *removeWordButton;
+    QTableWidget *dictionaryTable;
     QWidget *resourcesTab;
+    QVBoxLayout *verticalLayout_2;
+    QFrame *frame_2;
+    QGridLayout *gridLayout_10;
+    QPushButton *addResourceButton;
+    QPushButton *removeResourceButton;
     QListWidget *listWidget;
     QWidget *propertiesTab;
     QGridLayout *gridLayout_8;
+    QTabWidget *tabWidget_2;
+    QWidget *infoTab;
+    QGridLayout *gridLayout_11;
     QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *lineEdit;
@@ -127,6 +140,9 @@ public:
     QLineEdit *lineEdit_3;
     QLabel *label_4;
     QTextBrowser *textBrowser;
+    QWidget *cssTab;
+    QGridLayout *gridLayout_12;
+    QTextEdit *textEdit;
     QMenuBar *menuBar;
     QMenu *menu_File;
     QMenu *menu_Edit;
@@ -469,32 +485,86 @@ public:
         gridLayout_7->setSpacing(6);
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
-        tableWidget = new QTableWidget(dictionaryTab);
-        if (tableWidget->columnCount() < 5)
-            tableWidget->setColumnCount(5);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setAlternatingRowColors(true);
-        tableWidget->verticalHeader()->setVisible(false);
+        frame = new QFrame(dictionaryTab);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        gridLayout_9 = new QGridLayout(frame);
+        gridLayout_9->setSpacing(6);
+        gridLayout_9->setContentsMargins(11, 11, 11, 11);
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        addWordButton = new QPushButton(frame);
+        addWordButton->setObjectName(QStringLiteral("addWordButton"));
 
-        gridLayout_7->addWidget(tableWidget, 0, 0, 1, 1);
+        gridLayout_9->addWidget(addWordButton, 0, 0, 1, 1);
+
+        removeWordButton = new QPushButton(frame);
+        removeWordButton->setObjectName(QStringLiteral("removeWordButton"));
+
+        gridLayout_9->addWidget(removeWordButton, 0, 1, 1, 1);
+
+
+        gridLayout_7->addWidget(frame, 0, 0, 1, 1);
+
+        dictionaryTable = new QTableWidget(dictionaryTab);
+        if (dictionaryTable->columnCount() < 6)
+            dictionaryTable->setColumnCount(6);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        dictionaryTable->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        dictionaryTable->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        dictionaryTable->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        dictionaryTable->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        dictionaryTable->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        dictionaryTable->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        if (dictionaryTable->rowCount() < 1)
+            dictionaryTable->setRowCount(1);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        dictionaryTable->setVerticalHeaderItem(0, __qtablewidgetitem6);
+        dictionaryTable->setObjectName(QStringLiteral("dictionaryTable"));
+        dictionaryTable->setAlternatingRowColors(true);
+        dictionaryTable->verticalHeader()->setVisible(false);
+
+        gridLayout_7->addWidget(dictionaryTable, 1, 0, 1, 1);
 
         pageViewTabs->addTab(dictionaryTab, icon40, QString());
         resourcesTab = new QWidget();
         resourcesTab->setObjectName(QStringLiteral("resourcesTab"));
+        verticalLayout_2 = new QVBoxLayout(resourcesTab);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        frame_2 = new QFrame(resourcesTab);
+        frame_2->setObjectName(QStringLiteral("frame_2"));
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
+        gridLayout_10 = new QGridLayout(frame_2);
+        gridLayout_10->setSpacing(6);
+        gridLayout_10->setContentsMargins(11, 11, 11, 11);
+        gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
+        addResourceButton = new QPushButton(frame_2);
+        addResourceButton->setObjectName(QStringLiteral("addResourceButton"));
+
+        gridLayout_10->addWidget(addResourceButton, 0, 0, 1, 1);
+
+        removeResourceButton = new QPushButton(frame_2);
+        removeResourceButton->setObjectName(QStringLiteral("removeResourceButton"));
+
+        gridLayout_10->addWidget(removeResourceButton, 0, 1, 1, 1);
+
+
+        verticalLayout_2->addWidget(frame_2);
+
         listWidget = new QListWidget(resourcesTab);
         listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setGeometry(QRect(310, 110, 256, 192));
         listWidget->setViewMode(QListView::IconMode);
+
+        verticalLayout_2->addWidget(listWidget);
+
         QIcon icon43;
         icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/package-available.svg"), QSize(), QIcon::Normal, QIcon::Off);
         pageViewTabs->addTab(resourcesTab, icon43, QString());
@@ -504,47 +574,55 @@ public:
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
         gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        tabWidget_2 = new QTabWidget(propertiesTab);
+        tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
+        infoTab = new QWidget();
+        infoTab->setObjectName(QStringLiteral("infoTab"));
+        gridLayout_11 = new QGridLayout(infoTab);
+        gridLayout_11->setSpacing(6);
+        gridLayout_11->setContentsMargins(11, 11, 11, 11);
+        gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
         formLayout = new QFormLayout();
         formLayout->setSpacing(6);
         formLayout->setObjectName(QStringLiteral("formLayout"));
         formLayout->setHorizontalSpacing(12);
         formLayout->setVerticalSpacing(12);
-        label = new QLabel(propertiesTab);
+        label = new QLabel(infoTab);
         label->setObjectName(QStringLiteral("label"));
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label);
 
-        lineEdit = new QLineEdit(propertiesTab);
+        lineEdit = new QLineEdit(infoTab);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
         formLayout->setWidget(1, QFormLayout::FieldRole, lineEdit);
 
-        label_2 = new QLabel(propertiesTab);
+        label_2 = new QLabel(infoTab);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
 
-        lineEdit_2 = new QLineEdit(propertiesTab);
+        lineEdit_2 = new QLineEdit(infoTab);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
 
         formLayout->setWidget(2, QFormLayout::FieldRole, lineEdit_2);
 
-        label_3 = new QLabel(propertiesTab);
+        label_3 = new QLabel(infoTab);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         formLayout->setWidget(3, QFormLayout::LabelRole, label_3);
 
-        lineEdit_3 = new QLineEdit(propertiesTab);
+        lineEdit_3 = new QLineEdit(infoTab);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
 
         formLayout->setWidget(3, QFormLayout::FieldRole, lineEdit_3);
 
-        label_4 = new QLabel(propertiesTab);
+        label_4 = new QLabel(infoTab);
         label_4->setObjectName(QStringLiteral("label_4"));
 
         formLayout->setWidget(4, QFormLayout::LabelRole, label_4);
 
-        textBrowser = new QTextBrowser(propertiesTab);
+        textBrowser = new QTextBrowser(infoTab);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
@@ -555,7 +633,24 @@ public:
         formLayout->setWidget(4, QFormLayout::FieldRole, textBrowser);
 
 
-        gridLayout_8->addLayout(formLayout, 0, 0, 1, 1);
+        gridLayout_11->addLayout(formLayout, 0, 0, 1, 1);
+
+        tabWidget_2->addTab(infoTab, QString());
+        cssTab = new QWidget();
+        cssTab->setObjectName(QStringLiteral("cssTab"));
+        gridLayout_12 = new QGridLayout(cssTab);
+        gridLayout_12->setSpacing(6);
+        gridLayout_12->setContentsMargins(11, 11, 11, 11);
+        gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
+        textEdit = new QTextEdit(cssTab);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setAcceptRichText(false);
+
+        gridLayout_12->addWidget(textEdit, 0, 0, 1, 1);
+
+        tabWidget_2->addTab(cssTab, QString());
+
+        gridLayout_8->addWidget(tabWidget_2, 0, 0, 1, 1);
 
         QIcon icon44;
         icon44.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/project-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
@@ -813,7 +908,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(0);
+        pageViewTabs->setCurrentIndex(2);
+        tabWidget_2->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);
 
@@ -989,22 +1085,32 @@ public:
         actionR_esources->setText(QApplication::translate("MainWindow", "R&esources...", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(editTab), QApplication::translate("MainWindow", "Edit", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(previewTab), QApplication::translate("MainWindow", "Preview", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        addWordButton->setText(QApplication::translate("MainWindow", "Add", nullptr));
+        removeWordButton->setText(QApplication::translate("MainWindow", "Remove", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = dictionaryTable->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Subject", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        QTableWidgetItem *___qtablewidgetitem1 = dictionaryTable->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Word", nullptr));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Pronunciation", nullptr));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Definition", nullptr));
-        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Notes", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = dictionaryTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Translation", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = dictionaryTable->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Pronunciation", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = dictionaryTable->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Definition", nullptr));
+        QTableWidgetItem *___qtablewidgetitem5 = dictionaryTable->horizontalHeaderItem(5);
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "Notes", nullptr));
+        QTableWidgetItem *___qtablewidgetitem6 = dictionaryTable->verticalHeaderItem(0);
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "New Row", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(dictionaryTab), QApplication::translate("MainWindow", "Dictionary", nullptr));
+        addResourceButton->setText(QApplication::translate("MainWindow", "Add...", nullptr));
+        removeResourceButton->setText(QApplication::translate("MainWindow", "Remove", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(resourcesTab), QApplication::translate("MainWindow", "Resources", nullptr));
         label->setText(QApplication::translate("MainWindow", "Title:", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "Language:", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "Author:", nullptr));
         label_4->setText(QApplication::translate("MainWindow", "Info:", nullptr));
+        tabWidget_2->setTabText(tabWidget_2->indexOf(infoTab), QApplication::translate("MainWindow", "Info", nullptr));
+        tabWidget_2->setTabText(tabWidget_2->indexOf(cssTab), QApplication::translate("MainWindow", "CSS", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(propertiesTab), QApplication::translate("MainWindow", "Properties", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
         menu_Edit->setTitle(QApplication::translate("MainWindow", "&Edit", nullptr));

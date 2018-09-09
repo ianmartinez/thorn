@@ -32,7 +32,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pageViewTabs_currentChanged(int index)
 {
-    if(index == 1) {
+    if(index == 1) // Preview tab
         ui->documentPreview->setHtml(ui->documentEdit->toPlainText());
-    }
+}
+
+void MainWindow::on_addWordButton_clicked()
+{
+    ui->dictionaryTable->insertRow(ui->dictionaryTable->rowCount());
+}
+
+void MainWindow::on_removeWordButton_clicked()
+{
+    int row_index = ui->dictionaryTable->currentIndex().row();
+    if (row_index >= 0)
+        ui->dictionaryTable->removeRow(row_index);
 }

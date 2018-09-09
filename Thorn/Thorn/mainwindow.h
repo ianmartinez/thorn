@@ -18,6 +18,10 @@ public:
 private slots:
     void on_pageViewTabs_currentChanged(int index);
 
+    void on_addWordButton_clicked();
+
+    void on_removeWordButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
