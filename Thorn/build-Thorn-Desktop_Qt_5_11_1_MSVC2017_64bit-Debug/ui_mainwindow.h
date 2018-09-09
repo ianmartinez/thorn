@@ -13,10 +13,12 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -115,7 +117,7 @@ public:
     QWidget *dictionaryTab;
     QGridLayout *gridLayout_7;
     QFrame *frame;
-    QGridLayout *gridLayout_9;
+    QHBoxLayout *horizontalLayout;
     QPushButton *addWordButton;
     QPushButton *removeWordButton;
     QTableWidget *dictionaryTable;
@@ -163,6 +165,8 @@ public:
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_4;
     QPushButton *globalButton;
+    QPushButton *insertCharButton;
+    QPushButton *projectButton;
     QTabWidget *tabWidget;
     QWidget *projectCharTab;
     QWidget *globalCharTab;
@@ -175,8 +179,7 @@ public:
     QWidget *page_4;
     QWidget *page_5;
     QWidget *page_2;
-    QPushButton *projectButton;
-    QPushButton *insertCharButton;
+    QCheckBox *smartReplaceCheck;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -186,6 +189,7 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral("../../icons/thorn/app_icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setUnifiedTitleAndToolBarOnMac(true);
         action_Open = new QAction(MainWindow);
         action_Open->setObjectName(QStringLiteral("action_Open"));
         QIcon icon1;
@@ -487,21 +491,37 @@ public:
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
         frame = new QFrame(dictionaryTab);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        gridLayout_9 = new QGridLayout(frame);
-        gridLayout_9->setSpacing(6);
-        gridLayout_9->setContentsMargins(11, 11, 11, 11);
-        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        frame->setFrameShape(QFrame::NoFrame);
+        frame->setFrameShadow(QFrame::Plain);
+        horizontalLayout = new QHBoxLayout(frame);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         addWordButton = new QPushButton(frame);
         addWordButton->setObjectName(QStringLiteral("addWordButton"));
+        QSizePolicy sizePolicy1(QSizePolicy::Maximum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(addWordButton->sizePolicy().hasHeightForWidth());
+        addWordButton->setSizePolicy(sizePolicy1);
+        QIcon icon43;
+        icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-table-insert-row-under.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        addWordButton->setIcon(icon43);
+        addWordButton->setIconSize(QSize(22, 22));
 
-        gridLayout_9->addWidget(addWordButton, 0, 0, 1, 1);
+        horizontalLayout->addWidget(addWordButton);
 
         removeWordButton = new QPushButton(frame);
         removeWordButton->setObjectName(QStringLiteral("removeWordButton"));
+        sizePolicy1.setHeightForWidth(removeWordButton->sizePolicy().hasHeightForWidth());
+        removeWordButton->setSizePolicy(sizePolicy1);
+        QIcon icon44;
+        icon44.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-table-delete-row.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        removeWordButton->setIcon(icon44);
+        removeWordButton->setIconSize(QSize(22, 22));
 
-        gridLayout_9->addWidget(removeWordButton, 0, 1, 1, 1);
+        horizontalLayout->addWidget(removeWordButton, 0, Qt::AlignLeft);
 
 
         gridLayout_7->addWidget(frame, 0, 0, 1, 1);
@@ -540,21 +560,34 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         frame_2 = new QFrame(resourcesTab);
         frame_2->setObjectName(QStringLiteral("frame_2"));
-        frame_2->setFrameShape(QFrame::StyledPanel);
-        frame_2->setFrameShadow(QFrame::Raised);
+        frame_2->setFrameShape(QFrame::NoFrame);
+        frame_2->setFrameShadow(QFrame::Plain);
         gridLayout_10 = new QGridLayout(frame_2);
         gridLayout_10->setSpacing(6);
         gridLayout_10->setContentsMargins(11, 11, 11, 11);
         gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
+        gridLayout_10->setContentsMargins(0, 0, 0, 0);
         addResourceButton = new QPushButton(frame_2);
         addResourceButton->setObjectName(QStringLiteral("addResourceButton"));
+        sizePolicy1.setHeightForWidth(addResourceButton->sizePolicy().hasHeightForWidth());
+        addResourceButton->setSizePolicy(sizePolicy1);
+        QIcon icon45;
+        icon45.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/document-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        addResourceButton->setIcon(icon45);
+        addResourceButton->setIconSize(QSize(22, 22));
 
         gridLayout_10->addWidget(addResourceButton, 0, 0, 1, 1);
 
         removeResourceButton = new QPushButton(frame_2);
         removeResourceButton->setObjectName(QStringLiteral("removeResourceButton"));
+        sizePolicy1.setHeightForWidth(removeResourceButton->sizePolicy().hasHeightForWidth());
+        removeResourceButton->setSizePolicy(sizePolicy1);
+        QIcon icon46;
+        icon46.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-delete.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        removeResourceButton->setIcon(icon46);
+        removeResourceButton->setIconSize(QSize(22, 22));
 
-        gridLayout_10->addWidget(removeResourceButton, 0, 1, 1, 1);
+        gridLayout_10->addWidget(removeResourceButton, 0, 1, 1, 1, Qt::AlignLeft);
 
 
         verticalLayout_2->addWidget(frame_2);
@@ -565,9 +598,9 @@ public:
 
         verticalLayout_2->addWidget(listWidget);
 
-        QIcon icon43;
-        icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/package-available.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pageViewTabs->addTab(resourcesTab, icon43, QString());
+        QIcon icon47;
+        icon47.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/package-available.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pageViewTabs->addTab(resourcesTab, icon47, QString());
         propertiesTab = new QWidget();
         propertiesTab->setObjectName(QStringLiteral("propertiesTab"));
         gridLayout_8 = new QGridLayout(propertiesTab);
@@ -624,11 +657,11 @@ public:
 
         textBrowser = new QTextBrowser(infoTab);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
-        textBrowser->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy2);
 
         formLayout->setWidget(4, QFormLayout::FieldRole, textBrowser);
 
@@ -652,9 +685,9 @@ public:
 
         gridLayout_8->addWidget(tabWidget_2, 0, 0, 1, 1);
 
-        QIcon icon44;
-        icon44.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/project-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pageViewTabs->addTab(propertiesTab, icon44, QString());
+        QIcon icon48;
+        icon48.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/project-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pageViewTabs->addTab(propertiesTab, icon48, QString());
 
         gridLayout->addWidget(pageViewTabs, 0, 0, 1, 1);
 
@@ -688,11 +721,11 @@ public:
         MainWindow->setStatusBar(statusBar);
         pagesDock = new QDockWidget(MainWindow);
         pagesDock->setObjectName(QStringLiteral("pagesDock"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
-        pagesDock->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
+        pagesDock->setSizePolicy(sizePolicy3);
         pagesDock->setMinimumSize(QSize(200, 113));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
@@ -702,19 +735,19 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
         treeWidget->headerItem()->setText(0, QString());
-        QIcon icon45;
-        icon45.addFile(QStringLiteral("../../icons/breeze-icons/icons/places/32/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        QIcon icon46;
-        icon46.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon49;
+        icon49.addFile(QStringLiteral("../../icons/breeze-icons/icons/places/32/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon50;
+        icon50.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem->setIcon(0, icon45);
+        __qtreewidgetitem->setIcon(0, icon49);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(__qtreewidgetitem);
         __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem1->setIcon(0, icon46);
+        __qtreewidgetitem1->setIcon(0, icon50);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        sizePolicy1.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
-        treeWidget->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
+        treeWidget->setSizePolicy(sizePolicy2);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
         treeWidget->setIndentation(15);
@@ -730,11 +763,11 @@ public:
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), pagesDock);
         charactersDock = new QDockWidget(MainWindow);
         charactersDock->setObjectName(QStringLiteral("charactersDock"));
-        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(charactersDock->sizePolicy().hasHeightForWidth());
-        charactersDock->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(charactersDock->sizePolicy().hasHeightForWidth());
+        charactersDock->setSizePolicy(sizePolicy4);
         dockWidgetContents_3 = new QWidget();
         dockWidgetContents_3->setObjectName(QStringLiteral("dockWidgetContents_3"));
         gridLayout_5 = new QGridLayout(dockWidgetContents_3);
@@ -747,7 +780,26 @@ public:
         globalButton = new QPushButton(dockWidgetContents_3);
         globalButton->setObjectName(QStringLiteral("globalButton"));
 
-        gridLayout_4->addWidget(globalButton, 2, 0, 1, 1);
+        gridLayout_4->addWidget(globalButton, 3, 0, 1, 1);
+
+        insertCharButton = new QPushButton(dockWidgetContents_3);
+        insertCharButton->setObjectName(QStringLiteral("insertCharButton"));
+        sizePolicy1.setHeightForWidth(insertCharButton->sizePolicy().hasHeightForWidth());
+        insertCharButton->setSizePolicy(sizePolicy1);
+        insertCharButton->setMinimumSize(QSize(0, 80));
+        insertCharButton->setMaximumSize(QSize(16777215, 120));
+        QFont font;
+        font.setPointSize(18);
+        font.setBold(true);
+        font.setWeight(75);
+        insertCharButton->setFont(font);
+
+        gridLayout_4->addWidget(insertCharButton, 0, 0, 1, 1, Qt::AlignHCenter);
+
+        projectButton = new QPushButton(dockWidgetContents_3);
+        projectButton->setObjectName(QStringLiteral("projectButton"));
+
+        gridLayout_4->addWidget(projectButton, 2, 0, 1, 1);
 
         tabWidget = new QTabWidget(dockWidgetContents_3);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
@@ -795,29 +847,14 @@ public:
 
         tabWidget->addTab(ipaCharTab, QString());
 
-        gridLayout_4->addWidget(tabWidget, 3, 0, 1, 1);
+        gridLayout_4->addWidget(tabWidget, 4, 0, 1, 1);
 
-        projectButton = new QPushButton(dockWidgetContents_3);
-        projectButton->setObjectName(QStringLiteral("projectButton"));
+        smartReplaceCheck = new QCheckBox(dockWidgetContents_3);
+        smartReplaceCheck->setObjectName(QStringLiteral("smartReplaceCheck"));
+        smartReplaceCheck->setCheckable(true);
+        smartReplaceCheck->setChecked(true);
 
-        gridLayout_4->addWidget(projectButton, 1, 0, 1, 1);
-
-        insertCharButton = new QPushButton(dockWidgetContents_3);
-        insertCharButton->setObjectName(QStringLiteral("insertCharButton"));
-        QSizePolicy sizePolicy4(QSizePolicy::Maximum, QSizePolicy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(insertCharButton->sizePolicy().hasHeightForWidth());
-        insertCharButton->setSizePolicy(sizePolicy4);
-        insertCharButton->setMinimumSize(QSize(0, 80));
-        insertCharButton->setMaximumSize(QSize(16777215, 120));
-        QFont font;
-        font.setPointSize(18);
-        font.setBold(true);
-        font.setWeight(75);
-        insertCharButton->setFont(font);
-
-        gridLayout_4->addWidget(insertCharButton, 0, 0, 1, 1, Qt::AlignHCenter);
+        gridLayout_4->addWidget(smartReplaceCheck, 1, 0, 1, 1);
 
 
         gridLayout_5->addLayout(gridLayout_4, 0, 0, 1, 1);
@@ -908,7 +945,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(2);
+        pageViewTabs->setCurrentIndex(3);
         tabWidget_2->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);
@@ -1133,6 +1170,8 @@ public:
 
         charactersDock->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));
         globalButton->setText(QApplication::translate("MainWindow", "Global", nullptr));
+        insertCharButton->setText(QApplication::translate("MainWindow", "A", nullptr));
+        projectButton->setText(QApplication::translate("MainWindow", "Project", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(projectCharTab), QApplication::translate("MainWindow", "Project", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(globalCharTab), QApplication::translate("MainWindow", "Global", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(commomCharTab), QApplication::translate("MainWindow", "Common", nullptr));
@@ -1142,8 +1181,7 @@ public:
         toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MainWindow", "Tones", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Other", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ipaCharTab), QApplication::translate("MainWindow", "IPA", nullptr));
-        projectButton->setText(QApplication::translate("MainWindow", "Project", nullptr));
-        insertCharButton->setText(QApplication::translate("MainWindow", "A", nullptr));
+        smartReplaceCheck->setText(QApplication::translate("MainWindow", "Smart Replace", nullptr));
     } // retranslateUi
 
 };
