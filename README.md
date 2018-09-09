@@ -10,6 +10,7 @@ It is currently under construction and it aims to fix numerous deficiencies in i
   - Completely rewritten in C++ and QT, which allows it to run on Windows, MacOs, and Linux
   - Merges the more advanced text editing features of Language Pad with the language acquisition features of Thorn 1
   - Pages can be arranged into sections
+  - Pages can have the same name
   - Dictionary words can be grouped into subjects
   - A simplified character editor- the symbols panel, custom symbols dialog, and accent mark dialog have been merged into one panel
   - Custom characters can now be embedded either with the project or stored locally across multiple projects
