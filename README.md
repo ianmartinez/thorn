@@ -4,10 +4,11 @@ A cross platform successor to both [Language Pad](https://github.com/ianmartinez
 It is currently under construction and it aims to fix numerous deficiencies in its predecessors:
   - Both programs heavily relied on WinForms and Tundra, a library that I wrote over the years to add extra functionality  
   - Much of Thorn's code base (including Tundra) was designed when I was just starting out programming and did not scale well when I wanted to add new features to the program
+  - Thorn (especially the unrealesed 2.0 beta version) was increasingly becoming a mess of spaghetti code
   - All of these factors made making both programs cross platform, as many people had requested very difficult
   
 ## Improvements to Thorn 2:
-  - Completely rewritten in C++ and QT, which allows it to run on Windows, MacOs, and Linux
+  - Completely rewritten in C++ and QT, which allows it to run on Windows, MacOS, and Linux
   - Merges the more advanced text editing features of Language Pad with the language acquisition features of Thorn 1
   - Pages can be arranged into sections
   - Pages can have the same name
