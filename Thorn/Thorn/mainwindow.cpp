@@ -21,8 +21,18 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set text for item
     item->setText(0,"SubItem"); */
 
+    // Init text editor
     MarkupHighlighter* highlighter = new MarkupHighlighter(ui->documentEdit);
     Q_UNUSED(highlighter);
+    QFont font;
+    font.setFamily("Courier");
+    font.setStyleHint(QFont::Monospace);
+    font.setFixedPitch(true);
+    font.setPointSize(10);
+    const int tabStop = 4;  // 4 characters
+    QFontMetrics metrics(font);
+    ui->documentEdit->setTabStopDistance(tabStop * metrics.width(' '));
+    ui->documentEdit->setFont(font);
 }
 
 MainWindow::~MainWindow()
@@ -51,4 +61,14 @@ void MainWindow::on_removeWordButton_clicked()
 void MainWindow::on_action_Quit_triggered()
 {
     QApplication::quit();
+}
+
+void MainWindow::on_action_Keyboard_triggered()
+{
+
+}
+
+void MainWindow::on_actionE_ntry_triggered()
+{
+    ui->documentEdit->insertPlainText("<entry>\n\t<w></w>\n\t<r></r>\n</entry>\n");
 }

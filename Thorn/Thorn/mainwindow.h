@@ -24,6 +24,10 @@ private slots:
 
     void on_action_Quit_triggered();
 
+    void on_action_Keyboard_triggered();
+
+    void on_actionE_ntry_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

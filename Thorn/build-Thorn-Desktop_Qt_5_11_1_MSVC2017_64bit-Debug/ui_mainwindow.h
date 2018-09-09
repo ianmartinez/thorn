@@ -185,7 +185,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(955, 635);
+        MainWindow->resize(955, 658);
         QIcon icon;
         icon.addFile(QStringLiteral("../../icons/thorn/app_icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -945,7 +945,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(0);
+        pageViewTabs->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);
