@@ -25,7 +25,7 @@ It is currently under construction and it aims to fix numerous deficiencies in i
 <img src="@red_shirt.jpg"/>
 
 The shirt is 
-<!-- This creates 3 radio buttons blue, red (correct answer), and green. 
+<!-- This creates 3 radio buttons: blue, red (correct answer), and green. 
 The weight of the question is 2, so that means it counts as 2 points 
 out of the total number of points in the section. -->
 <radio weight="2"> 
