@@ -824,19 +824,19 @@ public:
         toolBox->setFrameShadow(QFrame::Plain);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 100, 30));
+        page->setGeometry(QRect(0, 0, 98, 28));
         toolBox->addItem(page, QStringLiteral("Consonants"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 100, 30));
+        page_3->setGeometry(QRect(0, 0, 98, 28));
         toolBox->addItem(page_3, QStringLiteral("Affricates"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 100, 30));
+        page_4->setGeometry(QRect(0, 0, 98, 28));
         toolBox->addItem(page_4, QStringLiteral("Vowels"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 100, 30));
+        page_5->setGeometry(QRect(0, 0, 98, 28));
         toolBox->addItem(page_5, QStringLiteral("Tones"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -945,7 +945,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(2);
+        pageViewTabs->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);

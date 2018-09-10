@@ -77,20 +77,21 @@ void MarkupHighlighter::setRegexes()
 
 void MarkupHighlighter::setFormats()
 {
-    m_markupKeywordFormat.setForeground(QColor(110,53,44));
+    m_markupKeywordFormat.setForeground(QColor(94,118,142));
     m_markupKeywordFormat.setFontWeight(QFont::Bold);
 
-    m_markupElementFormat.setForeground(Qt::darkMagenta);
+    m_markupElementFormat.setForeground(QColor(75,74,158));
     m_markupElementFormat.setFontWeight(QFont::Bold);
 
     m_markupAttributeFormat.setForeground(QColor(207,82,48));
     m_markupAttributeFormat.setFontWeight(QFont::Bold);
-   // m_markupAttributeFormat.setFontItalic(true);
 
-    m_markupValueFormat.setForeground(QColor(205,124,68));
+    m_markupValueFormat.setForeground(QColor(150,130,105));
 
-    m_markupCommentFormat.setForeground(QColor(227,197,152));
+    m_markupCommentFormat.setForeground(QColor(143,168,155));
+    m_markupCommentFormat.setFontItalic(true);
 
-    m_markupResourceFormat.setForeground(QColor(110,97,47));
+    m_markupResourceFormat.setForeground(QColor(30,127,47));
     m_markupResourceFormat.setFontItalic(true);
+    m_markupResourceFormat.setFontWeight(QFont::Bold);
 }

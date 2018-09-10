@@ -2,7 +2,7 @@
 <img src="@red_shirt.jpg"/>
 
 The shirt is 
-<radio> 
+<radio weight="2"> 
   <w>blue</w> 
   <r>red</r> 
   <w>green</w> 

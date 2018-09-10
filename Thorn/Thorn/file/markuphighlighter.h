@@ -1,6 +1,9 @@
 #ifndef MARKUP_HIGHLIGHTER_H
 #define MARKUP_HIGHLIGHTER_H
 
+/* A syntax highlighter for the HTML-based markup language
+ *  used by Thorn. */
+
 #include <QSyntaxHighlighter>
 #include <QTextEdit>
 

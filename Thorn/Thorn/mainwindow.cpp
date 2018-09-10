@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     MarkupHighlighter* highlighter = new MarkupHighlighter(ui->documentEdit);
     Q_UNUSED(highlighter);
     QFont font;
-    font.setFamily("Courier");
+    font.setFamily("Consolas");
     font.setStyleHint(QFont::Monospace);
     font.setFixedPitch(true);
     font.setPointSize(10);
