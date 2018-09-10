@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qtreeview.h"
 #include "qtreewidget.h"
-#include "markuphighlighter.h"
+#include "file/markuphighlighter.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
