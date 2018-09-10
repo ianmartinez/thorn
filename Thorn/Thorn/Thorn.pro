@@ -25,15 +25,15 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    file/markuppreprocessor.cpp \
-    file/markuphighlighter.cpp \
-    file/thornfile.cpp
+    file/markup_highlighter.cpp \
+    file/markup_preprocessor.cpp \
+    file/thorn_file.cpp
 
 HEADERS += \
         mainwindow.h \
-    file/markuppreprocessor.h \
-    file/markuphighlighter.h \
-    file/thornfile.h
+    file/markup_highlighter.h \
+    file/markup_preprocessor.h \
+    file/thorn_file.h
 
 FORMS += \
         mainwindow.ui

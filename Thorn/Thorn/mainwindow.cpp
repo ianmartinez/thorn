@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qtreeview.h"
 #include "qtreewidget.h"
-#include "file/markuphighlighter.h"
+#include "file/markup_highlighter.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,15 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // Init text editor
     MarkupHighlighter* highlighter = new MarkupHighlighter(ui->documentEdit);
     Q_UNUSED(highlighter);
-    QFont font;
-    font.setFamily("Consolas");
-    font.setStyleHint(QFont::Monospace);
-    font.setFixedPitch(true);
-    font.setPointSize(10);
-    const int tabStop = 4;  // 4 characters
-    QFontMetrics metrics(font);
-    ui->documentEdit->setTabStopDistance(tabStop * metrics.width(' '));
-    ui->documentEdit->setFont(font);
 }
 
 MainWindow::~MainWindow()
