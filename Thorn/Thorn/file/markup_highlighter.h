@@ -16,10 +16,10 @@ public:
     MarkupHighlighter(QTextEdit * parent);
 
 protected:
-    virtual void highlightBlock(const QString & text);
+    virtual void highlightBlock(const QString& text);
 
 private:
-    void highlightByRegex(const QTextCharFormat & format, const QRegExp & regex, const QString & text);
+    void highlightByRegex(const QTextCharFormat & format, QString regex_pattern, const QString & text);
     void setRegexes();
     void setFormats();
     void setStyle();
@@ -32,12 +32,13 @@ private:
     QTextCharFormat m_markupCommentFormat;
     QTextCharFormat m_markupResourceFormat;
 
-    QList<QRegExp> m_markupKeywordRegexes;
-    QRegExp m_markupElementRegex;
-    QRegExp m_markupAttributeRegex;
-    QRegExp m_markupValueRegex;
-    QRegExp m_markupCommentRegex;
-    QRegExp m_markupResourceRegex;
+    QList<QString> m_markupKeywordRegexes;
+    QString m_markupElementRegex;
+    QString m_markupAttributeRegex;
+    QString m_markupValueRegex;
+    QString m_markupCommentStartRegex;
+    QString m_markupCommentEndRegex;
+    QString m_markupResourceRegex;
 };
 
 #endif

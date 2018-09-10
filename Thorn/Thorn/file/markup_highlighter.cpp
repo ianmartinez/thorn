@@ -1,4 +1,6 @@
 #include "markup_highlighter.h"
+#include <QRegularExpressionMatchIterator>
+#include <QDebug>
 
 MarkupHighlighter::MarkupHighlighter(QObject* parent) : QSyntaxHighlighter(parent)
 {
@@ -30,7 +32,7 @@ void MarkupHighlighter::setStyle()
     font.setStyleHint(QFont::Monospace);
     font.setFixedPitch(true);
     font.setPointSize(10);
-    const int tabStop = 1;  // 4 characters
+    const int tabStop = 1;
     QFontMetrics metrics(font);
     edit->setTabStopDistance(tabStop * metrics.width('\t'));
     edit->setFont(font);
@@ -39,54 +41,81 @@ void MarkupHighlighter::setStyle()
 void MarkupHighlighter::highlightBlock(const QString& text)
 {
     // Special treatment for markup element regex as we use captured text to emulate lookbehind
-    int markupElementIndex = m_markupElementRegex.indexIn(text);
-    while(markupElementIndex >= 0)
-    {
-        int matchedPos = m_markupElementRegex.pos(1);
-        int matchedLength = m_markupElementRegex.cap(1).length();
-        setFormat(matchedPos, matchedLength, m_markupElementFormat);
+    QRegularExpression element_regex(m_markupElementRegex, QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpressionMatchIterator element_iter = element_regex.globalMatch(text);
+    while (element_iter.hasNext()) {
+        QRegularExpressionMatch match = element_iter.next();
 
-        markupElementIndex = m_markupElementRegex.indexIn(text, matchedPos + matchedLength);
+        if (match.hasMatch()) {
+            setFormat(match.capturedStart(0), match.capturedLength(0), m_markupElementFormat);
+        }
     }
 
     // Highlight markup keywords *after* markup elements to fix any occasional / captured into the enclosing element
-    typedef QList<QRegExp>::const_iterator Iter;
+    typedef QList<QString>::const_iterator Iter;
     Iter markupKeywordRegexesEnd = m_markupKeywordRegexes.end();
     for(Iter it = m_markupKeywordRegexes.begin(); it != markupKeywordRegexesEnd; ++it) {
-        const QRegExp & regex = *it;
+        QString regex = QString(*it);
         highlightByRegex(m_markupKeywordFormat, regex, text);
     }
 
     highlightByRegex(m_markupAttributeFormat, m_markupAttributeRegex, text);
-    highlightByRegex(m_markupCommentFormat, m_markupCommentRegex, text);
     highlightByRegex(m_markupValueFormat, m_markupValueRegex, text);
     highlightByRegex(m_markupResourceFormat, m_markupResourceRegex, text);
+
+
+    /* Comments can span multiple blocks and that requires some work-arounds
+       to highlight them the same as single-line comments */
+    QRegExp start_expression(m_markupCommentStartRegex);
+    QRegExp end_expression(m_markupCommentEndRegex);
+
+    setCurrentBlockState(0);
+
+    int startIndex = 0;
+    if (previousBlockState() != 1)
+        startIndex = text.indexOf(start_expression);
+
+    while (startIndex >= 0) {
+       int endIndex = text.indexOf(end_expression, startIndex);
+       int commentLength;
+       if (endIndex == -1) {
+           setCurrentBlockState(1);
+           commentLength = text.length() - startIndex;
+       } else {
+           commentLength = endIndex - startIndex
+                           + end_expression.matchedLength();
+       }
+       setFormat(startIndex, commentLength, m_markupCommentFormat);
+       startIndex = text.indexOf(start_expression,
+                                 startIndex + commentLength);
+    }
 }
 
-void MarkupHighlighter::highlightByRegex(const QTextCharFormat & format, const QRegExp & regex, const QString & text)
+void MarkupHighlighter::highlightByRegex(const QTextCharFormat& format, QString regex_pattern, const QString& text)
 {
-    int index = regex.indexIn(text);
+    QRegularExpression regex(regex_pattern);
 
-    while(index >= 0)
-    {
-        int matchedLength = regex.matchedLength();
-        setFormat(index, matchedLength, format);
+    QRegularExpressionMatchIterator element_iter = regex.globalMatch(text);
 
-        index = regex.indexIn(text, index + matchedLength);
+    while (element_iter.hasNext()) {
+        QRegularExpressionMatch match = element_iter.next();
+        if (match.hasMatch()) {
+            setFormat(match.capturedStart(), match.capturedLength(), format);
+        }
     }
 }
 
 void MarkupHighlighter::setRegexes()
 {
-    m_markupElementRegex.setPattern("<[\\s]*[/]?[\\s]*([^\\n]\\w*)(?=[\\s/>])");
-    m_markupAttributeRegex.setPattern("\\w+(?=\\=)");
-    m_markupValueRegex.setPattern("\"[^\\n\"@]+\"(?=[\\s/>])");
-    m_markupCommentRegex.setPattern("<!--[^\\n]*-->");
-    m_markupResourceRegex.setPattern("(\"@.*\")"); // Thorn extension
-
-    m_markupKeywordRegexes = QList<QRegExp>() << QRegExp("<\\?") << QRegExp("/>")
-                                           << QRegExp(">") << QRegExp("<") << QRegExp("</")
-                                           << QRegExp("\\?>");
+    m_markupElementRegex = "<[\\s]*[/]?[\\s]*([^\\n]\\w*)(?=[\\s/>])";
+    m_markupAttributeRegex = "\\w+(?=\\=)";
+    m_markupValueRegex = "\"[^\\n\"@]+\"(?=[\\s/>])";
+    m_markupCommentStartRegex = "<!--*";
+    m_markupCommentEndRegex = "-->";
+    m_markupResourceRegex = "(\"@.*\")"; // Thorn extension
+    m_markupKeywordRegexes = QList<QString>() << QString("<\\?") << QString("/>")
+                                           << QString(">") << QString("<") << QString("</")
+                                           << QString("\\?>");
 }
 
 void MarkupHighlighter::setFormats()
