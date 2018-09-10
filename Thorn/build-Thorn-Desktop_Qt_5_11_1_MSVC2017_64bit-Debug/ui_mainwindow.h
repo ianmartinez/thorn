@@ -824,19 +824,19 @@ public:
         toolBox->setFrameShadow(QFrame::Plain);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 98, 28));
+        page->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page, QStringLiteral("Consonants"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 98, 28));
+        page_3->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_3, QStringLiteral("Affricates"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 98, 28));
+        page_4->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_4, QStringLiteral("Vowels"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 98, 28));
+        page_5->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_5, QStringLiteral("Tones"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -1061,7 +1061,7 @@ public:
         actionProject_Explorer->setText(QApplication::translate("MainWindow", "&Pages", nullptr));
         action_Image->setText(QApplication::translate("MainWindow", "&Image...", nullptr));
 #ifndef QT_NO_SHORTCUT
-        action_Image->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+\303\215", nullptr));
+        action_Image->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+I", nullptr));
 #endif // QT_NO_SHORTCUT
         action_Video->setText(QApplication::translate("MainWindow", "&Video...", nullptr));
 #ifndef QT_NO_SHORTCUT
