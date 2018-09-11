@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qtreeview.h"
 #include "qtreewidget.h"
-#include "file/markup_highlighter.h"
+#include "code_editor.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,19 +22,23 @@ MainWindow::MainWindow(QWidget *parent) :
     item->setText(0,"SubItem"); */
 
     // Init text editor
-    MarkupHighlighter* highlighter = new MarkupHighlighter(ui->documentEdit);
-    Q_UNUSED(highlighter);
+    editor = new CodeEditor(ui->editTab);
+
+    ui->editGrid->addWidget(editor);
+    editor->setFrameShape(QFrame::NoFrame);
+    editor->show();
 }
 
 MainWindow::~MainWindow()
 {
+    delete editor;
     delete ui;
 }
 
 void MainWindow::on_pageViewTabs_currentChanged(int index)
 {
     if(index == 1) // Preview tab
-        ui->documentPreview->setHtml(ui->documentEdit->toPlainText());
+        ui->documentPreview->setHtml(editor->toPlainText());
 }
 
 void MainWindow::on_addWordButton_clicked()
@@ -61,5 +65,5 @@ void MainWindow::on_action_Keyboard_triggered()
 
 void MainWindow::on_actionE_ntry_triggered()
 {
-    ui->documentEdit->insertPlainText("<entry>\n\t<w></w>\n\t<r></r>\n</entry>\n");
+    editor->insertPlainText("<entry>\n\t<w></w>\n\t<r></r>\n</entry>\n");
 }

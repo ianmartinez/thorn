@@ -5,15 +5,16 @@
  *  used by Thorn. */
 
 #include <QSyntaxHighlighter>
-#include <QTextEdit>
+#include <QPlainTextEdit>
+#include "../code_editor.h"
 
 class MarkupHighlighter : public QSyntaxHighlighter
 {
     Q_OBJECT
 public:
-    MarkupHighlighter(QObject * parent);
-    MarkupHighlighter(QTextDocument * parent);
-    MarkupHighlighter(QTextEdit * parent);
+    MarkupHighlighter(QObject* parent);
+    MarkupHighlighter(QTextDocument* parent);
+    MarkupHighlighter(QTextEdit* parent);
 
 protected:
     virtual void highlightBlock(const QString& text);
@@ -22,7 +23,6 @@ private:
     void highlightByRegex(const QTextCharFormat & format, QString regex_pattern, const QString & text);
     void setRegexes();
     void setFormats();
-    void setStyle();
 
 private:
     QTextCharFormat m_markupKeywordFormat;

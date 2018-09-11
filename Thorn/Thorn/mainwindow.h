@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "code_editor.h"
 
 namespace Ui {
 class MainWindow;
@@ -13,6 +14,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    CodeEditor* editor;
     ~MainWindow();
 
 private slots:

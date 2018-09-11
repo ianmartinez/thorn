@@ -110,7 +110,7 @@ public:
     QTabWidget *pageViewTabs;
     QWidget *editTab;
     QGridLayout *gridLayout_3;
-    QTextEdit *documentEdit;
+    QGridLayout *editGrid;
     QWidget *previewTab;
     QGridLayout *gridLayout_2;
     QWebEngineView *documentPreview;
@@ -461,12 +461,12 @@ public:
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        documentEdit = new QTextEdit(editTab);
-        documentEdit->setObjectName(QStringLiteral("documentEdit"));
-        documentEdit->setLineWrapMode(QTextEdit::NoWrap);
-        documentEdit->setAcceptRichText(false);
+        gridLayout_3->setContentsMargins(3, 3, 3, 3);
+        editGrid = new QGridLayout();
+        editGrid->setSpacing(6);
+        editGrid->setObjectName(QStringLiteral("editGrid"));
 
-        gridLayout_3->addWidget(documentEdit, 0, 0, 1, 1);
+        gridLayout_3->addLayout(editGrid, 0, 0, 1, 1);
 
         pageViewTabs->addTab(editTab, icon23, QString());
         previewTab = new QWidget();
@@ -475,6 +475,7 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
         documentPreview = new QWebEngineView(previewTab);
         documentPreview->setObjectName(QStringLiteral("documentPreview"));
 

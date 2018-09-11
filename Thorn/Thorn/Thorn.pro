@@ -27,13 +27,15 @@ SOURCES += \
         mainwindow.cpp \
     file/markup_highlighter.cpp \
     file/markup_preprocessor.cpp \
-    file/thorn_file.cpp
+    file/thorn_file.cpp \
+    code_editor.cpp
 
 HEADERS += \
         mainwindow.h \
     file/markup_highlighter.h \
     file/markup_preprocessor.h \
-    file/thorn_file.h
+    file/thorn_file.h \
+    code_editor.h
 
 FORMS += \
         mainwindow.ui

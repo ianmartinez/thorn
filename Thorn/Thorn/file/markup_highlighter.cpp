@@ -1,41 +1,22 @@
 #include "markup_highlighter.h"
 #include <QRegularExpressionMatchIterator>
-#include <QDebug>
 
 MarkupHighlighter::MarkupHighlighter(QObject* parent) : QSyntaxHighlighter(parent)
 {
     setRegexes();
     setFormats();
-    setStyle();
 }
 
 MarkupHighlighter::MarkupHighlighter(QTextDocument* parent) : QSyntaxHighlighter(parent)
 {
     setRegexes();
     setFormats();
-    setStyle();
 }
 
 MarkupHighlighter::MarkupHighlighter(QTextEdit* parent) : QSyntaxHighlighter(parent)
 {
     setRegexes();
     setFormats();
-    setStyle();
-}
-
-void MarkupHighlighter::setStyle()
-{
-    QTextEdit* edit = static_cast<QTextEdit*>(this->parent());
-
-    QFont font;
-    font.setFamily("Consolas");
-    font.setStyleHint(QFont::Monospace);
-    font.setFixedPitch(true);
-    font.setPointSize(10);
-    const int tabStop = 1;
-    QFontMetrics metrics(font);
-    edit->setTabStopDistance(tabStop * metrics.width('\t'));
-    edit->setFont(font);
 }
 
 void MarkupHighlighter::highlightBlock(const QString& text)
@@ -131,7 +112,7 @@ void MarkupHighlighter::setFormats()
 
     m_markupValueFormat.setForeground(QColor(226,122,61));
 
-    m_markupCommentFormat.setForeground(QColor(143,168,155));
+    m_markupCommentFormat.setForeground(QColor(100,133,137));
     m_markupCommentFormat.setFontItalic(true);
 
     m_markupResourceFormat.setForeground(QColor(30,127,47));
