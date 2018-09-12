@@ -37,6 +37,7 @@ public:
             InsertListDialog->setObjectName(QStringLiteral("InsertListDialog"));
         InsertListDialog->setWindowModality(Qt::ApplicationModal);
         InsertListDialog->resize(400, 114);
+        InsertListDialog->setSizeGripEnabled(false);
         InsertListDialog->setModal(true);
         gridLayout = new QGridLayout(InsertListDialog);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
@@ -56,6 +57,7 @@ public:
         itemCountSpinner->setObjectName(QStringLiteral("itemCountSpinner"));
         itemCountSpinner->setMinimum(0);
         itemCountSpinner->setMaximum(10000);
+        itemCountSpinner->setValue(1);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, itemCountSpinner);
 
