@@ -46,33 +46,39 @@ OBJECTS_DIR   = debug
 ####### Files
 
 SOURCES       = ..\Thorn\main.cpp \
-		..\Thorn\mainwindow.cpp \
-		..\Thorn\file\markup_highlighter.cpp \
-		..\Thorn\file\markup_preprocessor.cpp \
-		..\Thorn\file\thorn_file.cpp \
-		..\Thorn\code_editor.cpp debug\moc_mainwindow.cpp \
-		debug\moc_markup_highlighter.cpp \
-		debug\moc_code_editor.cpp
+		..\Thorn\InsertDialogs\InsertListDialog.cpp \
+		..\Thorn\CodeEditor.cpp \
+		..\Thorn\File\ThornFile.cpp \
+		..\Thorn\File\MarkupPreprocessor.cpp \
+		..\Thorn\File\MarkupHighlighter.cpp \
+		..\Thorn\MainWindow.cpp debug\moc_InsertListDialog.cpp \
+		debug\moc_MarkupHighlighter.cpp \
+		debug\moc_CodeEditor.cpp \
+		debug\moc_MainWindow.cpp
 OBJECTS       = debug\main.obj \
-		debug\mainwindow.obj \
-		debug\markup_highlighter.obj \
-		debug\markup_preprocessor.obj \
-		debug\thorn_file.obj \
-		debug\code_editor.obj \
-		debug\moc_mainwindow.obj \
-		debug\moc_markup_highlighter.obj \
-		debug\moc_code_editor.obj
+		debug\InsertListDialog.obj \
+		debug\CodeEditor.obj \
+		debug\ThornFile.obj \
+		debug\MarkupPreprocessor.obj \
+		debug\MarkupHighlighter.obj \
+		debug\MainWindow.obj \
+		debug\moc_InsertListDialog.obj \
+		debug\moc_MarkupHighlighter.obj \
+		debug\moc_CodeEditor.obj \
+		debug\moc_MainWindow.obj
 
-DIST          =  ..\Thorn\mainwindow.h \
-		..\Thorn\file\markup_highlighter.h \
-		..\Thorn\file\markup_preprocessor.h \
-		..\Thorn\file\thorn_file.h \
-		..\Thorn\code_editor.h ..\Thorn\main.cpp \
-		..\Thorn\mainwindow.cpp \
-		..\Thorn\file\markup_highlighter.cpp \
-		..\Thorn\file\markup_preprocessor.cpp \
-		..\Thorn\file\thorn_file.cpp \
-		..\Thorn\code_editor.cpp
+DIST          =  ..\Thorn\InsertDialogs\InsertListDialog.h \
+		..\Thorn\File\MarkupHighlighter.h \
+		..\Thorn\File\MarkupPreprocessor.h \
+		..\Thorn\File\ThornFile.h \
+		..\Thorn\CodeEditor.h \
+		..\Thorn\MainWindow.h ..\Thorn\main.cpp \
+		..\Thorn\InsertDialogs\InsertListDialog.cpp \
+		..\Thorn\CodeEditor.cpp \
+		..\Thorn\File\ThornFile.cpp \
+		..\Thorn\File\MarkupPreprocessor.cpp \
+		..\Thorn\File\MarkupHighlighter.cpp \
+		..\Thorn\MainWindow.cpp
 QMAKE_TARGET  = Thorn
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = Thorn.exe
@@ -102,22 +108,22 @@ DESTDIR_TARGET = debug\Thorn.exe
 	$<
 <<
 
-{..\Thorn\file}.cpp{debug\}.obj::
+{..\Thorn\File}.cpp{debug\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{..\Thorn\file}.cc{debug\}.obj::
+{..\Thorn\File}.cc{debug\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{..\Thorn\file}.cxx{debug\}.obj::
+{..\Thorn\File}.cxx{debug\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
 
-{..\Thorn\file}.c{debug\}.obj::
+{..\Thorn\File}.c{debug\}.obj::
 	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
@@ -162,14 +168,34 @@ DESTDIR_TARGET = debug\Thorn.exe
 	$<
 <<
 
+{..\Thorn\InsertDialogs}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\Thorn\InsertDialogs}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\Thorn\InsertDialogs}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\Thorn\InsertDialogs}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
 ####### Build rules
 
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) debug\Thorn_resource.res
+$(DESTDIR_TARGET): ui_MainWindow.h ui_InsertListDialog.h $(OBJECTS) debug\Thorn_resource.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\main.obj debug\mainwindow.obj debug\markup_highlighter.obj debug\markup_preprocessor.obj debug\thorn_file.obj debug\code_editor.obj debug\moc_mainwindow.obj debug\moc_markup_highlighter.obj debug\moc_code_editor.obj
+debug\main.obj debug\InsertListDialog.obj debug\CodeEditor.obj debug\ThornFile.obj debug\MarkupPreprocessor.obj debug\MarkupHighlighter.obj debug\MainWindow.obj debug\moc_InsertListDialog.obj debug\moc_MarkupHighlighter.obj debug\moc_CodeEditor.obj debug\moc_MainWindow.obj
 $(LIBS)
 <<
 
@@ -182,10 +208,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Thorn.zip $(SOURCES) $(DIST) ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\angle.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-desktop.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\qconfig.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\win32-msvc\qmake.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-version.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resources.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\moc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\uic.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\lex.prf ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\qtmaind.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineWidgetsd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5PrintSupportd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Widgetsd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineCored.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Quickd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Guid.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebChanneld.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Qmld.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Networkd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Positioningd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Cored.prl    ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\data\dummy.cpp ..\Thorn\mainwindow.h ..\Thorn\file\markup_highlighter.h ..\Thorn\file\markup_preprocessor.h ..\Thorn\file\thorn_file.h ..\Thorn\code_editor.h  ..\Thorn\main.cpp ..\Thorn\mainwindow.cpp ..\Thorn\file\markup_highlighter.cpp ..\Thorn\file\markup_preprocessor.cpp ..\Thorn\file\thorn_file.cpp ..\Thorn\code_editor.cpp ..\Thorn\mainwindow.ui    
+	$(ZIP) Thorn.zip $(SOURCES) $(DIST) ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\angle.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-desktop.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\qconfig.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\win32-msvc\qmake.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-version.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resources.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\moc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\uic.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\lex.prf ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\qtmaind.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineWidgetsd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5PrintSupportd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Widgetsd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineCored.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Quickd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Guid.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebChanneld.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Qmld.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Networkd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Positioningd.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Cored.prl    ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\data\dummy.cpp ..\Thorn\InsertDialogs\InsertListDialog.h ..\Thorn\File\MarkupHighlighter.h ..\Thorn\File\MarkupPreprocessor.h ..\Thorn\File\ThornFile.h ..\Thorn\CodeEditor.h ..\Thorn\MainWindow.h  ..\Thorn\main.cpp ..\Thorn\InsertDialogs\InsertListDialog.cpp ..\Thorn\CodeEditor.cpp ..\Thorn\File\ThornFile.cpp ..\Thorn\File\MarkupPreprocessor.cpp ..\Thorn\File\MarkupHighlighter.cpp ..\Thorn\MainWindow.cpp ..\Thorn\MainWindow.ui ..\Thorn\InsertDialogs\InsertListDialog.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\markup_highlighter.obj debug\markup_preprocessor.obj debug\thorn_file.obj debug\code_editor.obj debug\moc_mainwindow.obj debug\moc_markup_highlighter.obj debug\moc_code_editor.obj
+	-$(DEL_FILE) debug\main.obj debug\InsertListDialog.obj debug\CodeEditor.obj debug\ThornFile.obj debug\MarkupPreprocessor.obj debug\MarkupHighlighter.obj debug\MainWindow.obj debug\moc_InsertListDialog.obj debug\moc_MarkupHighlighter.obj debug\moc_CodeEditor.obj debug\moc_MainWindow.obj
 	-$(DEL_FILE) debug\Thorn.exp debug\Thorn.vc.pdb debug\Thorn.ilk debug\Thorn.idb
 	-$(DEL_FILE) debug\Thorn_resource.res
 
@@ -212,10 +238,369 @@ compiler_moc_predefs_clean:
 debug\moc_predefs.h: ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\data\dummy.cpp
 	cl -BxW:\Qt\5.11.1\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h
 
-compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_markup_highlighter.cpp debug\moc_code_editor.cpp
+compiler_moc_header_make_all: debug\moc_InsertListDialog.cpp debug\moc_MarkupHighlighter.cpp debug\moc_CodeEditor.cpp debug\moc_MainWindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_markup_highlighter.cpp debug\moc_code_editor.cpp
-debug\moc_mainwindow.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QMainWindow \
+	-$(DEL_FILE) debug\moc_InsertListDialog.cpp debug\moc_MarkupHighlighter.cpp debug\moc_CodeEditor.cpp debug\moc_MainWindow.cpp
+debug\moc_InsertListDialog.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QDialog \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qdialog.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\Thorn\InsertDialogs\InsertListDialog.h \
+		debug\moc_predefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\moc.exe
+	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\InsertDialogs\InsertListDialog.h -o debug\moc_InsertListDialog.cpp
+
+debug\moc_MarkupHighlighter.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\QSyntaxHighlighter \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qsyntaxhighlighter.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
+		..\Thorn\CodeEditor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
+		..\Thorn\File\MarkupHighlighter.h \
+		debug\moc_predefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\moc.exe
+	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\File\MarkupHighlighter.h -o debug\moc_MarkupHighlighter.cpp
+
+debug\moc_CodeEditor.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
+		..\Thorn\CodeEditor.h \
+		debug\moc_predefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\moc.exe
+	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\CodeEditor.h -o debug\moc_CodeEditor.cpp
+
+debug\moc_MainWindow.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QMainWindow \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
@@ -321,246 +706,12 @@ debug\moc_mainwindow.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QM
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qicon.h \
-		..\Thorn\mainwindow.h \
-		debug\moc_predefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\moc.exe
-	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\mainwindow.h -o debug\moc_mainwindow.cpp
-
-debug\moc_markup_highlighter.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\QSyntaxHighlighter \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qsyntaxhighlighter.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextobject.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QTextEdit \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
-		..\Thorn\code_editor.h \
+		..\Thorn\CodeEditor.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
-		..\Thorn\file\markup_highlighter.h \
-		debug\moc_predefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\moc.exe
-	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\file\markup_highlighter.h -o debug\moc_markup_highlighter.cpp
-
-debug\moc_code_editor.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
@@ -572,19 +723,19 @@ debug\moc_code_editor.cpp: ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\Q
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
-		..\Thorn\code_editor.h \
+		..\Thorn\MainWindow.h \
 		debug\moc_predefs.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\moc.exe
-	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\code_editor.h -o debug\moc_code_editor.cpp
+	W:\Qt\5.11.1\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IW:/Qt/5.11.1/msvc2017_64/mkspecs/win32-msvc -IW:/github2/thorn/Thorn/Thorn -IW:/Qt/5.11.1/msvc2017_64/include -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtPrintSupport -IW:/Qt/5.11.1/msvc2017_64/include/QtWidgets -IW:/Qt/5.11.1/msvc2017_64/include/QtWebEngineCore -IW:/Qt/5.11.1/msvc2017_64/include/QtQuick -IW:/Qt/5.11.1/msvc2017_64/include/QtGui -IW:/Qt/5.11.1/msvc2017_64/include/QtANGLE -IW:/Qt/5.11.1/msvc2017_64/include/QtWebChannel -IW:/Qt/5.11.1/msvc2017_64/include/QtQml -IW:/Qt/5.11.1/msvc2017_64/include/QtNetwork -IW:/Qt/5.11.1/msvc2017_64/include/QtPositioning -IW:/Qt/5.11.1/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\cppwinrt" ..\Thorn\MainWindow.h -o debug\moc_MainWindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_MainWindow.h ui_InsertListDialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
-ui_mainwindow.h: ..\Thorn\mainwindow.ui \
+	-$(DEL_FILE) ui_MainWindow.h ui_InsertListDialog.h
+ui_MainWindow.h: ..\Thorn\MainWindow.ui \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\uic.exe \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWebEngineWidgets\qwebengineview.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainter.h \
@@ -725,7 +876,11 @@ ui_mainwindow.h: ..\Thorn\mainwindow.ui \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWebEngineCore\qwebenginehttprequest.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpagelayout.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpagesize.h
-	W:\Qt\5.11.1\msvc2017_64\bin\uic.exe ..\Thorn\mainwindow.ui -o ui_mainwindow.h
+	W:\Qt\5.11.1\msvc2017_64\bin\uic.exe ..\Thorn\MainWindow.ui -o ui_MainWindow.h
+
+ui_InsertListDialog.h: ..\Thorn\InsertDialogs\InsertListDialog.ui \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\uic.exe
+	W:\Qt\5.11.1\msvc2017_64\bin\uic.exe ..\Thorn\InsertDialogs\InsertListDialog.ui -o ui_InsertListDialog.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -739,7 +894,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-debug\main.obj: ..\Thorn\main.cpp ../Thorn/mainwindow.h \
+debug\main.obj: ..\Thorn\main.cpp ../Thorn/MainWindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QMainWindow \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -846,6 +1001,23 @@ debug\main.obj: ..\Thorn\main.cpp ../Thorn/mainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qicon.h \
+		../Thorn/CodeEditor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QApplication \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qapplication.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreapplication.h \
@@ -856,8 +1028,6 @@ debug\main.obj: ..\Thorn\main.cpp ../Thorn/mainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWebEngineWidgets\QWebEngineView \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWebEngineWidgets\qwebengineview.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainter.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtNetwork\qnetworkaccessmanager.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtNetwork\qtnetworkglobal.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtNetwork\qtnetwork-config.h \
@@ -867,7 +1037,6 @@ debug\main.obj: ..\Thorn\main.cpp ../Thorn/mainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QUrl \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QVariant \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QVector \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtNetwork\QSslConfiguration \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtNetwork\qsslconfiguration.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtNetwork\qsslsocket.h \
@@ -892,9 +1061,9 @@ debug\main.obj: ..\Thorn\main.cpp ../Thorn/mainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpagelayout.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpagesize.h
 
-debug\mainwindow.obj: ..\Thorn\mainwindow.cpp ../Thorn/mainwindow.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QMainWindow \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qmainwindow.h \
+debug\InsertListDialog.obj: ..\Thorn\InsertDialogs\InsertListDialog.cpp ../Thorn/InsertDialogs/InsertListDialog.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QDialog \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qdialog.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
@@ -997,213 +1166,9 @@ debug\mainwindow.obj: ..\Thorn\mainwindow.cpp ../Thorn/mainwindow.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtabwidget.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qicon.h \
-		ui_mainwindow.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtreeview.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractitemview.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qitemselectionmodel.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qstyleoption.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvalidator.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregularexpression.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qslider.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractslider.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qstyle.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtabbar.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qrubberband.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtreewidget.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtreewidgetitemiterator.h \
-		../Thorn/file/markup_highlighter.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\QSyntaxHighlighter \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qsyntaxhighlighter.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextobject.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QTextEdit \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
-		../Thorn/code_editor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject
+		ui_InsertListDialog.h
 
-debug\markup_highlighter.obj: ..\Thorn\file\markup_highlighter.cpp ../Thorn/file/markup_highlighter.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\QSyntaxHighlighter \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qsyntaxhighlighter.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextobject.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QTextEdit \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
-		../Thorn/code_editor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QRegularExpressionMatchIterator \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregularexpression.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QDebug
-
-debug\markup_preprocessor.obj: ..\Thorn\file\markup_preprocessor.cpp ../Thorn/file/markup_preprocessor.h
-
-debug\thorn_file.obj: ..\Thorn\file\thorn_file.cpp ../Thorn/file/thorn_file.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QString \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h
-
-debug\code_editor.obj: ..\Thorn\code_editor.cpp ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QtWidgets \
+debug\CodeEditor.obj: ..\Thorn\CodeEditor.cpp ..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QtWidgets \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QtWidgetsDepends \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QtCore \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QtCoreDepends \
@@ -1660,14 +1625,325 @@ debug\code_editor.obj: ..\Thorn\code_editor.cpp ..\..\..\..\Qt\5.11.1\msvc2017_6
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidgetaction.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwizard.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsversion.h \
-		../Thorn/code_editor.h \
-		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit
+		../Thorn/File/MarkupHighlighter.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\QSyntaxHighlighter \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
+		../Thorn/CodeEditor.h
 
-debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
+debug\ThornFile.obj: ..\Thorn\File\ThornFile.cpp ../Thorn/File/ThornFile.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QString \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h
 
-debug\moc_markup_highlighter.obj: debug\moc_markup_highlighter.cpp 
+debug\MarkupPreprocessor.obj: ..\Thorn\File\MarkupPreprocessor.cpp ../Thorn/File/MarkupPreprocessor.h
 
-debug\moc_code_editor.obj: debug\moc_code_editor.cpp 
+debug\MarkupHighlighter.obj: ..\Thorn\File\MarkupHighlighter.cpp ../Thorn/File/MarkupHighlighter.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\QSyntaxHighlighter \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qsyntaxhighlighter.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
+		../Thorn/CodeEditor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QRegularExpressionMatchIterator \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregularexpression.h
+
+debug\MainWindow.obj: ..\Thorn\MainWindow.cpp ui_MainWindow.h \
+		../Thorn/MainWindow.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QMainWindow \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtguiglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtgui-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qwidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcoreevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmetatype.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qobject_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmargins.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpaintdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrect.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsize.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpoint.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpalette.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcolor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgb.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrgba64.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qbrush.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvector.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qmatrix.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpolygon.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qregion.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdatastream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiodevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qline.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtransform.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpainterpath.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qimage.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixelformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpixmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qshareddata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhash.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontmetrics.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qkeysequence.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qevent.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qvariant.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qdebug.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtextstream.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlocale.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qset.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurl.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qurlquery.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfile.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qfiledevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvector2d.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qicon.h \
+		../Thorn/CodeEditor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QPlainTextEdit \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qplaintextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qframe.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextdocument.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextoption.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qpen.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qtextlayout.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qglyphrun.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qrawfont.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qfontdatabase.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QObject \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtreeview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtGui\qvalidator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregularexpression.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qslider.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qstyle.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtabbar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qrubberband.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtreewidget.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qtreewidgetitemiterator.h \
+		../Thorn/InsertDialogs/InsertListDialog.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QDialog \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qdialog.h
+
+debug\moc_InsertListDialog.obj: debug\moc_InsertListDialog.cpp 
+
+debug\moc_MarkupHighlighter.obj: debug\moc_MarkupHighlighter.cpp 
+
+debug\moc_CodeEditor.obj: debug\moc_CodeEditor.cpp 
+
+debug\moc_MainWindow.obj: debug\moc_MainWindow.cpp 
 
 ####### Install
 

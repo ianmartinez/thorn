@@ -24,21 +24,24 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    file/markup_highlighter.cpp \
-    file/markup_preprocessor.cpp \
-    file/thorn_file.cpp \
-    code_editor.cpp
+    InsertDialogs/InsertListDialog.cpp \
+    CodeEditor.cpp \
+    File/ThornFile.cpp \
+    File/MarkupPreprocessor.cpp \
+    File/MarkupHighlighter.cpp \
+    MainWindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    file/markup_highlighter.h \
-    file/markup_preprocessor.h \
-    file/thorn_file.h \
-    code_editor.h
+    InsertDialogs/InsertListDialog.h \
+    File/MarkupHighlighter.h \
+    File/MarkupPreprocessor.h \
+    File/ThornFile.h \
+    CodeEditor.h \
+    MainWindow.h
 
 FORMS += \
-        mainwindow.ui
+    MainWindow.ui \
+    InsertDialogs/InsertListDialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
