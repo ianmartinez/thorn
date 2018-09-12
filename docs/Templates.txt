@@ -1,0 +1,5 @@
+<!-- Render the entire IPA vowel chart -->
+<template name="IPA/VowelChart" value="*"/>
+
+<!-- Render a chart a 5 vowel system (like Spanish) -->
+<template name="IPA/VowelChart" value="a;e;i;o;u"/>
