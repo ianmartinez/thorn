@@ -77,5 +77,5 @@ void MainWindow::on_action_List_triggered()
     if (insert_dlg->exec() == QDialog::Accepted)
         editor->insertPlainText(insert_dlg->HTMLOutput);
 
-    delete editor;
+    delete insert_dlg;
 }
