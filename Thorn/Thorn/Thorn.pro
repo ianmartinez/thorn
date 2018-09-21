@@ -29,7 +29,8 @@ SOURCES += \
     File/ThornFile.cpp \
     File/MarkupPreprocessor.cpp \
     File/MarkupHighlighter.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    File/CharacterManager.cpp
 
 HEADERS += \
     InsertDialogs/InsertListDialog.h \
@@ -37,7 +38,8 @@ HEADERS += \
     File/MarkupPreprocessor.h \
     File/ThornFile.h \
     CodeEditor.h \
-    MainWindow.h
+    MainWindow.h \
+    File/CharacterManager.h
 
 FORMS += \
     MainWindow.ui \
@@ -48,3 +50,9 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 win32:RC_ICONS += ../../icons/thorn/app_icon.ico
+
+DISTFILES += \
+    Resources/Consonants.txt
+
+RESOURCES += \
+    Resources/resources.qrc
