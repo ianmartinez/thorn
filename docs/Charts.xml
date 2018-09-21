@@ -1,0 +1,77 @@
+<!-- To be introduced in 3.0 -->
+<!-- 
+For IPA templates the syntax is:
+	<ChartType>
+		<s> (s = Sound)
+			<v>Variation</v> (v = variation)
+		</s>
+	</ChartType>
+	
+Alternate syntax if there are no variations:	
+	<ChartType>
+		<s>Sound</s>
+	</ChartType>
+	
+Order does not matter
+-->
+
+<!-- Render a chart for a 5 vowel system (like Spanish) -->
+<VowelChart>
+	<s>a</s>
+	<s>e</s>
+	<s>i</s>
+	<s>o</s>
+	<s>u</s>
+</VowelChart>
+
+<!-- Render a vowel chart showing the orthography -->
+<VowelChart>
+	<s spelling="aa">a</s>
+	<s spelling="a">ə</s>
+	<s spelling="á">æ</s>
+	<s spelling="e">e</s>
+	<s spelling="i">i</s>
+	<s>
+		<v spelling="o">o</v>
+		<v spelling="on">õ</v>
+	</s>
+	<s spelling="u">u</s>
+</VowelChart>
+
+<!-- Fancy example showing all of the syntax:
+	- Show orthography
+	- Show variations of sounds (i.e. labialized, ejective, aspirated)
+-->
+<ConsonantChart>
+	<s>
+		<v spelling="k">k</v>
+		<v spelling="kh">kʰ</v>
+		<v spelling="kw">kʷ</v>
+		<v spelling="kwh">kʷʰ</v>
+	</s>
+	<s>
+		<v spelling="s">s</v>
+		<v spelling="sh">sʰ</v>
+	</s>
+	<s>
+		<v spelling="s">s</v>
+		<v spelling="sh">sʰ</v>
+	</s>
+	<s spelling="t">t</s>
+	<s spelling="w">w</s>
+	<s>
+		<v spelling="h">h</v>
+		<v spelling="hw">hʷ</v>
+	</s>	
+	<s spelling="y">j</s>
+	<s spelling="m">m</s>
+	<s spelling="n">n</s>
+	<s>
+		<v spelling="h">h</v>
+		<v spelling="hw">hʷ</v>
+	</s>	
+	<s>
+		<v spelling="f">ɸ</v>
+		<v spelling="f'">ɸʼ</v>
+	</s>
+</ConsonantChart>
