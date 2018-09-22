@@ -270,6 +270,3 @@ Open front rounded vowel/Low front rounded vowel=ɶ
 Open central unrounded vowel/Low central unrounded vowel=ä
 Open back unrounded vowel/Low back unrounded vowel=ɑ
 Open back rounded vowel/Low back rounded vowel=ɒ
-
-[Diphthong]
-[Triphthongs]
