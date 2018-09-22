@@ -13,14 +13,19 @@ It is currently under construction and it aims to fix numerous deficiencies in i
   - Pages can be arranged into sections
   - Pages can have the same name
   - Dictionary words can be grouped into subjects
-  - A simplified character editor- the symbols panel, custom symbols dialog, and accent mark dialog have been merged into one panel
-  - Custom characters can now be embedded either with the project or stored locally across multiple projects
+  - A simplified and massively improved character editor:
+      - The symbols panel, custom symbols dialog, and accent mark dialog have been merged into one panel
+      - Custom characters can now be embedded either with the project or stored locally across multiple projects
+      - Now includes many scripts that can't typed easily, such as Old Italic or Runes
+      - Added dozens of new IPA symbols
+      - IPA symbols can now be searched through (i.e. typing "fricative" will give you a list of fricatives)
+      - Easily format two characters as an affricate or as coarticulated with a click of a button or a keyboard shortcut (i.e. ts -> t͡s)
   - Instead of being based off of a WYSIWYG rich text editor, Thorn 2 uses an extended version of HTML which allows easier extendability and the ability to use HTML features such as CSS  
   - The use of HTML allows projects created with it to be uploaded to websites or converted easily into Markdown for reddit
   - Questions can be weighted 
   
 ## Example markup:
-```html
+```xml
 <!-- Reference a local resource -->
 <img src="@red_shirt.jpg"/>
 
