@@ -22,7 +22,7 @@ public:
      *      languages that do not have keyboards
      *      in most operating systems,
      *      but have decent font representation
-     *      I.E. FUTHARK runes or Carian */
+     *      I.E. Germanic runes or Carian */
     QStringList ScriptCarian; // https://en.wikipedia.org/wiki/Carian_(Unicode_block)
     QStringList ScriptCoptic; // https://en.wikipedia.org/wiki/Coptic_alphabet
     QStringList ScriptOldItalic; // https://en.wikipedia.org/wiki/Old_Italic_script#Etruscan_alphabet

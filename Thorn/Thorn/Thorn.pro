@@ -51,8 +51,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 win32:RC_ICONS += ../../icons/thorn/app_icon.ico
 
-DISTFILES += \
-    Resources/Consonants.txt
+DISTFILES +=
 
-RESOURCES += \
-    Resources/resources.qrc
+RESOURCES +=
