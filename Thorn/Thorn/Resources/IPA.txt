@@ -362,3 +362,10 @@ Downstep=◌ꜜ
 Upstep=◌ꜛ
 Global rise=↗︎
 Global fall=↘︎
+
+[Transcription]
+Phonetic transcription=[ ]
+Phonemic transcription=/ /
+Indistinguishable utterance=( )
+Sound obscured=⸨ ⸩
+Prosodic notation={ }
