@@ -1,21 +1,40 @@
 #ifndef CHARACTERMANAGER_H
 #define CHARACTERMANAGER_H
 
-
+#include <vector>
 #include <QString>
 #include <QStringList>
+using namespace std;
+
+enum InsertionType {
+    NormalInsertion, // Insert without any modification
+    DiacriticInsertion, // Check for the placeholder '◌' and remove it before insertion
+    BracketInsertion // Insert and set the cursor at the placeholder '◌''s position between the 'brackets'
+};
+
+struct Character {
+    QString Tooltip;
+    QString Value;
+    InsertionType InsertAs;
+};
 
 class CharacterManager
 {
 public:
     CharacterManager();
-    QStringList Consonants;
+    vector<Character> IPAConsonants;
+    vector<Character> IPAAffricates;
+    vector<Character> IPAVowels;
+    vector<Character> IPADiacritics;
+    vector<Character> IPASuprasegmentals;
+    vector<Character> IPATones;
+
     /* Extended:
      *      Characters beyond the basic keyboards of
      *      languages with these alphabets */
-    QStringList ExtendedLatin;
-    QStringList ExtendedCyrillic;
-    QStringList ExtendedGreek;
+    vector<Character> ExtendedLatin;
+    vector<Character> ExtendedCyrillic;
+    vector<Character> ExtendedGreek;
 
     /* Scripts:
      *      Characters from ancient languages and
@@ -23,22 +42,21 @@ public:
      *      in most operating systems,
      *      but have decent font representation
      *      I.E. Germanic runes or Carian */
-    QStringList ScriptCarian; // https://en.wikipedia.org/wiki/Carian_(Unicode_block)
-    QStringList ScriptCoptic; // https://en.wikipedia.org/wiki/Coptic_alphabet
-    QStringList ScriptOldItalic; // https://en.wikipedia.org/wiki/Old_Italic_script#Etruscan_alphabet
-    QStringList ScriptGlagolitic; // https://en.wikipedia.org/wiki/Glagolitic_script
-    QStringList ScriptGothic; // https://en.wikipedia.org/wiki/Gothic_alphabet
-    QStringList ScriptLydian; // https://en.wikipedia.org/wiki/Lydian_alphabet
-    QStringList ScriptLycian; // https://en.wikipedia.org/wiki/Lycian_alphabet
-    QStringList ScriptOgham; // https://en.wikipedia.org/wiki/Ogham
-    QStringList ScriptOldTurkic; // https://en.wikipedia.org/wiki/Old_Turkic_alphabet
-    QStringList ScriptOsage; // https://en.wikipedia.org/wiki/Osage_alphabet
-    QStringList ScriptOsmanya; // https://en.wikipedia.org/wiki/Osmanya_alphabet
-    QStringList ScriptRunic; // https://en.wikipedia.org/wiki/Runes
+    vector<Character> ScriptCarian; // https://en.wikipedia.org/wiki/Carian_(Unicode_block)
+    vector<Character> ScriptCoptic; // https://en.wikipedia.org/wiki/Coptic_alphabet
+    vector<Character> ScriptOldItalic; // https://en.wikipedia.org/wiki/Old_Italic_script#Etruscan_alphabet
+    vector<Character> ScriptGlagolitic; // https://en.wikipedia.org/wiki/Glagolitic_script
+    vector<Character> ScriptGothic; // https://en.wikipedia.org/wiki/Gothic_alphabet
+    vector<Character> ScriptLydian; // https://en.wikipedia.org/wiki/Lydian_alphabet
+    vector<Character> ScriptLycian; // https://en.wikipedia.org/wiki/Lycian_alphabet
+    vector<Character> ScriptOgham; // https://en.wikipedia.org/wiki/Ogham
+    vector<Character> ScriptOldTurkic; // https://en.wikipedia.org/wiki/Old_Turkic_alphabet
+    vector<Character> ScriptOsage; // https://en.wikipedia.org/wiki/Osage_alphabet
+    vector<Character> ScriptOsmanya; // https://en.wikipedia.org/wiki/Osmanya_alphabet
+    vector<Character> ScriptRunic; // https://en.wikipedia.org/wiki/Runes
 
 
-
-    QStringList GetCharactersFromResource(QString ResourceName);
+    vector<Character> GetCharactersFromResource(QString ResourceName);
 };
 
 #endif // CHARACTERMANAGER_H
