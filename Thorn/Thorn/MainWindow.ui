@@ -31,7 +31,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="pageViewTabs">
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="editTab">
        <attribute name="title">
@@ -115,8 +115,8 @@
               <string>Add</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>../../icons/breeze-icons/icons/actions/22/edit-table-insert-row-under.svg</normaloff>../../icons/breeze-icons/icons/actions/22/edit-table-insert-row-under.svg</iconset>
+              <iconset resource="icons.qrc">
+               <normaloff>:/tlell/tlell/list-add.svg</normaloff>:/tlell/tlell/list-add.svg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -138,8 +138,8 @@
               <string>Remove</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>../../icons/breeze-icons/icons/actions/22/edit-table-delete-row.svg</normaloff>../../icons/breeze-icons/icons/actions/22/edit-table-delete-row.svg</iconset>
+              <iconset resource="icons.qrc">
+               <normaloff>:/tlell/tlell/list-remove.svg</normaloff>:/tlell/tlell/list-remove.svg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -237,8 +237,8 @@
               <string>Add...</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>../../icons/breeze-icons/icons/actions/22/document-open.svg</normaloff>../../icons/breeze-icons/icons/actions/22/document-open.svg</iconset>
+              <iconset resource="icons.qrc">
+               <normaloff>:/tlell/tlell/list-add.svg</normaloff>:/tlell/tlell/list-add.svg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -260,8 +260,8 @@
               <string>Remove</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>../../icons/breeze-icons/icons/actions/22/edit-delete.svg</normaloff>../../icons/breeze-icons/icons/actions/22/edit-delete.svg</iconset>
+              <iconset resource="icons.qrc">
+               <normaloff>:/tlell/tlell/list-remove.svg</normaloff>:/tlell/tlell/list-remove.svg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -436,7 +436,6 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="actionZoom_In"/>
     <addaction name="actionZoom_Out"/>
     <addaction name="separator"/>
@@ -444,13 +443,6 @@
     <addaction name="action_Custom_Zoom"/>
     <addaction name="separator"/>
     <addaction name="action_Word_Wrap"/>
-   </widget>
-   <widget class="QMenu" name="menu_Window">
-    <property name="title">
-     <string>&amp;Window</string>
-    </property>
-    <addaction name="action_Character_Editor"/>
-    <addaction name="actionProject_Explorer"/>
    </widget>
    <widget class="QMenu" name="menu_Insert">
     <property name="title">
@@ -460,13 +452,13 @@
     <addaction name="action_Video"/>
     <addaction name="action_Audio"/>
     <addaction name="separator"/>
+    <addaction name="actionDictionary_Word"/>
+    <addaction name="action_Keyboard"/>
+    <addaction name="separator"/>
     <addaction name="actionLin_k"/>
     <addaction name="actionT_ooltip"/>
     <addaction name="action_Table"/>
     <addaction name="action_List"/>
-    <addaction name="separator"/>
-    <addaction name="actionDictionary_Word"/>
-    <addaction name="action_Keyboard"/>
     <addaction name="separator"/>
     <addaction name="actionD_ropdown"/>
     <addaction name="actionRad_io"/>
@@ -476,6 +468,8 @@
     <property name="title">
      <string>P&amp;ages</string>
     </property>
+    <addaction name="actionProject_Explorer"/>
+    <addaction name="separator"/>
     <addaction name="action_Add"/>
     <addaction name="actionAdd_Section"/>
     <addaction name="action_Remove"/>
@@ -483,15 +477,22 @@
     <addaction name="separator"/>
     <addaction name="action_Import"/>
     <addaction name="actionE_xport"/>
+   </widget>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Linguistics</string>
+    </property>
+    <addaction name="action_Character_Editor"/>
     <addaction name="separator"/>
+    <addaction name="actionMake_Affricate"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuProject"/>
+   <addaction name="menuLanguage"/>
    <addaction name="menuP_ages"/>
    <addaction name="menu_Insert"/>
-   <addaction name="menu_Window"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -518,9 +519,8 @@
    <addaction name="action_Copy"/>
    <addaction name="action_Paste"/>
    <addaction name="separator"/>
-   <addaction name="action_Find_Replace"/>
-   <addaction name="separator"/>
    <addaction name="action_Add"/>
+   <addaction name="actionAdd_Section"/>
    <addaction name="separator"/>
    <addaction name="actionRun"/>
   </widget>
@@ -629,13 +629,6 @@
     <layout class="QGridLayout" name="gridLayout_5">
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="3" column="0">
-        <widget class="QPushButton" name="globalButton">
-         <property name="text">
-          <string>Global</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0" alignment="Qt::AlignHCenter">
         <widget class="QPushButton" name="insertCharButton">
          <property name="sizePolicy">
@@ -675,7 +668,20 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="smartReplaceCheck">
+         <property name="text">
+          <string>Smart Replace</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
           <number>3</number>
@@ -709,7 +715,7 @@
               <enum>QFrame::Plain</enum>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page">
               <property name="geometry">
@@ -769,7 +775,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>230</width>
-                <height>84</height>
+                <height>70</height>
                </rect>
               </property>
               <attribute name="label">
@@ -782,16 +788,10 @@
          </widget>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="smartReplaceCheck">
+       <item row="3" column="0">
+        <widget class="QPushButton" name="globalButton">
          <property name="text">
-          <string>Smart Replace</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
+          <string>Global</string>
          </property>
         </widget>
        </item>
@@ -804,6 +804,9 @@
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/tlell/tlell/document-open.svg</normaloff>:/tlell/tlell/document-open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Open...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -832,7 +835,7 @@
      <normaloff>:/tlell/tlell/document-save.svg</normaloff>:/tlell/tlell/document-save.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save...</string>
+    <string>&amp;Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -1024,7 +1027,7 @@
      <normaloff>:/tlell/tlell/characters.svg</normaloff>:/tlell/tlell/characters.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Characters</string>
+    <string>Show &amp;Character Editor</string>
    </property>
   </action>
   <action name="action_Add">
@@ -1085,8 +1088,12 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/tlell/tlell/text-edit.svg</normaloff>:/tlell/tlell/text-edit.svg</iconset>
+   </property>
    <property name="text">
-    <string>&amp;Pages</string>
+    <string>Show Page &amp;Manager</string>
    </property>
   </action>
   <action name="action_Image">
@@ -1216,7 +1223,7 @@
   <action name="actionRun">
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/tlell/tlell/media-playback-start.svg</normaloff>:/tlell/tlell/media-playback-start.svg</iconset>
+     <normaloff>:/tlell/tlell/system.svg</normaloff>:/tlell/tlell/system.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Run...</string>
@@ -1232,6 +1239,11 @@
    </property>
    <property name="text">
     <string>Add &amp;Section</string>
+   </property>
+  </action>
+  <action name="actionMake_Affricate">
+   <property name="text">
+    <string>Make Affricate</string>
    </property>
   </action>
  </widget>
