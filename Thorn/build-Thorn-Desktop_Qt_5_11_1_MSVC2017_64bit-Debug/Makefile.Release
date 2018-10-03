@@ -51,7 +51,9 @@ SOURCES       = ..\Thorn\main.cpp \
 		..\Thorn\File\ThornFile.cpp \
 		..\Thorn\File\MarkupPreprocessor.cpp \
 		..\Thorn\File\MarkupHighlighter.cpp \
-		..\Thorn\MainWindow.cpp release\moc_InsertListDialog.cpp \
+		..\Thorn\MainWindow.cpp \
+		..\Thorn\File\CharacterManager.cpp release\qrc_icons.cpp \
+		release\moc_InsertListDialog.cpp \
 		release\moc_MarkupHighlighter.cpp \
 		release\moc_CodeEditor.cpp \
 		release\moc_MainWindow.cpp
@@ -62,6 +64,8 @@ OBJECTS       = release\main.obj \
 		release\MarkupPreprocessor.obj \
 		release\MarkupHighlighter.obj \
 		release\MainWindow.obj \
+		release\CharacterManager.obj \
+		release\qrc_icons.obj \
 		release\moc_InsertListDialog.obj \
 		release\moc_MarkupHighlighter.obj \
 		release\moc_CodeEditor.obj \
@@ -72,13 +76,15 @@ DIST          =  ..\Thorn\InsertDialogs\InsertListDialog.h \
 		..\Thorn\File\MarkupPreprocessor.h \
 		..\Thorn\File\ThornFile.h \
 		..\Thorn\CodeEditor.h \
-		..\Thorn\MainWindow.h ..\Thorn\main.cpp \
+		..\Thorn\MainWindow.h \
+		..\Thorn\File\CharacterManager.h ..\Thorn\main.cpp \
 		..\Thorn\InsertDialogs\InsertListDialog.cpp \
 		..\Thorn\CodeEditor.cpp \
 		..\Thorn\File\ThornFile.cpp \
 		..\Thorn\File\MarkupPreprocessor.cpp \
 		..\Thorn\File\MarkupHighlighter.cpp \
-		..\Thorn\MainWindow.cpp
+		..\Thorn\MainWindow.cpp \
+		..\Thorn\File\CharacterManager.cpp
 QMAKE_TARGET  = Thorn
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = Thorn.exe
@@ -195,7 +201,7 @@ all: Makefile.Release  $(DESTDIR_TARGET)
 
 $(DESTDIR_TARGET): ui_MainWindow.h ui_InsertListDialog.h $(OBJECTS) release\Thorn_resource.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-release\main.obj release\InsertListDialog.obj release\CodeEditor.obj release\ThornFile.obj release\MarkupPreprocessor.obj release\MarkupHighlighter.obj release\MainWindow.obj release\moc_InsertListDialog.obj release\moc_MarkupHighlighter.obj release\moc_CodeEditor.obj release\moc_MainWindow.obj
+release\main.obj release\InsertListDialog.obj release\CodeEditor.obj release\ThornFile.obj release\MarkupPreprocessor.obj release\MarkupHighlighter.obj release\MainWindow.obj release\CharacterManager.obj release\qrc_icons.obj release\moc_InsertListDialog.obj release\moc_MarkupHighlighter.obj release\moc_CodeEditor.obj release\moc_MainWindow.obj
 $(LIBS)
 <<
 
@@ -208,10 +214,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Thorn.zip $(SOURCES) $(DIST) ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\angle.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-desktop.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\qconfig.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\win32-msvc\qmake.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-version.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resources.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\moc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\uic.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\lex.prf ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\qtmain.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineWidgets.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5PrintSupport.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Widgets.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineCore.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Quick.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Gui.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebChannel.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Qml.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Network.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Positioning.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Core.prl    ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\data\dummy.cpp ..\Thorn\InsertDialogs\InsertListDialog.h ..\Thorn\File\MarkupHighlighter.h ..\Thorn\File\MarkupPreprocessor.h ..\Thorn\File\ThornFile.h ..\Thorn\CodeEditor.h ..\Thorn\MainWindow.h  ..\Thorn\main.cpp ..\Thorn\InsertDialogs\InsertListDialog.cpp ..\Thorn\CodeEditor.cpp ..\Thorn\File\ThornFile.cpp ..\Thorn\File\MarkupPreprocessor.cpp ..\Thorn\File\MarkupHighlighter.cpp ..\Thorn\MainWindow.cpp ..\Thorn\MainWindow.ui ..\Thorn\InsertDialogs\InsertListDialog.ui    
+	$(ZIP) Thorn.zip $(SOURCES) $(DIST) ..\Thorn\Thorn.pro ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\angle.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-desktop.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\qconfig.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\win32-msvc\qmake.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\common\msvc-version.conf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qt.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\resources.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\moc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\uic.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\lex.prf ..\Thorn\Thorn.pro ..\Thorn\icons.qrc ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\qtmain.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineWidgets.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5PrintSupport.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Widgets.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebEngineCore.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Quick.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Gui.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5WebChannel.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Qml.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Network.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Positioning.prl ..\..\..\..\Qt\5.11.1\msvc2017_64\lib\Qt5Core.prl   ..\Thorn\icons.qrc ..\..\..\..\Qt\5.11.1\msvc2017_64\mkspecs\features\data\dummy.cpp ..\Thorn\InsertDialogs\InsertListDialog.h ..\Thorn\File\MarkupHighlighter.h ..\Thorn\File\MarkupPreprocessor.h ..\Thorn\File\ThornFile.h ..\Thorn\CodeEditor.h ..\Thorn\MainWindow.h ..\Thorn\File\CharacterManager.h  ..\Thorn\main.cpp ..\Thorn\InsertDialogs\InsertListDialog.cpp ..\Thorn\CodeEditor.cpp ..\Thorn\File\ThornFile.cpp ..\Thorn\File\MarkupPreprocessor.cpp ..\Thorn\File\MarkupHighlighter.cpp ..\Thorn\MainWindow.cpp ..\Thorn\File\CharacterManager.cpp ..\Thorn\MainWindow.ui ..\Thorn\InsertDialogs\InsertListDialog.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.obj release\InsertListDialog.obj release\CodeEditor.obj release\ThornFile.obj release\MarkupPreprocessor.obj release\MarkupHighlighter.obj release\MainWindow.obj release\moc_InsertListDialog.obj release\moc_MarkupHighlighter.obj release\moc_CodeEditor.obj release\moc_MainWindow.obj
+	-$(DEL_FILE) release\main.obj release\InsertListDialog.obj release\CodeEditor.obj release\ThornFile.obj release\MarkupPreprocessor.obj release\MarkupHighlighter.obj release\MainWindow.obj release\CharacterManager.obj release\qrc_icons.obj release\moc_InsertListDialog.obj release\moc_MarkupHighlighter.obj release\moc_CodeEditor.obj release\moc_MainWindow.obj
 	-$(DEL_FILE) release\Thorn.exp
 	-$(DEL_FILE) release\Thorn_resource.res
 
@@ -230,8 +236,229 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all:
+compiler_rcc_make_all: release\qrc_icons.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) release\qrc_icons.cpp
+release\qrc_icons.cpp: ..\Thorn\icons.qrc \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\bin\rcc.exe \
+		..\Thorn\tlell\characters.svg \
+		..\Thorn\tlell\face-grin.svg \
+		..\Thorn\tlell\mail-send-receive.svg \
+		..\Thorn\tlell\folder-new.svg \
+		..\Thorn\tlell\face-smile-big.svg \
+		..\Thorn\tlell\unread.svg \
+		..\Thorn\tlell\format-justify-left.svg \
+		..\Thorn\tlell\proxy.svg \
+		..\Thorn\tlell\hard-disk.svg \
+		..\Thorn\tlell\format-justify-center.svg \
+		..\Thorn\tlell\network-transmit.svg \
+		..\Thorn\tlell\face-devilish.svg \
+		..\Thorn\tlell\accessibility-settings.svg \
+		..\Thorn\tlell\document.svg \
+		..\Thorn\tlell\format-indent-less.svg \
+		..\Thorn\tlell\face-sad.svg \
+		..\Thorn\tlell\edit-undo.svg \
+		..\Thorn\tlell\media-seek-forward.svg \
+		..\Thorn\tlell\view-refresh.svg \
+		..\Thorn\tlell\optical-disk.svg \
+		..\Thorn\tlell\format-text-bold.svg \
+		..\Thorn\tlell\office.svg \
+		..\Thorn\tlell\folder-drag-accept.svg \
+		..\Thorn\tlell\go-last.svg \
+		..\Thorn\tlell\presentation.svg \
+		..\Thorn\tlell\email.svg \
+		..\Thorn\tlell\edit-copy.svg \
+		..\Thorn\tlell\weather-clear.svg \
+		..\Thorn\tlell\media-flash.svg \
+		..\Thorn\tlell\network-error.svg \
+		..\Thorn\tlell\network-wireless.svg \
+		..\Thorn\tlell\dialog-information.svg \
+		..\Thorn\tlell\weather-few-clouds.svg \
+		..\Thorn\tlell\face-surprise.svg \
+		..\Thorn\tlell\edit-redo.svg \
+		..\Thorn\tlell\input-settings.svg \
+		..\Thorn\tlell\user-desktop.svg \
+		..\Thorn\tlell\page-remove.svg \
+		..\Thorn\tlell\mail-forward.svg \
+		..\Thorn\tlell\edit-paste.svg \
+		..\Thorn\tlell\find.svg \
+		..\Thorn\tlell\media-skip-backward.svg \
+		..\Thorn\tlell\format-justify-right.svg \
+		..\Thorn\tlell\media-playback-pause.svg \
+		..\Thorn\tlell\mail-reply.svg \
+		..\Thorn\tlell\development.svg \
+		..\Thorn\tlell\contact.svg \
+		..\Thorn\tlell\microphone.svg \
+		..\Thorn\tlell\wallpaper.svg \
+		..\Thorn\tlell\address-book.svg \
+		..\Thorn\tlell\drawing-template.svg \
+		..\Thorn\tlell\weather-severe-alert.svg \
+		..\Thorn\tlell\spreadsheet-template.svg \
+		..\Thorn\tlell\face-wink.svg \
+		..\Thorn\tlell\installer.svg \
+		..\Thorn\tlell\camera.svg \
+		..\Thorn\tlell\presentation-template.svg \
+		..\Thorn\tlell\chat.svg \
+		..\Thorn\tlell\format-text-underline.svg \
+		..\Thorn\tlell\photos.svg \
+		..\Thorn\tlell\edit-cut.svg \
+		..\Thorn\tlell\document-save-as.svg \
+		..\Thorn\tlell\weather-showers.svg \
+		..\Thorn\tlell\remote-desktop.svg \
+		..\Thorn\tlell\optical-drive-removable.svg \
+		..\Thorn\tlell\weather-snow.svg \
+		..\Thorn\tlell\font-file.svg \
+		..\Thorn\tlell\document-save.svg \
+		..\Thorn\tlell\audio-file.svg \
+		..\Thorn\tlell\edit-select-all.svg \
+		..\Thorn\tlell\mouse.svg \
+		..\Thorn\tlell\printer.svg \
+		..\Thorn\tlell\help.svg \
+		..\Thorn\tlell\face-kiss.svg \
+		..\Thorn\tlell\stop.svg \
+		..\Thorn\tlell\mp3-player.svg \
+		..\Thorn\tlell\package.svg \
+		..\Thorn\tlell\graphics.svg \
+		..\Thorn\tlell\go-up.svg \
+		..\Thorn\tlell\edit-delete.svg \
+		..\Thorn\tlell\folder-add.svg \
+		..\Thorn\tlell\go-jump.svg \
+		..\Thorn\tlell\monitor.svg \
+		..\Thorn\tlell\weather-clear-night.svg \
+		..\Thorn\tlell\folder-open.svg \
+		..\Thorn\tlell\go-top.svg \
+		..\Thorn\tlell\go-previous.svg \
+		..\Thorn\tlell\keyboard.svg \
+		..\Thorn\tlell\image-missing.svg \
+		..\Thorn\tlell\format-indent-more.svg \
+		..\Thorn\tlell\video-recorder.svg \
+		..\Thorn\tlell\media-eject.svg \
+		..\Thorn\tlell\video-reel.svg \
+		..\Thorn\tlell\optical-drive.svg \
+		..\Thorn\tlell\document-print.svg \
+		..\Thorn\tlell\shortcuts.svg \
+		..\Thorn\tlell\media-playback-start.svg \
+		..\Thorn\tlell\network-transmit-receive.svg \
+		..\Thorn\tlell\file-manager.svg \
+		..\Thorn\tlell\user-trash-full.svg \
+		..\Thorn\tlell\locale.svg \
+		..\Thorn\tlell\preferences-dials.svg \
+		..\Thorn\tlell\network-workgroup.svg \
+		..\Thorn\tlell\document-open.svg \
+		..\Thorn\tlell\weather-few-clouds-night.svg \
+		..\Thorn\tlell\audio-volume-high.svg \
+		..\Thorn\tlell\view-fullscreen.svg \
+		..\Thorn\tlell\link.svg \
+		..\Thorn\tlell\mail-reply-all.svg \
+		..\Thorn\tlell\start-here.svg \
+		..\Thorn\tlell\audio-volume-low.svg \
+		..\Thorn\tlell\executable.svg \
+		..\Thorn\tlell\dialog-error.svg \
+		..\Thorn\tlell\network-idle.svg \
+		..\Thorn\tlell\user-home.svg \
+		..\Thorn\tlell\software-update-available.svg \
+		..\Thorn\tlell\weather-storm.svg \
+		..\Thorn\tlell\README.md \
+		..\Thorn\tlell\calculator.svg \
+		..\Thorn\tlell\edit-find-replace.svg \
+		..\Thorn\tlell\battery.svg \
+		..\Thorn\tlell\heart.svg \
+		..\Thorn\tlell\lock.svg \
+		..\Thorn\tlell\book.svg \
+		..\Thorn\tlell\games.svg \
+		..\Thorn\tlell\time.svg \
+		..\Thorn\tlell\face-crying.svg \
+		..\Thorn\tlell\notify.svg \
+		..\Thorn\tlell\media-seek-backward.svg \
+		..\Thorn\tlell\read-only.svg \
+		..\Thorn\tlell\page-add.svg \
+		..\Thorn\tlell\LICENSE \
+		..\Thorn\tlell\terminal.svg \
+		..\Thorn\tlell\edit-find.svg \
+		..\Thorn\tlell\script.svg \
+		..\Thorn\tlell\battery-caution.svg \
+		..\Thorn\tlell\floppy.svg \
+		..\Thorn\tlell\go-home.svg \
+		..\Thorn\tlell\face-monkey.svg \
+		..\Thorn\tlell\accessibility.svg \
+		..\Thorn\tlell\mail-attachment.svg \
+		..\Thorn\tlell\folder-remove.svg \
+		..\Thorn\tlell\screensaver.svg \
+		..\Thorn\tlell\weather-showers-scattered.svg \
+		..\Thorn\tlell\spreadsheet.svg \
+		..\Thorn\tlell\weather-overcast.svg \
+		..\Thorn\tlell\drawing.svg \
+		..\Thorn\tlell\folder-visiting.svg \
+		..\Thorn\tlell\theme.svg \
+		..\Thorn\tlell\media-playback-stop.svg \
+		..\Thorn\tlell\html.svg \
+		..\Thorn\tlell\folder-remote.svg \
+		..\Thorn\tlell\network-server.svg \
+		..\Thorn\tlell\users.svg \
+		..\Thorn\tlell\go-next.svg \
+		..\Thorn\tlell\multimedia.svg \
+		..\Thorn\tlell\bookmark.svg \
+		..\Thorn\tlell\web.svg \
+		..\Thorn\tlell\go-bottom.svg \
+		..\Thorn\tlell\session.svg \
+		..\Thorn\tlell\document-template.svg \
+		..\Thorn\tlell\junk.svg \
+		..\Thorn\tlell\applications-internet.svg \
+		..\Thorn\tlell\go-first.svg \
+		..\Thorn\tlell\text-edit.svg \
+		..\Thorn\tlell\certificate.svg \
+		..\Thorn\tlell\software-update-urgent.svg \
+		..\Thorn\tlell\edit-clear.svg \
+		..\Thorn\tlell\quit.svg \
+		..\Thorn\tlell\document-properties.svg \
+		..\Thorn\tlell\media-skip-forward.svg \
+		..\Thorn\tlell\window-new.svg \
+		..\Thorn\tlell\accessories.svg \
+		..\Thorn\tlell\network-receive.svg \
+		..\Thorn\tlell\joystick.svg \
+		..\Thorn\tlell\printer-error.svg \
+		..\Thorn\tlell\update.svg \
+		..\Thorn\tlell\message.svg \
+		..\Thorn\tlell\tab-new.svg \
+		..\Thorn\tlell\folder-saved-search.svg \
+		..\Thorn\tlell\folder.svg \
+		..\Thorn\tlell\format-text-italic.svg \
+		..\Thorn\tlell\important.svg \
+		..\Thorn\tlell\other.svg \
+		..\Thorn\tlell\windows.svg \
+		..\Thorn\tlell\system.svg \
+		..\Thorn\tlell\user-trash.svg \
+		..\Thorn\tlell\network-offline.svg \
+		..\Thorn\tlell\system-monitor.svg \
+		..\Thorn\tlell\face-smile.svg \
+		..\Thorn\tlell\audio-volume-medium.svg \
+		..\Thorn\tlell\format-text-strikethrough.svg \
+		..\Thorn\tlell\audio-volume-muted.svg \
+		..\Thorn\tlell\gear.svg \
+		..\Thorn\tlell\go-down.svg \
+		..\Thorn\tlell\calendar.svg \
+		..\Thorn\tlell\face-angel.svg \
+		..\Thorn\tlell\document-new.svg \
+		..\Thorn\tlell\list-remove.svg \
+		..\Thorn\tlell\media-record.svg \
+		..\Thorn\tlell\image-loading.svg \
+		..\Thorn\tlell\text.svg \
+		..\Thorn\tlell\system-shutdown.svg \
+		..\Thorn\tlell\image.svg \
+		..\Thorn\tlell\document-print-preview.svg \
+		..\Thorn\tlell\font.svg \
+		..\Thorn\tlell\face-plain.svg \
+		..\Thorn\tlell\network-wireless-encrypted.svg \
+		..\Thorn\tlell\news.svg \
+		..\Thorn\tlell\format-justify-fill.svg \
+		..\Thorn\tlell\dialog-warning.svg \
+		..\Thorn\tlell\list-add.svg \
+		..\Thorn\tlell\network-wired.svg \
+		..\Thorn\tlell\preferences.svg \
+		..\Thorn\tlell\face-glasses.svg \
+		..\Thorn\tlell\audio.svg
+	W:\Qt\5.11.1\msvc2017_64\bin\rcc.exe -name icons ..\Thorn\icons.qrc -o release\qrc_icons.cpp
+
 compiler_moc_predefs_make_all: release\moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) release\moc_predefs.h
@@ -888,7 +1115,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 
 
@@ -1936,6 +2163,52 @@ release\MainWindow.obj: ..\Thorn\MainWindow.cpp ui_MainWindow.h \
 		../Thorn/InsertDialogs/InsertListDialog.h \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\QDialog \
 		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtWidgets\qdialog.h
+
+release\CharacterManager.obj: ..\Thorn\File\CharacterManager.cpp ../Thorn/File/CharacterManager.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QString \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstring.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qchar.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobal.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qconfig.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtcore-config.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlogging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qflags.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qmutex.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnumeric.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearray.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qrefcount.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qnamespace.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qarraydata.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringliteral.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringview.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\QStringList \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qlist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qiterator.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qpair.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qregexp.h \
+		..\..\..\..\Qt\5.11.1\msvc2017_64\include\QtCore\qstringmatcher.h
+
+release\qrc_icons.obj: release\qrc_icons.cpp 
 
 release\moc_InsertListDialog.obj: release\moc_InsertListDialog.cpp 
 

@@ -64,21 +64,11 @@ public:
     QAction *actionZoom_Out;
     QAction *action_100_Zoom;
     QAction *action_Custom_Zoom;
-    QAction *action_Add_Page;
-    QAction *action_Remove_Page;
     QAction *action_Word_Wrap;
     QAction *action_Character_Editor;
-    QAction *action_Duplicate_Page;
-    QAction *actionImport_Page;
-    QAction *action_Export_Page;
-    QAction *actionDic_tionary;
-    QAction *actionProperties;
-    QAction *actionR_ename_Page;
-    QAction *action_16;
     QAction *action_Add;
     QAction *action_Remove;
     QAction *action_Clone;
-    QAction *actionR_ename;
     QAction *action_Import;
     QAction *actionE_xport;
     QAction *actionSettin_gs;
@@ -95,13 +85,8 @@ public:
     QAction *actionD_ropdown;
     QAction *actionRad_io;
     QAction *actionE_ntry;
-    QAction *action_Add_Section;
-    QAction *action_Remove_Section;
-    QAction *action_Add_2;
-    QAction *action_Remove_2;
     QAction *actionRun;
-    QAction *action_Dictionary;
-    QAction *actionR_esources;
+    QAction *actionAdd_Section;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *pageViewTabs;
@@ -182,7 +167,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(955, 658);
+        MainWindow->resize(955, 661);
         QIcon icon;
         icon.addFile(QStringLiteral("../../icons/thorn/app_icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -190,101 +175,85 @@ public:
         action_Open = new QAction(MainWindow);
         action_Open->setObjectName(QStringLiteral("action_Open"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/tlell/tlell/document-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Open->setIcon(icon1);
         action_New = new QAction(MainWindow);
         action_New->setObjectName(QStringLiteral("action_New"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-new.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/tlell/tlell/document-new.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_New->setIcon(icon2);
         action = new QAction(MainWindow);
         action->setObjectName(QStringLiteral("action"));
         action_Save = new QAction(MainWindow);
         action_Save->setObjectName(QStringLiteral("action_Save"));
         QIcon icon3;
-        icon3.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-save.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QStringLiteral(":/tlell/tlell/document-save.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Save->setIcon(icon3);
         actionSave_As = new QAction(MainWindow);
         actionSave_As->setObjectName(QStringLiteral("actionSave_As"));
         QIcon icon4;
-        icon4.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-save-as.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon4.addFile(QStringLiteral(":/tlell/tlell/document-save-as.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionSave_As->setIcon(icon4);
         action_Quit = new QAction(MainWindow);
         action_Quit->setObjectName(QStringLiteral("action_Quit"));
         QIcon icon5;
-        icon5.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/application-exit.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon5.addFile(QStringLiteral(":/tlell/tlell/quit.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Quit->setIcon(icon5);
         action_Undo = new QAction(MainWindow);
         action_Undo->setObjectName(QStringLiteral("action_Undo"));
         QIcon icon6;
-        icon6.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-undo.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon6.addFile(QStringLiteral(":/tlell/tlell/edit-undo.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Undo->setIcon(icon6);
         action_Redo = new QAction(MainWindow);
         action_Redo->setObjectName(QStringLiteral("action_Redo"));
         QIcon icon7;
-        icon7.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-redo.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon7.addFile(QStringLiteral(":/tlell/tlell/edit-redo.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Redo->setIcon(icon7);
         action_Copy = new QAction(MainWindow);
         action_Copy->setObjectName(QStringLiteral("action_Copy"));
         QIcon icon8;
-        icon8.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-copy.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon8.addFile(QStringLiteral(":/tlell/tlell/edit-copy.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Copy->setIcon(icon8);
         action_Paste = new QAction(MainWindow);
         action_Paste->setObjectName(QStringLiteral("action_Paste"));
         QIcon icon9;
-        icon9.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-paste.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon9.addFile(QStringLiteral(":/tlell/tlell/edit-paste.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Paste->setIcon(icon9);
         action_Cut = new QAction(MainWindow);
         action_Cut->setObjectName(QStringLiteral("action_Cut"));
         QIcon icon10;
-        icon10.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-cut.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon10.addFile(QStringLiteral(":/tlell/tlell/edit-cut.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Cut->setIcon(icon10);
         action_Find_Replace = new QAction(MainWindow);
         action_Find_Replace->setObjectName(QStringLiteral("action_Find_Replace"));
         QIcon icon11;
-        icon11.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-find-replace.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon11.addFile(QStringLiteral(":/tlell/tlell/edit-find-replace.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_Find_Replace->setIcon(icon11);
         actionSelect_All = new QAction(MainWindow);
         actionSelect_All->setObjectName(QStringLiteral("actionSelect_All"));
         QIcon icon12;
-        icon12.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-select-all.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon12.addFile(QStringLiteral(":/tlell/tlell/edit-select-all.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionSelect_All->setIcon(icon12);
         action_Deselect_All = new QAction(MainWindow);
         action_Deselect_All->setObjectName(QStringLiteral("action_Deselect_All"));
-        QIcon icon13;
-        icon13.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-select-none.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Deselect_All->setIcon(icon13);
         actionUsing_Thorn_Markup = new QAction(MainWindow);
         actionUsing_Thorn_Markup->setObjectName(QStringLiteral("actionUsing_Thorn_Markup"));
+        QIcon icon13;
+        icon13.addFile(QStringLiteral(":/tlell/tlell/help.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionUsing_Thorn_Markup->setIcon(icon13);
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QStringLiteral("actionAbout"));
-        QIcon icon14;
-        icon14.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/help-about.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionAbout->setIcon(icon14);
         actionZoom_In = new QAction(MainWindow);
         actionZoom_In->setObjectName(QStringLiteral("actionZoom_In"));
-        QIcon icon15;
-        icon15.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/zoom-in.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionZoom_In->setIcon(icon15);
         actionZoom_Out = new QAction(MainWindow);
         actionZoom_Out->setObjectName(QStringLiteral("actionZoom_Out"));
-        QIcon icon16;
-        icon16.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/zoom-out.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionZoom_Out->setIcon(icon16);
         action_100_Zoom = new QAction(MainWindow);
         action_100_Zoom->setObjectName(QStringLiteral("action_100_Zoom"));
-        QIcon icon17;
-        icon17.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/zoom-original.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_100_Zoom->setIcon(icon17);
         action_Custom_Zoom = new QAction(MainWindow);
         action_Custom_Zoom->setObjectName(QStringLiteral("action_Custom_Zoom"));
-        QIcon icon18;
-        icon18.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/zoom.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Custom_Zoom->setIcon(icon18);
-        action_Add_Page = new QAction(MainWindow);
-        action_Add_Page->setObjectName(QStringLiteral("action_Add_Page"));
-        action_Remove_Page = new QAction(MainWindow);
-        action_Remove_Page->setObjectName(QStringLiteral("action_Remove_Page"));
+        QIcon icon14;
+        icon14.addFile(QStringLiteral(":/tlell/tlell/find.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Custom_Zoom->setIcon(icon14);
         action_Word_Wrap = new QAction(MainWindow);
         action_Word_Wrap->setObjectName(QStringLiteral("action_Word_Wrap"));
         action_Word_Wrap->setCheckable(true);
@@ -292,141 +261,89 @@ public:
         action_Character_Editor->setObjectName(QStringLiteral("action_Character_Editor"));
         action_Character_Editor->setCheckable(true);
         action_Character_Editor->setChecked(true);
-        action_Duplicate_Page = new QAction(MainWindow);
-        action_Duplicate_Page->setObjectName(QStringLiteral("action_Duplicate_Page"));
-        actionImport_Page = new QAction(MainWindow);
-        actionImport_Page->setObjectName(QStringLiteral("actionImport_Page"));
-        action_Export_Page = new QAction(MainWindow);
-        action_Export_Page->setObjectName(QStringLiteral("action_Export_Page"));
-        actionDic_tionary = new QAction(MainWindow);
-        actionDic_tionary->setObjectName(QStringLiteral("actionDic_tionary"));
-        actionProperties = new QAction(MainWindow);
-        actionProperties->setObjectName(QStringLiteral("actionProperties"));
-        QIcon icon19;
-        icon19.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/project-development.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionProperties->setIcon(icon19);
-        actionR_ename_Page = new QAction(MainWindow);
-        actionR_ename_Page->setObjectName(QStringLiteral("actionR_ename_Page"));
-        action_16 = new QAction(MainWindow);
-        action_16->setObjectName(QStringLiteral("action_16"));
+        QIcon icon15;
+        icon15.addFile(QStringLiteral(":/tlell/tlell/characters.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Character_Editor->setIcon(icon15);
         action_Add = new QAction(MainWindow);
         action_Add->setObjectName(QStringLiteral("action_Add"));
-        QIcon icon20;
-        icon20.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/archive-insert.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Add->setIcon(icon20);
+        QIcon icon16;
+        icon16.addFile(QStringLiteral(":/tlell/tlell/page-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Add->setIcon(icon16);
         action_Remove = new QAction(MainWindow);
         action_Remove->setObjectName(QStringLiteral("action_Remove"));
-        QIcon icon21;
-        icon21.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/archive-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Remove->setIcon(icon21);
+        QIcon icon17;
+        icon17.addFile(QStringLiteral("../../icons/tlell/actions/list-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Remove->setIcon(icon17);
         action_Clone = new QAction(MainWindow);
         action_Clone->setObjectName(QStringLiteral("action_Clone"));
-        QIcon icon22;
-        icon22.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/edit-clone.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Clone->setIcon(icon22);
-        actionR_ename = new QAction(MainWindow);
-        actionR_ename->setObjectName(QStringLiteral("actionR_ename"));
-        QIcon icon23;
-        icon23.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-edit.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionR_ename->setIcon(icon23);
         action_Import = new QAction(MainWindow);
         action_Import->setObjectName(QStringLiteral("action_Import"));
-        QIcon icon24;
-        icon24.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-import.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Import->setIcon(icon24);
         actionE_xport = new QAction(MainWindow);
         actionE_xport->setObjectName(QStringLiteral("actionE_xport"));
-        QIcon icon25;
-        icon25.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/document-export.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionE_xport->setIcon(icon25);
         actionSettin_gs = new QAction(MainWindow);
         actionSettin_gs->setObjectName(QStringLiteral("actionSettin_gs"));
-        QIcon icon26;
-        icon26.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/configure.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionSettin_gs->setIcon(icon26);
+        QIcon icon18;
+        icon18.addFile(QStringLiteral("../../icons/tlell/categories/preferences.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSettin_gs->setIcon(icon18);
         actionProject_Explorer = new QAction(MainWindow);
         actionProject_Explorer->setObjectName(QStringLiteral("actionProject_Explorer"));
         actionProject_Explorer->setCheckable(true);
         actionProject_Explorer->setChecked(true);
         action_Image = new QAction(MainWindow);
         action_Image->setObjectName(QStringLiteral("action_Image"));
-        QIcon icon27;
-        icon27.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/16/image-tiff.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Image->setIcon(icon27);
+        QIcon icon19;
+        icon19.addFile(QStringLiteral(":/tlell/tlell/image.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Image->setIcon(icon19);
         action_Video = new QAction(MainWindow);
         action_Video->setObjectName(QStringLiteral("action_Video"));
-        QIcon icon28;
-        icon28.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/16/video-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Video->setIcon(icon28);
+        QIcon icon20;
+        icon20.addFile(QStringLiteral(":/tlell/tlell/multimedia.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Video->setIcon(icon20);
         action_Audio = new QAction(MainWindow);
         action_Audio->setObjectName(QStringLiteral("action_Audio"));
-        QIcon icon29;
-        icon29.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/16/audio-x-mpeg.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Audio->setIcon(icon29);
+        QIcon icon21;
+        icon21.addFile(QStringLiteral(":/tlell/tlell/audio-file.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Audio->setIcon(icon21);
         action_Table = new QAction(MainWindow);
         action_Table->setObjectName(QStringLiteral("action_Table"));
-        QIcon icon30;
-        icon30.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/table.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Table->setIcon(icon30);
         action_List = new QAction(MainWindow);
         action_List->setObjectName(QStringLiteral("action_List"));
-        QIcon icon31;
-        icon31.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/view-media-playlist.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_List->setIcon(icon31);
         actionDictionary_Word = new QAction(MainWindow);
         actionDictionary_Word->setObjectName(QStringLiteral("actionDictionary_Word"));
-        QIcon icon32;
-        icon32.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/view-calendar-list.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionDictionary_Word->setIcon(icon32);
+        QIcon icon22;
+        icon22.addFile(QStringLiteral(":/tlell/tlell/book.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionDictionary_Word->setIcon(icon22);
         actionT_ooltip = new QAction(MainWindow);
         actionT_ooltip->setObjectName(QStringLiteral("actionT_ooltip"));
-        QIcon icon33;
-        icon33.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/dialog-messages.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionT_ooltip->setIcon(icon33);
+        QIcon icon23;
+        icon23.addFile(QStringLiteral(":/tlell/tlell/notify.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionT_ooltip->setIcon(icon23);
         actionLin_k = new QAction(MainWindow);
         actionLin_k->setObjectName(QStringLiteral("actionLin_k"));
-        QIcon icon34;
-        icon34.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/globe.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionLin_k->setIcon(icon34);
+        QIcon icon24;
+        icon24.addFile(QStringLiteral(":/tlell/tlell/web.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionLin_k->setIcon(icon24);
         action_Keyboard = new QAction(MainWindow);
         action_Keyboard->setObjectName(QStringLiteral("action_Keyboard"));
+        QIcon icon25;
+        icon25.addFile(QStringLiteral(":/tlell/tlell/keyboard.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Keyboard->setIcon(icon25);
         actionD_ropdown = new QAction(MainWindow);
         actionD_ropdown->setObjectName(QStringLiteral("actionD_ropdown"));
         actionRad_io = new QAction(MainWindow);
         actionRad_io->setObjectName(QStringLiteral("actionRad_io"));
         actionE_ntry = new QAction(MainWindow);
         actionE_ntry->setObjectName(QStringLiteral("actionE_ntry"));
-        action_Add_Section = new QAction(MainWindow);
-        action_Add_Section->setObjectName(QStringLiteral("action_Add_Section"));
-        QIcon icon35;
-        icon35.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/list-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Add_Section->setIcon(icon35);
-        action_Remove_Section = new QAction(MainWindow);
-        action_Remove_Section->setObjectName(QStringLiteral("action_Remove_Section"));
-        QIcon icon36;
-        icon36.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/list-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Remove_Section->setIcon(icon36);
-        action_Add_2 = new QAction(MainWindow);
-        action_Add_2->setObjectName(QStringLiteral("action_Add_2"));
-        action_Add_2->setIcon(icon35);
-        action_Remove_2 = new QAction(MainWindow);
-        action_Remove_2->setObjectName(QStringLiteral("action_Remove_2"));
-        action_Remove_2->setIcon(icon36);
         actionRun = new QAction(MainWindow);
         actionRun->setObjectName(QStringLiteral("actionRun"));
-        QIcon icon37;
-        icon37.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/run-build.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionRun->setIcon(icon37);
-        action_Dictionary = new QAction(MainWindow);
-        action_Dictionary->setObjectName(QStringLiteral("action_Dictionary"));
-        QIcon icon38;
-        icon38.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/address-book-new.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Dictionary->setIcon(icon38);
-        actionR_esources = new QAction(MainWindow);
-        actionR_esources->setObjectName(QStringLiteral("actionR_esources"));
-        QIcon icon39;
-        icon39.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/node.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionR_esources->setIcon(icon39);
+        QIcon icon26;
+        icon26.addFile(QStringLiteral(":/tlell/tlell/media-playback-start.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRun->setIcon(icon26);
+        actionAdd_Section = new QAction(MainWindow);
+        actionAdd_Section->setObjectName(QStringLiteral("actionAdd_Section"));
+        QIcon icon27;
+        icon27.addFile(QStringLiteral(":/tlell/tlell/folder-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAdd_Section->setIcon(icon27);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -453,7 +370,7 @@ public:
 
         gridLayout_3->addLayout(editGrid, 0, 0, 1, 1);
 
-        pageViewTabs->addTab(editTab, icon23, QString());
+        pageViewTabs->addTab(editTab, QString());
         previewTab = new QWidget();
         previewTab->setObjectName(QStringLiteral("previewTab"));
         gridLayout_2 = new QGridLayout(previewTab);
@@ -466,9 +383,7 @@ public:
 
         gridLayout_2->addWidget(documentPreview, 0, 0, 1, 1);
 
-        QIcon icon40;
-        icon40.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/visibility.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pageViewTabs->addTab(previewTab, icon40, QString());
+        pageViewTabs->addTab(previewTab, QString());
         dictionaryTab = new QWidget();
         dictionaryTab->setObjectName(QStringLiteral("dictionaryTab"));
         gridLayout_7 = new QGridLayout(dictionaryTab);
@@ -491,9 +406,9 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(addWordButton->sizePolicy().hasHeightForWidth());
         addWordButton->setSizePolicy(sizePolicy1);
-        QIcon icon41;
-        icon41.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-table-insert-row-under.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        addWordButton->setIcon(icon41);
+        QIcon icon28;
+        icon28.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-table-insert-row-under.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        addWordButton->setIcon(icon28);
         addWordButton->setIconSize(QSize(22, 22));
 
         horizontalLayout->addWidget(addWordButton);
@@ -502,9 +417,9 @@ public:
         removeWordButton->setObjectName(QStringLiteral("removeWordButton"));
         sizePolicy1.setHeightForWidth(removeWordButton->sizePolicy().hasHeightForWidth());
         removeWordButton->setSizePolicy(sizePolicy1);
-        QIcon icon42;
-        icon42.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-table-delete-row.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        removeWordButton->setIcon(icon42);
+        QIcon icon29;
+        icon29.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-table-delete-row.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        removeWordButton->setIcon(icon29);
         removeWordButton->setIconSize(QSize(22, 22));
 
         horizontalLayout->addWidget(removeWordButton, 0, Qt::AlignLeft);
@@ -537,7 +452,7 @@ public:
 
         gridLayout_7->addWidget(dictionaryTable, 1, 0, 1, 1);
 
-        pageViewTabs->addTab(dictionaryTab, icon38, QString());
+        pageViewTabs->addTab(dictionaryTab, QString());
         resourcesTab = new QWidget();
         resourcesTab->setObjectName(QStringLiteral("resourcesTab"));
         verticalLayout_2 = new QVBoxLayout(resourcesTab);
@@ -557,9 +472,9 @@ public:
         addResourceButton->setObjectName(QStringLiteral("addResourceButton"));
         sizePolicy1.setHeightForWidth(addResourceButton->sizePolicy().hasHeightForWidth());
         addResourceButton->setSizePolicy(sizePolicy1);
-        QIcon icon43;
-        icon43.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/document-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        addResourceButton->setIcon(icon43);
+        QIcon icon30;
+        icon30.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/document-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        addResourceButton->setIcon(icon30);
         addResourceButton->setIconSize(QSize(22, 22));
 
         gridLayout_10->addWidget(addResourceButton, 0, 0, 1, 1);
@@ -568,9 +483,9 @@ public:
         removeResourceButton->setObjectName(QStringLiteral("removeResourceButton"));
         sizePolicy1.setHeightForWidth(removeResourceButton->sizePolicy().hasHeightForWidth());
         removeResourceButton->setSizePolicy(sizePolicy1);
-        QIcon icon44;
-        icon44.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-delete.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        removeResourceButton->setIcon(icon44);
+        QIcon icon31;
+        icon31.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/22/edit-delete.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        removeResourceButton->setIcon(icon31);
         removeResourceButton->setIconSize(QSize(22, 22));
 
         gridLayout_10->addWidget(removeResourceButton, 0, 1, 1, 1, Qt::AlignLeft);
@@ -584,9 +499,7 @@ public:
 
         verticalLayout_2->addWidget(listWidget);
 
-        QIcon icon45;
-        icon45.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/package-available.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pageViewTabs->addTab(resourcesTab, icon45, QString());
+        pageViewTabs->addTab(resourcesTab, QString());
         propertiesTab = new QWidget();
         propertiesTab->setObjectName(QStringLiteral("propertiesTab"));
         gridLayout_8 = new QGridLayout(propertiesTab);
@@ -671,9 +584,7 @@ public:
 
         gridLayout_8->addWidget(tabWidget_2, 0, 0, 1, 1);
 
-        QIcon icon46;
-        icon46.addFile(QStringLiteral("../../icons/breeze-icons/icons/actions/16/project-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pageViewTabs->addTab(propertiesTab, icon46, QString());
+        pageViewTabs->addTab(propertiesTab, QString());
 
         gridLayout->addWidget(pageViewTabs, 0, 0, 1, 1);
 
@@ -712,7 +623,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(pagesDock->sizePolicy().hasHeightForWidth());
         pagesDock->setSizePolicy(sizePolicy3);
-        pagesDock->setMinimumSize(QSize(200, 113));
+        pagesDock->setMinimumSize(QSize(200, 115));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
         verticalLayout = new QVBoxLayout(dockWidgetContents);
@@ -721,16 +632,16 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
         treeWidget->headerItem()->setText(0, QString());
-        QIcon icon47;
-        icon47.addFile(QStringLiteral("../../icons/breeze-icons/icons/places/32/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        QIcon icon48;
-        icon48.addFile(QStringLiteral("../../icons/breeze-icons/icons/mimetypes/32/text-x-generic.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon32;
+        icon32.addFile(QStringLiteral(":/tlell/tlell/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon33;
+        icon33.addFile(QStringLiteral(":/tlell/tlell/text.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem->setIcon(0, icon47);
+        __qtreewidgetitem->setIcon(0, icon32);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(__qtreewidgetitem);
         __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem1->setIcon(0, icon48);
+        __qtreewidgetitem1->setIcon(0, icon33);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         sizePolicy2.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
         treeWidget->setSizePolicy(sizePolicy2);
@@ -810,23 +721,23 @@ public:
         toolBox->setFrameShadow(QFrame::Plain);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 100, 30));
+        page->setGeometry(QRect(0, 0, 230, 84));
         toolBox->addItem(page, QStringLiteral("Consonants"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 100, 30));
+        page_3->setGeometry(QRect(0, 0, 230, 84));
         toolBox->addItem(page_3, QStringLiteral("Affricates"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 100, 30));
+        page_4->setGeometry(QRect(0, 0, 230, 84));
         toolBox->addItem(page_4, QStringLiteral("Vowels"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 100, 30));
+        page_5->setGeometry(QRect(0, 0, 230, 84));
         toolBox->addItem(page_5, QStringLiteral("Tones"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 232, 70));
+        page_2->setGeometry(QRect(0, 0, 230, 84));
         toolBox->addItem(page_2, QStringLiteral("Other"));
 
         gridLayout_6->addWidget(toolBox, 0, 0, 1, 1);
@@ -876,7 +787,6 @@ public:
         menu_Edit->addSeparator();
         menu_Edit->addAction(actionSelect_All);
         menu_Edit->addAction(action_Deselect_All);
-        menuProject->addSeparator();
         menuProject->addAction(actionRun);
         menu_Help->addAction(actionUsing_Thorn_Markup);
         menu_Help->addSeparator();
@@ -895,10 +805,10 @@ public:
         menu_Insert->addAction(action_Video);
         menu_Insert->addAction(action_Audio);
         menu_Insert->addSeparator();
-        menu_Insert->addAction(action_Table);
-        menu_Insert->addAction(action_List);
         menu_Insert->addAction(actionLin_k);
         menu_Insert->addAction(actionT_ooltip);
+        menu_Insert->addAction(action_Table);
+        menu_Insert->addAction(action_List);
         menu_Insert->addSeparator();
         menu_Insert->addAction(actionDictionary_Word);
         menu_Insert->addAction(action_Keyboard);
@@ -907,11 +817,13 @@ public:
         menu_Insert->addAction(actionRad_io);
         menu_Insert->addAction(actionE_ntry);
         menuP_ages->addAction(action_Add);
+        menuP_ages->addAction(actionAdd_Section);
         menuP_ages->addAction(action_Remove);
         menuP_ages->addAction(action_Clone);
         menuP_ages->addSeparator();
         menuP_ages->addAction(action_Import);
         menuP_ages->addAction(actionE_xport);
+        menuP_ages->addSeparator();
         mainToolBar->addAction(action_New);
         mainToolBar->addAction(action_Open);
         mainToolBar->addAction(action_Save);
@@ -931,7 +843,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(0);
+        pageViewTabs->setCurrentIndex(4);
         tabWidget_2->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
         toolBox->setCurrentIndex(4);
@@ -943,7 +855,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Thorn", nullptr));
-        action_Open->setText(QApplication::translate("MainWindow", "&Open...", nullptr));
 #ifndef QT_NO_SHORTCUT
         action_Open->setShortcut(QApplication::translate("MainWindow", "Ctrl+O", nullptr));
 #endif // QT_NO_SHORTCUT
@@ -1014,21 +925,9 @@ public:
         action_100_Zoom->setShortcut(QApplication::translate("MainWindow", "Ctrl+0", nullptr));
 #endif // QT_NO_SHORTCUT
         action_Custom_Zoom->setText(QApplication::translate("MainWindow", "&Custom Zoom...", nullptr));
-        action_Add_Page->setText(QApplication::translate("MainWindow", "&Add Page", nullptr));
-        action_Remove_Page->setText(QApplication::translate("MainWindow", "&Remove Page", nullptr));
         action_Word_Wrap->setText(QApplication::translate("MainWindow", "&Word Wrap", nullptr));
         action_Character_Editor->setText(QApplication::translate("MainWindow", "&Characters", nullptr));
-        action_Duplicate_Page->setText(QApplication::translate("MainWindow", "&Duplicate Page", nullptr));
-        actionImport_Page->setText(QApplication::translate("MainWindow", "&Import Page...", nullptr));
-        action_Export_Page->setText(QApplication::translate("MainWindow", "&Export Page...", nullptr));
-        actionDic_tionary->setText(QApplication::translate("MainWindow", "Dic&tionary...", nullptr));
-        actionProperties->setText(QApplication::translate("MainWindow", "Properties...", nullptr));
-#ifndef QT_NO_SHORTCUT
-        actionProperties->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", nullptr));
-#endif // QT_NO_SHORTCUT
-        actionR_ename_Page->setText(QApplication::translate("MainWindow", "R&ename Page...", nullptr));
-        action_16->setText(QApplication::translate("MainWindow", "-", nullptr));
-        action_Add->setText(QApplication::translate("MainWindow", "&Add", nullptr));
+        action_Add->setText(QApplication::translate("MainWindow", "&Add Page", nullptr));
 #ifndef QT_NO_SHORTCUT
         action_Add->setShortcut(QApplication::translate("MainWindow", "Ctrl+T", nullptr));
 #endif // QT_NO_SHORTCUT
@@ -1040,7 +939,6 @@ public:
 #ifndef QT_NO_SHORTCUT
         action_Clone->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", nullptr));
 #endif // QT_NO_SHORTCUT
-        actionR_ename->setText(QApplication::translate("MainWindow", "R&ename", nullptr));
         action_Import->setText(QApplication::translate("MainWindow", "&Import...", nullptr));
         actionE_xport->setText(QApplication::translate("MainWindow", "E&xport...", nullptr));
         actionSettin_gs->setText(QApplication::translate("MainWindow", "Settin&gs...", nullptr));
@@ -1093,16 +991,11 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionE_ntry->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+N", nullptr));
 #endif // QT_NO_SHORTCUT
-        action_Add_Section->setText(QApplication::translate("MainWindow", "&Add Section...", nullptr));
-        action_Remove_Section->setText(QApplication::translate("MainWindow", "&Remove Section", nullptr));
-        action_Add_2->setText(QApplication::translate("MainWindow", "&Add...", nullptr));
-        action_Remove_2->setText(QApplication::translate("MainWindow", "&Remove", nullptr));
         actionRun->setText(QApplication::translate("MainWindow", "&Run...", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionRun->setShortcut(QApplication::translate("MainWindow", "F5", nullptr));
 #endif // QT_NO_SHORTCUT
-        action_Dictionary->setText(QApplication::translate("MainWindow", "&Dictionary....", nullptr));
-        actionR_esources->setText(QApplication::translate("MainWindow", "R&esources...", nullptr));
+        actionAdd_Section->setText(QApplication::translate("MainWindow", "Add &Section", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(editTab), QApplication::translate("MainWindow", "Edit", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(previewTab), QApplication::translate("MainWindow", "Preview", nullptr));
         addWordButton->setText(QApplication::translate("MainWindow", "Add", nullptr));
