@@ -87,6 +87,7 @@ public:
     QAction *actionE_ntry;
     QAction *actionRun;
     QAction *actionAdd_Section;
+    QAction *actionMake_Affricate;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QTabWidget *pageViewTabs;
@@ -133,9 +134,9 @@ public:
     QMenu *menuProject;
     QMenu *menu_Help;
     QMenu *menu_View;
-    QMenu *menu_Window;
     QMenu *menu_Insert;
     QMenu *menuP_ages;
+    QMenu *menuLanguage;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QDockWidget *pagesDock;
@@ -146,9 +147,9 @@ public:
     QWidget *dockWidgetContents_3;
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_4;
-    QPushButton *globalButton;
     QPushButton *insertCharButton;
     QPushButton *projectButton;
+    QCheckBox *smartReplaceCheck;
     QTabWidget *tabWidget;
     QWidget *projectCharTab;
     QWidget *globalCharTab;
@@ -161,7 +162,7 @@ public:
     QWidget *page_4;
     QWidget *page_5;
     QWidget *page_2;
-    QCheckBox *smartReplaceCheck;
+    QPushButton *globalButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -271,9 +272,6 @@ public:
         action_Add->setIcon(icon16);
         action_Remove = new QAction(MainWindow);
         action_Remove->setObjectName(QStringLiteral("action_Remove"));
-        QIcon icon17;
-        icon17.addFile(QStringLiteral("../../icons/tlell/actions/list-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Remove->setIcon(icon17);
         action_Clone = new QAction(MainWindow);
         action_Clone->setObjectName(QStringLiteral("action_Clone"));
         action_Import = new QAction(MainWindow);
@@ -282,55 +280,55 @@ public:
         actionE_xport->setObjectName(QStringLiteral("actionE_xport"));
         actionSettin_gs = new QAction(MainWindow);
         actionSettin_gs->setObjectName(QStringLiteral("actionSettin_gs"));
-        QIcon icon18;
-        icon18.addFile(QStringLiteral("../../icons/tlell/categories/preferences.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionSettin_gs->setIcon(icon18);
+        QIcon icon17;
+        icon17.addFile(QStringLiteral(":/tlell/tlell/preferences.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSettin_gs->setIcon(icon17);
         actionProject_Explorer = new QAction(MainWindow);
         actionProject_Explorer->setObjectName(QStringLiteral("actionProject_Explorer"));
         actionProject_Explorer->setCheckable(true);
         actionProject_Explorer->setChecked(true);
-        QIcon icon19;
-        icon19.addFile(QStringLiteral(":/tlell/tlell/text-edit.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionProject_Explorer->setIcon(icon19);
+        QIcon icon18;
+        icon18.addFile(QStringLiteral(":/tlell/tlell/text-edit.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionProject_Explorer->setIcon(icon18);
         action_Image = new QAction(MainWindow);
         action_Image->setObjectName(QStringLiteral("action_Image"));
-        QIcon icon20;
-        icon20.addFile(QStringLiteral(":/tlell/tlell/image.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Image->setIcon(icon20);
+        QIcon icon19;
+        icon19.addFile(QStringLiteral(":/tlell/tlell/image.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Image->setIcon(icon19);
         action_Video = new QAction(MainWindow);
         action_Video->setObjectName(QStringLiteral("action_Video"));
-        QIcon icon21;
-        icon21.addFile(QStringLiteral(":/tlell/tlell/multimedia.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Video->setIcon(icon21);
+        QIcon icon20;
+        icon20.addFile(QStringLiteral(":/tlell/tlell/multimedia.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Video->setIcon(icon20);
         action_Audio = new QAction(MainWindow);
         action_Audio->setObjectName(QStringLiteral("action_Audio"));
-        QIcon icon22;
-        icon22.addFile(QStringLiteral(":/tlell/tlell/audio-file.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Audio->setIcon(icon22);
+        QIcon icon21;
+        icon21.addFile(QStringLiteral(":/tlell/tlell/audio-file.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Audio->setIcon(icon21);
         action_Table = new QAction(MainWindow);
         action_Table->setObjectName(QStringLiteral("action_Table"));
         action_List = new QAction(MainWindow);
         action_List->setObjectName(QStringLiteral("action_List"));
         actionDictionary_Word = new QAction(MainWindow);
         actionDictionary_Word->setObjectName(QStringLiteral("actionDictionary_Word"));
-        QIcon icon23;
-        icon23.addFile(QStringLiteral(":/tlell/tlell/book.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionDictionary_Word->setIcon(icon23);
+        QIcon icon22;
+        icon22.addFile(QStringLiteral(":/tlell/tlell/book.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionDictionary_Word->setIcon(icon22);
         actionT_ooltip = new QAction(MainWindow);
         actionT_ooltip->setObjectName(QStringLiteral("actionT_ooltip"));
-        QIcon icon24;
-        icon24.addFile(QStringLiteral(":/tlell/tlell/notify.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionT_ooltip->setIcon(icon24);
+        QIcon icon23;
+        icon23.addFile(QStringLiteral(":/tlell/tlell/notify.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionT_ooltip->setIcon(icon23);
         actionLin_k = new QAction(MainWindow);
         actionLin_k->setObjectName(QStringLiteral("actionLin_k"));
-        QIcon icon25;
-        icon25.addFile(QStringLiteral(":/tlell/tlell/web.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionLin_k->setIcon(icon25);
+        QIcon icon24;
+        icon24.addFile(QStringLiteral(":/tlell/tlell/web.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionLin_k->setIcon(icon24);
         action_Keyboard = new QAction(MainWindow);
         action_Keyboard->setObjectName(QStringLiteral("action_Keyboard"));
-        QIcon icon26;
-        icon26.addFile(QStringLiteral(":/tlell/tlell/keyboard.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_Keyboard->setIcon(icon26);
+        QIcon icon25;
+        icon25.addFile(QStringLiteral(":/tlell/tlell/keyboard.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Keyboard->setIcon(icon25);
         actionD_ropdown = new QAction(MainWindow);
         actionD_ropdown->setObjectName(QStringLiteral("actionD_ropdown"));
         actionRad_io = new QAction(MainWindow);
@@ -339,14 +337,16 @@ public:
         actionE_ntry->setObjectName(QStringLiteral("actionE_ntry"));
         actionRun = new QAction(MainWindow);
         actionRun->setObjectName(QStringLiteral("actionRun"));
-        QIcon icon27;
-        icon27.addFile(QStringLiteral(":/tlell/tlell/system.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionRun->setIcon(icon27);
+        QIcon icon26;
+        icon26.addFile(QStringLiteral(":/tlell/tlell/system.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRun->setIcon(icon26);
         actionAdd_Section = new QAction(MainWindow);
         actionAdd_Section->setObjectName(QStringLiteral("actionAdd_Section"));
-        QIcon icon28;
-        icon28.addFile(QStringLiteral(":/tlell/tlell/folder-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        actionAdd_Section->setIcon(icon28);
+        QIcon icon27;
+        icon27.addFile(QStringLiteral(":/tlell/tlell/folder-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAdd_Section->setIcon(icon27);
+        actionMake_Affricate = new QAction(MainWindow);
+        actionMake_Affricate->setObjectName(QStringLiteral("actionMake_Affricate"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -409,9 +409,9 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(addWordButton->sizePolicy().hasHeightForWidth());
         addWordButton->setSizePolicy(sizePolicy1);
-        QIcon icon29;
-        icon29.addFile(QStringLiteral(":/tlell/tlell/list-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        addWordButton->setIcon(icon29);
+        QIcon icon28;
+        icon28.addFile(QStringLiteral(":/tlell/tlell/list-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        addWordButton->setIcon(icon28);
         addWordButton->setIconSize(QSize(22, 22));
 
         horizontalLayout->addWidget(addWordButton);
@@ -420,9 +420,9 @@ public:
         removeWordButton->setObjectName(QStringLiteral("removeWordButton"));
         sizePolicy1.setHeightForWidth(removeWordButton->sizePolicy().hasHeightForWidth());
         removeWordButton->setSizePolicy(sizePolicy1);
-        QIcon icon30;
-        icon30.addFile(QStringLiteral(":/tlell/tlell/list-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        removeWordButton->setIcon(icon30);
+        QIcon icon29;
+        icon29.addFile(QStringLiteral(":/tlell/tlell/list-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        removeWordButton->setIcon(icon29);
         removeWordButton->setIconSize(QSize(22, 22));
 
         horizontalLayout->addWidget(removeWordButton, 0, Qt::AlignLeft);
@@ -475,7 +475,7 @@ public:
         addResourceButton->setObjectName(QStringLiteral("addResourceButton"));
         sizePolicy1.setHeightForWidth(addResourceButton->sizePolicy().hasHeightForWidth());
         addResourceButton->setSizePolicy(sizePolicy1);
-        addResourceButton->setIcon(icon29);
+        addResourceButton->setIcon(icon28);
         addResourceButton->setIconSize(QSize(22, 22));
 
         gridLayout_10->addWidget(addResourceButton, 0, 0, 1, 1);
@@ -484,7 +484,7 @@ public:
         removeResourceButton->setObjectName(QStringLiteral("removeResourceButton"));
         sizePolicy1.setHeightForWidth(removeResourceButton->sizePolicy().hasHeightForWidth());
         removeResourceButton->setSizePolicy(sizePolicy1);
-        removeResourceButton->setIcon(icon30);
+        removeResourceButton->setIcon(icon29);
         removeResourceButton->setIconSize(QSize(22, 22));
 
         gridLayout_10->addWidget(removeResourceButton, 0, 1, 1, 1, Qt::AlignLeft);
@@ -601,12 +601,12 @@ public:
         menu_Help->setObjectName(QStringLiteral("menu_Help"));
         menu_View = new QMenu(menuBar);
         menu_View->setObjectName(QStringLiteral("menu_View"));
-        menu_Window = new QMenu(menuBar);
-        menu_Window->setObjectName(QStringLiteral("menu_Window"));
         menu_Insert = new QMenu(menuBar);
         menu_Insert->setObjectName(QStringLiteral("menu_Insert"));
         menuP_ages = new QMenu(menuBar);
         menuP_ages->setObjectName(QStringLiteral("menuP_ages"));
+        menuLanguage = new QMenu(menuBar);
+        menuLanguage->setObjectName(QStringLiteral("menuLanguage"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -631,16 +631,16 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         treeWidget = new QTreeWidget(dockWidgetContents);
         treeWidget->headerItem()->setText(0, QString());
+        QIcon icon30;
+        icon30.addFile(QStringLiteral(":/tlell/tlell/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QIcon icon31;
-        icon31.addFile(QStringLiteral(":/tlell/tlell/folder.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        QIcon icon32;
-        icon32.addFile(QStringLiteral(":/tlell/tlell/text.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon31.addFile(QStringLiteral(":/tlell/tlell/text.svg"), QSize(), QIcon::Normal, QIcon::Off);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget);
         __qtreewidgetitem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem->setIcon(0, icon31);
+        __qtreewidgetitem->setIcon(0, icon30);
         QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(__qtreewidgetitem);
         __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        __qtreewidgetitem1->setIcon(0, icon32);
+        __qtreewidgetitem1->setIcon(0, icon31);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
         sizePolicy2.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
         treeWidget->setSizePolicy(sizePolicy2);
@@ -673,11 +673,6 @@ public:
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setSpacing(6);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        globalButton = new QPushButton(dockWidgetContents_3);
-        globalButton->setObjectName(QStringLiteral("globalButton"));
-
-        gridLayout_4->addWidget(globalButton, 3, 0, 1, 1);
-
         insertCharButton = new QPushButton(dockWidgetContents_3);
         insertCharButton->setObjectName(QStringLiteral("insertCharButton"));
         sizePolicy1.setHeightForWidth(insertCharButton->sizePolicy().hasHeightForWidth());
@@ -696,6 +691,13 @@ public:
         projectButton->setObjectName(QStringLiteral("projectButton"));
 
         gridLayout_4->addWidget(projectButton, 2, 0, 1, 1);
+
+        smartReplaceCheck = new QCheckBox(dockWidgetContents_3);
+        smartReplaceCheck->setObjectName(QStringLiteral("smartReplaceCheck"));
+        smartReplaceCheck->setCheckable(true);
+        smartReplaceCheck->setChecked(true);
+
+        gridLayout_4->addWidget(smartReplaceCheck, 1, 0, 1, 1);
 
         tabWidget = new QTabWidget(dockWidgetContents_3);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
@@ -720,37 +722,35 @@ public:
         toolBox->setFrameShadow(QFrame::Plain);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 230, 84));
+        page->setGeometry(QRect(0, 0, 230, 70));
         toolBox->addItem(page, QStringLiteral("Consonants"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 230, 84));
+        page_3->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_3, QStringLiteral("Affricates"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 230, 84));
+        page_4->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_4, QStringLiteral("Vowels"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 230, 84));
+        page_5->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_5, QStringLiteral("Tones"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 230, 84));
+        page_2->setGeometry(QRect(0, 0, 100, 30));
         toolBox->addItem(page_2, QStringLiteral("Other"));
 
         gridLayout_6->addWidget(toolBox, 0, 0, 1, 1);
 
         tabWidget->addTab(ipaCharTab, QString());
 
-        gridLayout_4->addWidget(tabWidget, 4, 0, 1, 1);
+        gridLayout_4->addWidget(tabWidget, 6, 0, 1, 1);
 
-        smartReplaceCheck = new QCheckBox(dockWidgetContents_3);
-        smartReplaceCheck->setObjectName(QStringLiteral("smartReplaceCheck"));
-        smartReplaceCheck->setCheckable(true);
-        smartReplaceCheck->setChecked(true);
+        globalButton = new QPushButton(dockWidgetContents_3);
+        globalButton->setObjectName(QStringLiteral("globalButton"));
 
-        gridLayout_4->addWidget(smartReplaceCheck, 1, 0, 1, 1);
+        gridLayout_4->addWidget(globalButton, 3, 0, 1, 1);
 
 
         gridLayout_5->addLayout(gridLayout_4, 0, 0, 1, 1);
@@ -762,9 +762,9 @@ public:
         menuBar->addAction(menu_Edit->menuAction());
         menuBar->addAction(menu_View->menuAction());
         menuBar->addAction(menuProject->menuAction());
+        menuBar->addAction(menuLanguage->menuAction());
         menuBar->addAction(menuP_ages->menuAction());
         menuBar->addAction(menu_Insert->menuAction());
-        menuBar->addAction(menu_Window->menuAction());
         menuBar->addAction(menu_Help->menuAction());
         menu_File->addAction(action_New);
         menu_File->addAction(action_Open);
@@ -797,8 +797,6 @@ public:
         menu_View->addAction(action_Custom_Zoom);
         menu_View->addSeparator();
         menu_View->addAction(action_Word_Wrap);
-        menu_Window->addAction(action_Character_Editor);
-        menu_Window->addAction(actionProject_Explorer);
         menu_Insert->addAction(action_Image);
         menu_Insert->addAction(action_Video);
         menu_Insert->addAction(action_Audio);
@@ -814,6 +812,8 @@ public:
         menu_Insert->addAction(actionD_ropdown);
         menu_Insert->addAction(actionRad_io);
         menu_Insert->addAction(actionE_ntry);
+        menuP_ages->addAction(actionProject_Explorer);
+        menuP_ages->addSeparator();
         menuP_ages->addAction(action_Add);
         menuP_ages->addAction(actionAdd_Section);
         menuP_ages->addAction(action_Remove);
@@ -821,7 +821,9 @@ public:
         menuP_ages->addSeparator();
         menuP_ages->addAction(action_Import);
         menuP_ages->addAction(actionE_xport);
-        menuP_ages->addSeparator();
+        menuLanguage->addAction(action_Character_Editor);
+        menuLanguage->addSeparator();
+        menuLanguage->addAction(actionMake_Affricate);
         mainToolBar->addAction(action_New);
         mainToolBar->addAction(action_Open);
         mainToolBar->addAction(action_Save);
@@ -840,10 +842,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(2);
+        pageViewTabs->setCurrentIndex(4);
         tabWidget_2->setCurrentIndex(0);
         tabWidget->setCurrentIndex(3);
-        toolBox->setCurrentIndex(4);
+        toolBox->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -924,7 +926,7 @@ public:
 #endif // QT_NO_SHORTCUT
         action_Custom_Zoom->setText(QApplication::translate("MainWindow", "&Custom Zoom...", nullptr));
         action_Word_Wrap->setText(QApplication::translate("MainWindow", "&Word Wrap", nullptr));
-        action_Character_Editor->setText(QApplication::translate("MainWindow", "&Characters", nullptr));
+        action_Character_Editor->setText(QApplication::translate("MainWindow", "Show &Character Editor", nullptr));
         action_Add->setText(QApplication::translate("MainWindow", "&Add Page", nullptr));
 #ifndef QT_NO_SHORTCUT
         action_Add->setShortcut(QApplication::translate("MainWindow", "Ctrl+T", nullptr));
@@ -940,7 +942,7 @@ public:
         action_Import->setText(QApplication::translate("MainWindow", "&Import...", nullptr));
         actionE_xport->setText(QApplication::translate("MainWindow", "E&xport...", nullptr));
         actionSettin_gs->setText(QApplication::translate("MainWindow", "Settin&gs...", nullptr));
-        actionProject_Explorer->setText(QApplication::translate("MainWindow", "&Pages", nullptr));
+        actionProject_Explorer->setText(QApplication::translate("MainWindow", "Show Page &Manager", nullptr));
         action_Image->setText(QApplication::translate("MainWindow", "&Image...", nullptr));
 #ifndef QT_NO_SHORTCUT
         action_Image->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+I", nullptr));
@@ -994,6 +996,7 @@ public:
         actionRun->setShortcut(QApplication::translate("MainWindow", "F5", nullptr));
 #endif // QT_NO_SHORTCUT
         actionAdd_Section->setText(QApplication::translate("MainWindow", "Add &Section", nullptr));
+        actionMake_Affricate->setText(QApplication::translate("MainWindow", "Make Affricate", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(editTab), QApplication::translate("MainWindow", "Edit", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(previewTab), QApplication::translate("MainWindow", "Preview", nullptr));
         addWordButton->setText(QApplication::translate("MainWindow", "Add", nullptr));
@@ -1028,9 +1031,9 @@ public:
         menuProject->setTitle(QApplication::translate("MainWindow", "&Project", nullptr));
         menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", nullptr));
         menu_View->setTitle(QApplication::translate("MainWindow", "&View", nullptr));
-        menu_Window->setTitle(QApplication::translate("MainWindow", "&Window", nullptr));
         menu_Insert->setTitle(QApplication::translate("MainWindow", "&Insert", nullptr));
         menuP_ages->setTitle(QApplication::translate("MainWindow", "P&ages", nullptr));
+        menuLanguage->setTitle(QApplication::translate("MainWindow", "Linguistics", nullptr));
         mainToolBar->setWindowTitle(QString());
         pagesDock->setWindowTitle(QApplication::translate("MainWindow", "Pages", nullptr));
 
@@ -1043,9 +1046,9 @@ public:
         treeWidget->setSortingEnabled(__sortingEnabled);
 
         charactersDock->setWindowTitle(QApplication::translate("MainWindow", "Characters", nullptr));
-        globalButton->setText(QApplication::translate("MainWindow", "Global", nullptr));
         insertCharButton->setText(QApplication::translate("MainWindow", "A", nullptr));
         projectButton->setText(QApplication::translate("MainWindow", "Project", nullptr));
+        smartReplaceCheck->setText(QApplication::translate("MainWindow", "Smart Replace", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(projectCharTab), QApplication::translate("MainWindow", "Project", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(globalCharTab), QApplication::translate("MainWindow", "Global", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(commomCharTab), QApplication::translate("MainWindow", "Common", nullptr));
@@ -1055,7 +1058,7 @@ public:
         toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MainWindow", "Tones", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Other", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ipaCharTab), QApplication::translate("MainWindow", "IPA", nullptr));
-        smartReplaceCheck->setText(QApplication::translate("MainWindow", "Smart Replace", nullptr));
+        globalButton->setText(QApplication::translate("MainWindow", "Global", nullptr));
     } // retranslateUi
 
 };

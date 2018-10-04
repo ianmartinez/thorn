@@ -31,7 +31,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="pageViewTabs">
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="editTab">
        <attribute name="title">
@@ -723,7 +723,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>230</width>
-                <height>84</height>
+                <height>70</height>
                </rect>
               </property>
               <attribute name="label">
@@ -735,8 +735,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>230</width>
-                <height>84</height>
+                <width>100</width>
+                <height>30</height>
                </rect>
               </property>
               <attribute name="label">
@@ -748,8 +748,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>230</width>
-                <height>84</height>
+                <width>100</width>
+                <height>30</height>
                </rect>
               </property>
               <attribute name="label">
@@ -761,8 +761,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>230</width>
-                <height>84</height>
+                <width>100</width>
+                <height>30</height>
                </rect>
               </property>
               <attribute name="label">
@@ -774,8 +774,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>230</width>
-                <height>70</height>
+                <width>100</width>
+                <height>30</height>
                </rect>
               </property>
               <attribute name="label">
@@ -1043,10 +1043,6 @@
    </property>
   </action>
   <action name="action_Remove">
-   <property name="icon">
-    <iconset>
-     <normaloff>../../icons/tlell/actions/list-remove.svg</normaloff>../../icons/tlell/actions/list-remove.svg</iconset>
-   </property>
    <property name="text">
     <string>&amp;Remove</string>
    </property>
@@ -1074,8 +1070,8 @@
   </action>
   <action name="actionSettin_gs">
    <property name="icon">
-    <iconset>
-     <normaloff>../../icons/tlell/categories/preferences.svg</normaloff>../../icons/tlell/categories/preferences.svg</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/tlell/tlell/preferences.svg</normaloff>:/tlell/tlell/preferences.svg</iconset>
    </property>
    <property name="text">
     <string>Settin&amp;gs...</string>
