@@ -18,7 +18,7 @@
     <normaloff>../../icons/thorn/app_icon.ico</normaloff>../../icons/thorn/app_icon.ico</iconset>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
