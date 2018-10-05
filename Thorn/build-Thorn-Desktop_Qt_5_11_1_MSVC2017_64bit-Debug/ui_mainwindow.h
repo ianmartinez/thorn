@@ -90,6 +90,10 @@ public:
     QAction *actionRun;
     QAction *actionAdd_Section;
     QAction *actionMake_Affricate;
+    QAction *actionImport_Characters;
+    QAction *actionExport_Characters;
+    QAction *actionShow_Sidebar;
+    QAction *actionInsert_Current_Charte;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QSplitter *splitter;
@@ -157,15 +161,16 @@ public:
     QWidget *globalCharTab;
     QWidget *ipaCharTab;
     QGridLayout *gridLayout_6;
+    QHBoxLayout *horizontalLayout_3;
+    QLineEdit *lineEdit_4;
+    QPushButton *pushButton;
     QToolBox *toolBox;
     QWidget *page;
     QWidget *page_3;
     QWidget *page_4;
-    QWidget *page_5;
     QWidget *page_2;
-    QHBoxLayout *horizontalLayout_3;
-    QLineEdit *lineEdit_4;
-    QPushButton *pushButton;
+    QWidget *page_15;
+    QWidget *page_5;
     QWidget *commomCharTab;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_4;
@@ -184,14 +189,15 @@ public:
     QWidget *page_9;
     QWidget *page_10;
     QWidget *page_11;
-    QWidget *page_12;
     QWidget *page_13;
+    QWidget *page_14;
+    QWidget *page_12;
     QGridLayout *gridLayout_18;
+    QLabel *label_5;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_6;
     QLineEdit *lineEdit_7;
     QCheckBox *smartReplaceCheck;
-    QLabel *label_5;
     QSpacerItem *verticalSpacer_4;
     QMenuBar *menuBar;
     QMenu *menu_File;
@@ -392,6 +398,16 @@ public:
         actionAdd_Section->setIcon(icon27);
         actionMake_Affricate = new QAction(MainWindow);
         actionMake_Affricate->setObjectName(QStringLiteral("actionMake_Affricate"));
+        actionImport_Characters = new QAction(MainWindow);
+        actionImport_Characters->setObjectName(QStringLiteral("actionImport_Characters"));
+        actionExport_Characters = new QAction(MainWindow);
+        actionExport_Characters->setObjectName(QStringLiteral("actionExport_Characters"));
+        actionShow_Sidebar = new QAction(MainWindow);
+        actionShow_Sidebar->setObjectName(QStringLiteral("actionShow_Sidebar"));
+        actionShow_Sidebar->setCheckable(true);
+        actionShow_Sidebar->setChecked(true);
+        actionInsert_Current_Charte = new QAction(MainWindow);
+        actionInsert_Current_Charte->setObjectName(QStringLiteral("actionInsert_Current_Charte"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -400,14 +416,19 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         splitter = new QSplitter(centralWidget);
         splitter->setObjectName(QStringLiteral("splitter"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(splitter->sizePolicy().hasHeightForWidth());
+        splitter->setSizePolicy(sizePolicy);
         splitter->setOrientation(Qt::Horizontal);
         pageViewTabs = new QTabWidget(splitter);
         pageViewTabs->setObjectName(QStringLiteral("pageViewTabs"));
-        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(1);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(pageViewTabs->sizePolicy().hasHeightForWidth());
-        pageViewTabs->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(1);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pageViewTabs->sizePolicy().hasHeightForWidth());
+        pageViewTabs->setSizePolicy(sizePolicy1);
         pageViewTabs->setTabBarAutoHide(false);
         editTab = new QWidget();
         editTab->setObjectName(QStringLiteral("editTab"));
@@ -460,11 +481,11 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         addWordButton = new QPushButton(frame);
         addWordButton->setObjectName(QStringLiteral("addWordButton"));
-        QSizePolicy sizePolicy1(QSizePolicy::Maximum, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(addWordButton->sizePolicy().hasHeightForWidth());
-        addWordButton->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Maximum, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(addWordButton->sizePolicy().hasHeightForWidth());
+        addWordButton->setSizePolicy(sizePolicy2);
         QIcon icon28;
         icon28.addFile(QStringLiteral(":/tlell/tlell/list-add.svg"), QSize(), QIcon::Normal, QIcon::Off);
         addWordButton->setIcon(icon28);
@@ -474,8 +495,8 @@ public:
 
         removeWordButton = new QPushButton(frame);
         removeWordButton->setObjectName(QStringLiteral("removeWordButton"));
-        sizePolicy1.setHeightForWidth(removeWordButton->sizePolicy().hasHeightForWidth());
-        removeWordButton->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(removeWordButton->sizePolicy().hasHeightForWidth());
+        removeWordButton->setSizePolicy(sizePolicy2);
         QIcon icon29;
         icon29.addFile(QStringLiteral(":/tlell/tlell/list-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
         removeWordButton->setIcon(icon29);
@@ -529,8 +550,8 @@ public:
         gridLayout_10->setContentsMargins(0, 0, 0, 0);
         addResourceButton = new QPushButton(frame_2);
         addResourceButton->setObjectName(QStringLiteral("addResourceButton"));
-        sizePolicy1.setHeightForWidth(addResourceButton->sizePolicy().hasHeightForWidth());
-        addResourceButton->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(addResourceButton->sizePolicy().hasHeightForWidth());
+        addResourceButton->setSizePolicy(sizePolicy2);
         addResourceButton->setIcon(icon28);
         addResourceButton->setIconSize(QSize(22, 22));
 
@@ -538,8 +559,8 @@ public:
 
         removeResourceButton = new QPushButton(frame_2);
         removeResourceButton->setObjectName(QStringLiteral("removeResourceButton"));
-        sizePolicy1.setHeightForWidth(removeResourceButton->sizePolicy().hasHeightForWidth());
-        removeResourceButton->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(removeResourceButton->sizePolicy().hasHeightForWidth());
+        removeResourceButton->setSizePolicy(sizePolicy2);
         removeResourceButton->setIcon(icon29);
         removeResourceButton->setIconSize(QSize(22, 22));
 
@@ -611,11 +632,11 @@ public:
 
         textBrowser = new QTextBrowser(infoTab);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
-        textBrowser->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy3);
 
         formLayout->setWidget(4, QFormLayout::FieldRole, textBrowser);
 
@@ -664,8 +685,8 @@ public:
         __qtreewidgetitem1->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEditable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
         __qtreewidgetitem1->setIcon(0, icon31);
         treeWidget->setObjectName(QStringLiteral("treeWidget"));
-        sizePolicy2.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
-        treeWidget->setSizePolicy(sizePolicy2);
+        sizePolicy3.setHeightForWidth(treeWidget->sizePolicy().hasHeightForWidth());
+        treeWidget->setSizePolicy(sizePolicy3);
         treeWidget->setAutoFillBackground(false);
         treeWidget->setFrameShape(QFrame::NoFrame);
         treeWidget->setIndentation(15);
@@ -765,45 +786,17 @@ public:
         gridLayout_6->setSpacing(6);
         gridLayout_6->setContentsMargins(11, 11, 11, 11);
         gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
-        toolBox = new QToolBox(ipaCharTab);
-        toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setStyleSheet(QStringLiteral("background: transparent;"));
-        toolBox->setFrameShape(QFrame::NoFrame);
-        toolBox->setFrameShadow(QFrame::Plain);
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 233, 16));
-        toolBox->addItem(page, QStringLiteral("Consonants"));
-        page_3 = new QWidget();
-        page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 230, 238));
-        toolBox->addItem(page_3, QStringLiteral("Affricates"));
-        page_4 = new QWidget();
-        page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 230, 238));
-        toolBox->addItem(page_4, QStringLiteral("Vowels"));
-        page_5 = new QWidget();
-        page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 230, 238));
-        toolBox->addItem(page_5, QStringLiteral("Tones"));
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 230, 238));
-        toolBox->addItem(page_2, QStringLiteral("Other"));
-
-        gridLayout_6->addWidget(toolBox, 2, 0, 1, 1);
-
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 3, -1, 3);
         lineEdit_4 = new QLineEdit(ipaCharTab);
         lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(lineEdit_4->sizePolicy().hasHeightForWidth());
-        lineEdit_4->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(lineEdit_4->sizePolicy().hasHeightForWidth());
+        lineEdit_4->setSizePolicy(sizePolicy4);
 
         horizontalLayout_3->addWidget(lineEdit_4);
 
@@ -814,6 +807,36 @@ public:
 
 
         gridLayout_6->addLayout(horizontalLayout_3, 0, 0, 1, 1);
+
+        toolBox = new QToolBox(ipaCharTab);
+        toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setStyleSheet(QStringLiteral("background: transparent;"));
+        toolBox->setFrameShape(QFrame::NoFrame);
+        toolBox->setFrameShadow(QFrame::Plain);
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        page->setGeometry(QRect(0, 0, 250, 17));
+        toolBox->addItem(page, QStringLiteral("Consonants"));
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        page_3->setGeometry(QRect(0, 0, 230, 238));
+        toolBox->addItem(page_3, QStringLiteral("Affricates"));
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        page_4->setGeometry(QRect(0, 0, 233, 16));
+        toolBox->addItem(page_4, QStringLiteral("Vowels"));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        toolBox->addItem(page_2, QStringLiteral("Diacritics"));
+        page_15 = new QWidget();
+        page_15->setObjectName(QStringLiteral("page_15"));
+        toolBox->addItem(page_15, QStringLiteral("Suprasegmentals"));
+        page_5 = new QWidget();
+        page_5->setObjectName(QStringLiteral("page_5"));
+        page_5->setGeometry(QRect(0, 0, 230, 238));
+        toolBox->addItem(page_5, QStringLiteral("Tones"));
+
+        gridLayout_6->addWidget(toolBox, 2, 0, 1, 1);
 
         tabWidget->addTab(ipaCharTab, QString());
         commomCharTab = new QWidget();
@@ -828,8 +851,8 @@ public:
         horizontalLayout_4->setContentsMargins(0, 3, -1, 3);
         lineEdit_5 = new QLineEdit(commomCharTab);
         lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
-        sizePolicy3.setHeightForWidth(lineEdit_5->sizePolicy().hasHeightForWidth());
-        lineEdit_5->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(lineEdit_5->sizePolicy().hasHeightForWidth());
+        lineEdit_5->setSizePolicy(sizePolicy4);
 
         horizontalLayout_4->addWidget(lineEdit_5);
 
@@ -848,7 +871,7 @@ public:
         toolBox_2->setFrameShadow(QFrame::Plain);
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 250, 277));
+        page_6->setGeometry(QRect(0, 0, 250, 28));
         toolBox_2->addItem(page_6, QStringLiteral("Latin"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
@@ -874,8 +897,8 @@ public:
         horizontalLayout_5->setContentsMargins(0, 3, -1, 3);
         lineEdit_6 = new QLineEdit(tab_5);
         lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
-        sizePolicy3.setHeightForWidth(lineEdit_6->sizePolicy().hasHeightForWidth());
-        lineEdit_6->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(lineEdit_6->sizePolicy().hasHeightForWidth());
+        lineEdit_6->setSizePolicy(sizePolicy4);
 
         horizontalLayout_5->addWidget(lineEdit_6);
 
@@ -894,24 +917,26 @@ public:
         toolBox_3->setFrameShadow(QFrame::Plain);
         page_9 = new QWidget();
         page_9->setObjectName(QStringLiteral("page_9"));
-        page_9->setGeometry(QRect(0, 0, 250, 223));
+        page_9->setGeometry(QRect(0, 0, 233, 16));
         toolBox_3->addItem(page_9, QStringLiteral("Consonants"));
         page_10 = new QWidget();
         page_10->setObjectName(QStringLiteral("page_10"));
-        page_10->setGeometry(QRect(0, 0, 100, 30));
+        page_10->setGeometry(QRect(0, 0, 233, 16));
         toolBox_3->addItem(page_10, QStringLiteral("Affricates"));
         page_11 = new QWidget();
         page_11->setObjectName(QStringLiteral("page_11"));
-        page_11->setGeometry(QRect(0, 0, 100, 30));
+        page_11->setGeometry(QRect(0, 0, 233, 16));
         toolBox_3->addItem(page_11, QStringLiteral("Vowels"));
-        page_12 = new QWidget();
-        page_12->setObjectName(QStringLiteral("page_12"));
-        page_12->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_12, QStringLiteral("Tones"));
         page_13 = new QWidget();
         page_13->setObjectName(QStringLiteral("page_13"));
-        page_13->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_13, QStringLiteral("Other"));
+        toolBox_3->addItem(page_13, QStringLiteral("Diacritics"));
+        page_14 = new QWidget();
+        page_14->setObjectName(QStringLiteral("page_14"));
+        toolBox_3->addItem(page_14, QStringLiteral("Suprasegmentals"));
+        page_12 = new QWidget();
+        page_12->setObjectName(QStringLiteral("page_12"));
+        page_12->setGeometry(QRect(0, 0, 233, 16));
+        toolBox_3->addItem(page_12, QStringLiteral("Tones"));
 
         verticalLayout_4->addWidget(toolBox_3);
 
@@ -924,6 +949,12 @@ public:
         gridLayout_18->setObjectName(QStringLiteral("gridLayout_18"));
         gridLayout_18->setSizeConstraint(QLayout::SetMinimumSize);
         gridLayout_18->setContentsMargins(20, 10, 20, 10);
+        label_5 = new QLabel(tab_4);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setTextFormat(Qt::RichText);
+
+        gridLayout_18->addWidget(label_5, 1, 0, 1, 1);
+
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setSpacing(10);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
@@ -935,8 +966,8 @@ public:
 
         lineEdit_7 = new QLineEdit(tab_4);
         lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
-        sizePolicy3.setHeightForWidth(lineEdit_7->sizePolicy().hasHeightForWidth());
-        lineEdit_7->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(lineEdit_7->sizePolicy().hasHeightForWidth());
+        lineEdit_7->setSizePolicy(sizePolicy4);
         lineEdit_7->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(lineEdit_7);
@@ -950,12 +981,6 @@ public:
 
 
         gridLayout_18->addLayout(verticalLayout_5, 5, 0, 1, 1);
-
-        label_5 = new QLabel(tab_4);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setTextFormat(Qt::RichText);
-
-        gridLayout_18->addWidget(label_5, 1, 0, 1, 1);
 
         verticalSpacer_4 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
@@ -1040,6 +1065,8 @@ public:
         menu_View->addAction(action_Custom_Zoom);
         menu_View->addSeparator();
         menu_View->addAction(action_Word_Wrap);
+        menu_View->addSeparator();
+        menu_View->addAction(actionShow_Sidebar);
         menu_Insert->addAction(action_Image);
         menu_Insert->addAction(action_Video);
         menu_Insert->addAction(action_Audio);
@@ -1055,8 +1082,6 @@ public:
         menu_Insert->addAction(actionD_ropdown);
         menu_Insert->addAction(actionRad_io);
         menu_Insert->addAction(actionE_ntry);
-        menuP_ages->addAction(actionProject_Explorer);
-        menuP_ages->addSeparator();
         menuP_ages->addAction(action_Add);
         menuP_ages->addAction(actionAdd_Section);
         menuP_ages->addAction(action_Remove);
@@ -1064,9 +1089,12 @@ public:
         menuP_ages->addSeparator();
         menuP_ages->addAction(action_Import);
         menuP_ages->addAction(actionE_xport);
-        menuLanguage->addAction(action_Character_Editor);
-        menuLanguage->addSeparator();
         menuLanguage->addAction(actionMake_Affricate);
+        menuLanguage->addSeparator();
+        menuLanguage->addAction(actionInsert_Current_Charte);
+        menuLanguage->addSeparator();
+        menuLanguage->addAction(actionImport_Characters);
+        menuLanguage->addAction(actionExport_Characters);
         mainToolBar->addAction(action_New);
         mainToolBar->addAction(action_Open);
         mainToolBar->addAction(action_Save);
@@ -1085,13 +1113,13 @@ public:
 
         retranslateUi(MainWindow);
 
-        pageViewTabs->setCurrentIndex(4);
-        tabWidget_2->setCurrentIndex(1);
+        pageViewTabs->setCurrentIndex(0);
+        tabWidget_2->setCurrentIndex(0);
         sidebarTab->setCurrentIndex(1);
         tabWidget->setCurrentIndex(2);
-        toolBox->setCurrentIndex(0);
+        toolBox->setCurrentIndex(4);
         toolBox_2->setCurrentIndex(0);
-        toolBox_3->setCurrentIndex(0);
+        toolBox_3->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1243,6 +1271,16 @@ public:
 #endif // QT_NO_SHORTCUT
         actionAdd_Section->setText(QApplication::translate("MainWindow", "Add &Section", nullptr));
         actionMake_Affricate->setText(QApplication::translate("MainWindow", "Make Affricate", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionMake_Affricate->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+A", nullptr));
+#endif // QT_NO_SHORTCUT
+        actionImport_Characters->setText(QApplication::translate("MainWindow", "Import Characters...", nullptr));
+        actionExport_Characters->setText(QApplication::translate("MainWindow", "Export Characters...", nullptr));
+        actionShow_Sidebar->setText(QApplication::translate("MainWindow", "Show Sidebar", nullptr));
+        actionInsert_Current_Charte->setText(QApplication::translate("MainWindow", "Insert Current Charte", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionInsert_Current_Charte->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+Q", nullptr));
+#endif // QT_NO_SHORTCUT
         pageViewTabs->setTabText(pageViewTabs->indexOf(editTab), QApplication::translate("MainWindow", "Edit", nullptr));
         pageViewTabs->setTabText(pageViewTabs->indexOf(previewTab), QApplication::translate("MainWindow", "Preview", nullptr));
         addWordButton->setText(QApplication::translate("MainWindow", "Add", nullptr));
@@ -1290,12 +1328,13 @@ public:
         projectButton->setText(QApplication::translate("MainWindow", "Project", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(projectCharTab), QApplication::translate("MainWindow", "Project", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(globalCharTab), QApplication::translate("MainWindow", "Global", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow", "Filter", nullptr));
         toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Consonants", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "Affricates", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "Vowels", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Diacritics", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_15), QApplication::translate("MainWindow", "Suprasegmentals", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("MainWindow", "Tones", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Other", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "Filter", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ipaCharTab), QApplication::translate("MainWindow", "IPA", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "Filter", nullptr));
         toolBox_2->setItemText(toolBox_2->indexOf(page_6), QApplication::translate("MainWindow", "Latin", nullptr));
@@ -1306,13 +1345,14 @@ public:
         toolBox_3->setItemText(toolBox_3->indexOf(page_9), QApplication::translate("MainWindow", "Consonants", nullptr));
         toolBox_3->setItemText(toolBox_3->indexOf(page_10), QApplication::translate("MainWindow", "Affricates", nullptr));
         toolBox_3->setItemText(toolBox_3->indexOf(page_11), QApplication::translate("MainWindow", "Vowels", nullptr));
+        toolBox_3->setItemText(toolBox_3->indexOf(page_13), QApplication::translate("MainWindow", "Diacritics", nullptr));
+        toolBox_3->setItemText(toolBox_3->indexOf(page_14), QApplication::translate("MainWindow", "Suprasegmentals", nullptr));
         toolBox_3->setItemText(toolBox_3->indexOf(page_12), QApplication::translate("MainWindow", "Tones", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_13), QApplication::translate("MainWindow", "Other", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "Scripts", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt; font-weight:600;\">A</span></p></body></html>", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "Base:", nullptr));
         lineEdit_7->setText(QApplication::translate("MainWindow", "A", nullptr));
         smartReplaceCheck->setText(QApplication::translate("MainWindow", "Smart Replace", nullptr));
-        label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt; font-weight:600;\">A</span></p></body></html>", nullptr));
         sidebarTab->setTabText(sidebarTab->indexOf(tab_4), QApplication::translate("MainWindow", "Characters", nullptr));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
         menu_Edit->setTitle(QApplication::translate("MainWindow", "&Edit", nullptr));

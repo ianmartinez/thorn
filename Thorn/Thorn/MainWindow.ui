@@ -30,6 +30,12 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -41,7 +47,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>0</number>
        </property>
        <property name="tabBarAutoHide">
         <bool>false</bool>
@@ -315,7 +321,7 @@
          <item row="0" column="0">
           <widget class="QTabWidget" name="tabWidget_2">
            <property name="currentIndex">
-            <number>1</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="infoTab">
             <attribute name="title">
@@ -638,87 +644,6 @@
                <string>IPA</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_6">
-               <item row="2" column="0">
-                <widget class="QToolBox" name="toolBox">
-                 <property name="styleSheet">
-                  <string notr="true">background: transparent;</string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::NoFrame</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Plain</enum>
-                 </property>
-                 <property name="currentIndex">
-                  <number>0</number>
-                 </property>
-                 <widget class="QWidget" name="page">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>233</width>
-                    <height>16</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>Consonants</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_3">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>Affricates</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_4">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>Vowels</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_5">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>Tones</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>Other</string>
-                  </attribute>
-                 </widget>
-                </widget>
-               </item>
                <item row="0" column="0">
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <property name="leftMargin">
@@ -748,6 +673,84 @@
                   </widget>
                  </item>
                 </layout>
+               </item>
+               <item row="2" column="0">
+                <widget class="QToolBox" name="toolBox">
+                 <property name="styleSheet">
+                  <string notr="true">background: transparent;</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Plain</enum>
+                 </property>
+                 <property name="currentIndex">
+                  <number>4</number>
+                 </property>
+                 <widget class="QWidget" name="page">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>250</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>Consonants</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_3">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>230</width>
+                    <height>238</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>Affricates</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_4">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>233</width>
+                    <height>16</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>Vowels</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_2">
+                  <attribute name="label">
+                   <string>Diacritics</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_15">
+                  <attribute name="label">
+                   <string>Suprasegmentals</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_5">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>230</width>
+                    <height>238</height>
+                   </rect>
+                  </property>
+                  <attribute name="label">
+                   <string>Tones</string>
+                  </attribute>
+                 </widget>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -806,7 +809,7 @@
                     <x>0</x>
                     <y>0</y>
                     <width>250</width>
-                    <height>277</height>
+                    <height>28</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -890,15 +893,15 @@
                   <enum>QFrame::Plain</enum>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>2</number>
                  </property>
                  <widget class="QWidget" name="page_9">
                   <property name="geometry">
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>223</height>
+                    <width>233</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -910,8 +913,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>233</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -923,12 +926,22 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>233</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
                    <string>Vowels</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_13">
+                  <attribute name="label">
+                   <string>Diacritics</string>
+                  </attribute>
+                 </widget>
+                 <widget class="QWidget" name="page_14">
+                  <attribute name="label">
+                   <string>Suprasegmentals</string>
                   </attribute>
                  </widget>
                  <widget class="QWidget" name="page_12">
@@ -936,25 +949,12 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
+                    <width>233</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
                    <string>Tones</string>
-                  </attribute>
-                 </widget>
-                 <widget class="QWidget" name="page_13">
-                  <property name="geometry">
-                   <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
-                   </rect>
-                  </property>
-                  <attribute name="label">
-                   <string>Other</string>
                   </attribute>
                  </widget>
                 </widget>
@@ -980,6 +980,16 @@
              <property name="bottomMargin">
               <number>10</number>
              </property>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;A&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::RichText</enum>
+               </property>
+              </widget>
+             </item>
              <item row="5" column="0">
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <property name="spacing">
@@ -1034,16 +1044,6 @@
                 </widget>
                </item>
               </layout>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;A&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::RichText</enum>
-               </property>
-              </widget>
              </item>
              <item row="2" column="0">
               <spacer name="verticalSpacer_4">
@@ -1136,6 +1136,8 @@
     <addaction name="action_Custom_Zoom"/>
     <addaction name="separator"/>
     <addaction name="action_Word_Wrap"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_Sidebar"/>
    </widget>
    <widget class="QMenu" name="menu_Insert">
     <property name="title">
@@ -1161,8 +1163,6 @@
     <property name="title">
      <string>P&amp;ages</string>
     </property>
-    <addaction name="actionProject_Explorer"/>
-    <addaction name="separator"/>
     <addaction name="action_Add"/>
     <addaction name="actionAdd_Section"/>
     <addaction name="action_Remove"/>
@@ -1175,9 +1175,12 @@
     <property name="title">
      <string>Linguistics</string>
     </property>
-    <addaction name="action_Character_Editor"/>
-    <addaction name="separator"/>
     <addaction name="actionMake_Affricate"/>
+    <addaction name="separator"/>
+    <addaction name="actionInsert_Current_Charte"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport_Characters"/>
+    <addaction name="actionExport_Characters"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -1658,6 +1661,38 @@
   <action name="actionMake_Affricate">
    <property name="text">
     <string>Make Affricate</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
+   </property>
+  </action>
+  <action name="actionImport_Characters">
+   <property name="text">
+    <string>Import Characters...</string>
+   </property>
+  </action>
+  <action name="actionExport_Characters">
+   <property name="text">
+    <string>Export Characters...</string>
+   </property>
+  </action>
+  <action name="actionShow_Sidebar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Sidebar</string>
+   </property>
+  </action>
+  <action name="actionInsert_Current_Charte">
+   <property name="text">
+    <string>Insert Current Charte</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Q</string>
    </property>
   </action>
  </widget>
