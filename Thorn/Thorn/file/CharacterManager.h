@@ -54,6 +54,8 @@ public:
     vector<Character> ScriptOsage; // https://en.wikipedia.org/wiki/Osage_alphabet
     vector<Character> ScriptOsmanya; // https://en.wikipedia.org/wiki/Osmanya_alphabet
     vector<Character> ScriptRunic; // https://en.wikipedia.org/wiki/Runes
+    vector<Character> ScriptPhoenician; // https://en.wikipedia.org/wiki/Phoenician_alphabet
+    vector<Character> ScriptSouthArabian; // https://en.wikipedia.org/wiki/Ancient_South_Arabian_script
 
 
     vector<Character> GetCharactersFromResource(QString ResourceName);
