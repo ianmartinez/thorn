@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1067</width>
-    <height>806</height>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -693,8 +693,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>17</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -706,8 +706,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -719,8 +719,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>233</width>
-                    <height>16</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -728,11 +728,27 @@
                   </attribute>
                  </widget>
                  <widget class="QWidget" name="page_2">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                   </rect>
+                  </property>
                   <attribute name="label">
                    <string>Diacritics</string>
                   </attribute>
                  </widget>
                  <widget class="QWidget" name="page_15">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>250</width>
+                    <height>58</height>
+                   </rect>
+                  </property>
                   <attribute name="label">
                    <string>Suprasegmentals</string>
                   </attribute>
@@ -742,8 +758,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -808,8 +824,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>28</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -821,8 +837,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -834,8 +850,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>230</width>
-                    <height>238</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -900,8 +916,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>233</width>
-                    <height>16</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -913,8 +929,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>233</width>
-                    <height>16</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -926,8 +942,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>233</width>
-                    <height>16</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -935,11 +951,27 @@
                   </attribute>
                  </widget>
                  <widget class="QWidget" name="page_13">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                   </rect>
+                  </property>
                   <attribute name="label">
                    <string>Diacritics</string>
                   </attribute>
                  </widget>
                  <widget class="QWidget" name="page_14">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                   </rect>
+                  </property>
                   <attribute name="label">
                    <string>Suprasegmentals</string>
                   </attribute>
@@ -949,8 +981,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>233</width>
-                    <height>16</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -1689,7 +1721,7 @@
   </action>
   <action name="actionInsert_Current_Charte">
    <property name="text">
-    <string>Insert Current Charte</string>
+    <string>Insert Current Character</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Q</string>
