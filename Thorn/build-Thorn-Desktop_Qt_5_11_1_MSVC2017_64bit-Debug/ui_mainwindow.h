@@ -188,10 +188,6 @@ public:
     QToolBox *toolBox_3;
     QWidget *page_9;
     QWidget *page_10;
-    QWidget *page_11;
-    QWidget *page_13;
-    QWidget *page_14;
-    QWidget *page_12;
     QGridLayout *gridLayout_18;
     QLabel *label_5;
     QVBoxLayout *verticalLayout_5;
@@ -873,7 +869,7 @@ public:
         toolBox_2->setFrameShadow(QFrame::Plain);
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 100, 30));
+        page_6->setGeometry(QRect(0, 0, 250, 139));
         toolBox_2->addItem(page_6, QStringLiteral("Latin"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
@@ -919,28 +915,12 @@ public:
         toolBox_3->setFrameShadow(QFrame::Plain);
         page_9 = new QWidget();
         page_9->setObjectName(QStringLiteral("page_9"));
-        page_9->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_9, QStringLiteral("Consonants"));
+        page_9->setGeometry(QRect(0, 0, 250, 166));
+        toolBox_3->addItem(page_9, QStringLiteral("Coptic"));
         page_10 = new QWidget();
         page_10->setObjectName(QStringLiteral("page_10"));
-        page_10->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_10, QStringLiteral("Affricates"));
-        page_11 = new QWidget();
-        page_11->setObjectName(QStringLiteral("page_11"));
-        page_11->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_11, QStringLiteral("Vowels"));
-        page_13 = new QWidget();
-        page_13->setObjectName(QStringLiteral("page_13"));
-        page_13->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_13, QStringLiteral("Diacritics"));
-        page_14 = new QWidget();
-        page_14->setObjectName(QStringLiteral("page_14"));
-        page_14->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_14, QStringLiteral("Suprasegmentals"));
-        page_12 = new QWidget();
-        page_12->setObjectName(QStringLiteral("page_12"));
-        page_12->setGeometry(QRect(0, 0, 100, 30));
-        toolBox_3->addItem(page_12, QStringLiteral("Tones"));
+        page_10->setGeometry(QRect(0, 0, 250, 166));
+        toolBox_3->addItem(page_10, QStringLiteral("Elder Futhark"));
 
         verticalLayout_4->addWidget(toolBox_3);
 
@@ -1120,10 +1100,10 @@ public:
         pageViewTabs->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
         sidebarTab->setCurrentIndex(1);
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
         toolBox->setCurrentIndex(4);
         toolBox_2->setCurrentIndex(0);
-        toolBox_3->setCurrentIndex(2);
+        toolBox_3->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1346,12 +1326,8 @@ public:
         toolBox_2->setItemText(toolBox_2->indexOf(page_8), QApplication::translate("MainWindow", "Greek", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(commomCharTab), QApplication::translate("MainWindow", "Common", nullptr));
         pushButton_3->setText(QApplication::translate("MainWindow", "Filter", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_9), QApplication::translate("MainWindow", "Consonants", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_10), QApplication::translate("MainWindow", "Affricates", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_11), QApplication::translate("MainWindow", "Vowels", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_13), QApplication::translate("MainWindow", "Diacritics", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_14), QApplication::translate("MainWindow", "Suprasegmentals", nullptr));
-        toolBox_3->setItemText(toolBox_3->indexOf(page_12), QApplication::translate("MainWindow", "Tones", nullptr));
+        toolBox_3->setItemText(toolBox_3->indexOf(page_9), QApplication::translate("MainWindow", "Coptic", nullptr));
+        toolBox_3->setItemText(toolBox_3->indexOf(page_10), QApplication::translate("MainWindow", "Elder Futhark", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "Scripts", nullptr));
         label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt; font-weight:600;\">A</span></p></body></html>", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "Base:", nullptr));
