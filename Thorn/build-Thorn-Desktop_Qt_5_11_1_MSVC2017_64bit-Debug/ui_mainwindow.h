@@ -27,6 +27,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
@@ -143,9 +144,12 @@ public:
     QGridLayout *gridLayout_16;
     QGridLayout *gridLayout_4;
     QSpacerItem *verticalSpacer_2;
-    QGroupBox *groupBox_2;
-    QGridLayout *gridLayout_22;
-    QGridLayout *gridLayout_21;
+    QGroupBox *stdDiacriticsGroup;
+    QGridLayout *gridLayout_9;
+    QScrollArea *stdDiacriticsScroll;
+    QWidget *scrollAreaWidgetContents;
+    QGridLayout *gridLayout_5;
+    QFrame *stdDiacriticsFrame;
     QSpacerItem *verticalSpacer_3;
     QSpacerItem *verticalSpacer;
     QGroupBox *groupBox;
@@ -210,7 +214,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1067, 918);
+        MainWindow->resize(1067, 920);
         QIcon icon;
         icon.addFile(QStringLiteral("../../icons/thorn/app_icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -707,21 +711,39 @@ public:
 
         gridLayout_4->addItem(verticalSpacer_2, 3, 0, 1, 1);
 
-        groupBox_2 = new QGroupBox(tab_4);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setMinimumSize(QSize(0, 100));
-        gridLayout_22 = new QGridLayout(groupBox_2);
-        gridLayout_22->setSpacing(6);
-        gridLayout_22->setContentsMargins(11, 11, 11, 11);
-        gridLayout_22->setObjectName(QStringLiteral("gridLayout_22"));
-        gridLayout_21 = new QGridLayout();
-        gridLayout_21->setSpacing(6);
-        gridLayout_21->setObjectName(QStringLiteral("gridLayout_21"));
+        stdDiacriticsGroup = new QGroupBox(tab_4);
+        stdDiacriticsGroup->setObjectName(QStringLiteral("stdDiacriticsGroup"));
+        stdDiacriticsGroup->setMinimumSize(QSize(0, 100));
+        gridLayout_9 = new QGridLayout(stdDiacriticsGroup);
+        gridLayout_9->setSpacing(6);
+        gridLayout_9->setContentsMargins(11, 11, 11, 11);
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        stdDiacriticsScroll = new QScrollArea(stdDiacriticsGroup);
+        stdDiacriticsScroll->setObjectName(QStringLiteral("stdDiacriticsScroll"));
+        stdDiacriticsScroll->setAutoFillBackground(true);
+        stdDiacriticsScroll->setFrameShape(QFrame::NoFrame);
+        stdDiacriticsScroll->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 254, 67));
+        gridLayout_5 = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout_5->setSpacing(6);
+        gridLayout_5->setContentsMargins(11, 11, 11, 11);
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
+        gridLayout_5->setSizeConstraint(QLayout::SetMaximumSize);
+        stdDiacriticsFrame = new QFrame(scrollAreaWidgetContents);
+        stdDiacriticsFrame->setObjectName(QStringLiteral("stdDiacriticsFrame"));
+        stdDiacriticsFrame->setFrameShape(QFrame::StyledPanel);
+        stdDiacriticsFrame->setFrameShadow(QFrame::Raised);
 
-        gridLayout_22->addLayout(gridLayout_21, 0, 0, 1, 1);
+        gridLayout_5->addWidget(stdDiacriticsFrame, 0, 0, 1, 1);
+
+        stdDiacriticsScroll->setWidget(scrollAreaWidgetContents);
+
+        gridLayout_9->addWidget(stdDiacriticsScroll, 0, 0, 1, 1);
 
 
-        gridLayout_4->addWidget(groupBox_2, 6, 0, 1, 1);
+        gridLayout_4->addWidget(stdDiacriticsGroup, 6, 0, 1, 1);
 
         verticalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
@@ -826,7 +848,7 @@ public:
         toolBox->addItem(page_2, QStringLiteral("Diacritics"));
         page_15 = new QWidget();
         page_15->setObjectName(QStringLiteral("page_15"));
-        page_15->setGeometry(QRect(0, 0, 250, 58));
+        page_15->setGeometry(QRect(0, 0, 65, 16));
         toolBox->addItem(page_15, QStringLiteral("Suprasegmentals"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
@@ -868,7 +890,7 @@ public:
         toolBox_2->setFrameShadow(QFrame::Plain);
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 250, 139));
+        page_6->setGeometry(QRect(0, 0, 65, 16));
         toolBox_2->addItem(page_6, QStringLiteral("Latin"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
@@ -914,11 +936,11 @@ public:
         toolBox_3->setFrameShadow(QFrame::Plain);
         page_9 = new QWidget();
         page_9->setObjectName(QStringLiteral("page_9"));
-        page_9->setGeometry(QRect(0, 0, 250, 166));
+        page_9->setGeometry(QRect(0, 0, 100, 30));
         toolBox_3->addItem(page_9, QStringLiteral("Coptic"));
         page_10 = new QWidget();
         page_10->setObjectName(QStringLiteral("page_10"));
-        page_10->setGeometry(QRect(0, 0, 250, 166));
+        page_10->setGeometry(QRect(0, 0, 65, 16));
         toolBox_3->addItem(page_10, QStringLiteral("Elder Futhark"));
 
         verticalLayout_4->addWidget(toolBox_3);
@@ -1303,7 +1325,7 @@ public:
         treeWidget->setSortingEnabled(__sortingEnabled);
 
         sidebarTab->setTabText(sidebarTab->indexOf(tab_3), QApplication::translate("MainWindow", "Project", nullptr));
-        groupBox_2->setTitle(QApplication::translate("MainWindow", "Accent Marks", nullptr));
+        stdDiacriticsGroup->setTitle(QApplication::translate("MainWindow", "Accent Marks", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Add Character To", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "Document", nullptr));
         pushButton_5->setText(QApplication::translate("MainWindow", "Clipboard", nullptr));

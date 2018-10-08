@@ -30,7 +30,8 @@ SOURCES += \
     File/MarkupPreprocessor.cpp \
     File/MarkupHighlighter.cpp \
     MainWindow.cpp \
-    File/CharacterManager.cpp
+    File/CharacterManager.cpp \
+    Widgets/FlowLayout.cpp
 
 HEADERS += \
     InsertDialogs/InsertListDialog.h \
@@ -39,7 +40,8 @@ HEADERS += \
     File/ThornFile.h \
     CodeEditor.h \
     MainWindow.h \
-    File/CharacterManager.h
+    File/CharacterManager.h \
+    Widgets/FlowLayout.h
 
 FORMS += \
     MainWindow.ui \

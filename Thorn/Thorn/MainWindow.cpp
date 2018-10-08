@@ -4,6 +4,8 @@
 #include "qtreewidget.h"
 #include "CodeEditor.h"
 #include "InsertDialogs/InsertListDialog.h"
+#include <QButtonGroup>
+#include "Widgets/FlowLayout.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -25,12 +27,34 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // Init text editor
     editor = new CodeEditor(ui->editTab);
-
     ui->editGrid->addWidget(editor);
     editor->setFrameShape(QFrame::NoFrame);
     editor->show();
 
+    // Init StandardDiacritics
+    FlowLayout* fStdDiacritics = new FlowLayout(0,5,5);
 
+    foreach(Character c, charMan->StandardDiacritics) {
+        QPushButton* btn = new QPushButton(c.Value, this);
+        btn->sizePolicy().setHorizontalPolicy(QSizePolicy::Maximum);
+
+
+        QFont font;
+        font.setBold(true);
+        font.setPixelSize(38);
+        btn->setFont(font);
+
+        QFontMetrics met = QFontMetrics(btn->font());
+        btn->setMaximumWidth(met.width(btn->text()) * 3);
+        fStdDiacritics->addWidget(btn);
+    }
+
+    if( ui->stdDiacriticsFrame->layout() )
+        delete ui->stdDiacriticsFrame->layout();
+
+//    fStdDiacritics-
+    ui->stdDiacriticsGroup->setMaximumHeight(this->height()/3);
+    ui->stdDiacriticsFrame->setLayout(fStdDiacritics);
 }
 
 MainWindow::~MainWindow()

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1067</width>
-    <height>918</height>
+    <height>920</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -145,7 +145,7 @@
                <string>Add</string>
               </property>
               <property name="icon">
-               <iconset resource="icons.qrc">
+               <iconset resource="tlell.qrc">
                 <normaloff>:/tlell/tlell/list-add.svg</normaloff>:/tlell/tlell/list-add.svg</iconset>
               </property>
               <property name="iconSize">
@@ -168,7 +168,7 @@
                <string>Remove</string>
               </property>
               <property name="icon">
-               <iconset resource="icons.qrc">
+               <iconset resource="tlell.qrc">
                 <normaloff>:/tlell/tlell/list-remove.svg</normaloff>:/tlell/tlell/list-remove.svg</iconset>
               </property>
               <property name="iconSize">
@@ -267,7 +267,7 @@
                <string>Add...</string>
               </property>
               <property name="icon">
-               <iconset resource="icons.qrc">
+               <iconset resource="tlell.qrc">
                 <normaloff>:/tlell/tlell/list-add.svg</normaloff>:/tlell/tlell/list-add.svg</iconset>
               </property>
               <property name="iconSize">
@@ -290,7 +290,7 @@
                <string>Remove</string>
               </property>
               <property name="icon">
-               <iconset resource="icons.qrc">
+               <iconset resource="tlell.qrc">
                 <normaloff>:/tlell/tlell/list-remove.svg</normaloff>:/tlell/tlell/list-remove.svg</iconset>
               </property>
               <property name="iconSize">
@@ -475,7 +475,7 @@
              <string>Home</string>
             </property>
             <property name="icon">
-             <iconset resource="icons.qrc">
+             <iconset resource="tlell.qrc">
               <normaloff>:/tlell/tlell/folder.svg</normaloff>:/tlell/tlell/folder.svg</iconset>
             </property>
             <property name="flags">
@@ -486,7 +486,7 @@
               <string>Page 1</string>
              </property>
              <property name="icon">
-              <iconset resource="icons.qrc">
+              <iconset resource="tlell.qrc">
                <normaloff>:/tlell/tlell/text.svg</normaloff>:/tlell/tlell/text.svg</iconset>
              </property>
              <property name="flags">
@@ -522,7 +522,7 @@
             </spacer>
            </item>
            <item row="6" column="0">
-            <widget class="QGroupBox" name="groupBox_2">
+            <widget class="QGroupBox" name="stdDiacriticsGroup">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -532,9 +532,44 @@
              <property name="title">
               <string>Accent Marks</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_22">
+             <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayout_21"/>
+               <widget class="QScrollArea" name="stdDiacriticsScroll">
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="widgetResizable">
+                 <bool>true</bool>
+                </property>
+                <widget class="QWidget" name="scrollAreaWidgetContents">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>254</width>
+                   <height>67</height>
+                  </rect>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_5">
+                  <property name="sizeConstraint">
+                   <enum>QLayout::SetMaximumSize</enum>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QFrame" name="stdDiacriticsFrame">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -745,8 +780,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>58</height>
+                    <width>65</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -824,8 +859,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>139</height>
+                    <width>65</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -916,8 +951,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>166</height>
+                    <width>100</width>
+                    <height>30</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -929,8 +964,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>250</width>
-                    <height>166</height>
+                    <width>65</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <attribute name="label">
@@ -1203,7 +1238,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Open">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/document-open.svg</normaloff>:/tlell/tlell/document-open.svg</iconset>
    </property>
    <property name="text">
@@ -1215,7 +1250,7 @@
   </action>
   <action name="action_New">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/document-new.svg</normaloff>:/tlell/tlell/document-new.svg</iconset>
    </property>
    <property name="text">
@@ -1232,7 +1267,7 @@
   </action>
   <action name="action_Save">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/document-save.svg</normaloff>:/tlell/tlell/document-save.svg</iconset>
    </property>
    <property name="text">
@@ -1244,7 +1279,7 @@
   </action>
   <action name="actionSave_As">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/document-save-as.svg</normaloff>:/tlell/tlell/document-save-as.svg</iconset>
    </property>
    <property name="text">
@@ -1256,7 +1291,7 @@
   </action>
   <action name="action_Quit">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/quit.svg</normaloff>:/tlell/tlell/quit.svg</iconset>
    </property>
    <property name="text">
@@ -1268,7 +1303,7 @@
   </action>
   <action name="action_Undo">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-undo.svg</normaloff>:/tlell/tlell/edit-undo.svg</iconset>
    </property>
    <property name="text">
@@ -1280,7 +1315,7 @@
   </action>
   <action name="action_Redo">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-redo.svg</normaloff>:/tlell/tlell/edit-redo.svg</iconset>
    </property>
    <property name="text">
@@ -1292,7 +1327,7 @@
   </action>
   <action name="action_Copy">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-copy.svg</normaloff>:/tlell/tlell/edit-copy.svg</iconset>
    </property>
    <property name="text">
@@ -1304,7 +1339,7 @@
   </action>
   <action name="action_Paste">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-paste.svg</normaloff>:/tlell/tlell/edit-paste.svg</iconset>
    </property>
    <property name="text">
@@ -1316,7 +1351,7 @@
   </action>
   <action name="action_Cut">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-cut.svg</normaloff>:/tlell/tlell/edit-cut.svg</iconset>
    </property>
    <property name="text">
@@ -1328,7 +1363,7 @@
   </action>
   <action name="action_Find_Replace">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-find-replace.svg</normaloff>:/tlell/tlell/edit-find-replace.svg</iconset>
    </property>
    <property name="text">
@@ -1340,7 +1375,7 @@
   </action>
   <action name="actionSelect_All">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/edit-select-all.svg</normaloff>:/tlell/tlell/edit-select-all.svg</iconset>
    </property>
    <property name="text">
@@ -1360,7 +1395,7 @@
   </action>
   <action name="actionUsing_Thorn_Markup">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/help.svg</normaloff>:/tlell/tlell/help.svg</iconset>
    </property>
    <property name="text">
@@ -1401,7 +1436,7 @@
   </action>
   <action name="action_Custom_Zoom">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/find.svg</normaloff>:/tlell/tlell/find.svg</iconset>
    </property>
    <property name="text">
@@ -1424,7 +1459,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/characters.svg</normaloff>:/tlell/tlell/characters.svg</iconset>
    </property>
    <property name="text">
@@ -1433,7 +1468,7 @@
   </action>
   <action name="action_Add">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/page-add.svg</normaloff>:/tlell/tlell/page-add.svg</iconset>
    </property>
    <property name="text">
@@ -1471,7 +1506,7 @@
   </action>
   <action name="actionSettin_gs">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/preferences.svg</normaloff>:/tlell/tlell/preferences.svg</iconset>
    </property>
    <property name="text">
@@ -1486,7 +1521,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/text-edit.svg</normaloff>:/tlell/tlell/text-edit.svg</iconset>
    </property>
    <property name="text">
@@ -1495,7 +1530,7 @@
   </action>
   <action name="action_Image">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/image.svg</normaloff>:/tlell/tlell/image.svg</iconset>
    </property>
    <property name="text">
@@ -1507,7 +1542,7 @@
   </action>
   <action name="action_Video">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/multimedia.svg</normaloff>:/tlell/tlell/multimedia.svg</iconset>
    </property>
    <property name="text">
@@ -1519,7 +1554,7 @@
   </action>
   <action name="action_Audio">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/audio-file.svg</normaloff>:/tlell/tlell/audio-file.svg</iconset>
    </property>
    <property name="text">
@@ -1547,7 +1582,7 @@
   </action>
   <action name="actionDictionary_Word">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/book.svg</normaloff>:/tlell/tlell/book.svg</iconset>
    </property>
    <property name="text">
@@ -1559,7 +1594,7 @@
   </action>
   <action name="actionT_ooltip">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/notify.svg</normaloff>:/tlell/tlell/notify.svg</iconset>
    </property>
    <property name="text">
@@ -1571,7 +1606,7 @@
   </action>
   <action name="actionLin_k">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/web.svg</normaloff>:/tlell/tlell/web.svg</iconset>
    </property>
    <property name="text">
@@ -1583,7 +1618,7 @@
   </action>
   <action name="action_Keyboard">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/keyboard.svg</normaloff>:/tlell/tlell/keyboard.svg</iconset>
    </property>
    <property name="text">
@@ -1619,7 +1654,7 @@
   </action>
   <action name="actionRun">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/system.svg</normaloff>:/tlell/tlell/system.svg</iconset>
    </property>
    <property name="text">
@@ -1631,7 +1666,7 @@
   </action>
   <action name="actionAdd_Section">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="tlell.qrc">
      <normaloff>:/tlell/tlell/folder-add.svg</normaloff>:/tlell/tlell/folder-add.svg</iconset>
    </property>
    <property name="text">
@@ -1686,7 +1721,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="tlell.qrc"/>
  </resources>
  <connections/>
 </ui>
