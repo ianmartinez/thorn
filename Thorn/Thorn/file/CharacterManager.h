@@ -22,6 +22,8 @@ class CharacterManager
 {
 public:
     CharacterManager();
+    vector<Character> StandardDiacritics;
+
     vector<Character> IPAConsonants;
     vector<Character> IPAAffricates;
     vector<Character> IPAVowels;
@@ -61,6 +63,7 @@ public:
 
 
     vector<Character> GetCharactersFromResource(QString ResourceName);
+    void InitCharacterVector(vector<Character>* ChacacterVector, QString INIFile, QString Group, InsertionType InsertAs);
 };
 
 #endif // CHARACTERMANAGER_H

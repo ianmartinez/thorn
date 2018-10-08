@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/characters">
+        <file>Characters/Diacritics.ini</file>
+        <file>Characters/Extended.ini</file>
+        <file>Characters/IPA.ini</file>
+        <file>Characters/Scripts.ini</file>
+    </qresource>
+</RCC>

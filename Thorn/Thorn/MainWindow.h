@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "CodeEditor.h"
+#include "File/CharacterManager.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     CodeEditor* editor;
+    CharacterManager* charMan;
     ~MainWindow();
 
 private slots:

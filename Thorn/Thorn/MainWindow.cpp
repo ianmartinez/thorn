@@ -5,9 +5,7 @@
 #include "CodeEditor.h"
 #include "InsertDialogs/InsertListDialog.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 /*
@@ -22,12 +20,17 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set text for item
     item->setText(0,"SubItem"); */
 
+    // Init characters
+    charMan = new CharacterManager();
+
     // Init text editor
     editor = new CodeEditor(ui->editTab);
 
     ui->editGrid->addWidget(editor);
     editor->setFrameShape(QFrame::NoFrame);
     editor->show();
+
+
 }
 
 MainWindow::~MainWindow()

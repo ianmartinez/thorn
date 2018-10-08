@@ -54,4 +54,5 @@ win32:RC_ICONS += ../../icons/thorn/app_icon.ico
 DISTFILES +=
 
 RESOURCES += \
-    icons.qrc
+    characters.qrc \
+    tlell.qrc

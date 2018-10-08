@@ -32,7 +32,6 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
-#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolBox>
@@ -132,10 +131,10 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_3;
     QLabel *label_4;
-    QTextBrowser *textBrowser;
+    QTextEdit *textEdit;
     QWidget *cssTab;
     QGridLayout *gridLayout_12;
-    QTextEdit *textEdit;
+    QTextEdit *textEdit1;
     QTabWidget *sidebarTab;
     QWidget *tab_3;
     QGridLayout *gridLayout_15;
@@ -626,15 +625,15 @@ public:
 
         formLayout->setWidget(4, QFormLayout::LabelRole, label_4);
 
-        textBrowser = new QTextBrowser(infoTab);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textEdit = new QTextEdit(infoTab);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
         QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
-        textBrowser->setSizePolicy(sizePolicy3);
+        sizePolicy3.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+        textEdit->setSizePolicy(sizePolicy3);
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, textBrowser);
+        formLayout->setWidget(4, QFormLayout::FieldRole, textEdit);
 
 
         gridLayout_11->addLayout(formLayout, 0, 0, 1, 1);
@@ -646,11 +645,11 @@ public:
         gridLayout_12->setSpacing(6);
         gridLayout_12->setContentsMargins(11, 11, 11, 11);
         gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
-        textEdit = new QTextEdit(cssTab);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setAcceptRichText(false);
+        textEdit1 = new QTextEdit(cssTab);
+        textEdit1->setObjectName(QStringLiteral("textEdit1"));
+        textEdit1->setAcceptRichText(false);
 
-        gridLayout_12->addWidget(textEdit, 0, 0, 1, 1);
+        gridLayout_12->addWidget(textEdit1, 0, 0, 1, 1);
 
         tabWidget_2->addTab(cssTab, QString());
 
