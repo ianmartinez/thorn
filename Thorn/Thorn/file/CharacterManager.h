@@ -4,6 +4,10 @@
 #include <vector>
 #include <QString>
 #include <QStringList>
+#include <QFrame>
+#include <QPushButton>
+#include <Widgets/FlowLayout.h>
+
 using namespace std;
 
 enum InsertionType {
@@ -22,6 +26,8 @@ class CharacterManager
 {
 public:
     CharacterManager();
+    void GenerateButtons(vector<Character> Characters, QFrame* Frame, QWidget* ParentContainer);
+
     vector<Character> StandardDiacritics;
 
     vector<Character> IPAConsonants;

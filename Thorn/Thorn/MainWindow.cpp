@@ -32,29 +32,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     editor->show();
 
     // Init StandardDiacritics
-    FlowLayout* fStdDiacritics = new FlowLayout(0,5,5);
-
-    foreach(Character c, charMan->StandardDiacritics) {
-        QPushButton* btn = new QPushButton(c.Value, this);
-        btn->sizePolicy().setHorizontalPolicy(QSizePolicy::Maximum);
-
-
-        QFont font;
-        font.setBold(true);
-        font.setPixelSize(38);
-        btn->setFont(font);
-
-        QFontMetrics met = QFontMetrics(btn->font());
-        btn->setMaximumWidth(met.width(btn->text()) * 3);
-        fStdDiacritics->addWidget(btn);
-    }
-
-    if( ui->stdDiacriticsFrame->layout() )
-        delete ui->stdDiacriticsFrame->layout();
-
-//    fStdDiacritics-
     ui->stdDiacriticsGroup->setMaximumHeight(this->height()/3);
-    ui->stdDiacriticsFrame->setLayout(fStdDiacritics);
+    charMan->GenerateButtons(charMan->StandardDiacritics, ui->stdDiacriticsFrame, ui->stdDiacriticsGroup);
 }
 
 MainWindow::~MainWindow()

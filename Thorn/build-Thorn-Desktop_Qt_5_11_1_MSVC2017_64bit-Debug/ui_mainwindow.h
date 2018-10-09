@@ -713,7 +713,6 @@ public:
 
         stdDiacriticsGroup = new QGroupBox(tab_4);
         stdDiacriticsGroup->setObjectName(QStringLiteral("stdDiacriticsGroup"));
-        stdDiacriticsGroup->setMinimumSize(QSize(0, 100));
         gridLayout_9 = new QGridLayout(stdDiacriticsGroup);
         gridLayout_9->setSpacing(6);
         gridLayout_9->setContentsMargins(11, 11, 11, 11);
@@ -725,7 +724,7 @@ public:
         stdDiacriticsScroll->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 254, 67));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 254, 69));
         gridLayout_5 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
